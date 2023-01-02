@@ -33,8 +33,9 @@ export const projectsData=[
     {
         id:4,
         image:Work4,
-        title:'API REST JAVA',
+        title:'JAVA + MySQL (CRUD + JPA)',
         category:'Backend',
+        link:"https://github.com/gabo8191/PeluqueriaCanina"
     },
     {
         id:5,
