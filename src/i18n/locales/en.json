@@ -1,0 +1,312 @@
+{
+  "nav": {
+    "about": "About",
+    "home": "Home",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "home": {
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "welcomeMessage": "Welcome to my portfolio"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "title": "Backend Developer",
+    "subtitle": "Computer Systems Engineering Student | Specializing in Laravel & NestJS | Transitioning to DevOps & SRE",
+    "description": "Backend Developer with 2 years of solid professional experience specializing in PHP/Laravel and NestJS/TypeScript ecosystems. Strong foundation in RESTful API development, database optimization, and microservices architecture. Currently expanding into DevOps practices through hands-on Docker containerization and CI/CD pipeline implementation. Pursuing Computer Systems Engineering degree while actively contributing to production systems in enterprise environments.",
+    "downloadCV": "Download CV",
+    "viewProjects": "View Projects"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Backend Developer with 2 years and 7 months of enterprise experience, specializing in Laravel and NestJS ecosystems. Currently pursuing Computer and Systems Engineering degree while actively transitioning into DevOps and Site Reliability Engineering. Strong foundation in microservices architecture, database optimization, and production system maintenance. Passionate about bridging the gap between development and operations through Infrastructure as Code, containerization with Docker, and automated deployment strategies. Experienced in working with real production environments and handling electronic billing systems for the Colombian market.",
+    "currentFocus": "Current Learning Path",
+    "focusAreas": [
+      "Container Orchestration with Kubernetes",
+      "Infrastructure as Code with Terraform & Ansible",
+      "Cloud Platforms (AWS, GCP, Azure)",
+      "Monitoring & Observability (Prometheus, Grafana)",
+      "CI/CD Pipeline Automation & Security",
+      "Site Reliability Engineering Practices"
+    ]
+  },
+  "experience": {
+    "title": "Experience & Education",
+    "workExperience": "Work Experience",
+    "education": "Education",
+    "certifications": "Certifications",
+    "work": "Work",
+    "parq": {
+      "title": "Backend Developer",
+      "period": "November 2024 - Present",
+      "area": "Fullstack Development",
+      "description": "Freelance fullstack developer specializing in microservices architecture and electronic billing solutions for the Colombian market, working across backend, frontend, and infrastructure layers.\n\nMicrolithic Backend Architecture:\n• Maintain and evolve microlithic architecture composed of five independent NestJS microservices sharing a common PostgreSQL database\n• Conduct legacy code auditing and refactoring, identifying structural errors and implementing performance improvements\n• Develop new functionalities with endpoint adjustments and inter-microservice connectivity enhancements\n• Implement pagination systems, bulk loading queues, and precise cron job scheduling with timezone-specific configurations\n• Integrate comprehensive Swagger API documentation across all microservices\n\nElectronic Billing Middleware:\n• Develop electronic billing middleware integrating Siigo, Alegra, and SATCOM platforms for Colombian market regulatory compliance\n• Build robust API endpoints with proper error handling and transaction logging systems\n• Ensure compliance with Colombian electronic billing regulations and performance optimization for high-volume transactions\n\nFrontend Development:\n• Maintain legacy Angular operations module focused on daily invoice processing workflows and ticket generation\n• Develop React administrative components with modular architecture, dynamic data presentation, and robust error handling\n• Migrate institutional landing pages from React to Next.js implementing Server-Side Rendering (SSR) for enhanced SEO performance\n• Apply advanced internationalization principles, code modularization, and security reinforcement\n\nInfrastructure & DevOps:\n• Deploy applications using Docker containers managed through Portainer with Bitbucket version control integration\n• Supervise container deployment ensuring system availability and operational efficiency"
+    },
+    "serempre": {
+      "title": "Backend Developer",
+      "period": "January 2023 - November 2024 (1 yr 11 mos)",
+      "area": "Backend Development",
+      "description": "Backend developer specializing in Laravel enterprise applications for AB InBev's regional operations across Latin American markets, focusing on scalable architectures and third-party integrations.\n\nMembeers - AB InBev Regional Benefits Platform:\n• Participated as backend developer and technical support for corporate benefits system serving AB InBev employees (Bavaria in Colombia) across 5+ Latin American countries\n• Implemented design patterns including Singleton and Observer to improve code maintainability and system scalability\n• Developed and optimized complex MySQL queries and views, utilizing PL/SQL for comprehensive internal and external reporting systems\n• Managed automated cron jobs for user administration processes, system updates, and notification delivery\n• Exposed RESTful endpoints consumed by mobile and web applications, ensuring robust API architecture\n• Provided production incident support guaranteeing operational continuity and system reliability\n\nDecenal Insurance Module - Fasecolda Integration:\n• Executed fullstack development for Colombian insurance entity Fasecolda, integrating residential insurance consultation module into existing legacy application\n• Performed backend development with Laravel and adjustments to legacy PHP codebase\n• Built interactive interfaces using Vue.js and Bootstrap while respecting existing data flow and design patterns\n• Optimized reporting systems and adjusted background processing jobs for improved performance\n• Coordinated comprehensive testing using Postman for API validation and debugging of authentication and asynchronous response issues\n\nStory Training - International Educational Platform:\n• Contributed to backend evolution of Story Training, an international solution serving clients in Spain for audiovisual educational content access\n• Implemented Laravel backend adjustments and administrative system based on Orchid Admin Panel\n• Developed custom Moodle plugin enabling educators to share, control, and track Story Training educational content with students\n• Integrated Cloudinary for comprehensive multimedia file management and optimization\n\nInternal Bidirectional Evaluation System:\n• Designed and developed internal performance evaluation platform enabling mutual assessment between employees and leadership\n• Built complete system using Laravel framework with Bootstrap frontend and MySQL database architecture\n• Focused on organizational environment improvement through structured feedback mechanisms"
+    },
+    "senaIntern": {
+      "title": "Backend Development SENA Intern",
+      "period": "January 2023 - July 2023 (7 mos)",
+      "area": "Backend Development",
+      "description": "Professional internship at Serempre through SENA vocational program, applying academic knowledge in real productive environment and establishing foundation for professional development career.\n\nPractical Development Experience:\n• Gained hands-on experience with PHP programming language and Laravel framework fundamentals, including basic database design and query optimization techniques\n• Participated in collaborative development projects implementing professional code review processes, version control methodologies, and comprehensive technical documentation standards\n• Developed problem-solving capabilities through real-world debugging scenarios, performance optimization challenges, and client requirement analysis\n• Acquired exposure to Agile development methodology through active participation in sprint planning sessions, daily standups, and iterative development cycles\n• Applied theoretical knowledge from SENA technical education in productive enterprise environment, bridging academic learning with professional software development practices"
+    },
+    "uptc": {
+      "title": "Computer and Systems Engineering",
+      "company": "Universidad Pedagógica y Tecnológica de Colombia (UPTC)",
+      "period": "August 2022 - Present",
+      "area": "Software Development & System Architecture",
+      "description": "Computer and Systems Engineering degree with comprehensive focus on advanced software development, system architecture principles, and enterprise-level programming methodologies.\n\nCore Academic Specializations:\n• Advanced Java programming emphasizing data structures mastery and algorithmic analysis using Big O Notation for performance evaluation\n• Database modeling and design with system architecture focus, including normalization techniques and advanced SQL query optimization\n• Distributed systems, networks, digital systems, and information security with practical implementation projects and real-world applications\n• Technical documentation expertise using UML diagrams including use case, class, object, and sequence diagrams for comprehensive system design\n• Design patterns study and implementation with direct application in academic and personal development projects\n• Software engineering methodologies including Agile, Scrum, and traditional SDLC approaches for project management\n\nSignificant Academic Projects:\n• Enterprise layered system development for Almendros company implementing NestJS backend, Angular/React frontend, and Android mobile application\n• Spring Boot transportation agency platform featuring comprehensive template management system and Bootstrap integration\n• Distributed systems proof-of-concept with SSH communication protocols, Server-Side Reporting (SSR) error control, and fault tolerance implementation\n• Data structures applications and computer system simulation projects oriented toward performance optimization and algorithmic stability\n• Computer graphics and human-computer interaction projects using modern development frameworks"
+    },
+    "sena": {
+      "title": "Technical Analysis and Development of Information Systems",
+      "company": "SENA",
+      "period": "January 2021 - August 2023",
+      "area": "Software Development Fundamentals",
+      "description": "Comprehensive technical education in systems analysis and development with specialized focus on web development foundations, establishing the groundwork for professional software development career.\n\nTechnical Foundation & Methodology:\n• Mastered software development lifecycle phases including requirement analysis, system design, development implementation, comprehensive testing, and deployment procedures\n• Acquired database management expertise with MySQL covering design principles, normalization techniques, and fundamental optimization strategies\n• Developed web programming skills using PHP, HTML5, and CSS3 with responsive design principles and interactive JavaScript implementation\n• Applied project management methodologies emphasizing team collaboration, version control systems, and comprehensive technical documentation\n\nCapstone Project Achievement:\n• Developed comprehensive inventory management system with integrated sales module as final project demonstration\n• Implemented barcode reading functionality through physical device integration for automated product identification\n• Created automatic invoice printing extension ensuring seamless transaction processing\n• Built full-stack web application featuring PHP backend with MySQL database integration and interactive frontend using HTML5, CSS3, and JavaScript\n• Completed comprehensive project planning, technical documentation, and professional presentation to industry evaluators\n• This project enabled professional internship opportunity at SEREMPRE, applying acquired knowledge using Laravel framework in real productive environment"
+    }
+  },
+  "projects": {
+    "title": "Personal Projects",
+    "featured": "Featured",
+    "allProjects": "All Projects",
+    "viewCode": "View Code",
+    "viewLive": "Live Demo",
+    "technologies": "Technologies Used",
+    "filterByCategory": "Filter by category",
+    "filterByTechnology": "Filter by technology",
+    "filterByFramework": "Filter by framework",
+    "noProjectsFound": "No projects found",
+    "tryDifferentFilters": "Try changing the filters to see more projects.",
+    "categories": {
+      "all": "All",
+      "featured": "🔥 Featured",
+      "frontend": "💻 Frontend",
+      "backend": "⚙️ Backend",
+      "database": "🗄️ Database",
+      "devops": "🚀 DevOps",
+      "vanilla": "🍦 Vanilla",
+      "proofOfConcept": "⚡ PoC"
+    },
+    "technologies": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "devops": "DevOps",
+      "database": "Database"
+    },
+    "portfolioWebsite": {
+      "title": "Professional Portfolio Website",
+      "description": "Modern, responsive portfolio website built with React and TypeScript. Features dark/light mode, internationalization, interactive terminal simulation, and professional UI/UX design. Showcases technical expertise and professional experience."
+    },
+    "arduinoEsp32Communication": {
+      "title": "Arduino - ESP32 - Flask Communication",
+      "description": "IoT communication system implementing basic serial communication between Arduino, ESP32, and Flask server. Signals are transmitted from Arduino to server via serial communication, then forwarded to ESP32 through WiFi connectivity. Demonstrates embedded systems integration and wireless communication protocols for IoT applications."
+    },
+    "almendrosBackend": {
+      "title": "Almendros Store Backend API",
+      "description": "Production-ready backend API developed for real haberdashery supply business. Features comprehensive security with Helmet.js, rate limiting, Swagger documentation, input sanitization, robust validation, session auditing, and complete CI/CD pipeline. Implements modern backend architecture with TypeScript, Prisma ORM, and automated testing with SonarQube integration for code quality assurance."
+    },
+    "customCipherAlgorithm": {
+      "title": "Custom Block Cipher Algorithm",
+      "description": "Custom encryption algorithm implementing block cipher with substitution, transposition, and XOR operations using pseudorandom number generation. Features a clean web interface built with Tailwind CSS for encryption/decryption operations. Demonstrates cryptographic concepts and security implementation patterns for educational and research purposes."
+    },
+    "fleetManagement": {
+      "title": "Fleet Management System",
+      "description": "Enterprise-grade application for transportation company role and operations management. Comprehensive system including modules for trip planning, vehicle maintenance scheduling, driver management, fleet tracking, and audit trails. Built with Spring Boot and Java 17, featuring PostgreSQL database, Docker containerization, automated CI/CD with GitHub Actions, and responsive Bootstrap interface."
+    },
+    "kafkaRedisMicroservices": {
+      "title": "Microservices with Kafka and Redis",
+      "description": "Distributed streaming system simulation (Netflix-style) implementing three specialized consumers: analytics processing, notification delivery, and content recap generation. Utilizes Apache Kafka for message streaming, Redis for caching, Express.js as message producer, and Python for consumer services. Full Docker Compose orchestration demonstrating modern microservices architecture and event-driven design patterns."
+    },
+    "bullyAlgorithm": {
+      "title": "Bully Election Algorithm Implementation",
+      "description": "Distributed systems implementation of the Bully algorithm for leader election and node coordination. Features Docker Compose deployment with inter-machine SSH connectivity for distributed node communication. Demonstrates consensus algorithms and fault tolerance mechanisms essential for distributed system reliability and coordination."
+    },
+    "redisTopTen": {
+      "title": "Redis Top 10 Management System",
+      "description": "High-performance topic ranking system using Redis as fast, efficient storage mechanism. Proof of concept for real-time leaderboard management with optimized query performance. Ideal for applications requiring rapid read/write operations and real-time data processing with minimal latency."
+    },
+    "berkeleyAlgorithm": {
+      "title": "Berkeley Clock Synchronization Algorithm",
+      "description": "Distributed systems application implementing Berkeley algorithm for time synchronization across distributed nodes. Essential for maintaining consistent timestamps in distributed environments. Demonstrates time coordination protocols and distributed system clock management for ensuring data consistency across multiple servers."
+    },
+    "serverAutoscaling": {
+      "title": "Server Autoscaling Simulation",
+      "description": "Advanced load balancing simulation with automatic scaling capabilities. Includes frontend monitoring interface, backend processing services, comprehensive monitoring dashboard, and automatic instance recovery for failed nodes. Demonstrates modern cloud-native architectures with self-healing infrastructure and dynamic resource allocation based on demand."
+    },
+    "loadBalancerMiddleware": {
+      "title": "Load Balancer Middleware System",
+      "description": "Production-grade load balancing system implementing Least Connected algorithm for optimal traffic distribution. Features dynamic instance registration, real-time health monitoring, and automatic load redistribution. Middleware architecture enables seamless scaling and high availability for distributed applications with intelligent request routing."
+    },
+    "linkedListProducts": {
+      "title": "Linked List Product Management",
+      "description": "Educational data structure implementation using linked lists for product management across retail store chains. Pure Java implementation demonstrating fundamental computer science concepts including dynamic memory allocation, pointer manipulation, and efficient data traversal algorithms. Ideal for understanding core data structure principles."
+    },
+    "bracketsVerifier": {
+      "title": "Bracket Validation with Stacks",
+      "description": "Algorithm implementing stack data structure to validate proper closure of parentheses, braces, and brackets. Simulates syntactic analysis similar to compiler parsing mechanisms. Demonstrates stack-based problem solving and fundamental parsing techniques essential for programming language interpretation and validation systems."
+    },
+    "mixedQueuesStacks": {
+      "title": "Mixed Queues and Stacks Application",
+      "description": "Data structure application combining queues and stacks to solve organizational and cumulative calculation problems. Console-based input processing with complex data manipulation demonstrating practical applications of fundamental data structures in algorithmic problem solving and computational efficiency."
+    },
+    "priorityPrintQueue": {
+      "title": "Priority Print Queue Management",
+      "description": "Print queue management system implementing priority queue data structure using Model-View-Presenter (MVP) architectural pattern. Handles job prioritization, queue management, and processing order optimization for enterprise printing systems. Demonstrates advanced data structure usage with clean architecture principles."
+    },
+    "queueRootOrdering": {
+      "title": "Radix Sort Queue Implementation",
+      "description": "Number sorting algorithm using queues with radix sort methodology through multiple passes (units, tens, hundreds). MVP architecture implementation with linked lists and node-based data structures. Demonstrates advanced sorting algorithms and efficient data organization techniques for large-scale data processing."
+    },
+    "binaryTreeTranslator": {
+      "title": "Binary Tree Dictionary Translator",
+      "description": "Educational binary tree implementation for multi-language word translation. Pure Java application with MVP architecture demonstrating tree traversal algorithms, search optimization, and hierarchical data organization. Practical application of tree data structures for information retrieval and linguistic data management."
+    },
+    "oracleDocker": {
+      "title": "Oracle Database Docker Container",
+      "description": "Ready-to-deploy Docker containerization for Oracle Database eliminating local installation requirements. Optimized for development teams with limited resources, providing instant database provisioning and consistent development environments. Simplifies database setup and enables rapid prototyping with enterprise-grade database capabilities."
+    },
+    "sqlAccidentAnalytics": {
+      "title": "SQL Accident Analytics Project",
+      "description": "Comprehensive data analysis project using relational database modeling for hospitalization accident data. Includes complete dataset preprocessing, data cleaning procedures, and advanced analytical queries. Demonstrates database design principles, data normalization, and business intelligence extraction from healthcare data for statistical analysis and reporting."
+    },
+    "unitySimulationGame": {
+      "title": "Unity Simulation Game",
+      "description": "Educational simulation game with comedic narrative featuring student seeking revenge against challenging professor. Demonstrates game development concepts, Unity engine proficiency, and programming principles applied to interactive entertainment. Showcases object-oriented design, game physics, and user interaction systems in game development."
+    },
+    "pseudorandomGenerator": {
+      "title": "Pseudorandom Number Generator",
+      "description": "Mathematical pseudorandom number generator implementing multiple generation techniques for simulation, cryptography, and algorithmic applications. Flask-based web interface enabling testing of different randomization methods. Essential tool for statistical analysis, Monte Carlo simulations, and cryptographic research applications."
+    }
+  },
+  "professionalProjects": {
+    "title": "Professional Work Experience",
+    "subtitle": "Enterprise Projects & Confidential Work",
+    "note": "The following projects were developed during my professional experience. Source code is confidential and proprietary to the respective companies.",
+    "parqMicroservices": {
+      "title": "PARQ Microlithic Backend Architecture",
+      "description": "Maintenance and evolution of microlithic architecture with five independent microservices sharing PostgreSQL database.\n\n• Legacy code auditing and refactoring with error identification\n• New feature development with endpoint adjustments and connectivity\n• Pagination systems and bulk loading queues implementation\n• Precise cron job scheduling with timezone adjustments\n• Comprehensive Swagger API documentation integration\n• Version control through Bitbucket and Docker deployments via Portainer"
+    },
+    "parqBillingMiddleware": {
+      "title": "Electronic Billing Middleware Integration",
+      "description": "Development of electronic billing middleware for Colombian market integration with multiple providers.\n\n• Integration with Siigo, Alegra, and SATCOM billing platforms\n• API development for invoice processing and validation\n• Error handling and transaction logging systems\n• Compliance with Colombian electronic billing regulations\n• Performance optimization for high-volume transactions"
+    },
+    "parqAngularModules": {
+      "title": "PARQ Angular Legacy Frontend Operations",
+      "description": "Maintenance and enhancement of legacy Angular frontend for daily operational workflows.\n\n• Electronic billing systems integration with invoice processing\n• Ticket generation and printing functionality development\n• Layout and data presentation improvements for UX enhancement\n• Internationalization logic strengthening for multi-language support\n• Workflow efficiency optimization across operational modules"
+    },
+    "parqReactModules": {
+      "title": "PARQ React Administrative Modules",
+      "description": "Development of React-based administrative modules for internal management systems.\n\n• Component-based architecture for reusable UI elements\n• State management implementation for complex workflows\n• Integration with backend APIs for data processing\n• Responsive design for multi-device compatibility\n• Performance optimization and code splitting"
+    },
+    "parqLandingPage": {
+      "title": "PARQ Landing Page Evolution",
+      "description": "Migration and enhancement of landing pages from React to Next.js with advanced features.\n\n• Server-side rendering (SSR) implementation for SEO optimization\n• Internationalization system for multi-language support\n• Performance improvements and Core Web Vitals optimization\n• Dynamic content management and API integration\n• Modern design patterns and responsive layouts"
+    },
+    "serempreMembeers": {
+      "title": "Membeers - AB InBev Regional Benefits Platform",
+      "description": "Development of corporate benefits platform serving employees across 5+ Latin American countries.\n\n• Backend development with Laravel for scalable architecture\n• Complex MySQL queries and PL/SQL for reporting systems\n• Design patterns implementation (Singleton, Observer) for maintainability\n• Automated cron jobs for user administration and notifications\n• RESTful API development for mobile and web applications\n• Production support and incident resolution"
+    },
+    "serempreDecenal": {
+      "title": "Decenal Insurance Module - Fasecolda Integration",
+      "description": "Fullstack development of residential insurance consultation module for Colombian insurance entity.\n\n• Integration within existing legacy application architecture\n• Backend adjustments with Laravel and inherited PHP code\n• Interactive Vue.js and Bootstrap frontend development\n• Data flow optimization and reporting system enhancements\n• Comprehensive testing coordination with Postman"
+    },
+    "serempreStoryTraining": {
+      "title": "Story Training - International Educational Platform",
+      "description": "Educational platform evolution with international clients in Spain.\n\n• Laravel backend adjustments and Orchid Admin Panel integration\n• Custom Moodle plugin development for content sharing\n• Cloudinary integration for multimedia file management\n• Educational content management system optimization\n• Cross-platform compatibility and API development"
+    },
+    "serempreEvaluation": {
+      "title": "Internal Bidirectional Evaluation System",
+      "description": "Performance evaluation platform facilitating mutual assessment between employees and leaders.\n\n• Complete Laravel development with Bootstrap frontend\n• MySQL database design for evaluation workflows\n• User authentication and role-based access control\n• Performance metrics and reporting dashboard\n• Organizational environment improvement focus"
+    }
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "description": "Core technologies and tools I work with professionally",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "devops": "DevOps",
+    "database": "Database",
+    "tools": "Tools",
+    "cloud": "Cloud"
+  },
+  "certifications": {
+    "title": "Certifications",
+    "description": "Courses and certifications completed to stay current with industry technologies and best practices.",
+    "general": "General",
+    "totalCertifications": "Total",
+    "skillsLearned": "Skills learned",
+    "viewCredential": "View Credential",
+    "downloadCertificate": "Download Certificate",
+    "noCredentialAvailable": "No credential available",
+    "noResults": "No certifications found",
+    "tryDifferentFilter": "Try a different filter to see more certifications."
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's Work Together",
+    "description": "I'm always interested in new opportunities and collaborations. Feel free to reach out!",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "sendMessage": "Send Message",
+    "name": "Name",
+    "message": "Message",
+    "subject": "Subject"
+  },
+  "terminal": {
+    "welcome": "Welcome to Gabriel's Portfolio Terminal",
+    "typeHelp": "Type 'help' to see available commands",
+    "commandNotFound": "Command not found",
+    "availableCommands": "Available Commands",
+    "exploreHint": "Try exploring",
+    "disclaimer": {
+      "title": "Interactive Portfolio Terminal",
+      "description": "This is a simulated terminal interface designed to showcase my technical background in a creative way. You can explore my experience, skills, and projects using familiar command-line tools. Type 'help' to see available commands.",
+      "interactive": "Interactive",
+      "simulation": "Simulation",
+      "portfolio": "Portfolio Tool"
+    },
+    "commands": {
+      "whoami": "Display current user info",
+      "pwd": "Print working directory",
+      "ls": "List directory contents",
+      "cat": "Display file contents",
+      "dockerPs": "List running containers",
+      "gitStatus": "Show git repository status",
+      "gitLog": "Show recent commits",
+      "psPhp": "Show PHP processes",
+      "composer": "Show PHP dependencies",
+      "npm": "Show Node.js dependencies",
+      "kubectlPods": "List Kubernetes pods",
+      "clear": "Clear terminal",
+      "help": "Show this help message"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "close": "Close",
+    "open": "Open",
+    "save": "Save",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "portfolio": "Portfolio",
+    "all": "All",
+    "filter": "Filter",
+    "exploreMessage": "Discover my technical expertise and professional journey"
+  }
+}

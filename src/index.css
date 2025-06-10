@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/* Custom CSS variables for theme colors */
+:root {
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-200: #bfdbfe;
+  --primary-300: #93c5fd;
+  --primary-400: #60a5fa;
+  --primary-500: #3b82f6;
+  --primary-600: #2563eb;
+  --primary-700: #1d4ed8;
+  --primary-800: #1e40af;
+  --primary-900: #1e3a8a;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+}
+
+body {
+    @apply font-sans antialiased;
+    @apply bg-white dark:bg-gray-900;
+    @apply text-gray-900 dark:text-gray-100;
+    @apply transition-colors duration-300;
+  }
+
+  * {
+    @apply border-gray-200 dark:border-gray-700;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+}
+
+@layer components {
+  /* Terminal Styles */
+  .terminal {
+    @apply bg-gray-900 rounded-lg shadow-2xl overflow-hidden font-mono text-sm;
+    font-family: 'Fira Code', 'Monaco', 'Consolas', 'Ubuntu Mono', monospace;
+  }
+
+  .terminal-header {
+    @apply bg-gray-800 px-4 py-3 flex items-center justify-between border-b border-gray-700;
+}
+
+  .terminal-button {
+    @apply w-3 h-3 rounded-full mr-2;
+  }
+
+  .terminal-button.close {
+    @apply bg-red-500;
+  }
+
+  .terminal-button.minimize {
+    @apply bg-yellow-500;
+  }
+
+  .terminal-button.maximize {
+    @apply bg-green-500;
+  }
+
+  .terminal-content {
+    @apply p-4 h-96 overflow-y-auto bg-gray-900;
+  }
+
+  .terminal-line {
+    @apply flex items-center gap-2 mb-1;
+  }
+
+  .terminal-prompt {
+    @apply text-green-400 flex-shrink-0;
+  }
+
+  .terminal-text {
+    @apply text-gray-100;
+}
+
+  .terminal-cursor {
+    @apply w-2 h-5 bg-green-400 inline-block animate-pulse ml-1;
+  }
+
+  /* Project Card Styles */
+  .project-card {
+    @apply bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl relative;
+    @apply m-1 hover:scale-[1.02] hover:z-10;
+    transform-origin: center;
+  }
+
+  .project-card:hover {
+    @apply shadow-xl;
+    transform: scale(1.02) translateZ(0);
+    z-index: 10;
+  }
+
+  /* Professional Project Card Styles */
+  .professional-project-card {
+    @apply bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden transition-all duration-300;
+    @apply hover:shadow-lg dark:hover:shadow-2xl relative hover:scale-[1.01];
+    transform-origin: center;
+  }
+
+  .professional-project-card:hover {
+    @apply shadow-xl border-primary-200 dark:border-primary-700;
+    transform: scale(1.01) translateZ(0);
+}
+
+  /* Navigation Styles */
+  .glass-card {
+    @apply bg-white/10 dark:bg-gray-900/10 backdrop-blur-lg;
+    @apply border border-white/20 dark:border-gray-700/20;
+    @apply rounded-lg shadow-xl;
+}
+
+  .nav-link {
+    @apply relative px-3 py-2 text-sm font-medium transition-colors;
+    @apply text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100;
+  }
+
+  .nav-link.active {
+    @apply text-primary-600 dark:text-primary-400;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 dark:bg-primary-400;
+    @apply transition-all duration-300;
+  }
+
+  .nav-link.active::after {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent;
+}
+
+  .bg-gradient-primary {
+    @apply bg-gradient-to-r from-primary-500 to-blue-600;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Scrollbar Styles */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thumb-gray-300 {
+    scrollbar-color: #d1d5db transparent;
+  }
+
+  .dark .scrollbar-thumb-gray-600 {
+    scrollbar-color: #4b5563 transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+
+  /* Project Grid Utilities */
+  .projects-grid {
+    @apply gap-6 md:gap-8;
+  }
+
+  .projects-container {
+    @apply p-2;
+  }
+}

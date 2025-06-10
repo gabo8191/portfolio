@@ -1,70 +1,233 @@
-# Getting Started with Create React App
+# Gabriel Castillo - Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features dark/light mode, internationalization (English/Spanish), and an interactive DevOps terminal simulation.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **Modern Stack**: React 19, TypeScript, Vite, Tailwind CSS
+- **Responsive Design**: Mobile-first approach with seamless adaptability
+- **Dark/Light Mode**: Theme toggle with system preference detection
+- **Internationalization**: Full English/Spanish support with i18next
+- **Interactive Terminal**: DevOps command simulation with real project data
+- **SEO Optimized**: Proper meta tags and semantic HTML
+- **Code Quality**: ESLint, Prettier, and strict TypeScript configuration
+- **Performance**: Optimized bundle size and fast loading times
 
-### `npm start`
+## 🛠️ Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend
+- React 19 with TypeScript
+- Tailwind CSS for styling
+- Framer Motion for animations
+- React Icons for iconography
+- Vite for build tooling
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Quality & Tools
+- ESLint with strict rules
+- Prettier for code formatting
+- TypeScript strict mode
+- Responsive design patterns
+- Semantic HTML5
 
-### `npm test`
+### DevOps Features
+- Terminal simulation
+- Command history
+- Realistic development environment showcase
+- Docker, Kubernetes, Git command examples
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📦 Installation
 
-### `npm run build`
+```bash
+# Clone the repository
+git clone https://github.com/gabo8191/portfolio.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Navigate to project directory
+cd portfolio
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Install dependencies
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Start development server
+npm run dev
+```
 
-### `npm run eject`
+## 🎯 Available Scripts
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# Development
+npm run dev              # Start development server
+npm run build           # Build for production
+npm run preview         # Preview production build
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Code Quality
+npm run lint            # Run ESLint
+npm run lint:fix        # Fix ESLint issues automatically
+npm run format          # Format code with Prettier
+npm run format:check    # Check code formatting
+npm run type-check      # TypeScript type checking
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Utilities
+npm run clean           # Clean build directory
+npm run analyze         # Bundle size analysis
+npm run prepare         # Pre-commit checks
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📁 Project Structure
 
-## Learn More
+```
+src/
+├── components/
+│   ├── layout/          # Layout components (Sidebar, MainContent)
+│   ├── pages/           # Page components (Projects, Experience, Terminal)
+│   └── ui/              # Reusable UI components
+├── contexts/            # React contexts (Theme, Locale)
+├── data/                # Portfolio data and content
+├── i18n/               # Internationalization configuration
+│   └── locales/        # Translation files (en.json, es.json)
+├── types/              # TypeScript type definitions
+└── utils/              # Utility functions
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🌐 Internationalization
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The portfolio supports English and Spanish languages:
 
-### Code Splitting
+- Language toggle button in sidebar
+- Complete translation of all content
+- Persistent language preference
+- Dynamic document title updates
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Adding New Languages
 
-### Analyzing the Bundle Size
+1. Create new translation file in `src/i18n/locales/`
+2. Add language to `src/i18n/index.ts`
+3. Update `LocaleContext` to include new language option
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🎨 Customization
 
-### Making a Progressive Web App
+### Personal Information
+Update your data in `src/data/portfolio.ts`:
+- Personal information and contact details
+- Work experience and education
+- Projects and technologies
+- Social media links
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Styling
+- Modify Tailwind CSS configuration in `tailwind.config.js`
+- Update CSS variables in `src/index.css`
+- Customize component styles in individual files
 
-### Advanced Configuration
+### Terminal Commands
+Add or modify terminal commands in `src/utils/terminal.ts`:
+- Custom command responses
+- Project-specific file structures
+- DevOps tool outputs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📄 CV Download
 
-### Deployment
+To enable CV download functionality:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Place your CV file in `public/cv/`
+2. Name it exactly: `Gabriel_Castillo_CV.pdf`
+3. The download will work automatically from the sidebar button
 
-### `npm run build` fails to minify
+Supported formats: PDF (recommended), DOCX
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🚀 Deployment
+
+### Vercel (Recommended)
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+### Netlify
+```bash
+# Build project
+npm run build
+
+# Deploy dist/ folder to Netlify
+```
+
+### GitHub Pages
+```bash
+# Install gh-pages
+npm install --save-dev gh-pages
+
+# Add to package.json scripts:
+"deploy": "gh-pages -d dist"
+
+# Deploy
+npm run build && npm run deploy
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+Create `.env` file for environment-specific settings:
+```env
+VITE_SITE_URL=https://your-domain.com
+VITE_GOOGLE_ANALYTICS_ID=your-ga-id
+```
+
+### ESLint Configuration
+Customize code quality rules in `.eslintrc.cjs`:
+- React best practices
+- TypeScript strict rules
+- Import organization
+- Code style enforcement
+
+### Prettier Configuration
+Format settings in `.prettierrc`:
+- Single quotes
+- Semicolons
+- 2-space indentation
+- Trailing commas
+
+## 🎯 Performance
+
+- **Bundle Size**: ~315KB (gzipped: ~98KB)
+- **CSS Size**: ~26KB (gzipped: ~5KB)
+- **Build Time**: ~2 seconds
+- **First Load**: Optimized with code splitting
+- **Images**: Lazy loading and optimization
+
+## 📱 Browser Support
+
+- Chrome (latest 2 versions)
+- Firefox (latest 2 versions)
+- Safari (latest 2 versions)
+- Edge (latest 2 versions)
+
+## 🤝 Contributing
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📧 Contact
+
+Gabriel Fernando Castillo Mendieta
+- Email: gabo8191@gmail.com
+- LinkedIn: [gabodev8191](https://linkedin.com/in/gabodev8191/)
+- GitHub: [gabo8191](https://github.com/gabo8191)
+
+## 🙏 Acknowledgments
+
+- React community for amazing ecosystem
+- Tailwind CSS for utility-first styling
+- Vite for lightning-fast development
+- Open source contributors
+
+---
+
+Made with ❤️ by Gabriel Castillo
