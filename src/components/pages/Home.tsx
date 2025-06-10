@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { FiCode, FiDownload, FiGithub, FiLinkedin, FiMail, FiMapPin, FiMoon, FiMousePointer, FiServer, FiSun, FiTool, FiTwitter, FiX } from 'react-icons/fi';
+import { FiDownload, FiGithub, FiLinkedin, FiMail, FiMapPin, FiMoon, FiMousePointer, FiSun, FiTwitter, FiX } from 'react-icons/fi';
 import { useLocale } from '../../contexts/LocaleContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import { personalInfo, technologies } from '../../data/portfolio';
+import { getCVPath } from '../../utils/paths';
 
 export const Home: React.FC = () => {
   const { t, locale, setLocale } = useLocale();
@@ -62,7 +63,7 @@ export const Home: React.FC = () => {
       : 'Gabriel_Castillo_CV_EN.pdf';
 
     const link = document.createElement('a');
-    link.href = `/cv/${cvFileName}`;
+    link.href = getCVPath(cvFileName);
     link.download = cvFileName;
     link.target = '_blank';
     document.body.appendChild(link);
@@ -72,12 +73,12 @@ export const Home: React.FC = () => {
 
   const getCategoryLevel = (category: string) => {
     switch (category) {
-      case 'backend': return 'Expert';
-      case 'database': return 'Advanced';
-      case 'frontend': return 'Advanced';
+      case 'backend': return 'Advanced';
+      case 'database': return 'Intermediate';
+      case 'frontend': return 'Intermediate';
       case 'devops': return 'Basic';
-      case 'cloud': return 'Intermediate';
-      case 'tools': return 'Advanced';
+      case 'cloud': return 'Basic';
+      case 'tools': return 'Intermediate';
       default: return 'Intermediate';
     }
   };
@@ -160,7 +161,6 @@ export const Home: React.FC = () => {
           name: 'Backend',
           bgColor: 'bg-blue-50 dark:bg-blue-900/20',
           borderColor: 'border-blue-200 dark:border-blue-800',
-          icon: FiServer,
           emoji: '⚙️'
         };
       case 'frontend':
@@ -169,7 +169,6 @@ export const Home: React.FC = () => {
           name: 'Frontend',
           bgColor: 'bg-emerald-50 dark:bg-emerald-900/20',
           borderColor: 'border-emerald-200 dark:border-emerald-800',
-          icon: FiCode,
           emoji: '💻'
         };
       case 'database':
@@ -178,7 +177,6 @@ export const Home: React.FC = () => {
           name: 'Database',
           bgColor: 'bg-violet-50 dark:bg-violet-900/20',
           borderColor: 'border-violet-200 dark:border-violet-800',
-          icon: FiServer,
           emoji: '🗄️'
         };
       case 'devops':
@@ -187,7 +185,6 @@ export const Home: React.FC = () => {
           name: 'DevOps',
           bgColor: 'bg-orange-50 dark:bg-orange-900/20',
           borderColor: 'border-orange-200 dark:border-orange-800',
-          icon: FiTool,
           emoji: '🚀'
         };
       case 'tools':
@@ -196,7 +193,6 @@ export const Home: React.FC = () => {
           name: 'Tools',
           bgColor: 'bg-gray-50 dark:bg-gray-900/20',
           borderColor: 'border-gray-200 dark:border-gray-800',
-          icon: FiTool,
           emoji: '🛠️'
         };
       case 'cloud':
@@ -205,7 +201,6 @@ export const Home: React.FC = () => {
           name: 'Cloud',
           bgColor: 'bg-sky-50 dark:bg-sky-900/20',
           borderColor: 'border-sky-200 dark:border-sky-800',
-          icon: FiServer,
           emoji: '☁️'
         };
       default:
@@ -214,7 +209,6 @@ export const Home: React.FC = () => {
           name: 'Other',
           bgColor: 'bg-gray-50 dark:bg-gray-900/20',
           borderColor: 'border-gray-200 dark:border-gray-800',
-          icon: FiCode,
           emoji: '🔧'
         };
     }
@@ -366,7 +360,6 @@ export const Home: React.FC = () => {
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
                 {Object.entries(skillCategories).map(([category, techs]) => {
                   const categoryConfig = getCategoryConfig(category);
-                  const IconComponent = categoryConfig.icon;
                   const level = getCategoryLevel(category);
 
                   return (

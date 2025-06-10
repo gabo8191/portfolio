@@ -1,4 +1,5 @@
 import type { Experience, PersonalInfo, Project, Technology } from '../types';
+import { getImagePath } from '../utils/paths';
 
 export const personalInfo: PersonalInfo = {
   name: 'Gabriel Fernando Castillo Mendieta',
@@ -8,7 +9,7 @@ export const personalInfo: PersonalInfo = {
   phone: '+57 318 8708253',
   location: 'Tunja, Colombia',
   bio: 'about.description',
-  avatar: '/images/profile/gabriel-avatar.jpg',
+  avatar: getImagePath('profile/gabriel-avatar.jpg'),
   socialLinks: [
     {
       platform: 'GitHub',

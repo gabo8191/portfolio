@@ -12,6 +12,7 @@ import {
 import { useLocale } from '../../contexts/LocaleContext';
 import { personalInfo, technologies } from '../../data/portfolio';
 import { cn } from '../../utils/cn';
+import { getCVPath } from '../../utils/paths';
 import { LanguageToggle } from '../ui/LanguageToggle';
 import { ThemeToggle } from '../ui/ThemeToggle';
 
@@ -30,17 +31,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
     twitter: FiTwitter,
   };
 
-  const skillCategories = technologies.reduce(
-    (acc, tech) => {
-      if (!acc[tech.category]) {
-        acc[tech.category] = [];
-      }
-      acc[tech.category].push(tech);
-      return acc;
-    },
-    {} as Record<string, typeof technologies>
-  );
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -52,24 +42,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
       : 'Gabriel_Castillo_CV_EN.pdf';
 
     const link = document.createElement('a');
-    link.href = `/cv/${cvFileName}`;
+    link.href = getCVPath(cvFileName);
     link.download = cvFileName;
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
-
-  const getCategoryColor = (category: string): string => {
-    const colors = {
-      backend: 'bg-blue-500',
-      frontend: 'bg-green-500',
-      database: 'bg-purple-500',
-      devops: 'bg-orange-500',
-      tools: 'bg-gray-500',
-      cloud: 'bg-cyan-500'
-    };
-    return colors[category as keyof typeof colors] || 'bg-gray-500';
   };
 
   if (!isVisible) {
