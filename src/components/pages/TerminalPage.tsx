@@ -1,87 +1,83 @@
 import React from 'react';
-import { FiInfo, FiTerminal } from 'react-icons/fi';
+import { FiTerminal } from 'react-icons/fi';
 import { useLocale } from '../../contexts/LocaleContext';
+import { SectionCard } from '../ui/SectionCard';
 import { Terminal } from '../ui/Terminal';
 
 export const TerminalPage: React.FC = () => {
   const { t } = useLocale();
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div>
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-3">
-          <FiTerminal className="w-8 h-8 text-primary-600 dark:text-primary-400" />
-          Terminal Portfolio
-        </h2>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto p-6 space-y-8">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 flex items-center justify-center gap-3">
+            <FiTerminal className="w-10 h-10 text-blue-600 dark:text-blue-400" />
+            Portfolio Terminal
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            {t('terminal.disclaimer.description')}
+          </p>
+        </div>
 
         {/* Disclaimer */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 mb-6">
-          <div className="flex items-start gap-3">
-            <div className="flex-shrink-0">
-              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                <FiInfo className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+        <SectionCard variant="gradient" className="text-center">
+          <div className="space-y-4">
+            <div className="flex items-center justify-center gap-3 text-blue-700 dark:text-blue-300">
+              <FiTerminal className="w-6 h-6" />
+              <h2 className="text-xl font-semibold">
+                {t('terminal.disclaimer.title')}
+              </h2>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400">
+              {t('terminal.disclaimer.description')}
+            </p>
+            <div className="flex items-center justify-center gap-6 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
+                <span className="text-gray-600 dark:text-gray-400">
+                  {t('terminal.disclaimer.interactive')}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                <span className="text-gray-600 dark:text-gray-400">
+                  {t('terminal.disclaimer.simulation')}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                <span className="text-gray-600 dark:text-gray-400">
+                  {t('terminal.disclaimer.portfolio')} Tool
+                </span>
               </div>
             </div>
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">
-                {t('terminal.disclaimer.title')}
-              </h3>
-              <p className="text-blue-800 dark:text-blue-200 text-sm leading-relaxed">
-                {t('terminal.disclaimer.description')}
-              </p>
-            </div>
+          </div>
+        </SectionCard>
+
+        {/* Terminal */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white text-center">
+            Interactive Terminal
+          </h2>
+          <div className="max-w-4xl mx-auto">
+            <Terminal />
           </div>
         </div>
-      </div>
 
-      {/* Terminal Component */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-4">
-        <Terminal className="w-full" />
-      </div>
-
-      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-        <h3 className="text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">
-          💡 {t('terminal.exploreHint')}:
-        </h3>
-        <div className="text-sm text-blue-700 dark:text-blue-300 space-y-1">
-          <div>
-            <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded text-xs">
-              whoami
-            </code>{' '}
-            - {t('terminal.commands.whoami')}
+        {/* Help section */}
+        <SectionCard>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+            {t('terminal.gettingStarted')}
+          </h3>
+          <div className="space-y-3 text-gray-600 dark:text-gray-300">
+            <p>{t('terminal.helpText.typeHelp')}</p>
+            <p>{t('terminal.helpText.useWhoami')}</p>
+            <p>{t('terminal.helpText.exploreProjects')}</p>
+            <p>{t('terminal.helpText.clearTerminal')}</p>
           </div>
-          <div>
-            <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded text-xs">
-              ls
-            </code>{' '}
-            - {t('terminal.commands.ls')}
-          </div>
-          <div>
-            <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded text-xs">
-              cat about.md
-            </code>{' '}
-            - {t('terminal.commands.cat')} about file
-          </div>
-          <div>
-            <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded text-xs">
-              docker ps
-            </code>{' '}
-            - {t('terminal.commands.dockerPs')}
-          </div>
-          <div>
-            <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded text-xs">
-              kubectl get pods
-            </code>{' '}
-            - {t('terminal.commands.kubectlPods')}
-          </div>
-          <div>
-            <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded text-xs">
-              help
-            </code>{' '}
-            - {t('terminal.commands.help')}
-          </div>
-        </div>
+        </SectionCard>
       </div>
     </div>
   );

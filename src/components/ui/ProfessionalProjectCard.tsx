@@ -9,10 +9,9 @@ interface ProfessionalProjectCardProps {
   className?: string;
 }
 
-export const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> = ({
-  project,
-  className,
-}) => {
+export const ProfessionalProjectCard: React.FC<
+  ProfessionalProjectCardProps
+> = ({ project, className }) => {
   const { t } = useLocale();
 
   return (
@@ -48,7 +47,7 @@ export const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> = (
         <div className="flex items-center gap-2 mb-4">
           <FiCalendar className="w-4 h-4 text-gray-500 dark:text-gray-400" />
           <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">
-            {project.period}
+            {t(project.period)}
           </span>
         </div>
 
@@ -66,7 +65,7 @@ export const ProfessionalProjectCard: React.FC<ProfessionalProjectCardProps> = (
               style={{
                 backgroundColor: tech.color + '10',
                 color: tech.color,
-                borderColor: tech.color + '30'
+                borderColor: tech.color + '30',
               }}
             >
               {tech.name}

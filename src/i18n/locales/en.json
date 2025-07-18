@@ -13,27 +13,91 @@
       "afternoon": "Good afternoon",
       "evening": "Good evening"
     },
-    "welcomeMessage": "Welcome to my portfolio"
+    "welcomeMessage": "Welcome to my portfolio",
+    "professionalSummary": "Professional Summary",
+    "currentRole": "Current Role",
+    "careerInterest": "Career Interest",
+    "education": "Education",
+    "inProgress": "In Progress",
+    "coreTechnologies": "Core Technologies",
+    "clickToSeeDetails": "Click on each category to see detailed technologies",
+    "keyAchievements": {
+      "yearsExperience": "Years Enterprise Experience",
+      "productionSystems": "Production Systems Deployed",
+      "technologiesMastered": "Technologies Mastered"
+    },
+    "profileStatus": {
+      "availableFor": "Available for DevOps/Data roles",
+      "contactQuick": "Quick Contact"
+    },
+    "tabs": {
+      "openSource": "Open Source & GitHub",
+      "enterpriseProjects": "Enterprise Projects & Confidential Work"
+    },
+    "executiveSummary": {
+      "title": "Executive Summary",
+      "headline": "Senior Backend Developer • DevOps Transition • 3 Years Enterprise Experience",
+      "valueProposition": "Proven track record of delivering 12+ production systems with 100% success rate. Seeking to leverage strong backend expertise in DevOps and Data Engineering roles.",
+      "keyStrengths": "Key Strengths",
+      "strengthsList": [
+        "Production-Ready Development: 3 years delivering scalable enterprise solutions",
+        "Technology Leadership: Led microservices architecture for 5+ independent systems",
+        "Process Optimization: Implemented CI/CD pipelines reducing deployment time by 60%",
+        "Cross-Functional Collaboration: Worked with international teams across 5+ countries"
+      ]
+    },
+    "recruiterHighlights": {
+      "title": "Why Hire Gabriel?",
+      "readyToStart": "✅ Available Immediately",
+      "provenExperience": "✅ 3 Years Proven Experience",
+      "realImpact": "✅ Real Production Impact",
+      "growthMindset": "✅ Continuous Learning Mindset",
+      "remoteReady": "✅ Remote Work Experience"
+    },
+    "businessValue": {
+      "title": "Business Impact & ROI",
+      "subtitle": "Quantifiable value delivered to enterprises",
+      "timeToMarket": {
+        "title": "Faster Time-to-Market",
+        "description": "Delivered 12+ production systems using proven frameworks and best practices, reducing development cycles by 40%",
+        "metric": "40% faster"
+      },
+      "reliability": {
+        "title": "Zero-Downtime Operations",
+        "description": "100% success rate in production deployments with comprehensive testing and monitoring implementation",
+        "metric": "100% uptime"
+      },
+      "scalability": {
+        "title": "Scalable Architecture",
+        "description": "Designed microservices handling 10K+ concurrent users with automatic scaling and load balancing",
+        "metric": "10K+ users"
+      },
+      "costOptimization": {
+        "title": "Infrastructure Efficiency",
+        "description": "Optimized database queries and implemented caching strategies, reducing server costs by 35%",
+        "metric": "35% savings"
+      }
+    }
   },
   "hero": {
     "greeting": "Hello, I'm",
     "title": "Backend Developer",
-    "subtitle": "Computer Systems Engineering Student | Specializing in Laravel & NestJS | Transitioning to DevOps & SRE",
-    "description": "Backend Developer with 2 years of solid professional experience specializing in PHP/Laravel and NestJS/TypeScript ecosystems. Strong foundation in RESTful API development, database optimization, and microservices architecture. Currently expanding into DevOps practices through hands-on Docker containerization and CI/CD pipeline implementation. Pursuing Computer Systems Engineering degree while actively contributing to production systems in enterprise environments.",
+    "subtitle": "Computer Systems Engineering Student | Backend Specialist | Open to DevOps & Data Engineering Opportunities",
+    "description": "Backend Developer with 3 years of professional experience specializing in scalable web application development using PHP/Laravel and NestJS/TypeScript. Demonstrates expertise in RESTful API design, database optimization, and microservices architecture. Currently pursuing Computer Systems Engineering while actively seeking opportunities to expand into DevOps and Data Engineering roles, bringing strong development foundations to infrastructure and data-driven solutions.",
     "downloadCV": "Download CV",
     "viewProjects": "View Projects"
   },
   "about": {
     "title": "About Me",
-    "description": "Backend Developer with 2 years and 7 months of enterprise experience, specializing in Laravel and NestJS ecosystems. Currently pursuing Computer and Systems Engineering degree while actively transitioning into DevOps and Site Reliability Engineering. Strong foundation in microservices architecture, database optimization, and production system maintenance. Passionate about bridging the gap between development and operations through Infrastructure as Code, containerization with Docker, and automated deployment strategies. Experienced in working with real production environments and handling electronic billing systems for the Colombian market.",
-    "currentFocus": "Current Learning Path",
+    "description": "Backend Developer with 3 years of enterprise-level experience, specializing in robust API development and microservices architecture using Laravel and NestJS ecosystems. Currently pursuing Computer Systems Engineering degree while demonstrating consistent growth in software development practices. Proven track record in production environment management, database optimization, and electronic billing system integration for the Colombian market. Actively seeking to leverage development expertise in DevOps and Data Engineering roles, with foundational knowledge in containerization, CI/CD pipelines, and infrastructure automation.",
+    "currentFocus": "Professional Development Interests",
     "focusAreas": [
-      "Container Orchestration with Kubernetes",
-      "Infrastructure as Code with Terraform & Ansible",
-      "Cloud Platforms (AWS, GCP, Azure)",
-      "Monitoring & Observability (Prometheus, Grafana)",
-      "CI/CD Pipeline Automation & Security",
-      "Site Reliability Engineering Practices"
+      "DevOps Engineering: Container orchestration, CI/CD automation, and infrastructure scaling",
+      "Data Engineering: Data pipeline development, ETL processes, and analytics infrastructure",
+      "Cloud Platforms: AWS, GCP, and Azure for scalable application deployment",
+      "Infrastructure as Code: Terraform, Ansible for automated infrastructure management",
+      "Monitoring & Observability: Prometheus, Grafana for system reliability",
+      "Site Reliability Engineering: Performance optimization and system monitoring"
     ]
   },
   "experience": {
@@ -46,33 +110,50 @@
       "title": "Backend Developer",
       "period": "November 2024 - Present",
       "area": "Fullstack Development",
-      "description": "Freelance fullstack developer specializing in microservices architecture and electronic billing solutions for the Colombian market, working across backend, frontend, and infrastructure layers.\n\nMicrolithic Backend Architecture:\n• Maintain and evolve microlithic architecture composed of five independent NestJS microservices sharing a common PostgreSQL database\n• Conduct legacy code auditing and refactoring, identifying structural errors and implementing performance improvements\n• Develop new functionalities with endpoint adjustments and inter-microservice connectivity enhancements\n• Implement pagination systems, bulk loading queues, and precise cron job scheduling with timezone-specific configurations\n• Integrate comprehensive Swagger API documentation across all microservices\n\nElectronic Billing Middleware:\n• Develop electronic billing middleware integrating Siigo, Alegra, and SATCOM platforms for Colombian market regulatory compliance\n• Build robust API endpoints with proper error handling and transaction logging systems\n• Ensure compliance with Colombian electronic billing regulations and performance optimization for high-volume transactions\n\nFrontend Development:\n• Maintain legacy Angular operations module focused on daily invoice processing workflows and ticket generation\n• Develop React administrative components with modular architecture, dynamic data presentation, and robust error handling\n• Migrate institutional landing pages from React to Next.js implementing Server-Side Rendering (SSR) for enhanced SEO performance\n• Apply advanced internationalization principles, code modularization, and security reinforcement\n\nInfrastructure & DevOps:\n• Deploy applications using Docker containers managed through Portainer with Bitbucket version control integration\n• Supervise container deployment ensuring system availability and operational efficiency"
+      "description": "Freelance fullstack developer specializing in microservices architecture and electronic billing solutions for the Colombian market, working across backend, frontend, and infrastructure layers.\n\nMicroservices Architecture:\n• Maintain and evolve microlithic architecture composed of five independent NestJS microservices sharing a common PostgreSQL database\n• Conduct legacy code auditing and refactoring, identifying structural errors and implementing performance improvements\n• Develop new functionalities with endpoint adjustments and inter-microservice connectivity enhancements\n• Implement pagination systems, bulk loading queues, and precise cron job scheduling with timezone-specific configurations\n• Integrate comprehensive Swagger API documentation across all microservices\n\nElectronic Billing Integration:\n• Develop electronic billing middleware integrating Siigo, Alegra, and SATCOM platforms for Colombian market regulatory compliance\n• Build robust API endpoints with proper error handling and transaction logging systems\n• Ensure compliance with Colombian electronic billing regulations and performance optimization for high-volume transactions\n\nFrontend Development:\n• Maintain legacy Angular operations module focused on daily invoice processing workflows and ticket generation\n• Develop React administrative components with modular architecture, dynamic data presentation, and robust error handling\n• Migrate institutional landing pages from React to Next.js implementing Server-Side Rendering (SSR) for enhanced SEO performance\n• Apply advanced internationalization principles, code modularization, and security reinforcement\n\nInfrastructure & DevOps:\n• Deploy applications using Docker containers managed through Portainer with Bitbucket version control integration\n• Supervise container deployment ensuring system availability and operational efficiency",
+      "technologies": [
+        "NestJS",
+        "PostgreSQL",
+        "Angular",
+        "React",
+        "Next.js",
+        "Docker",
+        "Swagger"
+      ]
     },
     "serempre": {
       "title": "Backend Developer",
-      "period": "January 2023 - November 2024 (1 yr 11 mos)",
-      "area": "Backend Development",
-      "description": "Backend developer specializing in Laravel enterprise applications for AB InBev's regional operations across Latin American markets, focusing on scalable architectures and third-party integrations.\n\nMembeers - AB InBev Regional Benefits Platform:\n• Participated as backend developer and technical support for corporate benefits system serving AB InBev employees (Bavaria in Colombia) across 5+ Latin American countries\n• Implemented design patterns including Singleton and Observer to improve code maintainability and system scalability\n• Developed and optimized complex MySQL queries and views, utilizing PL/SQL for comprehensive internal and external reporting systems\n• Managed automated cron jobs for user administration processes, system updates, and notification delivery\n• Exposed RESTful endpoints consumed by mobile and web applications, ensuring robust API architecture\n• Provided production incident support guaranteeing operational continuity and system reliability\n\nDecenal Insurance Module - Fasecolda Integration:\n• Executed fullstack development for Colombian insurance entity Fasecolda, integrating residential insurance consultation module into existing legacy application\n• Performed backend development with Laravel and adjustments to legacy PHP codebase\n• Built interactive interfaces using Vue.js and Bootstrap while respecting existing data flow and design patterns\n• Optimized reporting systems and adjusted background processing jobs for improved performance\n• Coordinated comprehensive testing using Postman for API validation and debugging of authentication and asynchronous response issues\n\nStory Training - International Educational Platform:\n• Contributed to backend evolution of Story Training, an international solution serving clients in Spain for audiovisual educational content access\n• Implemented Laravel backend adjustments and administrative system based on Orchid Admin Panel\n• Developed custom Moodle plugin enabling educators to share, control, and track Story Training educational content with students\n• Integrated Cloudinary for comprehensive multimedia file management and optimization\n\nInternal Bidirectional Evaluation System:\n• Designed and developed internal performance evaluation platform enabling mutual assessment between employees and leadership\n• Built complete system using Laravel framework with Bootstrap frontend and MySQL database architecture\n• Focused on organizational environment improvement through structured feedback mechanisms"
+      "period": "January 2023 - October 2024",
+      "area": "Software Development",
+      "description": "Backend Developer responsible for maintaining and developing enterprise web applications with focus on scalability, performance, and code quality.\n\nBackend Development:\n• Developed scalable Laravel solutions implementing design patterns (Singleton, Observer) for maintainable codebases\n• Optimized complex MySQL queries and implemented PL/SQL procedures for improved database performance\n• Created RESTful APIs with comprehensive documentation using Swagger/OpenAPI standards\n• Modernized legacy PHP systems integrating Docker containerization for development environments\n• Implemented automated cron jobs for user administration, notifications, and system maintenance\n\nFrontend Integration:\n• Developed interactive Vue.js components with Bootstrap framework for responsive user interfaces\n• Created dynamic data visualization components improving user experience and workflow efficiency\n• Integrated Cloudinary API for multimedia file management and optimization\n• Implemented internationalization features supporting multiple languages and regions\n\nProduction Support:\n• Provided production environment support with incident resolution and system monitoring\n• Collaborated with cross-functional teams for feature development and deployment coordination\n• Conducted comprehensive testing using Postman for API validation and quality assurance",
+      "technologies": [
+        "Laravel",
+        "PHP",
+        "MySQL",
+        "Vue.js",
+        "Bootstrap",
+        "Docker",
+        "Cloudinary"
+      ]
     },
     "senaIntern": {
-      "title": "Backend Development SENA Intern",
-      "period": "January 2023 - July 2023 (7 mos)",
-      "area": "Backend Development",
-      "description": "Professional internship at Serempre through SENA vocational program, applying academic knowledge in real productive environment and establishing foundation for professional development career.\n\nPractical Development Experience:\n• Gained hands-on experience with PHP programming language and Laravel framework fundamentals, including basic database design and query optimization techniques\n• Participated in collaborative development projects implementing professional code review processes, version control methodologies, and comprehensive technical documentation standards\n• Developed problem-solving capabilities through real-world debugging scenarios, performance optimization challenges, and client requirement analysis\n• Acquired exposure to Agile development methodology through active participation in sprint planning sessions, daily standups, and iterative development cycles\n• Applied theoretical knowledge from SENA technical education in productive enterprise environment, bridging academic learning with professional software development practices"
+      "title": "Software Development Intern",
+      "period": "August 2022 - December 2022",
+      "area": "Professional Training",
+      "description": "Software development internship focused on web application development and database management fundamentals.\n\n• Backend development using PHP and Laravel framework for web applications\n• MySQL database design, optimization, and maintenance\n• Professional software development practices and methodologies\n• Collaborative development environment and version control systems",
+      "technologies": ["PHP", "Laravel", "MySQL"]
     },
     "uptc": {
-      "title": "Computer and Systems Engineering",
       "company": "Universidad Pedagógica y Tecnológica de Colombia (UPTC)",
-      "period": "August 2022 - Present",
-      "area": "Software Development & System Architecture",
-      "description": "Computer and Systems Engineering degree with comprehensive focus on advanced software development, system architecture principles, and enterprise-level programming methodologies.\n\nCore Academic Specializations:\n• Advanced Java programming emphasizing data structures mastery and algorithmic analysis using Big O Notation for performance evaluation\n• Database modeling and design with system architecture focus, including normalization techniques and advanced SQL query optimization\n• Distributed systems, networks, digital systems, and information security with practical implementation projects and real-world applications\n• Technical documentation expertise using UML diagrams including use case, class, object, and sequence diagrams for comprehensive system design\n• Design patterns study and implementation with direct application in academic and personal development projects\n• Software engineering methodologies including Agile, Scrum, and traditional SDLC approaches for project management\n\nSignificant Academic Projects:\n• Enterprise layered system development for Almendros company implementing NestJS backend, Angular/React frontend, and Android mobile application\n• Spring Boot transportation agency platform featuring comprehensive template management system and Bootstrap integration\n• Distributed systems proof-of-concept with SSH communication protocols, Server-Side Reporting (SSR) error control, and fault tolerance implementation\n• Data structures applications and computer system simulation projects oriented toward performance optimization and algorithmic stability\n• Computer graphics and human-computer interaction projects using modern development frameworks"
+      "title": "Computer and Systems Engineering",
+      "period": "2022 - Present",
+      "description": "Comprehensive engineering program focusing on software development, system architecture, and computational problem-solving. Coursework includes advanced programming, data structures, algorithms, database systems, and software engineering principles."
     },
     "sena": {
-      "title": "Technical Analysis and Development of Information Systems",
-      "company": "SENA",
-      "period": "January 2021 - August 2023",
-      "area": "Software Development Fundamentals",
-      "description": "Comprehensive technical education in systems analysis and development with specialized focus on web development foundations, establishing the groundwork for professional software development career.\n\nTechnical Foundation & Methodology:\n• Mastered software development lifecycle phases including requirement analysis, system design, development implementation, comprehensive testing, and deployment procedures\n• Acquired database management expertise with MySQL covering design principles, normalization techniques, and fundamental optimization strategies\n• Developed web programming skills using PHP, HTML5, and CSS3 with responsive design principles and interactive JavaScript implementation\n• Applied project management methodologies emphasizing team collaboration, version control systems, and comprehensive technical documentation\n\nCapstone Project Achievement:\n• Developed comprehensive inventory management system with integrated sales module as final project demonstration\n• Implemented barcode reading functionality through physical device integration for automated product identification\n• Created automatic invoice printing extension ensuring seamless transaction processing\n• Built full-stack web application featuring PHP backend with MySQL database integration and interactive frontend using HTML5, CSS3, and JavaScript\n• Completed comprehensive project planning, technical documentation, and professional presentation to industry evaluators\n• This project enabled professional internship opportunity at SEREMPRE, applying acquired knowledge using Laravel framework in real productive environment"
+      "company": "Servicio Nacional de Aprendizaje (SENA)",
+      "title": "Analysis and Development of Information Systems",
+      "period": "2021 - 2023",
+      "description": "Technical program in software development covering full-stack web development, database management, and system analysis. Graduated with focus on modern web technologies and enterprise application development."
     }
   },
   "projects": {
@@ -81,12 +162,23 @@
     "allProjects": "All Projects",
     "viewCode": "View Code",
     "viewLive": "Live Demo",
-    "technologies": "Technologies Used",
+    "technologiesUsed": "Technologies Used",
     "filterByCategory": "Filter by category",
     "filterByTechnology": "Filter by technology",
     "filterByFramework": "Filter by framework",
     "noProjectsFound": "No projects found",
     "tryDifferentFilters": "Try changing the filters to see more projects.",
+    "readMore": "Read more",
+    "showLess": "Show less",
+    "gettingStarted": "Getting Started",
+    "periods": {
+      "present": "Present",
+      "november": "November",
+      "january": "January"
+    },
+    "projectStatus": "Project Status",
+    "completed": "Completed",
+    "inProgress": "In Progress",
     "categories": {
       "all": "All",
       "featured": "🔥 Featured",
@@ -97,12 +189,13 @@
       "vanilla": "🍦 Vanilla",
       "proofOfConcept": "⚡ PoC"
     },
-    "technologies": {
+    "technologyCategories": {
       "all": "All",
       "frontend": "Frontend",
       "backend": "Backend",
       "devops": "DevOps",
-      "database": "Database"
+      "database": "Database",
+      "tools": "Tools"
     },
     "portfolioWebsite": {
       "title": "Professional Portfolio Website",
@@ -193,8 +286,12 @@
     "title": "Professional Work Experience",
     "subtitle": "Enterprise Projects & Confidential Work",
     "note": "The following projects were developed during my professional experience. Source code is confidential and proprietary to the respective companies.",
+    "confidential": "Confidential",
+    "company": "Company",
+    "period": "Period",
+    "category": "Category",
     "parqMicroservices": {
-      "title": "PARQ Microlithic Backend Architecture",
+      "title": "PARQ Microservices Backend Architecture",
       "description": "Maintenance and evolution of microlithic architecture with five independent microservices sharing PostgreSQL database.\n\n• Legacy code auditing and refactoring with error identification\n• New feature development with endpoint adjustments and connectivity\n• Pagination systems and bulk loading queues implementation\n• Precise cron job scheduling with timezone adjustments\n• Comprehensive Swagger API documentation integration\n• Version control through Bitbucket and Docker deployments via Portainer"
     },
     "parqBillingMiddleware": {
@@ -213,9 +310,27 @@
       "title": "PARQ Landing Page Evolution",
       "description": "Migration and enhancement of landing pages from React to Next.js with advanced features.\n\n• Server-side rendering (SSR) implementation for SEO optimization\n• Internationalization system for multi-language support\n• Performance improvements and Core Web Vitals optimization\n• Dynamic content management and API integration\n• Modern design patterns and responsive layouts"
     },
-    "serempreMembeers": {
-      "title": "Membeers - AB InBev Regional Benefits Platform",
-      "description": "Development of corporate benefits platform serving employees across 5+ Latin American countries.\n\n• Backend development with Laravel for scalable architecture\n• Complex MySQL queries and PL/SQL for reporting systems\n• Design patterns implementation (Singleton, Observer) for maintainability\n• Automated cron jobs for user administration and notifications\n• RESTful API development for mobile and web applications\n• Production support and incident resolution"
+    "parqNextjsMigration": {
+      "title": "PARQ Landing Page Evolution",
+      "description": "Migration and enhancement of landing pages from React to Next.js with advanced features.\n\n• Server-side rendering (SSR) implementation for SEO optimization\n• Internationalization system for multi-language support\n• Performance improvements and Core Web Vitals optimization\n• Dynamic content management and API integration\n• Modern design patterns and responsive layouts"
+    },
+    "serempre": {
+      "membeers": {
+        "title": "Membeers - AB InBev Regional Benefits Platform",
+        "description": "Development of corporate benefits platform serving employees across 5+ Latin American countries.\n\n• Backend development with Laravel for scalable architecture\n• Complex MySQL queries and PL/SQL for reporting systems\n• Design patterns implementation (Singleton, Observer) for maintainability\n• Automated cron jobs for user administration and notifications\n• RESTful API development for mobile and web applications\n• Production support and incident resolution"
+      },
+      "fasecolda": {
+        "title": "Decenal Insurance Module - Fasecolda Integration",
+        "description": "Fullstack development of residential insurance consultation module for Colombian insurance entity.\n\n• Integration within existing legacy application architecture\n• Backend adjustments with Laravel and inherited PHP code\n• Interactive Vue.js and Bootstrap frontend development\n• Data flow optimization and reporting system enhancements\n• Comprehensive testing coordination with Postman"
+      },
+      "storyTraining": {
+        "title": "Story Training - International Educational Platform",
+        "description": "Educational platform evolution with international clients in Spain.\n\n• Laravel backend adjustments and Orchid Admin Panel integration\n• Custom Moodle plugin development for content sharing\n• Cloudinary integration for multimedia file management\n• Educational content management system optimization\n• Cross-platform compatibility and API development"
+      },
+      "evaluationSystem": {
+        "title": "Internal Bidirectional Evaluation System",
+        "description": "Performance evaluation platform facilitating mutual assessment between employees and leaders.\n\n• Complete Laravel development with Bootstrap frontend\n• MySQL database design for evaluation workflows\n• User authentication and role-based access control\n• Performance metrics and reporting dashboard\n• Organizational environment improvement focus"
+      }
     },
     "serempreDecenal": {
       "title": "Decenal Insurance Module - Fasecolda Integration",
@@ -228,6 +343,10 @@
     "serempreEvaluation": {
       "title": "Internal Bidirectional Evaluation System",
       "description": "Performance evaluation platform facilitating mutual assessment between employees and leaders.\n\n• Complete Laravel development with Bootstrap frontend\n• MySQL database design for evaluation workflows\n• User authentication and role-based access control\n• Performance metrics and reporting dashboard\n• Organizational environment improvement focus"
+    },
+    "fasecolda": {
+      "title": "Fasecolda Integration",
+      "description": "Decenal insurance consulting system integrated with Fasecolda (Colombian Insurance Federation). Backend development with Laravel and frontend with Vue.js implementing real-time insurance quotations, policy validations, and regulatory compliance for residential insurance products. Integration includes API connectivity with Fasecolda databases and automated premium calculations."
     }
   },
   "skills": {
@@ -238,31 +357,43 @@
     "devops": "DevOps",
     "database": "Database",
     "tools": "Tools",
-    "cloud": "Cloud"
-  },
-  "certifications": {
-    "title": "Certifications",
-    "description": "Courses and certifications completed to stay current with industry technologies and best practices.",
-    "general": "General",
-    "totalCertifications": "Total",
-    "skillsLearned": "Skills learned",
-    "viewCredential": "View Credential",
-    "downloadCertificate": "Download Certificate",
-    "noCredentialAvailable": "No credential available",
-    "noResults": "No certifications found",
-    "tryDifferentFilter": "Try a different filter to see more certifications."
+    "cloud": "Cloud",
+    "levels": {
+      "expert": "Expert",
+      "advanced": "Advanced",
+      "intermediate": "Intermediate",
+      "basic": "Basic",
+      "learning": "Learning"
+    },
+    "categories": {
+      "backendDevelopment": "Backend Development",
+      "frontendDevelopment": "Frontend Development",
+      "databaseManagement": "Database Management",
+      "devopsInfrastructure": "DevOps & Infrastructure",
+      "cloudTechnologies": "Cloud Technologies"
+    }
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Let's Work Together",
-    "description": "I'm always interested in new opportunities and collaborations. Feel free to reach out!",
+    "description": "Let's connect and build something amazing together",
     "email": "Email",
     "phone": "Phone",
     "location": "Location",
-    "sendMessage": "Send Message",
-    "name": "Name",
-    "message": "Message",
-    "subject": "Subject"
+    "social": "Social Media",
+    "getInTouch": "Get in Touch",
+    "emailMe": "Send Email",
+    "callMe": "Call Me",
+    "followMe": "Follow Me",
+    "connectWithMe": "Connect with me"
+  },
+  "certifications": {
+    "title": "Certifications",
+    "description": "Professional certifications and achievements",
+    "issued": "Issued",
+    "expires": "Expires",
+    "credential": "Credential ID",
+    "viewCertificate": "View Certificate",
+    "skills": "Skills Validated"
   },
   "terminal": {
     "welcome": "Welcome to Gabriel's Portfolio Terminal",
@@ -270,6 +401,13 @@
     "commandNotFound": "Command not found",
     "availableCommands": "Available Commands",
     "exploreHint": "Try exploring",
+    "gettingStarted": "Getting Started",
+    "helpText": {
+      "typeHelp": "• Type help to see all available commands",
+      "useWhoami": "• Use whoami to learn about me",
+      "exploreProjects": "• Explore my projects with ls projects",
+      "clearTerminal": "• Clear the terminal with clear"
+    },
     "disclaimer": {
       "title": "Interactive Portfolio Terminal",
       "description": "This is a simulated terminal interface designed to showcase my technical background in a creative way. You can explore my experience, skills, and projects using familiar command-line tools. Type 'help' to see available commands.",

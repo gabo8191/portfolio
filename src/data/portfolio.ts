@@ -202,9 +202,7 @@ export const projects: Project[] = [
     id: '9',
     title: 'projects.berkeleyAlgorithm.title',
     description: 'projects.berkeleyAlgorithm.description',
-    technologies: [
-      technologies.find(t => t.name === 'Express.js')!,
-    ],
+    technologies: [technologies.find(t => t.name === 'Express.js')!],
     githubUrl: 'https://github.com/gabo8191/lab3-berkeley',
     category: 'devops',
     completedAt: '2024-10-15',
@@ -237,9 +235,7 @@ export const projects: Project[] = [
     id: '12',
     title: 'projects.linkedListProducts.title',
     description: 'projects.linkedListProducts.description',
-    technologies: [
-      technologies.find(t => t.name === 'Java')!,
-    ],
+    technologies: [technologies.find(t => t.name === 'Java')!],
     githubUrl: 'https://github.com/gabo8191/linkedListLab',
     category: 'backend',
     completedAt: '2024-05-30',
@@ -248,9 +244,7 @@ export const projects: Project[] = [
     id: '13',
     title: 'projects.bracketsVerifier.title',
     description: 'projects.bracketsVerifier.description',
-    technologies: [
-      technologies.find(t => t.name === 'Java')!,
-    ],
+    technologies: [technologies.find(t => t.name === 'Java')!],
     githubUrl: 'https://github.com/gabo8191/LabStacksBrackets',
     category: 'backend',
     completedAt: '2024-05-15',
@@ -259,9 +253,7 @@ export const projects: Project[] = [
     id: '14',
     title: 'projects.mixedQueuesStacks.title',
     description: 'projects.mixedQueuesStacks.description',
-    technologies: [
-      technologies.find(t => t.name === 'Java')!,
-    ],
+    technologies: [technologies.find(t => t.name === 'Java')!],
     githubUrl: 'https://github.com/gabo8191/LabMixedQueuesAndStacks',
     category: 'backend',
     completedAt: '2024-05-01',
@@ -270,9 +262,7 @@ export const projects: Project[] = [
     id: '15',
     title: 'projects.priorityPrintQueue.title',
     description: 'projects.priorityPrintQueue.description',
-    technologies: [
-      technologies.find(t => t.name === 'Java')!,
-    ],
+    technologies: [technologies.find(t => t.name === 'Java')!],
     githubUrl: 'https://github.com/gabo8191/LabQueueOrderPriority',
     category: 'backend',
     completedAt: '2024-04-20',
@@ -281,9 +271,7 @@ export const projects: Project[] = [
     id: '16',
     title: 'projects.queueRootOrdering.title',
     description: 'projects.queueRootOrdering.description',
-    technologies: [
-      technologies.find(t => t.name === 'Java')!,
-    ],
+    technologies: [technologies.find(t => t.name === 'Java')!],
     githubUrl: 'https://github.com/gabo8191/LabQueueRootOrder',
     category: 'backend',
     completedAt: '2024-04-10',
@@ -292,9 +280,7 @@ export const projects: Project[] = [
     id: '17',
     title: 'projects.binaryTreeTranslator.title',
     description: 'projects.binaryTreeTranslator.description',
-    technologies: [
-      technologies.find(t => t.name === 'Java')!,
-    ],
+    technologies: [technologies.find(t => t.name === 'Java')!],
     githubUrl: 'https://github.com/gabo8191/LabBinaryTree',
     category: 'backend',
     completedAt: '2024-03-30',
@@ -303,9 +289,7 @@ export const projects: Project[] = [
     id: '18',
     title: 'projects.oracleDocker.title',
     description: 'projects.oracleDocker.description',
-    technologies: [
-      technologies.find(t => t.name === 'Docker')!,
-    ],
+    technologies: [technologies.find(t => t.name === 'Docker')!],
     githubUrl: 'https://github.com/gabo8191/OracleDBDocker',
     category: 'devops',
     completedAt: '2024-03-15',
@@ -314,9 +298,7 @@ export const projects: Project[] = [
     id: '19',
     title: 'projects.sqlAccidentAnalytics.title',
     description: 'projects.sqlAccidentAnalytics.description',
-    technologies: [
-      technologies.find(t => t.name === 'MySQL')!,
-    ],
+    technologies: [technologies.find(t => t.name === 'MySQL')!],
     githubUrl: 'https://github.com/gabo8191/ProjectSQL',
     category: 'database',
     completedAt: '2024-02-28',
@@ -325,9 +307,7 @@ export const projects: Project[] = [
     id: '20',
     title: 'projects.unitySimulationGame.title',
     description: 'projects.unitySimulationGame.description',
-    technologies: [
-      technologies.find(t => t.name === 'C++')!,
-    ],
+    technologies: [technologies.find(t => t.name === 'C++')!],
     githubUrl: 'https://github.com/gabo8191/SimulationGame',
     category: 'proof-of-concept',
     completedAt: '2024-02-10',
@@ -506,7 +486,7 @@ export const experiences: Experience[] = [
   {
     id: '3',
     title: 'experience.senaIntern.title',
-    company: 'Serempre',
+    company: 'SENA',
     period: 'experience.senaIntern.period',
     description: 'experience.senaIntern.description',
     technologies: [
@@ -532,7 +512,7 @@ export const experiences: Experience[] = [
   {
     id: '5',
     title: 'experience.sena.title',
-    company: 'SENA',
+    company: 'experience.sena.company',
     period: 'experience.sena.period',
     description: 'experience.sena.description',
     technologies: [

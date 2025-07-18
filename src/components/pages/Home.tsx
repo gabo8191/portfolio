@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { FiDownload, FiGithub, FiLinkedin, FiMail, FiMapPin, FiMoon, FiMousePointer, FiSun, FiTwitter, FiX } from 'react-icons/fi';
+import {
+  FiDownload,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiMapPin,
+  FiMoon,
+  FiMousePointer,
+  FiSun,
+  FiTwitter,
+  FiX,
+} from 'react-icons/fi';
 import { useLocale } from '../../contexts/LocaleContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import { personalInfo, technologies } from '../../data/portfolio';
+import type { Technology } from '../../types';
 import { getCVPath } from '../../utils/paths';
+import { Badge } from '../ui/Badge';
+import { ContactButton } from '../ui/ContactButton';
+import { MetricCard } from '../ui/MetricCard';
+import { SectionCard } from '../ui/SectionCard';
+import { StatusIndicator } from '../ui/StatusIndicator';
+import { TechnologyGrid } from '../ui/TechnologyGrid';
 
 export const Home: React.FC = () => {
   const { t, locale, setLocale } = useLocale();
   const { isDark, toggleTheme } = useTheme();
-  const [currentTime, setCurrentTime] = useState(new Date());
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 60000); // Update every minute
-
-    return () => clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
@@ -29,16 +38,6 @@ export const Home: React.FC = () => {
     document.addEventListener('keydown', handleEscapeKey);
     return () => document.removeEventListener('keydown', handleEscapeKey);
   }, [selectedCategory]);
-
-  const getGreeting = () => {
-    // Get Colombian time (UTC-5)
-    const colombianTime = new Date(currentTime.toLocaleString("en-US", {timeZone: "America/Bogota"}));
-    const hour = colombianTime.getHours();
-
-    if (hour < 12) return t('home.greeting.morning');
-    if (hour < 18) return t('home.greeting.afternoon');
-    return t('home.greeting.evening');
-  };
 
   const socialIcons = {
     github: FiGithub,
@@ -58,9 +57,10 @@ export const Home: React.FC = () => {
   );
 
   const handleDownloadCV = () => {
-    const cvFileName = locale === 'es'
-      ? 'Gabriel_Castillo_CV_ES.pdf'
-      : 'Gabriel_Castillo_CV_EN.pdf';
+    const cvFileName =
+      locale === 'es'
+        ? 'Gabriel_Castillo_CV_ES.pdf'
+        : 'Gabriel_Castillo_CV_EN.pdf';
 
     const link = document.createElement('a');
     link.href = getCVPath(cvFileName);
@@ -73,13 +73,20 @@ export const Home: React.FC = () => {
 
   const getCategoryLevel = (category: string) => {
     switch (category) {
-      case 'backend': return 'Advanced';
-      case 'database': return 'Intermediate';
-      case 'frontend': return 'Intermediate';
-      case 'devops': return 'Basic';
-      case 'cloud': return 'Basic';
-      case 'tools': return 'Intermediate';
-      default: return 'Intermediate';
+      case 'backend':
+        return 'Advanced';
+      case 'database':
+        return 'Intermediate';
+      case 'frontend':
+        return 'Intermediate';
+      case 'devops':
+        return 'Basic';
+      case 'cloud':
+        return 'Basic';
+      case 'tools':
+        return 'Intermediate';
+      default:
+        return 'Intermediate';
     }
   };
 
@@ -91,34 +98,41 @@ export const Home: React.FC = () => {
     setSelectedCategory(null);
   };
 
-  const getTechLevel = (tech: any, category: string) => {
+  const getTechLevel = (tech: Technology, category: string) => {
     switch (category) {
       case 'backend':
-        if (tech.name === 'Laravel' || tech.name === 'PHP') return 'Intermediate';
+        if (tech.name === 'Laravel' || tech.name === 'PHP')
+          return 'Intermediate';
         if (tech.name === 'NestJS') return 'Intermediate';
         if (tech.name === 'Node.js') return 'Intermediate';
-        if (tech.name === 'Spring Boot' || tech.name === 'Java') return 'Intermediate';
+        if (tech.name === 'Spring Boot' || tech.name === 'Java')
+          return 'Intermediate';
         if (tech.name === 'Express.js') return 'Intermediate';
         if (tech.name === 'Python' || tech.name === 'Flask') return 'Basic';
         if (tech.name === 'C++') return 'Basic';
         return 'Intermediate';
       case 'frontend':
         if (tech.name === 'React') return 'Intermediate';
-        if (tech.name === 'TypeScript' || tech.name === 'JavaScript') return 'Intermediate';
+        if (tech.name === 'TypeScript' || tech.name === 'JavaScript')
+          return 'Intermediate';
         if (tech.name === 'Next.js') return 'Intermediate';
-        if (tech.name === 'TailwindCSS' || tech.name === 'Bootstrap') return 'Intermediate';
+        if (tech.name === 'TailwindCSS' || tech.name === 'Bootstrap')
+          return 'Intermediate';
         if (tech.name === 'Angular' || tech.name === 'Vue.js') return 'Basic';
         return 'Intermediate';
       case 'database':
-        if (tech.name === 'MySQL' || tech.name === 'PostgreSQL') return 'Intermediate';
-        if (tech.name === 'TypeORM' || tech.name === 'Prisma') return 'Intermediate';
+        if (tech.name === 'MySQL' || tech.name === 'PostgreSQL')
+          return 'Intermediate';
+        if (tech.name === 'TypeORM' || tech.name === 'Prisma')
+          return 'Intermediate';
         if (tech.name === 'Redis') return 'Basic';
         return 'Intermediate';
       case 'devops':
         if (tech.name === 'Git') return 'Intermediate';
         if (tech.name === 'Docker') return 'Basic';
         if (tech.name === 'AWS') return 'Basic';
-        if (tech.name === 'GitHub Actions' || tech.name === 'Bitbucket') return 'Basic';
+        if (tech.name === 'GitHub Actions' || tech.name === 'Bitbucket')
+          return 'Basic';
         if (tech.name === 'SonarQube') return 'Basic';
         return 'Basic';
       case 'tools':
@@ -131,28 +145,6 @@ export const Home: React.FC = () => {
     }
   };
 
-  const getLevelColor = (level: string) => {
-    switch (level) {
-      case 'Expert': return 'text-green-600 dark:text-green-400';
-      case 'Advanced': return 'text-blue-600 dark:text-blue-400';
-      case 'Intermediate': return 'text-yellow-600 dark:text-yellow-400';
-      case 'Basic': return 'text-orange-600 dark:text-orange-400';
-      case 'Learning': return 'text-red-600 dark:text-red-400';
-      default: return 'text-gray-600 dark:text-gray-400';
-    }
-  };
-
-  const getLevelBadgeColor = (level: string) => {
-    switch (level) {
-      case 'Expert': return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300';
-      case 'Advanced': return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300';
-      case 'Intermediate': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300';
-      case 'Basic': return 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300';
-      case 'Learning': return 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300';
-      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300';
-    }
-  };
-
   const getCategoryConfig = (category: string) => {
     switch (category) {
       case 'backend':
@@ -161,7 +153,7 @@ export const Home: React.FC = () => {
           name: 'Backend',
           bgColor: 'bg-blue-50 dark:bg-blue-900/20',
           borderColor: 'border-blue-200 dark:border-blue-800',
-          emoji: '⚙️'
+          emoji: '⚙️',
         };
       case 'frontend':
         return {
@@ -169,7 +161,7 @@ export const Home: React.FC = () => {
           name: 'Frontend',
           bgColor: 'bg-emerald-50 dark:bg-emerald-900/20',
           borderColor: 'border-emerald-200 dark:border-emerald-800',
-          emoji: '💻'
+          emoji: '💻',
         };
       case 'database':
         return {
@@ -177,7 +169,7 @@ export const Home: React.FC = () => {
           name: 'Database',
           bgColor: 'bg-violet-50 dark:bg-violet-900/20',
           borderColor: 'border-violet-200 dark:border-violet-800',
-          emoji: '🗄️'
+          emoji: '🗄️',
         };
       case 'devops':
         return {
@@ -185,7 +177,7 @@ export const Home: React.FC = () => {
           name: 'DevOps',
           bgColor: 'bg-orange-50 dark:bg-orange-900/20',
           borderColor: 'border-orange-200 dark:border-orange-800',
-          emoji: '🚀'
+          emoji: '🚀',
         };
       case 'tools':
         return {
@@ -193,7 +185,7 @@ export const Home: React.FC = () => {
           name: 'Tools',
           bgColor: 'bg-gray-50 dark:bg-gray-900/20',
           borderColor: 'border-gray-200 dark:border-gray-800',
-          emoji: '🛠️'
+          emoji: '🛠️',
         };
       case 'cloud':
         return {
@@ -201,7 +193,7 @@ export const Home: React.FC = () => {
           name: 'Cloud',
           bgColor: 'bg-sky-50 dark:bg-sky-900/20',
           borderColor: 'border-sky-200 dark:border-sky-800',
-          emoji: '☁️'
+          emoji: '☁️',
         };
       default:
         return {
@@ -209,23 +201,23 @@ export const Home: React.FC = () => {
           name: 'Other',
           bgColor: 'bg-gray-50 dark:bg-gray-900/20',
           borderColor: 'border-gray-200 dark:border-gray-800',
-          emoji: '🔧'
+          emoji: '🔧',
         };
     }
   };
 
   return (
-    <div className="min-h-screen p-4 lg:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto p-6">
         {/* Top Controls */}
         <div className="flex justify-end items-center gap-4 mb-8">
           {/* Language Toggle */}
-          <div className="flex items-center bg-white dark:bg-gray-800 rounded-xl p-1 border border-gray-200 dark:border-gray-700 shadow-sm">
+          <div className="flex items-center bg-white dark:bg-gray-900 rounded-xl p-1 border border-gray-200 dark:border-gray-800 shadow-sm">
             <button
               onClick={() => setLocale('es')}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 locale === 'es'
-                  ? 'bg-primary-600 text-white shadow-sm'
+                  ? 'bg-blue-600 text-white shadow-sm'
                   : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
               }`}
             >
@@ -235,7 +227,7 @@ export const Home: React.FC = () => {
               onClick={() => setLocale('en')}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 locale === 'en'
-                  ? 'bg-primary-600 text-white shadow-sm'
+                  ? 'bg-blue-600 text-white shadow-sm'
                   : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
               }`}
             >
@@ -246,7 +238,7 @@ export const Home: React.FC = () => {
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+            className="p-3 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
             aria-label="Toggle theme"
           >
             {isDark ? (
@@ -259,105 +251,169 @@ export const Home: React.FC = () => {
 
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/20 dark:to-blue-900/20 rounded-full border border-primary-200 dark:border-primary-800 mb-6">
-            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
-            <span className="text-primary-700 dark:text-primary-300 font-medium">
-              {getGreeting()}! {t('home.welcomeMessage')}
-            </span>
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            <span className="bg-gradient-to-r from-primary-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-              {personalInfo.name}
-            </span>
-          </h1>
-
-          <div className="space-y-3 mb-8">
-            <p className="text-xl sm:text-2xl lg:text-3xl font-semibold text-primary-600 dark:text-primary-400">
-              {t(personalInfo.title)}
-            </p>
-            <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300">
-              {t(personalInfo.subtitle)}
-            </p>
-          </div>
-
-          <p className="text-gray-600 dark:text-gray-300 text-lg max-w-4xl mx-auto leading-relaxed mb-8">
-            {t(personalInfo.bio)}
-          </p>
-
           {/* Profile Image */}
-          <div className="flex justify-center mb-12">
-            <div className="relative">
-              <div className="w-56 h-56 lg:w-64 lg:h-64 rounded-3xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">
+          <div className="flex justify-center mb-8">
+            <div className="relative group">
+              <div className="w-40 h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg">
                 <img
                   src={personalInfo.avatar}
                   alt={personalInfo.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
-              {/* Decorative elements */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-primary-500/10 to-blue-500/10 pointer-events-none"></div>
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-primary-500 to-blue-600 rounded-2xl shadow-xl animate-float"></div>
-              <div className="absolute -bottom-5 -left-5 w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl shadow-lg animate-float" style={{ animationDelay: '1s' }}></div>
+
+              {/* Simple status indicator */}
+              <div className="absolute -bottom-2 -right-2">
+                <StatusIndicator
+                  status="available"
+                  text={t('home.profileStatus.availableFor')}
+                  className="scale-75"
+                />
+              </div>
+
+              {/* Experience badge */}
+              <div className="absolute -top-2 -right-2">
+                <Badge variant="info" size="sm">
+                  3Y
+                </Badge>
+              </div>
             </div>
+          </div>
+
+          {/* Name and Title */}
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {personalInfo.name}
+          </h1>
+
+          <p className="text-xl lg:text-2xl text-blue-600 dark:text-blue-400 font-medium mb-6">
+            {t(personalInfo.title)}
+          </p>
+
+          {/* Brief description */}
+          <div className="max-w-3xl mx-auto mb-8">
+            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+              {t(personalInfo.bio)}
+            </p>
+          </div>
+
+          {/* Location and availability */}
+          <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
+            <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+              <FiMapPin className="w-4 h-4" />
+              <span>{personalInfo.location}</span>
+            </div>
+            <Badge variant="success" size="sm">
+              {t('home.profileStatus.availableFor')}
+            </Badge>
+          </div>
+
+          {/* Action buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <ContactButton
+              href="#"
+              icon={<FiDownload />}
+              label={`${t('hero.downloadCV')} (${locale === 'es' ? 'ES' : 'EN'})`}
+              variant="primary"
+              size="lg"
+              onClick={e => {
+                e.preventDefault();
+                handleDownloadCV();
+              }}
+            />
+            <ContactButton
+              href={`mailto:${personalInfo.email}`}
+              icon={<FiMail />}
+              label={t('contact.emailMe')}
+              variant="secondary"
+              size="lg"
+            />
           </div>
         </div>
 
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <MetricCard
+            title={t('home.keyAchievements.yearsExperience')}
+            value="3+"
+            icon="📅"
+            gradient="from-blue-500 to-indigo-600"
+          />
+          <MetricCard
+            title={t('home.keyAchievements.productionSystems')}
+            value="12+"
+            icon="🚀"
+            gradient="from-emerald-500 to-teal-600"
+          />
+          <MetricCard
+            title={t('home.keyAchievements.technologiesMastered')}
+            value="25+"
+            icon="⚙️"
+            gradient="from-purple-500 to-pink-600"
+          />
+        </div>
+
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 mb-12">
-
-          {/* Left Sidebar - Stats & Actions */}
-          <div className="xl:col-span-3 space-y-6">
-            {/* Quick Stats */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 shadow-lg">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 text-center">
-                Quick Stats
-              </h3>
-              <div className="grid grid-cols-1 gap-4">
-                <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl p-4 text-white text-center">
-                  <div className="text-2xl font-bold mb-1">2.7+</div>
-                  <div className="text-blue-100 text-sm">Years Experience</div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Left Sidebar */}
+          <div className="lg:col-span-3 space-y-6">
+            <SectionCard title={t('home.professionalSummary')}>
+              <div className="space-y-4">
+                <div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                    {t('home.currentRole')}
+                  </div>
+                  <div className="font-medium text-gray-900 dark:text-white">
+                    Backend Developer
+                  </div>
                 </div>
-                <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-4 text-white text-center">
-                  <div className="text-2xl font-bold mb-1">{technologies.length}</div>
-                  <div className="text-green-100 text-sm">Technologies</div>
+                <div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                    {t('home.careerInterest')}
+                  </div>
+                  <div className="font-medium text-blue-600 dark:text-blue-400 text-sm">
+                    DevOps & Data Engineering
+                  </div>
                 </div>
-                <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-4 text-white text-center">
-                  <div className="text-2xl font-bold mb-1">8+</div>
-                  <div className="text-purple-100 text-sm">Projects</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Download CV */}
-            <button
-              onClick={handleDownloadCV}
-              className="w-full bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-3"
-            >
-              <FiDownload className="w-5 h-5" />
-              <div className="text-left">
-                <div>{t('hero.downloadCV')}</div>
-                <div className="text-sm opacity-90">
-                  ({locale === 'es' ? 'ES' : 'EN'})
+                <div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                    {t('home.education')}
+                  </div>
+                  <div className="font-medium text-gray-900 dark:text-white text-sm">
+                    Systems Engineering
+                  </div>
+                  <div className="text-xs text-gray-500 dark:text-gray-500">
+                    {t('home.inProgress')}
+                  </div>
                 </div>
               </div>
-            </button>
+            </SectionCard>
+
+            <SectionCard title={t('home.coreTechnologies')}>
+              <TechnologyGrid
+                technologies={[
+                  technologies.find(t => t.name === 'Laravel')!,
+                  technologies.find(t => t.name === 'NestJS')!,
+                  technologies.find(t => t.name === 'React')!,
+                  technologies.find(t => t.name === 'PostgreSQL')!,
+                  technologies.find(t => t.name === 'TypeScript')!,
+                  technologies.find(t => t.name === 'Docker')!,
+                ]}
+                variant="minimal"
+              />
+            </SectionCard>
           </div>
 
-          {/* Center - Technologies (Main Focus) */}
-          <div className="xl:col-span-6">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 lg:p-8 border border-gray-200 dark:border-gray-700 shadow-lg">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                  {t('skills.title')}
-                </h2>
-                <div className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400">
-                  <FiMousePointer className="w-4 h-4 animate-bounce" />
-                  <p className="text-sm">Click on each category to see detailed technologies</p>
-                </div>
+          {/* Center - Technologies */}
+          <div className="lg:col-span-6">
+            <SectionCard title={t('skills.title')}>
+              <div className="text-center mb-6">
+                <p className="text-gray-600 dark:text-gray-400 text-sm flex items-center justify-center gap-2">
+                  <FiMousePointer className="w-4 h-4" />
+                  {t('home.clickToSeeDetails')}
+                </p>
               </div>
 
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
                 {Object.entries(skillCategories).map(([category, techs]) => {
                   const categoryConfig = getCategoryConfig(category);
                   const level = getCategoryLevel(category);
@@ -366,94 +422,68 @@ export const Home: React.FC = () => {
                     <div
                       key={category}
                       onClick={() => openCategoryModal(category)}
-                      className="group relative cursor-pointer transform transition-all duration-300 hover:scale-105"
+                      className="group cursor-pointer"
                     >
-                      <div className={`${categoryConfig.bgColor} ${categoryConfig.borderColor} border-2 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 relative overflow-hidden`}>
-
-                        {/* Click indicator animation */}
-                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="flex items-center gap-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-gray-600 dark:text-gray-400">
-                            <FiMousePointer className="w-3 h-3 animate-pulse" />
-                            <span>Click</span>
+                      <div
+                        className={`${categoryConfig.bgColor} ${categoryConfig.borderColor} border rounded-xl p-4 hover:shadow-md transition-all duration-200`}
+                      >
+                        <div className="flex items-center justify-center mb-3">
+                          <div
+                            className={`w-12 h-12 bg-gradient-to-r ${categoryConfig.gradient} rounded-xl flex items-center justify-center`}
+                          >
+                            <span className="text-lg">
+                              {categoryConfig.emoji}
+                            </span>
                           </div>
                         </div>
 
-                        {/* Animated background pulse */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
-
-                        {/* Icon and Emoji */}
-                        <div className="flex items-center justify-center mb-4">
-                          <div className={`w-16 h-16 bg-gradient-to-r ${categoryConfig.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:rotate-6`}>
-                            <span className="text-2xl animate-pulse group-hover:scale-110 transition-transform duration-300">{categoryConfig.emoji}</span>
-                          </div>
-                        </div>
-
-                        {/* Category Name */}
-                        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 text-center mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                        <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 text-center mb-2">
                           {categoryConfig.name}
                         </h3>
 
-                        {/* Level Badge */}
-                        <div className="flex items-center justify-center mb-4">
-                          <div className={`inline-block px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 group-hover:scale-110 ${getLevelBadgeColor(level)}`}>
+                        <div className="flex items-center justify-center mb-2">
+                          <Badge variant="default" size="sm">
                             {level}
-                          </div>
+                          </Badge>
                         </div>
 
-                        {/* Tech Count */}
-                        <div className="text-center">
-                          <p className="text-sm text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors">
-                            {techs.length} technologies
-                          </p>
-                        </div>
-
-                        {/* Hover effect overlay with ripple animation */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/5 dark:to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
-
-                        {/* Animated border effect */}
-                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                             style={{
-                               background: `linear-gradient(45deg, transparent, ${categoryConfig.gradient.split(' ')[1]?.replace('from-', '') || '#3B82F6'}20, transparent)`,
-                               animation: 'spin 3s linear infinite'
-                             }}>
-                        </div>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 text-center">
+                          {techs.length}{' '}
+                          {techs.length === 1 ? 'technology' : 'technologies'}
+                        </p>
                       </div>
                     </div>
                   );
                 })}
               </div>
-            </div>
+            </SectionCard>
           </div>
 
-          {/* Right Sidebar - Contact */}
-          <div className="xl:col-span-3">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-                {t('contact.title')}
-              </h3>
-
+          {/* Right Sidebar */}
+          <div className="lg:col-span-3">
+            <SectionCard title={t('contact.title')}>
               <div className="space-y-4 mb-6">
-                <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg">
-                    <FiMail className="w-5 h-5 text-white" />
-                  </div>
+                <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <FiMail className="w-5 h-5 text-blue-600" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Email</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                      Email
+                    </p>
                     <a
                       href={`mailto:${personalInfo.email}`}
-                      className="text-sm font-medium text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors truncate block"
+                      className="text-sm font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors truncate block"
                     >
                       {personalInfo.email}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center shadow-lg">
-                    <FiMapPin className="w-5 h-5 text-white" />
-                  </div>
+                <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <FiMapPin className="w-5 h-5 text-purple-600" />
                   <div className="flex-1">
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Location</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                      Location
+                    </p>
                     <p className="text-sm font-medium text-gray-900 dark:text-white">
                       {personalInfo.location}
                     </p>
@@ -464,35 +494,26 @@ export const Home: React.FC = () => {
               {/* Social Links */}
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 text-center">
-                  Connect with me
+                  {t('contact.connectWithMe')}
                 </p>
                 <div className="flex justify-center gap-3">
                   {personalInfo.socialLinks.map((link, index) => {
-                    const IconComponent = socialIcons[link.icon as keyof typeof socialIcons];
+                    const IconComponent =
+                      socialIcons[link.icon as keyof typeof socialIcons];
                     return (
-                      <a
+                      <ContactButton
                         key={index}
                         href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-12 h-12 bg-gray-100 dark:bg-gray-700 hover:bg-gradient-to-br hover:from-primary-500 hover:to-blue-600 text-gray-600 dark:text-gray-300 hover:text-white rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
-                      >
-                        {IconComponent && <IconComponent className="w-5 h-5" />}
-                      </a>
+                        icon={IconComponent && <IconComponent />}
+                        label={link.platform}
+                        variant="floating"
+                        external={true}
+                      />
                     );
                   })}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center">
-          <div className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400">
-            <div className="w-16 h-px bg-gradient-to-r from-transparent to-gray-300 dark:to-gray-600"></div>
-            <span className="text-sm font-medium">{t('common.exploreMessage')}</span>
-            <div className="w-16 h-px bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-600"></div>
+            </SectionCard>
           </div>
         </div>
       </div>
@@ -508,7 +529,7 @@ export const Home: React.FC = () => {
             ></div>
 
             {/* Modal panel */}
-            <div className="inline-block w-full max-w-4xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-gray-800 shadow-xl rounded-2xl border border-gray-200 dark:border-gray-700">
+            <div className="inline-block w-full max-w-4xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-gray-900 shadow-xl rounded-2xl border border-gray-200 dark:border-gray-700">
               {(() => {
                 const categoryConfig = getCategoryConfig(selectedCategory);
                 const techs = skillCategories[selectedCategory] || [];
@@ -519,17 +540,19 @@ export const Home: React.FC = () => {
                     {/* Modal Header */}
                     <div className="flex items-center justify-between mb-6">
                       <div className="flex items-center gap-4">
-                        <div className={`w-16 h-16 bg-gradient-to-r ${categoryConfig.gradient} rounded-2xl flex items-center justify-center shadow-lg`}>
-                          <span className="text-2xl">{categoryConfig.emoji}</span>
+                        <div
+                          className={`w-16 h-16 bg-gradient-to-r ${categoryConfig.gradient} rounded-2xl flex items-center justify-center shadow-lg`}
+                        >
+                          <span className="text-2xl">
+                            {categoryConfig.emoji}
+                          </span>
                         </div>
                         <div>
                           <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                             {categoryConfig.name} Technologies
                           </h3>
                           <div className="flex items-center gap-3 mt-1">
-                            <span className={`px-3 py-1 rounded-full text-sm font-medium ${getLevelBadgeColor(level)}`}>
-                              {level}
-                            </span>
+                            <Badge variant="default">{level}</Badge>
                             <span className="text-sm text-gray-600 dark:text-gray-400">
                               {techs.length} technologies
                             </span>
@@ -538,7 +561,7 @@ export const Home: React.FC = () => {
                       </div>
                       <button
                         onClick={closeCategoryModal}
-                        className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
                       >
                         <FiX className="w-6 h-6" />
                       </button>
@@ -552,35 +575,39 @@ export const Home: React.FC = () => {
                         return (
                           <div
                             key={index}
-                            className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 border border-gray-200 dark:border-gray-600 hover:shadow-md transition-all duration-300"
+                            className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 hover:shadow-sm transition-all duration-200"
                           >
                             <div className="flex items-center gap-3 mb-3">
                               <div
-                                className="w-4 h-4 rounded-full shadow-sm"
+                                className="w-4 h-4 rounded-full"
                                 style={{ backgroundColor: tech.color }}
                               ></div>
                               <span className="font-medium text-gray-900 dark:text-white">
                                 {tech.name}
                               </span>
-                              <span className={`ml-auto text-sm font-medium ${getLevelColor(techLevel)}`}>
+                              <Badge
+                                variant="default"
+                                size="sm"
+                                className="ml-auto"
+                              >
                                 {techLevel}
-                              </span>
+                              </Badge>
                             </div>
 
-                            <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2 mb-2">
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                               <div
-                                className="h-2 rounded-full transition-all duration-1000"
+                                className="h-2 rounded-full transition-all duration-500"
                                 style={{
                                   backgroundColor: tech.color,
-                                  width: techLevel === 'Intermediate' ? '60%' :
-                                         techLevel === 'Basic' ? '40%' : '50%'
+                                  width:
+                                    techLevel === 'Intermediate'
+                                      ? '60%'
+                                      : techLevel === 'Basic'
+                                        ? '40%'
+                                        : '50%',
                                 }}
                               ></div>
                             </div>
-
-                            <span className={`inline-block text-xs px-2 py-1 rounded-full font-medium ${getLevelBadgeColor(techLevel)}`}>
-                              {techLevel}
-                            </span>
                           </div>
                         );
                       })}
@@ -590,11 +617,12 @@ export const Home: React.FC = () => {
                     <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
                       <div className="flex items-center justify-between">
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                          Based on {techs.length} technologies in {categoryConfig.name.toLowerCase()} development
+                          Based on {techs.length} technologies in{' '}
+                          {categoryConfig.name.toLowerCase()} development
                         </p>
                         <button
                           onClick={closeCategoryModal}
-                          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors"
+                          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg transition-colors"
                         >
                           Close
                         </button>

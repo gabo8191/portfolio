@@ -1,5 +1,11 @@
 import React from 'react';
-import { FiAward, FiBriefcase, FiFolder, FiHome, FiTerminal } from 'react-icons/fi';
+import {
+  FiAward,
+  FiBriefcase,
+  FiFolder,
+  FiHome,
+  FiTerminal,
+} from 'react-icons/fi';
 import { useLocale } from '../../contexts/LocaleContext';
 import { cn } from '../../utils/cn';
 import { Certifications } from '../pages/Certifications';
@@ -14,9 +20,18 @@ interface MainContentProps {
   setActiveTab: (tab: TabType) => void;
 }
 
-type TabType = 'home' | 'projects' | 'terminal' | 'experience' | 'certifications';
+type TabType =
+  | 'home'
+  | 'projects'
+  | 'terminal'
+  | 'experience'
+  | 'certifications';
 
-export const MainContent: React.FC<MainContentProps> = ({ className, activeTab, setActiveTab }) => {
+export const MainContent: React.FC<MainContentProps> = ({
+  className,
+  activeTab,
+  setActiveTab,
+}) => {
   const { t } = useLocale();
 
   const tabs = [
@@ -56,12 +71,12 @@ export const MainContent: React.FC<MainContentProps> = ({ className, activeTab, 
     <main
       className={cn(
         activeTab !== 'home' ? 'lg:ml-80' : '',
-        'min-h-screen bg-gray-50 dark:bg-gray-800',
+        'min-h-screen',
         'transition-colors duration-300',
         className
       )}
     >
-      <div className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 backdrop-blur-lg bg-white/95 dark:bg-gray-900/95">
+      <div className="sticky top-0 z-50 bg-white/95 dark:bg-gray-950/95 border-b border-gray-200 dark:border-gray-700 backdrop-blur-lg">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 lg:p-6 pt-16 lg:pt-6">
           <h1 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-0">
             {t('common.portfolio')}
@@ -77,8 +92,8 @@ export const MainContent: React.FC<MainContentProps> = ({ className, activeTab, 
                   className={cn(
                     'flex items-center gap-2 px-3 lg:px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 whitespace-nowrap relative',
                     activeTab === tab.id
-                      ? 'bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300 shadow-sm'
-                      : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'
+                      ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 shadow-sm'
+                      : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800/50'
                   )}
                 >
                   <IconComponent className="w-4 h-4" />

@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { FiBook, FiBriefcase, FiCalendar, FiClock, FiMapPin } from 'react-icons/fi';
+import { FiBook, FiBriefcase, FiCalendar, FiMapPin } from 'react-icons/fi';
 import { useLocale } from '../../contexts/LocaleContext';
 import { experiences } from '../../data/portfolio';
+import { Badge } from '../ui/Badge';
+import { SectionCard } from '../ui/SectionCard';
 
 export const Experience: React.FC = () => {
   const { t } = useLocale();
-  const [activeFilter, setActiveFilter] = useState<'all' | 'work' | 'education'>('all');
+  const [activeFilter, setActiveFilter] = useState<
+    'all' | 'work' | 'education'
+  >('all');
 
-  const filteredExperiences = experiences.filter(exp =>
-    activeFilter === 'all' || exp.type === activeFilter
+  const filteredExperiences = experiences.filter(
+    exp => activeFilter === 'all' || exp.type === activeFilter
   );
 
   const getExperienceIcon = (type: string) => {
@@ -25,190 +29,166 @@ export const Experience: React.FC = () => {
   const getExperienceGradient = (type: string) => {
     switch (type) {
       case 'work':
-        return 'from-blue-600 via-indigo-600 to-purple-600';
+        return 'from-blue-500 to-indigo-600';
       case 'education':
-        return 'from-emerald-600 via-teal-600 to-cyan-600';
+        return 'from-emerald-500 to-teal-600';
       default:
-        return 'from-gray-600 via-slate-600 to-zinc-600';
-    }
-  };
-
-  const getExperienceShadow = (type: string) => {
-    switch (type) {
-      case 'work':
-        return 'shadow-blue-500/25';
-      case 'education':
-        return 'shadow-emerald-500/25';
-      default:
-        return 'shadow-gray-500/25';
+        return 'from-gray-500 to-slate-600';
     }
   };
 
   return (
-    <div className="space-y-8">
-      {/* Header */}
-      <div>
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-          <FiClock className="w-8 h-8 text-primary-600 dark:text-primary-400" />
-          {t('experience.title')}
-        </h2>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+      <div className="max-w-5xl mx-auto p-6 space-y-8">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 flex items-center justify-center gap-3">
+            <FiCalendar className="w-10 h-10 text-blue-600 dark:text-blue-400" />
+            {t('experience.title')}
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            {t('experience.workExperience')} & {t('experience.education')}
+          </p>
+        </div>
 
-        {/* Modern Filter Tabs */}
-        <div className="relative overflow-hidden mb-8">
-          <div className="bg-gradient-to-r from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-blue-900/30 dark:to-indigo-900/30 rounded-2xl p-2 border border-slate-200 dark:border-slate-700">
-            <div className="flex relative">
-              {/* Background Slider */}
+        {/* Filter Tabs */}
+        <div className="flex justify-center">
+          <div className="flex gap-2 p-1 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+            {(['all', 'work', 'education'] as const).map(filter => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                  activeFilter === filter
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                }`}
+              >
+                {filter === 'all'
+                  ? 'Todo'
+                  : filter === 'work'
+                    ? t('experience.workExperience')
+                    : t('experience.education')}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Timeline */}
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-4 md:left-1/2 md:transform md:-translate-x-px top-0 bottom-0 w-px bg-gray-200 dark:bg-gray-700"></div>
+
+          <div className="space-y-8">
+            {filteredExperiences.map((exp, index) => (
               <div
-                className={`absolute top-0 h-full bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-600 transition-all duration-500 ease-out ${
-                  activeFilter === 'all' ? 'left-0 w-1/3' :
-                  activeFilter === 'work' ? 'left-1/3 w-1/3' : 'left-2/3 w-1/3'
-                }`}
-              />
-
-              {/* All Tab */}
-              <button
-                onClick={() => setActiveFilter('all')}
-                className={`relative z-10 flex-1 px-4 py-3 rounded-xl text-center transition-all duration-300 ${
-                  activeFilter === 'all'
-                    ? 'text-indigo-600 dark:text-indigo-400'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                key={exp.id}
+                className={`relative flex flex-col md:flex-row gap-6 ${
+                  index % 2 === 0 ? 'md:flex-row-reverse' : ''
                 }`}
               >
-                <span className="font-medium text-sm">Todo</span>
-              </button>
+                {/* Timeline marker */}
+                <div className="absolute left-0 md:left-1/2 md:transform md:-translate-x-1/2 w-8 h-8 z-10">
+                  <div
+                    className={`w-8 h-8 bg-gradient-to-r ${getExperienceGradient(exp.type)} rounded-full border-4 border-white dark:border-gray-950 shadow-lg flex items-center justify-center`}
+                  >
+                    <div className="text-white text-sm">
+                      {getExperienceIcon(exp.type)}
+                    </div>
+                  </div>
+                </div>
 
-              {/* Work Tab */}
-              <button
-                onClick={() => setActiveFilter('work')}
-                className={`relative z-10 flex-1 px-4 py-3 rounded-xl text-center transition-all duration-300 ${
-                  activeFilter === 'work'
-                    ? 'text-indigo-600 dark:text-indigo-400'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
-                }`}
-              >
-                <span className="font-medium text-sm">{t('experience.workExperience')}</span>
-              </button>
+                {/* Content card */}
+                <div
+                  className={`flex-1 ml-12 md:ml-0 ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}
+                >
+                  <SectionCard className="hover-lift">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Badge
+                            variant={exp.type === 'work' ? 'info' : 'success'}
+                            size="sm"
+                          >
+                            {exp.type === 'work'
+                              ? t('experience.work')
+                              : t('experience.education')}
+                          </Badge>
+                          <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                            <FiCalendar className="w-3 h-3" />
+                            <span>{t(exp.period)}</span>
+                          </div>
+                        </div>
 
-              {/* Education Tab */}
-              <button
-                onClick={() => setActiveFilter('education')}
-                className={`relative z-10 flex-1 px-4 py-3 rounded-xl text-center transition-all duration-300 ${
-                  activeFilter === 'education'
-                    ? 'text-indigo-600 dark:text-indigo-400'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
-                }`}
-              >
-                <span className="font-medium text-sm">{t('experience.education')}</span>
-              </button>
-            </div>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                          {t(exp.title)}
+                        </h3>
+
+                        <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-3">
+                          <FiMapPin className="w-4 h-4" />
+                          <span className="font-medium">{t(exp.company)}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                      {t(exp.description)
+                        .split('\n')
+                        .map((line, lineIndex) => {
+                          if (line.trim().startsWith('•')) {
+                            return (
+                              <div
+                                key={lineIndex}
+                                className="flex items-start gap-2 mb-2"
+                              >
+                                <span className="text-blue-500 dark:text-blue-400 mt-1 text-xs">
+                                  ●
+                                </span>
+                                <span>{line.trim().substring(1).trim()}</span>
+                              </div>
+                            );
+                          } else if (line.trim()) {
+                            return (
+                              <p key={lineIndex} className="mb-3 font-medium">
+                                {line.trim()}
+                              </p>
+                            );
+                          }
+                          return null;
+                        })}
+                    </div>
+
+                    {exp.technologies && exp.technologies.length > 0 && (
+                      <div className="flex flex-wrap gap-2 pt-3 border-t border-gray-200 dark:border-gray-700">
+                        {exp.technologies.map((tech, techIndex) => (
+                          <Badge key={techIndex} variant="default" size="sm">
+                            {typeof tech === 'string' ? tech : tech.name}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
+                  </SectionCard>
+                </div>
+
+                {/* Spacer for alignment */}
+                <div className="hidden md:block flex-1"></div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Enhanced Timeline */}
-      <div className="relative">
-        {/* Modern Timeline Line with Gradient */}
-        <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-200 via-purple-200 to-green-200 dark:from-blue-800 dark:via-purple-800 dark:to-green-800 rounded-full shadow-sm"></div>
-
-        <div className="space-y-12">
-          {filteredExperiences.map((experience) => (
-            <div key={experience.id} className="relative flex items-start group">
-              {/* Enhanced Timeline Node */}
-              <div className={`relative z-10 flex items-center justify-center w-16 h-16 rounded-full border-4 border-white dark:border-gray-900 bg-gradient-to-br ${getExperienceGradient(experience.type)} shadow-xl ${getExperienceShadow(experience.type)} group-hover:scale-110 transition-all duration-300`}>
-                <div className="text-white drop-shadow-lg">
-                  {getExperienceIcon(experience.type)}
-                </div>
-                {/* Pulse Animation */}
-                <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${getExperienceGradient(experience.type)} opacity-30 animate-ping`}></div>
-              </div>
-
-              {/* Enhanced Content Card */}
-              <div className="ml-6 flex-1 relative bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02] overflow-hidden">
-                {/* Gradient Header */}
-                <div className={`relative p-6 pb-4 bg-gradient-to-br ${getExperienceGradient(experience.type)} rounded-t-xl`}>
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-white mb-2 drop-shadow-lg">
-                        {t(experience.title)}
-                      </h3>
-                      <div className="flex items-center gap-2 text-white/90">
-                        <FiMapPin className="w-4 h-4" />
-                        <span className="font-medium">{experience.company.startsWith('experience.') ? t(experience.company) : experience.company}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2 mt-3 sm:mt-0">
-                      <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-medium rounded-full border border-white/30">
-                        {experience.type === 'work' ? t('experience.work') : t('experience.education')}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6 pt-4 relative z-10">
-                  <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 mb-4">
-                    <FiClock className="w-4 h-4" />
-                    <span className="text-sm font-medium">{t(experience.period)}</span>
-                  </div>
-
-                  {/* Programming Area */}
-                  {experience.type === 'work' && (
-                    <div className="mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-600 dark:text-gray-400">Specialization:</span>
-                        <span className="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-sm font-medium rounded-full border border-primary-200 dark:border-primary-800">
-                          {t(`experience.${experience.id === '1' ? 'parq' : experience.id === '2' ? 'serempre' : 'senaIntern'}.area`)}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                  {experience.type === 'education' && (
-                    <div className="mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-600 dark:text-gray-400">Focus Area:</span>
-                        <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 text-sm font-medium rounded-full border border-emerald-200 dark:border-emerald-800">
-                          {t(`experience.${experience.id === '4' ? 'uptc' : 'sena'}.area`)}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Description */}
-                  <div className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed whitespace-pre-wrap">
-                    {t(experience.description)}
-                  </div>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
-                    {experience.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="inline-block px-2.5 py-1 text-xs font-medium rounded-md border transition-all duration-200 hover:scale-105"
-                        style={{
-                          backgroundColor: tech.color + '15',
-                          color: tech.color,
-                          borderColor: tech.color + '30'
-                        }}
-                      >
-                        {tech.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+        {/* Empty state */}
+        {filteredExperiences.length === 0 && (
+          <SectionCard className="text-center py-12">
+            <div className="text-gray-500 dark:text-gray-400">
+              <FiCalendar className="w-16 h-16 mx-auto mb-4 opacity-50" />
+              <h3 className="text-lg font-medium mb-2">No experiences found</h3>
+              <p className="text-sm">
+                Try changing the filter to see more experiences.
+              </p>
             </div>
-          ))}
-        </div>
-
-        {/* Enhanced Timeline End */}
-        <div className="relative flex items-center justify-center mt-12">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-300 to-gray-500 dark:from-gray-600 dark:to-gray-800 border-4 border-white dark:border-gray-900 shadow-xl"></div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-4 h-4 rounded-full bg-white dark:bg-gray-300 shadow-inner"></div>
-          </div>
-        </div>
+          </SectionCard>
+        )}
       </div>
     </div>
   );

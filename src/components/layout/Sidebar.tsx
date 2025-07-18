@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {
-    FiDownload,
-    FiGithub,
-    FiLinkedin,
-    FiMail,
-    FiMapPin,
-    FiMenu,
-    FiTwitter,
-    FiX
+  FiDownload,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiMapPin,
+  FiMenu,
+  FiTwitter,
+  FiX,
 } from 'react-icons/fi';
 import { useLocale } from '../../contexts/LocaleContext';
 import { personalInfo, technologies } from '../../data/portfolio';
@@ -21,7 +21,10 @@ interface SidebarProps {
   isVisible?: boolean;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true }) => {
+export const Sidebar: React.FC<SidebarProps> = ({
+  className,
+  isVisible = true,
+}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { t, locale } = useLocale();
 
@@ -37,9 +40,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
 
   const handleDownloadCV = () => {
     // Get CV file name based on current language
-    const cvFileName = locale === 'es'
-      ? 'Gabriel_Castillo_CV_ES.pdf'
-      : 'Gabriel_Castillo_CV_EN.pdf';
+    const cvFileName =
+      locale === 'es'
+        ? 'Gabriel_Castillo_CV_ES.pdf'
+        : 'Gabriel_Castillo_CV_EN.pdf';
 
     const link = document.createElement('a');
     link.href = getCVPath(cvFileName);
@@ -56,7 +60,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
         {/* Mobile Menu Button - always visible for mobile */}
         <button
           onClick={toggleMobileMenu}
-          className="fixed top-4 left-4 z-[60] lg:hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-2 shadow-lg backdrop-blur-lg"
+          className="fixed top-4 left-4 z-[60] lg:hidden bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-lg p-2 shadow-lg backdrop-blur-lg"
         >
           {isMobileMenuOpen ? (
             <FiX className="w-6 h-6 text-gray-900 dark:text-white" />
@@ -77,7 +81,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
         {isMobileMenuOpen && (
           <aside
             className={cn(
-              'fixed left-0 top-0 h-full w-80 bg-white dark:bg-gray-900',
+              'fixed left-0 top-0 h-full w-80 bg-gray-50 dark:bg-gray-950',
               'border-r border-gray-200 dark:border-gray-700',
               'overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600',
               'transition-all duration-300 z-50 lg:hidden',
@@ -120,23 +124,39 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
                 {/* Quick Stats */}
                 <div className="grid grid-cols-3 gap-2 mb-4">
                   <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-2 border border-blue-200 dark:border-blue-800">
-                    <div className="text-lg font-bold text-blue-600 dark:text-blue-400">2.7+</div>
-                    <div className="text-xs text-blue-600 dark:text-blue-400">Years</div>
+                    <div className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                      3+
+                    </div>
+                    <div className="text-xs text-blue-600 dark:text-blue-400">
+                      {t('home.keyAchievements.yearsExperience').split(' ')[0]}
+                    </div>
                   </div>
                   <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-2 border border-green-200 dark:border-green-800">
-                    <div className="text-lg font-bold text-green-600 dark:text-green-400">{technologies.length}</div>
-                    <div className="text-xs text-green-600 dark:text-green-400">Tech</div>
+                    <div className="text-lg font-bold text-green-600 dark:text-green-400">
+                      {technologies.length}
+                    </div>
+                    <div className="text-xs text-green-600 dark:text-green-400">
+                      {t('skills.title').split(' ')[0]}
+                    </div>
                   </div>
                   <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-2 border border-purple-200 dark:border-purple-800">
-                    <div className="text-lg font-bold text-purple-600 dark:text-purple-400">8+</div>
-                    <div className="text-xs text-purple-600 dark:text-purple-400">Projects</div>
+                    <div className="text-lg font-bold text-purple-600 dark:text-purple-400">
+                      12+
+                    </div>
+                    <div className="text-xs text-purple-600 dark:text-purple-400">
+                      {t('projects.title').split(' ')[0]}
+                    </div>
                   </div>
                 </div>
 
                 <button
                   onClick={handleDownloadCV}
                   className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors group w-full justify-center"
-                  title={locale === 'es' ? 'Descargar CV en Español' : 'Download CV in English'}
+                  title={
+                    locale === 'es'
+                      ? 'Descargar CV en Español'
+                      : 'Download CV in English'
+                  }
                 >
                   <FiDownload className="w-4 h-4" />
                   {t('hero.downloadCV')}
@@ -173,7 +193,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
               {/* Social Links */}
               <div className="mb-8">
                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3 uppercase tracking-wide">
-                  Social
+                  {t('contact.social')}
                 </h3>
                 <div className="flex gap-3">
                   {personalInfo.socialLinks.map((link, index) => {
@@ -207,26 +227,50 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
               {/* Skills Section - Replaced with Skill Overview */}
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2">
-                  Skill Overview
+                  {t('skills.title')}
                 </h3>
 
                 <div className="space-y-4">
                   {[
-                    { name: 'Backend Development', level: 'Intermediate', category: 'backend' },
-                    { name: 'Database Management', level: 'Intermediate', category: 'database' },
-                    { name: 'Frontend Development', level: 'Intermediate', category: 'frontend' },
-                    { name: 'DevOps & Infrastructure', level: 'Basic', category: 'devops' },
-                    { name: 'Cloud Technologies', level: 'Basic', category: 'cloud' },
+                    {
+                      name: t('skills.categories.backendDevelopment'),
+                      level: t('skills.levels.intermediate'),
+                      category: 'backend',
+                    },
+                    {
+                      name: t('skills.categories.databaseManagement'),
+                      level: t('skills.levels.intermediate'),
+                      category: 'database',
+                    },
+                    {
+                      name: t('skills.categories.frontendDevelopment'),
+                      level: t('skills.levels.intermediate'),
+                      category: 'frontend',
+                    },
+                    {
+                      name: t('skills.categories.devopsInfrastructure'),
+                      level: t('skills.levels.basic'),
+                      category: 'devops',
+                    },
+                    {
+                      name: t('skills.categories.cloudTechnologies'),
+                      level: t('skills.levels.basic'),
+                      category: 'cloud',
+                    },
                   ].map((skill, index) => {
                     const getLevelColor = (level: string) => {
-                      switch (level) {
-                        case 'Expert': return 'text-green-600 dark:text-green-400';
-                        case 'Advanced': return 'text-blue-600 dark:text-blue-400';
-                        case 'Intermediate': return 'text-yellow-600 dark:text-yellow-400';
-                        case 'Basic': return 'text-orange-600 dark:text-orange-400';
-                        case 'Learning': return 'text-red-600 dark:text-red-400';
-                        default: return 'text-gray-600 dark:text-gray-400';
-                      }
+                      // Check for both English and Spanish level names
+                      if (level === 'Expert' || level === 'Experto')
+                        return 'text-green-600 dark:text-green-400';
+                      if (level === 'Advanced' || level === 'Avanzado')
+                        return 'text-blue-600 dark:text-blue-400';
+                      if (level === 'Intermediate' || level === 'Intermedio')
+                        return 'text-yellow-600 dark:text-yellow-400';
+                      if (level === 'Basic' || level === 'Básico')
+                        return 'text-orange-600 dark:text-orange-400';
+                      if (level === 'Learning' || level === 'Aprendiendo')
+                        return 'text-red-600 dark:text-red-400';
+                      return 'text-gray-600 dark:text-gray-400';
                     };
 
                     return (
@@ -235,22 +279,34 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                             {skill.name}
                           </span>
-                          <span className={`text-xs font-medium ${getLevelColor(skill.level)}`}>
+                          <span
+                            className={`text-xs font-medium ${getLevelColor(skill.level)}`}
+                          >
                             {skill.level}
                           </span>
                         </div>
                         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
                           <div
                             className={`h-2 rounded-full transition-all duration-1000 ease-out group-hover:animate-pulse ${
-                              skill.category === 'backend' ? 'bg-blue-500' :
-                              skill.category === 'database' ? 'bg-violet-500' :
-                              skill.category === 'frontend' ? 'bg-emerald-500' :
-                              skill.category === 'devops' ? 'bg-orange-500' :
-                              'bg-sky-500'
+                              skill.category === 'backend'
+                                ? 'bg-blue-500'
+                                : skill.category === 'database'
+                                  ? 'bg-violet-500'
+                                  : skill.category === 'frontend'
+                                    ? 'bg-emerald-500'
+                                    : skill.category === 'devops'
+                                      ? 'bg-orange-500'
+                                      : 'bg-sky-500'
                             }`}
                             style={{
-                              width: skill.level === 'Intermediate' ? '60%' :
-                                     skill.level === 'Basic' ? '40%' : '50%'
+                              width:
+                                skill.level === 'Intermediate' ||
+                                skill.level === 'Intermedio'
+                                  ? '60%'
+                                  : skill.level === 'Basic' ||
+                                      skill.level === 'Básico'
+                                    ? '40%'
+                                    : '50%',
                             }}
                           ></div>
                         </div>
@@ -271,7 +327,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
       {/* Mobile Menu Button */}
       <button
         onClick={toggleMobileMenu}
-        className="fixed top-4 left-4 z-[60] lg:hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-2 shadow-lg backdrop-blur-lg"
+        className="fixed top-4 left-4 z-[60] lg:hidden bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-lg p-2 shadow-lg backdrop-blur-lg"
       >
         {isMobileMenuOpen ? (
           <FiX className="w-6 h-6 text-gray-900 dark:text-white" />
@@ -291,7 +347,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
       {/* Sidebar */}
       <aside
         className={cn(
-          'fixed left-0 top-0 h-full w-80 bg-white dark:bg-gray-900',
+          'fixed left-0 top-0 h-full w-80 bg-gray-50 dark:bg-gray-950',
           'border-r border-gray-200 dark:border-gray-700',
           'overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600',
           'transition-all duration-300 z-50',
@@ -339,23 +395,39 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
             {/* Quick Stats */}
             <div className="grid grid-cols-3 gap-2 mb-4">
               <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-2 border border-blue-200 dark:border-blue-800">
-                <div className="text-lg font-bold text-blue-600 dark:text-blue-400">2.7+</div>
-                <div className="text-xs text-blue-600 dark:text-blue-400">Years</div>
+                <div className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                  3+
+                </div>
+                <div className="text-xs text-blue-600 dark:text-blue-400">
+                  {t('home.keyAchievements.yearsExperience').split(' ')[0]}
+                </div>
               </div>
               <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-2 border border-green-200 dark:border-green-800">
-                <div className="text-lg font-bold text-green-600 dark:text-green-400">{technologies.length}</div>
-                <div className="text-xs text-green-600 dark:text-green-400">Tech</div>
+                <div className="text-lg font-bold text-green-600 dark:text-green-400">
+                  {technologies.length}
+                </div>
+                <div className="text-xs text-green-600 dark:text-green-400">
+                  {t('skills.title').split(' ')[0]}
+                </div>
               </div>
               <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-2 border border-purple-200 dark:border-purple-800">
-                <div className="text-lg font-bold text-purple-600 dark:text-purple-400">8+</div>
-                <div className="text-xs text-purple-600 dark:text-purple-400">Projects</div>
+                <div className="text-lg font-bold text-purple-600 dark:text-purple-400">
+                  12+
+                </div>
+                <div className="text-xs text-purple-600 dark:text-purple-400">
+                  {t('projects.title').split(' ')[0]}
+                </div>
               </div>
             </div>
 
             <button
               onClick={handleDownloadCV}
               className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors group w-full justify-center"
-              title={locale === 'es' ? 'Descargar CV en Español' : 'Download CV in English'}
+              title={
+                locale === 'es'
+                  ? 'Descargar CV en Español'
+                  : 'Download CV in English'
+              }
             >
               <FiDownload className="w-4 h-4" />
               {t('hero.downloadCV')}
@@ -392,7 +464,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
           {/* Social Links */}
           <div className="mb-8">
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3 uppercase tracking-wide">
-              Social
+              {t('contact.social')}
             </h3>
             <div className="flex gap-3">
               {personalInfo.socialLinks.map((link, index) => {
@@ -426,26 +498,50 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
           {/* Skills Section - Replaced with Skill Overview */}
           <div className="space-y-6">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2">
-              Skill Overview
+              {t('skills.title')}
             </h3>
 
             <div className="space-y-4">
               {[
-                { name: 'Backend Development', level: 'Intermediate', category: 'backend' },
-                { name: 'Database Management', level: 'Intermediate', category: 'database' },
-                { name: 'Frontend Development', level: 'Intermediate', category: 'frontend' },
-                { name: 'DevOps & Infrastructure', level: 'Basic', category: 'devops' },
-                { name: 'Cloud Technologies', level: 'Basic', category: 'cloud' },
+                {
+                  name: t('skills.categories.backendDevelopment'),
+                  level: t('skills.levels.intermediate'),
+                  category: 'backend',
+                },
+                {
+                  name: t('skills.categories.databaseManagement'),
+                  level: t('skills.levels.intermediate'),
+                  category: 'database',
+                },
+                {
+                  name: t('skills.categories.frontendDevelopment'),
+                  level: t('skills.levels.intermediate'),
+                  category: 'frontend',
+                },
+                {
+                  name: t('skills.categories.devopsInfrastructure'),
+                  level: t('skills.levels.basic'),
+                  category: 'devops',
+                },
+                {
+                  name: t('skills.categories.cloudTechnologies'),
+                  level: t('skills.levels.basic'),
+                  category: 'cloud',
+                },
               ].map((skill, index) => {
                 const getLevelColor = (level: string) => {
-                  switch (level) {
-                    case 'Expert': return 'text-green-600 dark:text-green-400';
-                    case 'Advanced': return 'text-blue-600 dark:text-blue-400';
-                    case 'Intermediate': return 'text-yellow-600 dark:text-yellow-400';
-                    case 'Basic': return 'text-orange-600 dark:text-orange-400';
-                    case 'Learning': return 'text-red-600 dark:text-red-400';
-                    default: return 'text-gray-600 dark:text-gray-400';
-                  }
+                  // Check for both English and Spanish level names
+                  if (level === 'Expert' || level === 'Experto')
+                    return 'text-green-600 dark:text-green-400';
+                  if (level === 'Advanced' || level === 'Avanzado')
+                    return 'text-blue-600 dark:text-blue-400';
+                  if (level === 'Intermediate' || level === 'Intermedio')
+                    return 'text-yellow-600 dark:text-yellow-400';
+                  if (level === 'Basic' || level === 'Básico')
+                    return 'text-orange-600 dark:text-orange-400';
+                  if (level === 'Learning' || level === 'Aprendiendo')
+                    return 'text-red-600 dark:text-red-400';
+                  return 'text-gray-600 dark:text-gray-400';
                 };
 
                 return (
@@ -454,22 +550,34 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, isVisible = true })
                       <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                         {skill.name}
                       </span>
-                      <span className={`text-xs font-medium ${getLevelColor(skill.level)}`}>
+                      <span
+                        className={`text-xs font-medium ${getLevelColor(skill.level)}`}
+                      >
                         {skill.level}
                       </span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
                       <div
                         className={`h-2 rounded-full transition-all duration-1000 ease-out group-hover:animate-pulse ${
-                          skill.category === 'backend' ? 'bg-blue-500' :
-                          skill.category === 'database' ? 'bg-violet-500' :
-                          skill.category === 'frontend' ? 'bg-emerald-500' :
-                          skill.category === 'devops' ? 'bg-orange-500' :
-                          'bg-sky-500'
+                          skill.category === 'backend'
+                            ? 'bg-blue-500'
+                            : skill.category === 'database'
+                              ? 'bg-violet-500'
+                              : skill.category === 'frontend'
+                                ? 'bg-emerald-500'
+                                : skill.category === 'devops'
+                                  ? 'bg-orange-500'
+                                  : 'bg-sky-500'
                         }`}
                         style={{
-                          width: skill.level === 'Intermediate' ? '60%' :
-                                 skill.level === 'Basic' ? '40%' : '50%'
+                          width:
+                            skill.level === 'Intermediate' ||
+                            skill.level === 'Intermedio'
+                              ? '60%'
+                              : skill.level === 'Basic' ||
+                                  skill.level === 'Básico'
+                                ? '40%'
+                                : '50%',
                         }}
                       ></div>
                     </div>
