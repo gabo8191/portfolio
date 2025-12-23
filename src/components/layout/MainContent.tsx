@@ -1,18 +1,11 @@
-import React from 'react';
-import {
-  FiAward,
-  FiBriefcase,
-  FiFolder,
-  FiHome,
-  FiTerminal,
-} from 'react-icons/fi';
+import React, { useEffect } from 'react';
+import { FiAward, FiBriefcase, FiFolder, FiHome } from 'react-icons/fi';
 import { useLocale } from '../../contexts/LocaleContext';
 import { cn } from '../../utils/cn';
 import { Certifications } from '../pages/Certifications';
 import { Experience } from '../pages/Experience';
 import { Home } from '../pages/Home';
 import { Projects } from '../pages/Projects';
-import { TerminalPage } from '../pages/TerminalPage';
 
 interface MainContentProps {
   className?: string;
@@ -20,12 +13,7 @@ interface MainContentProps {
   setActiveTab: (tab: TabType) => void;
 }
 
-type TabType =
-  | 'home'
-  | 'projects'
-  | 'terminal'
-  | 'experience'
-  | 'certifications';
+type TabType = 'home' | 'projects' | 'experience' | 'certifications';
 
 export const MainContent: React.FC<MainContentProps> = ({
   className,
@@ -34,10 +22,14 @@ export const MainContent: React.FC<MainContentProps> = ({
 }) => {
   const { t } = useLocale();
 
+  // Scroll to top when tab changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activeTab]);
+
   const tabs = [
     { id: 'home' as TabType, label: t('nav.home'), icon: FiHome },
     { id: 'projects' as TabType, label: t('projects.title'), icon: FiFolder },
-    { id: 'terminal' as TabType, label: 'Terminal', icon: FiTerminal },
     {
       id: 'experience' as TabType,
       label: t('experience.title'),
@@ -56,8 +48,6 @@ export const MainContent: React.FC<MainContentProps> = ({
         return <Home />;
       case 'projects':
         return <Projects />;
-      case 'terminal':
-        return <TerminalPage />;
       case 'experience':
         return <Experience />;
       case 'certifications':
@@ -70,37 +60,47 @@ export const MainContent: React.FC<MainContentProps> = ({
   return (
     <main
       className={cn(
-        activeTab !== 'home' ? 'lg:ml-80' : '',
         'min-h-screen',
         'transition-colors duration-300',
         className
       )}
     >
-      <div className="sticky top-0 z-50 bg-white/95 dark:bg-gray-950/95 border-b border-gray-200 dark:border-gray-700 backdrop-blur-lg">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 lg:p-6 pt-16 lg:pt-6">
-          <h1 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-0">
-            {t('common.portfolio')}
-          </h1>
+      <div className="sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 border-b border-gray-200 dark:border-gray-800 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo and Brand */}
+            <div className="flex items-center gap-3">
+              <img
+                src={`${import.meta.env.BASE_URL}orbit-favicon.svg`}
+                alt="Logo"
+                className="w-8 h-8"
+              />
+              <span className="text-lg font-bold text-gray-900 dark:text-white hidden sm:inline">
+                {t('common.portfolio')}
+              </span>
+            </div>
 
-          <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto w-full sm:w-auto">
-            {tabs.map(tab => {
-              const IconComponent = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={cn(
-                    'flex items-center gap-2 px-3 lg:px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 whitespace-nowrap relative',
-                    activeTab === tab.id
-                      ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 shadow-sm'
-                      : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800/50'
-                  )}
-                >
-                  <IconComponent className="w-4 h-4" />
-                  <span className="hidden sm:inline">{tab.label}</span>
-                </button>
-              );
-            })}
+            {/* Navigation Tabs */}
+            <div className="flex items-center gap-2">
+              {tabs.map(tab => {
+                const IconComponent = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={cn(
+                      'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
+                      activeTab === tab.id
+                        ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    )}
+                  >
+                    <IconComponent className="w-4 h-4" />
+                    <span className="hidden md:inline">{tab.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

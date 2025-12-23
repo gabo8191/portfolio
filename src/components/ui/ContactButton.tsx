@@ -23,17 +23,17 @@ export const ContactButton: React.FC<ContactButtonProps> = ({
   className,
 }) => {
   const baseClasses =
-    'inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-200 hover:scale-105';
+    'inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all duration-300 hover:scale-105 active:scale-95';
 
   const variants = {
     primary:
-      'bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl',
+      'bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-xl hover:shadow-primary-500/30',
     secondary:
-      'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300',
+      'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700',
     ghost:
-      'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200',
+      'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200',
     floating:
-      'bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-full border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl',
+      'bg-white dark:bg-gray-800 backdrop-blur-sm rounded-full border border-gray-200 dark:border-gray-700 shadow-md hover:shadow-lg',
   };
 
   const sizes = {

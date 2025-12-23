@@ -12,9 +12,9 @@ export const getPublicAssetPath = (path: string): string => {
   // Remove leading slash if present
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
 
-  // In production (GitHub Pages), use relative paths
-  // In development, Vite handles public assets correctly
-  return import.meta.env.PROD ? `./${cleanPath}` : `/${cleanPath}`;
+  // Use BASE_URL from Vite config for correct paths in both dev and production
+  const base = import.meta.env.BASE_URL || '/';
+  return `${base}${cleanPath}`;
 };
 
 /**

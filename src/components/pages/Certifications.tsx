@@ -1,5 +1,14 @@
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import { FiAward, FiCalendar, FiExternalLink, FiFilter } from 'react-icons/fi';
+import {
+  FiAward,
+  FiCalendar,
+  FiCode,
+  FiDatabase,
+  FiExternalLink,
+  FiPackage,
+  FiTool,
+} from 'react-icons/fi';
 import { useLocale } from '../../contexts/LocaleContext';
 import { Badge } from '../ui/Badge';
 import { SectionCard } from '../ui/SectionCard';
@@ -14,7 +23,6 @@ interface Certification {
   downloadUrl?: string;
   skills: string[];
   category: 'backend' | 'frontend' | 'devops' | 'database' | 'general';
-  icon: string;
 }
 
 const certifications: Certification[] = [
@@ -27,7 +35,6 @@ const certifications: Certification[] = [
       'https://www.udemy.com/certificate/UC-805ad3ee-653b-4edc-8e6e-9b2304f86b89/',
     skills: ['Docker', 'Containers', 'DevOps', 'Development Tools'],
     category: 'devops',
-    icon: '🐳',
   },
   {
     id: 'spring-boot-university',
@@ -43,7 +50,6 @@ const certifications: Certification[] = [
       'Enterprise Applications',
     ],
     category: 'backend',
-    icon: '🍃',
   },
   {
     id: 'mysql-administration',
@@ -55,7 +61,6 @@ const certifications: Certification[] = [
       'https://app.aluracursos.com/certificate/fe818f82-ed70-4cf3-a08b-997684098759',
     skills: ['MySQL', 'Database Administration', 'Security', 'Optimization'],
     category: 'database',
-    icon: '🗄️',
   },
   {
     id: 'design-patterns-java',
@@ -65,7 +70,6 @@ const certifications: Certification[] = [
     credentialId: '4dd1e894-1727-4b9f-b11f-34d5fcee950b',
     skills: ['Design Patterns', 'Java', 'Software Architecture', 'OOP'],
     category: 'backend',
-    icon: '🏗️',
   },
 ];
 
@@ -84,54 +88,66 @@ export const Certifications: React.FC = () => {
       case 'backend':
         return {
           variant: 'info' as const,
-          name: '⚙️ Backend',
+          name: 'Backend',
+          icon: FiCode,
         };
       case 'frontend':
         return {
           variant: 'success' as const,
-          name: '💻 Frontend',
+          name: 'Frontend',
+          icon: FiPackage,
         };
       case 'database':
         return {
           variant: 'warning' as const,
-          name: '🗄️ Database',
+          name: 'Database',
+          icon: FiDatabase,
         };
       case 'devops':
         return {
           variant: 'error' as const,
-          name: '🚀 DevOps',
+          name: 'DevOps',
+          icon: FiTool,
         };
       case 'general':
         return {
           variant: 'default' as const,
-          name: '📚 General',
+          name: 'General',
+          icon: FiAward,
         };
       default:
         return {
           variant: 'default' as const,
-          name: '📚 General',
+          name: 'General',
+          icon: FiAward,
         };
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto p-6 space-y-8">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Header */}
-        <div className="text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 flex items-center justify-center gap-3">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-3 mb-4">
             <FiAward className="w-10 h-10 text-blue-600 dark:text-blue-400" />
-            {t('certifications.title')}
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+              {t('certifications.title')}
+            </h1>
+          </div>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             {t('certifications.description')}
           </p>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex justify-center">
-          <div className="flex flex-wrap gap-2 p-1 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
-            <FiFilter className="w-4 h-4 text-gray-500 dark:text-gray-400 self-center ml-2" />
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex flex-wrap gap-2 p-1 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
             {(
               [
                 'all',
@@ -145,9 +161,9 @@ export const Certifications: React.FC = () => {
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                className={`px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
                   activeFilter === filter
-                    ? 'bg-blue-600 text-white shadow-sm'
+                    ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                 }`}
               >
@@ -163,12 +179,14 @@ export const Certifications: React.FC = () => {
             {filteredCertifications.map(cert => {
               const categoryConfig = getCategoryConfig(cert.category);
 
+              const IconComponent = categoryConfig.icon;
+
               return (
                 <SectionCard key={cert.id} className="hover-lift">
                   <div className="flex items-start gap-4">
                     {/* Icon */}
-                    <div className="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-xl text-2xl">
-                      {cert.icon}
+                    <div className="w-12 h-12 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                      <IconComponent className="w-6 h-6 text-gray-600 dark:text-gray-400" />
                     </div>
 
                     {/* Content */}
@@ -229,17 +247,15 @@ export const Certifications: React.FC = () => {
             })}
           </div>
         ) : (
-          <SectionCard className="text-center py-12">
-            <div className="text-gray-500 dark:text-gray-400">
-              <FiAward className="w-16 h-16 mx-auto mb-4 opacity-50" />
-              <h3 className="text-lg font-medium mb-2">
-                No certifications found
-              </h3>
-              <p className="text-sm">
-                Try changing the filter to see more certifications.
-              </p>
-            </div>
-          </SectionCard>
+          <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-12 text-center">
+            <FiAward className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-600" />
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              No certifications found
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Try changing the filter to see more certifications.
+            </p>
+          </div>
         )}
 
         {/* Summary Stats */}
@@ -272,6 +288,6 @@ export const Certifications: React.FC = () => {
           </SectionCard>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

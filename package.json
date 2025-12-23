@@ -23,7 +23,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.1.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.16.0",
+    "framer-motion": "^12.23.26",
     "i18next": "^25.2.1",
     "lucide-react": "^0.513.0",
     "react": "^19.1.0",

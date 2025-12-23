@@ -27,7 +27,7 @@
       "technologiesMastered": "Tecnologías Dominadas"
     },
     "profileStatus": {
-      "availableFor": "Disponible para roles DevOps/Datos",
+      "availableFor": "Abierto a nuevas oportunidades",
       "contactQuick": "Contacto Rápido"
     },
     "tabs": {
@@ -81,23 +81,23 @@
   },
   "hero": {
     "greeting": "Hola, soy",
-    "title": "Desarrollador Backend",
-    "subtitle": "Estudiante de Ingeniería de Sistemas | Especialista Backend | Abierto a Oportunidades en DevOps e Ingeniería de Datos",
-    "description": "Desarrollador Backend con 3 años de experiencia profesional especializado en desarrollo de aplicaciones web escalables usando PHP/Laravel y NestJS/TypeScript. Demuestra expertise en diseño de APIs RESTful, optimización de bases de datos y arquitectura de microservicios. Actualmente cursando Ingeniería de Sistemas mientras busco activamente oportunidades para expandirme hacia roles de DevOps e Ingeniería de Datos, aportando sólidas bases de desarrollo a soluciones de infraestructura y datos.",
+    "title": "Ingeniero de Software",
+    "subtitle": "Estudiante de Ingeniería de Sistemas y Computación | Especialista Backend",
+    "description": "Ingeniero de software con 3 años de experiencia construyendo sistemas completos para sectores bancario, seguros y retail. He trabajado en aplicaciones que procesan grandes volúmenes de información, desde sistemas de mensajería interbancaria hasta plataformas de gestión de inventario manejando miles de productos. Mi experiencia abarca tanto desarrollo backend (diseño de APIs REST, optimización de bases de datos, procesamiento por lotes) como frontend (interfaces responsivas con React, Angular y Vue). He trabajado con datos sensibles en entornos regulados donde la disponibilidad y precisión son críticas. Me especializo en proyectos donde los datos son el componente central: procesamiento de archivos grandes, optimización de consultas complejas, construcción de pipelines de importación/exportación y desarrollo de dashboards para analítica y reportes. Tengo experiencia implementando sistemas de colas para procesamiento asíncrono, trabajos programados para ETL y APIs que agregan información para reportes ejecutivos. Stack Técnico: Python, TypeScript, PHP, Java | Laravel, NestJS, React, Vue.js, Angular | PostgreSQL, MySQL, Redis | Docker, Git",
     "downloadCV": "Descargar CV",
     "viewProjects": "Ver Proyectos"
   },
   "about": {
     "title": "Acerca de Mí",
-    "description": "Desarrollador Backend con 3 años de experiencia empresarial, especializado en desarrollo robusto de APIs y arquitectura de microservicios usando ecosistemas Laravel y NestJS. Actualmente cursando Ingeniería de Sistemas y Computación mientras demuestro crecimiento consistente en prácticas de desarrollo de software. Con experiencia comprobada en gestión de entornos de producción, optimización de bases de datos e integración de sistemas de facturación electrónica para el mercado colombiano. Busco activamente aprovechar mi expertise en desarrollo para roles de DevOps e Ingeniería de Datos, con conocimientos fundamentales en containerización, pipelines CI/CD y automatización de infraestructura.",
-    "currentFocus": "Intereses de Desarrollo Profesional",
+    "description": "Ingeniero de software con 3 años de experiencia construyendo sistemas completos para sectores bancario, seguros y retail. He trabajado en aplicaciones que procesan grandes volúmenes de información, desde sistemas de mensajería interbancaria hasta plataformas de gestión de inventario manejando miles de productos. Mi experiencia abarca tanto desarrollo backend (diseño de APIs REST, optimización de bases de datos, procesamiento por lotes) como frontend (interfaces responsivas con React, Angular y Vue). He trabajado con datos sensibles en entornos regulados donde la disponibilidad y precisión son críticas.",
+    "currentFocus": "Intereses Profesionales",
     "focusAreas": [
-      "Ingeniería DevOps: Orquestación de contenedores, automatización CI/CD y escalado de infraestructura",
-      "Ingeniería de Datos: Desarrollo de pipelines de datos, procesos ETL e infraestructura de analítica",
-      "Plataformas Cloud: AWS, GCP y Azure para despliegue escalable de aplicaciones",
-      "Infraestructura como Código: Terraform, Ansible para gestión automatizada de infraestructura",
-      "Monitoreo y Observabilidad: Prometheus, Grafana para confiabilidad de sistemas",
-      "Ingeniería de Confiabilidad de Sitios: Optimización de rendimiento y monitoreo de sistemas"
+      "Ingeniería de Datos: Desarrollo de pipelines de datos, procesos ETL e infraestructura analítica",
+      "Desarrollo Backend: Diseño de APIs escalables y arquitectura de microservicios",
+      "Optimización de Bases de Datos: Rendimiento de consultas y modelado de datos",
+      "Plataformas Cloud: AWS y GCP para despliegue escalable de aplicaciones",
+      "Procesamiento de Datos: Procesamiento de archivos grandes y operaciones por lotes",
+      "Analítica y Reportes: Desarrollo de dashboards y reportes ejecutivos"
     ]
   },
   "experience": {
@@ -106,9 +106,16 @@
     "education": "Educación",
     "certifications": "Certificaciones",
     "work": "Trabajo",
+    "totaldev": {
+      "title": "Ingeniero de Software",
+      "period": "Marzo 2025 - Presente",
+      "area": "Desarrollo Full Stack",
+      "description": "Desarrollo de sistemas completos de gestión de inventario, plataformas de comunicación interbancaria y soluciones de autenticación QR para marcas premium, implementando soluciones tanto en backend como en frontend.\n\nDesarrollo Backend:\n• Diseñé APIs REST gestionando más de 10,000 SKUs con capacidades automatizadas de importación/exportación de archivos CSV\n• Desarrollé sistema de comunicación interbancaria procesando mensajes SWIFT/ISO 20022 con encriptación LAU usando Java\n• Implementé pipelines de procesamiento de documentos manejando múltiples formatos y aplicando protocolos de encriptación\n• Construí sistema de generación y validación de códigos QR con procesos pseudoaleatorios para autenticación de productos para marcas como Chivas Regal\n\nDesarrollo Frontend:\n• Construí dashboards React con métricas en tiempo real, filtrado avanzado y tablas dinámicas\n• Desarrollé CMS completo usando Filament para administración de contenido, permitiendo gestión flexible de productos, usuarios y configuraciones\n• Implementé interfaces de usuario para importación/exportación masiva de datos y sistemas de escaneo de códigos QR para verificación de autenticidad de productos\n• Creé aplicaciones PWA responsivas para personal de eventos con capacidades offline",
+      "technologies": ["Laravel", "React", "MySQL", "Docker", "TypeScript"]
+    },
     "parq": {
       "title": "Desarrollador Backend",
-      "period": "Noviembre 2024 - Presente",
+      "period": "Diciembre 2024 - Julio 2025",
       "area": "Desarrollo Fullstack",
       "description": "Desarrollador fullstack freelance especializado en arquitectura de microservicios y soluciones de facturación electrónica para el mercado colombiano, trabajando en capas backend, frontend e infraestructura.\n\nArquitectura de Microservicios:\n• Mantener y evolucionar arquitectura microlítica compuesta por cinco microservicios independientes NestJS compartiendo base de datos PostgreSQL común\n• Realizar auditoría y refactoring de código legacy, identificando errores estructurales e implementando mejoras de rendimiento\n• Desarrollar nuevas funcionalidades con ajustes de endpoints y mejoras de conectividad entre microservicios\n• Implementar sistemas de paginación, colas de carga masiva y programación precisa de cron jobs con configuraciones específicas de zona horaria\n• Integrar documentación completa de APIs Swagger en todos los microservicios\n\nIntegración de Facturación Electrónica:\n• Desarrollar middleware de facturación electrónica integrando plataformas Siigo, Alegra y SATCOM para cumplimiento regulatorio del mercado colombiano\n• Construir endpoints robustos de APIs con manejo adecuado de errores y sistemas de logging de transacciones\n• Asegurar cumplimiento con regulaciones de facturación electrónica colombianas y optimización de rendimiento para transacciones de alto volumen\n\nDesarrollo Frontend:\n• Mantener módulo legacy Angular de operaciones enfocado en flujos de trabajo de procesamiento diario de facturas y generación de tickets\n• Desarrollar componentes administrativos React con arquitectura modular, presentación dinámica de datos y manejo robusto de errores\n• Migrar páginas institucionales de React a Next.js implementando Server-Side Rendering (SSR) para rendimiento SEO mejorado\n• Aplicar principios avanzados de internacionalización, modularización de código y refuerzo de seguridad\n\nInfraestructura y DevOps:\n• Desplegar aplicaciones usando contenedores Docker gestionados a través de Portainer con integración de control de versiones Bitbucket\n• Supervisar despliegue de contenedores asegurando disponibilidad del sistema y eficiencia operacional",
       "technologies": [
@@ -181,13 +188,14 @@
     "inProgress": "En Progreso",
     "categories": {
       "all": "Todos",
-      "featured": "🔥 Destacados",
-      "frontend": "💻 Frontend",
-      "backend": "⚙️ Backend",
-      "database": "🗄️ Base de Datos",
-      "devops": "🚀 DevOps",
-      "vanilla": "🍦 Vanilla",
-      "proofOfConcept": "⚡ PoC"
+      "featured": "Destacados",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Base de Datos",
+      "devops": "DevOps",
+      "vanilla": "Vanilla",
+      "proof-of-concept": "Prueba de Concepto",
+      "proofOfConcept": "Prueba de Concepto"
     },
     "technologyCategories": {
       "all": "Todas",
@@ -290,6 +298,30 @@
     "company": "Empresa",
     "period": "Período",
     "category": "Categoría",
+    "biosimtec": {
+      "title": "Biosimtec - Sitio Web Corporativo con CMS Personalizado",
+      "description": "Desarrollé el sitio web de Biosimtec evolucionando desde una implementación React basada en diseños Figma hacia una plataforma dinámica y completamente administrable.\n\n• CMS personalizado usando Filament para gestión autónoma de contenido (imágenes, textos, multimedia)\n• TanStack Query (React Query) para gestión eficiente de estado del servidor y caché del lado del cliente\n• React Router para navegación fluida entre secciones\n• Sistema robusto de caché en backend para optimizar tiempos de respuesta y reducir carga del servidor\n• Sistema integral de roles y permisos controlando acceso a funcionalidades administrativas\n• Implementación de skeletons en frontend para experiencia de usuario superior durante carga de contenido\n• Módulos de gestión de formularios de contacto y manejo de solicitudes"
+    },
+    "chivasHouse": {
+      "title": "Chivas House - Plataforma de Gestión de Eventos Exclusivos",
+      "description": "Plataforma web especializada para gestión integral de evento exclusivo de Chivas Regal.\n\n• Módulo de validación de edad asegurando cumplimiento con restricciones legales\n• Sistema sofisticado de generación de códigos pseudoaleatorios con longitudes variables para identificación única de invitados\n• Funcionalidades completas de generación y lectura de códigos QR para validación ágil de invitados\n• Sistema automatizado de diseño y envío de correos electrónicos activado al validar código QR\n• Frontend React con React Router implementando diseño avanzado de Figma\n• Backend Laravel gestionando toda la lógica de negocio\n• Sección especializada de lectura de códigos QR para personal del evento optimizada para uso operacional\n• PWA (Progressive Web App) para personal del evento permitiendo trabajo eficiente con conectividad limitada"
+    },
+    "materialesSabana": {
+      "title": "Sistema de Inventario - Materiales de la Sabana",
+      "description": "Sistema completo de inventario implementando arquitectura híbrida con React y Laravel incluyendo panel administrativo Filament.\n\n• Panel interactivo React para conductores y operadores gestionando entrada/salida de mercancía y generación de productos\n• Interfaz Filament para administradores para descargar reportes detallados y aprobar información\n• Módulo integral de roles y permisos asegurando acceso controlado\n• Dashboards personalizados presentando información relevante adaptada a cada tipo de usuario\n• Sistema de generación y lectura de códigos QR para identificación rápida de vehículos\n• Procesos logísticos optimizados reduciendo tiempos de operación y mejorando trazabilidad de inventario"
+    },
+    "invex": {
+      "title": "Invex - Plataforma de Gestión de Inventario Electoral",
+      "description": "Plataforma integral de gestión de inventario para subsidiaria de Thomas Greg & Sons, diseñada para inventario de procesos electorales en Colombia.\n\n• Sistema avanzado de roles y permisos segmentado por municipios y departamentos\n• Seguridad y confidencialidad de información sensible asegurando acceso específico por jurisdicción\n• Sistema robusto de reportes con múltiples niveles de detalle y dashboards dinámicos\n• Actualizaciones automáticas según rol de usuario con visualizaciones relevantes y métricas clave\n• Vistas SQL optimizadas para rendimiento mejorado de consultas complejas\n• Traits para reutilización de código y patrones de diseño para mantenibilidad y escalabilidad\n• Trazabilidad completa desde registro inicial hasta distribución final"
+    },
+    "interventoria": {
+      "title": "Interventoría - Gestión de Auditorías Sistema Penitenciario",
+      "description": "Sistema especializado para gestión y seguimiento de reportes de auditoría para sistema penitenciario colombiano.\n\n• Plataforma para visitas a centros penitenciarios validando cumplimiento con regulaciones legales\n• Implementación de diseños Figma en React asegurando especificaciones visuales y funcionales\n• Diseño completo de estructura de base de datos con Laravel considerando lógica de negocio compleja del sistema penitenciario\n• Estructuras registrando inspecciones, hallazgos, cumplimiento regulatorio y estado de seguimiento de reportes\n• Módulos de documentación para cada visita, generación de reportes de cumplimiento y control de ciclo de vida de auditorías\n• Trazabilidad y cumplimiento con requisitos legales establecidos"
+    },
+    "shopper": {
+      "title": "Shopper - Plataforma de Gestión de Promotores Comerciales",
+      "description": "Plataforma integral para promotores comerciales para gestionar eficientemente operaciones diarias.\n\n• Definición de turnos, establecimiento de objetivos y organización de grupos de trabajo\n• Módulos completos con backend Laravel y frontend React\n• Sistemas robustos para registro y gestión de información\n• Flujos de navegación complejos a través de React Router para experiencia de usuario fluida\n• Formularios interactivos y paneles de control facilitando administración de funcionalidades de plataforma\n• Integración completa backend-frontend asegurando comunicación eficiente de datos\n• Validaciones del lado del cliente y servidor manteniendo integridad de información"
+    },
     "parqMicroservices": {
       "title": "Arquitectura Backend Microservicios PARQ",
       "description": "Mantenimiento y evolución de arquitectura microlítica con cinco microservicios independientes compartiendo base de datos PostgreSQL.\n\n• Auditoría y refactoring de código legacy con identificación de errores\n• Desarrollo de nuevas características con ajustes de endpoints y conectividad\n• Implementación de sistemas de paginación y colas de carga masiva\n• Programación precisa de cron jobs con ajustes de zona horaria\n• Integración de documentación completa de APIs Swagger\n• Control de versiones a través de Bitbucket y despliegues Docker vía Portainer"
@@ -354,7 +386,7 @@
     "description": "Tecnologías y herramientas principales con las que trabajo profesionalmente",
     "frontend": "Frontend",
     "backend": "Backend",
-    "devops": "DevOps",
+    "data": "Ingeniería de Datos",
     "database": "Base de Datos",
     "tools": "Herramientas",
     "cloud": "Nube",
@@ -368,9 +400,9 @@
     "categories": {
       "backendDevelopment": "Desarrollo Backend",
       "frontendDevelopment": "Desarrollo Frontend",
-      "databaseManagement": "Gestión de Bases de Datos",
-      "devopsInfrastructure": "Infraestructura DevOps",
-      "cloudTechnologies": "Tecnologías Cloud"
+      "databaseManagement": "Bases de Datos",
+      "dataEngineering": "Ingeniería de Datos",
+      "cloudTechnologies": "Cloud"
     }
   },
   "contact": {
@@ -394,42 +426,6 @@
     "credential": "ID de Credencial",
     "viewCertificate": "Ver Certificado",
     "skills": "Habilidades Validadas"
-  },
-  "terminal": {
-    "welcome": "Bienvenido al Terminal del Portafolio de Gabriel",
-    "typeHelp": "Escribe 'help' para ver comandos disponibles",
-    "commandNotFound": "Comando no encontrado",
-    "availableCommands": "Comandos Disponibles",
-    "exploreHint": "Intenta explorar",
-    "gettingStarted": "Empezando",
-    "helpText": {
-      "typeHelp": "• Escribe help para ver todos los comandos disponibles",
-      "useWhoami": "• Usa whoami para conocerme",
-      "exploreProjects": "• Explora mis proyectos con ls projects",
-      "clearTerminal": "• Limpia la terminal con clear"
-    },
-    "disclaimer": {
-      "title": "Terminal Interactivo del Portafolio",
-      "description": "Esta es una interfaz de terminal simulada diseñada para mostrar mi experiencia técnica de manera creativa. Puedes explorar mi experiencia, habilidades y proyectos usando herramientas familiares de línea de comandos. Escribe 'help' para ver comandos disponibles.",
-      "interactive": "Interactivo",
-      "simulation": "Simulación",
-      "portfolio": "Herramienta de Portafolio"
-    },
-    "commands": {
-      "whoami": "Mostrar información del usuario actual",
-      "pwd": "Mostrar directorio actual",
-      "ls": "Listar contenido del directorio",
-      "cat": "Mostrar contenido de archivo",
-      "dockerPs": "Listar contenedores en ejecución",
-      "gitStatus": "Mostrar estado del repositorio git",
-      "gitLog": "Mostrar commits recientes",
-      "psPhp": "Mostrar procesos PHP",
-      "composer": "Mostrar dependencias PHP",
-      "npm": "Mostrar dependencias Node.js",
-      "kubectlPods": "Listar pods de Kubernetes",
-      "clear": "Limpiar terminal",
-      "help": "Mostrar este mensaje de ayuda"
-    }
   },
   "common": {
     "loading": "Cargando...",

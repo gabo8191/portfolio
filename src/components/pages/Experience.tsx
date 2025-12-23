@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { FiBook, FiBriefcase, FiCalendar, FiMapPin } from 'react-icons/fi';
 import { useLocale } from '../../contexts/LocaleContext';
 import { experiences } from '../../data/portfolio';
@@ -26,41 +27,48 @@ export const Experience: React.FC = () => {
     }
   };
 
-  const getExperienceGradient = (type: string) => {
+  const getExperienceColor = (type: string) => {
     switch (type) {
       case 'work':
-        return 'from-blue-500 to-indigo-600';
+        return 'bg-blue-600';
       case 'education':
-        return 'from-emerald-500 to-teal-600';
+        return 'bg-emerald-600';
       default:
-        return 'from-gray-500 to-slate-600';
+        return 'bg-gray-600';
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
-      <div className="max-w-5xl mx-auto p-6 space-y-8">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300"
+    >
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Header */}
-        <div className="text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 flex items-center justify-center gap-3">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-3 mb-4">
             <FiCalendar className="w-10 h-10 text-blue-600 dark:text-blue-400" />
-            {t('experience.title')}
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+              {t('experience.title')}
+            </h1>
+          </div>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             {t('experience.workExperience')} & {t('experience.education')}
           </p>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex justify-center">
-          <div className="flex gap-2 p-1 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex gap-2 p-1 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
             {(['all', 'work', 'education'] as const).map(filter => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                className={`px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
                   activeFilter === filter
-                    ? 'bg-blue-600 text-white shadow-sm'
+                    ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                 }`}
               >
@@ -88,11 +96,11 @@ export const Experience: React.FC = () => {
                 }`}
               >
                 {/* Timeline marker */}
-                <div className="absolute left-0 md:left-1/2 md:transform md:-translate-x-1/2 w-8 h-8 z-10">
+                <div className="absolute left-0 md:left-1/2 md:transform md:-translate-x-1/2 w-10 h-10 z-10">
                   <div
-                    className={`w-8 h-8 bg-gradient-to-r ${getExperienceGradient(exp.type)} rounded-full border-4 border-white dark:border-gray-950 shadow-lg flex items-center justify-center`}
+                    className={`w-10 h-10 ${getExperienceColor(exp.type)} rounded-full border-4 border-white dark:border-gray-950 flex items-center justify-center`}
                   >
-                    <div className="text-white text-sm">
+                    <div className="text-white">
                       {getExperienceIcon(exp.type)}
                     </div>
                   </div>
@@ -160,11 +168,13 @@ export const Experience: React.FC = () => {
 
                     {exp.technologies && exp.technologies.length > 0 && (
                       <div className="flex flex-wrap gap-2 pt-3 border-t border-gray-200 dark:border-gray-700">
-                        {exp.technologies.map((tech, techIndex) => (
-                          <Badge key={techIndex} variant="default" size="sm">
-                            {typeof tech === 'string' ? tech : tech.name}
-                          </Badge>
-                        ))}
+                        {exp.technologies
+                          .filter(tech => tech && (typeof tech === 'string' || tech.name))
+                          .map((tech, techIndex) => (
+                            <Badge key={techIndex} variant="default" size="sm">
+                              {typeof tech === 'string' ? tech : tech.name}
+                            </Badge>
+                          ))}
                       </div>
                     )}
                   </SectionCard>
@@ -179,17 +189,15 @@ export const Experience: React.FC = () => {
 
         {/* Empty state */}
         {filteredExperiences.length === 0 && (
-          <SectionCard className="text-center py-12">
-            <div className="text-gray-500 dark:text-gray-400">
-              <FiCalendar className="w-16 h-16 mx-auto mb-4 opacity-50" />
-              <h3 className="text-lg font-medium mb-2">No experiences found</h3>
-              <p className="text-sm">
-                Try changing the filter to see more experiences.
-              </p>
-            </div>
-          </SectionCard>
+          <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-12 text-center">
+            <FiCalendar className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-600" />
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No experiences found</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Try changing the filter to see more experiences.
+            </p>
+          </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };

@@ -8,7 +8,7 @@ export const personalInfo: PersonalInfo = {
   email: 'gabo8191@gmail.com',
   phone: '+57 318 8708253',
   location: 'Tunja, Colombia',
-  bio: 'about.description',
+  bio: 'hero.description',
   avatar: getImagePath('profile/gabriel-avatar.jpg'),
   socialLinks: [
     {
@@ -31,57 +31,50 @@ export const personalInfo: PersonalInfo = {
 
 export const technologies: Technology[] = [
   // Backend - Core Strengths (Intermediate to Advanced)
-  { name: 'PHP', category: 'backend', color: '#777BB4' }, // Intermediate
-  { name: 'Laravel', category: 'backend', color: '#FF2D20' }, // Intermediate
-  { name: 'NestJS', category: 'backend', color: '#E0234E' }, // Intermediate
-  { name: 'Node.js', category: 'backend', color: '#339933' }, // Intermediate
-  { name: 'Java', category: 'backend', color: '#ED8B00' }, // Intermediate
-  { name: 'Spring Boot', category: 'backend', color: '#6DB33F' }, // Intermediate
-  { name: 'Express.js', category: 'backend', color: '#000000' }, // Intermediate
-
-  // Backend - Basic Level
-  { name: 'Flask', category: 'backend', color: '#000000' }, // Basic
-  { name: 'Python', category: 'backend', color: '#3776AB' }, // Basic
-  { name: 'C++', category: 'backend', color: '#00599C' }, // Basic
+  { name: 'PHP', category: 'backend', color: '#777BB4' },
+  { name: 'Laravel', category: 'backend', color: '#FF2D20' },
+  { name: 'NestJS', category: 'backend', color: '#E0234E' },
+  { name: 'Node.js', category: 'backend', color: '#339933' },
+  { name: 'Express.js', category: 'backend', color: '#000000' },
+  { name: 'Flask', category: 'backend', color: '#000000' },
+  { name: 'Python', category: 'backend', color: '#3776AB' },
+  { name: 'Docker', category: 'backend', color: '#2496ED' },
+  { name: 'Git', category: 'backend', color: '#F05032' },
+  { name: 'GitHub Actions', category: 'backend', color: '#2088FF' },
 
   // Frontend - Intermediate Level
-  { name: 'JavaScript', category: 'frontend', color: '#F7DF1E' }, // Intermediate
-  { name: 'TypeScript', category: 'frontend', color: '#3178C6' }, // Intermediate
-  { name: 'React', category: 'frontend', color: '#61DAFB' }, // Intermediate
-  { name: 'Next.js', category: 'frontend', color: '#000000' }, // Intermediate
-  { name: 'TailwindCSS', category: 'frontend', color: '#06B6D4' }, // Intermediate
-  { name: 'Bootstrap', category: 'frontend', color: '#7952B3' }, // Intermediate
+  { name: 'JavaScript', category: 'frontend', color: '#F7DF1E' },
+  { name: 'TypeScript', category: 'frontend', color: '#3178C6' },
+  { name: 'React', category: 'frontend', color: '#61DAFB' },
+  { name: 'Next.js', category: 'frontend', color: '#000000' },
+  { name: 'TailwindCSS', category: 'frontend', color: '#06B6D4' },
+  { name: 'Bootstrap', category: 'frontend', color: '#7952B3' },
+  { name: 'Vue.js', category: 'frontend', color: '#4FC08D' },
+  { name: 'Angular', category: 'frontend', color: '#DD0031' },
 
-  // Frontend - Basic Level
-  { name: 'Vue.js', category: 'frontend', color: '#4FC08D' }, // Basic
-  { name: 'Angular', category: 'frontend', color: '#DD0031' }, // Basic
+  // Databases
+  { name: 'MySQL', category: 'database', color: '#4479A1' },
+  { name: 'PostgreSQL', category: 'database', color: '#336791' },
+  { name: 'Prisma', category: 'database', color: '#2D3748' },
+  { name: 'TypeORM', category: 'database', color: '#FF6B35' },
+  { name: 'Redis', category: 'database', color: '#DC382D' },
 
-  // Databases - Intermediate Level
-  { name: 'MySQL', category: 'database', color: '#4479A1' }, // Intermediate
-  { name: 'PostgreSQL', category: 'database', color: '#336791' }, // Intermediate
-  { name: 'Prisma', category: 'database', color: '#2D3748' }, // Intermediate (ORM)
-  { name: 'TypeORM', category: 'database', color: '#FF6B35' }, // Intermediate (ORM)
+  // Cloud Services
+  { name: 'AWS', category: 'cloud', color: '#FF9900' },
+  { name: 'GCP', category: 'cloud', color: '#4285F4' },
+  { name: 'Cloudinary', category: 'cloud', color: '#3448C5' },
 
-  // Databases - Basic Level
-  { name: 'Redis', category: 'database', color: '#DC382D' }, // Basic
-
-  // DevOps & Infrastructure - Basic/Learning Level
-  { name: 'Docker', category: 'devops', color: '#2496ED' }, // Basic
-  { name: 'AWS', category: 'devops', color: '#232F3E' }, // Basic
-  { name: 'Git', category: 'devops', color: '#F05032' }, // Intermediate
-  { name: 'GitHub Actions', category: 'devops', color: '#2088FF' }, // Basic
-  { name: 'Bitbucket', category: 'devops', color: '#0052CC' }, // Basic
-  { name: 'SonarQube', category: 'devops', color: '#4E9BCD' }, // Basic
+  // Data Engineering
+  { name: 'Python', category: 'data', color: '#3776AB' },
+  { name: 'Databricks', category: 'data', color: '#FF3621' },
+  { name: 'Apache Airflow', category: 'data', color: '#017CEE' },
+  { name: 'GCP', category: 'data', color: '#4285F4' },
 
   // Development Tools
-  { name: 'Swagger', category: 'tools', color: '#85EA2D' },
   { name: 'Postman', category: 'tools', color: '#FF6C37' },
-  { name: 'Moodle', category: 'tools', color: '#FF7800' }, // Basic
-  { name: 'Cloudinary', category: 'tools', color: '#3448C5' },
-
-  // Testing & Quality
-  { name: 'Jest', category: 'backend', color: '#C21325' },
-  { name: 'PHPUnit', category: 'backend', color: '#777BB4' },
+  { name: 'Moodle', category: 'tools', color: '#FF7800' },
+  { name: 'Bitbucket', category: 'tools', color: '#0052CC' },
+  { name: 'SonarQube', category: 'tools', color: '#4E9BCD' },
 ];
 
 export const projects: Project[] = [
@@ -104,7 +97,6 @@ export const projects: Project[] = [
     title: 'projects.arduinoEsp32Communication.title',
     description: 'projects.arduinoEsp32Communication.description',
     technologies: [
-      technologies.find(t => t.name === 'C++')!,
       technologies.find(t => t.name === 'Python')!,
       technologies.find(t => t.name === 'Flask')!,
     ],
@@ -120,7 +112,6 @@ export const projects: Project[] = [
       technologies.find(t => t.name === 'NestJS')!,
       technologies.find(t => t.name === 'TypeScript')!,
       technologies.find(t => t.name === 'Prisma')!,
-      technologies.find(t => t.name === 'Swagger')!,
       technologies.find(t => t.name === 'GitHub Actions')!,
       technologies.find(t => t.name === 'SonarQube')!,
     ],
@@ -307,7 +298,7 @@ export const projects: Project[] = [
     id: '20',
     title: 'projects.unitySimulationGame.title',
     description: 'projects.unitySimulationGame.description',
-    technologies: [technologies.find(t => t.name === 'C++')!],
+    technologies: [{ name: 'Unity', category: 'tools', color: '#000000' }],
     githubUrl: 'https://github.com/gabo8191/SimulationGame',
     category: 'proof-of-concept',
     completedAt: '2024-02-10',
@@ -328,6 +319,91 @@ export const projects: Project[] = [
 
 // Professional Work Projects (Confidential - No public repositories)
 export const professionalProjects = [
+  // TotalDev Projects
+  {
+    id: 'totaldev-1',
+    company: 'TotalDev',
+    title: 'professionalProjects.biosimtec.title',
+    description: 'professionalProjects.biosimtec.description',
+    technologies: [
+      technologies.find(t => t.name === 'React')!,
+      technologies.find(t => t.name === 'Laravel')!,
+      technologies.find(t => t.name === 'MySQL')!,
+      technologies.find(t => t.name === 'Docker')!,
+    ],
+    period: 'October 2025 - December 2025',
+    category: 'Full Stack Development',
+    liveUrl: 'https://www.biosimtec.com/',
+  },
+  {
+    id: 'totaldev-2',
+    company: 'TotalDev',
+    title: 'professionalProjects.chivasHouse.title',
+    description: 'professionalProjects.chivasHouse.description',
+    technologies: [
+      technologies.find(t => t.name === 'React')!,
+      technologies.find(t => t.name === 'Laravel')!,
+      technologies.find(t => t.name === 'TypeScript')!,
+    ],
+    period: 'December 2025',
+    category: 'Full Stack Development',
+    liveUrl: 'https://chivas-house.co/age-validation',
+  },
+  {
+    id: 'totaldev-3',
+    company: 'TotalDev',
+    title: 'professionalProjects.materialesSabana.title',
+    description: 'professionalProjects.materialesSabana.description',
+    technologies: [
+      technologies.find(t => t.name === 'React')!,
+      technologies.find(t => t.name === 'Laravel')!,
+      technologies.find(t => t.name === 'MySQL')!,
+      technologies.find(t => t.name === 'Docker')!,
+    ],
+    period: 'July 2025 - September 2025',
+    category: 'Full Stack Development',
+  },
+  {
+    id: 'totaldev-4',
+    company: 'TotalDev',
+    title: 'professionalProjects.invex.title',
+    description: 'professionalProjects.invex.description',
+    technologies: [
+      technologies.find(t => t.name === 'Laravel')!,
+      technologies.find(t => t.name === 'React')!,
+      technologies.find(t => t.name === 'MySQL')!,
+      technologies.find(t => t.name === 'Docker')!,
+    ],
+    period: 'May 2025 - July 2025',
+    category: 'Full Stack Development',
+    liveUrl: 'https://www.invex.com.co/login/',
+  },
+  {
+    id: 'totaldev-5',
+    company: 'TotalDev',
+    title: 'professionalProjects.interventoria.title',
+    description: 'professionalProjects.interventoria.description',
+    technologies: [
+      technologies.find(t => t.name === 'Laravel')!,
+      technologies.find(t => t.name === 'React')!,
+    ],
+    period: 'March 2025 - April 2025',
+    category: 'Full Stack Development',
+  },
+  {
+    id: 'totaldev-6',
+    company: 'TotalDev',
+    title: 'professionalProjects.shopper.title',
+    description: 'professionalProjects.shopper.description',
+    technologies: [
+      technologies.find(t => t.name === 'Laravel')!,
+      technologies.find(t => t.name === 'React')!,
+      technologies.find(t => t.name === 'TailwindCSS')!,
+    ],
+    period: 'February 2025',
+    category: 'Full Stack Development',
+  },
+
   // PARQ Projects
   {
     id: 'parq-1',
@@ -336,11 +412,10 @@ export const professionalProjects = [
     description: 'professionalProjects.parqMicroservices.description',
     technologies: [
       technologies.find(t => t.name === 'NestJS')!,
-      technologies.find(t => t.name === 'Swagger')!,
       technologies.find(t => t.name === 'PostgreSQL')!,
       technologies.find(t => t.name === 'Docker')!,
     ],
-    period: 'November 2024 - Present',
+    period: 'December 2024 - July 2025',
     category: 'Backend Development',
   },
   {
@@ -354,7 +429,7 @@ export const professionalProjects = [
       technologies.find(t => t.name === 'PostgreSQL')!,
       technologies.find(t => t.name === 'Postman')!,
     ],
-    period: 'November 2024 - Present',
+    period: 'December 2024 - July 2025',
     category: 'Backend Development',
   },
   {
@@ -366,8 +441,9 @@ export const professionalProjects = [
       technologies.find(t => t.name === 'Angular')!,
       technologies.find(t => t.name === 'TypeScript')!,
     ],
-    period: 'November 2024 - Present',
+    period: 'January 2025 - February 2025',
     category: 'Frontend Development',
+    liveUrl: 'https://app.parqco.com/sign-in',
   },
   {
     id: 'parq-4',
@@ -378,8 +454,9 @@ export const professionalProjects = [
       technologies.find(t => t.name === 'React')!,
       technologies.find(t => t.name === 'JavaScript')!,
     ],
-    period: 'November 2024 - Present',
+    period: 'January 2025 - February 2025',
     category: 'Frontend Development',
+    liveUrl: 'https://app.parqco.com/sign-in',
   },
   {
     id: 'parq-5',
@@ -454,6 +531,21 @@ export const professionalProjects = [
 export const experiences: Experience[] = [
   {
     id: '1',
+    title: 'experience.totaldev.title',
+    company: 'TotalDev',
+    period: 'experience.totaldev.period',
+    description: 'experience.totaldev.description',
+    technologies: [
+      technologies.find(t => t.name === 'Laravel')!,
+      technologies.find(t => t.name === 'React')!,
+      technologies.find(t => t.name === 'MySQL')!,
+      technologies.find(t => t.name === 'Docker')!,
+      technologies.find(t => t.name === 'TypeScript')!,
+    ],
+    type: 'work',
+  },
+  {
+    id: '2',
     title: 'experience.parq.title',
     company: 'PARQ',
     period: 'experience.parq.period',
@@ -464,12 +556,11 @@ export const experiences: Experience[] = [
       technologies.find(t => t.name === 'Angular')!,
       technologies.find(t => t.name === 'Next.js')!,
       technologies.find(t => t.name === 'TypeORM')!,
-      technologies.find(t => t.name === 'Swagger')!,
     ],
     type: 'work',
   },
   {
-    id: '2',
+    id: '3',
     title: 'experience.serempre.title',
     company: 'Serempre',
     period: 'experience.serempre.period',
@@ -484,7 +575,7 @@ export const experiences: Experience[] = [
     type: 'work',
   },
   {
-    id: '3',
+    id: '4',
     title: 'experience.senaIntern.title',
     company: 'SENA',
     period: 'experience.senaIntern.period',
@@ -497,7 +588,7 @@ export const experiences: Experience[] = [
     type: 'work',
   },
   {
-    id: '4',
+    id: '5',
     title: 'experience.uptc.title',
     company: 'experience.uptc.company',
     period: 'experience.uptc.period',

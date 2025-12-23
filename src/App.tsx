@@ -7,7 +7,6 @@ import { ThemeProvider } from './contexts/ThemeContext';
 type TabType =
   | 'home'
   | 'projects'
-  | 'terminal'
   | 'experience'
   | 'certifications';
 
@@ -18,7 +17,7 @@ function App() {
     <ThemeProvider>
       <LocaleProvider>
         <div className="min-h-screen transition-colors duration-300">
-          <Sidebar isVisible={activeTab !== 'home'} />
+          <Sidebar />
           <MainContent activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
       </LocaleProvider>

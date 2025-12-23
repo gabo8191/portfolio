@@ -27,7 +27,7 @@
       "technologiesMastered": "Technologies Mastered"
     },
     "profileStatus": {
-      "availableFor": "Available for DevOps/Data roles",
+      "availableFor": "Open to new opportunities",
       "contactQuick": "Quick Contact"
     },
     "tabs": {
@@ -81,23 +81,23 @@
   },
   "hero": {
     "greeting": "Hello, I'm",
-    "title": "Backend Developer",
-    "subtitle": "Computer Systems Engineering Student | Backend Specialist | Open to DevOps & Data Engineering Opportunities",
-    "description": "Backend Developer with 3 years of professional experience specializing in scalable web application development using PHP/Laravel and NestJS/TypeScript. Demonstrates expertise in RESTful API design, database optimization, and microservices architecture. Currently pursuing Computer Systems Engineering while actively seeking opportunities to expand into DevOps and Data Engineering roles, bringing strong development foundations to infrastructure and data-driven solutions.",
+    "title": "Software Engineer",
+    "subtitle": "Computer Systems Engineering Student | Backend Specialist",
+    "description": "Software engineer with 3 years of experience building complete systems for banking, insurance, and retail sectors. I've worked on applications that process large volumes of information, from interbank messaging systems to inventory management platforms handling thousands of products. My experience spans both backend development (REST API design, database optimization, batch processing) and frontend (responsive interfaces with React, Angular, and Vue). I've worked with sensitive data in regulated environments where availability and accuracy are critical. I specialize in projects where data is the central component: processing large files, optimizing complex queries, building import/export pipelines, and developing dashboards for analytics and reporting. I have experience implementing queue systems for asynchronous processing, scheduled jobs for ETL, and APIs that aggregate information for executive reports. Technical Stack: Python, TypeScript, PHP, Java | Laravel, NestJS, React, Vue.js, Angular | PostgreSQL, MySQL, Redis | Docker, Git",
     "downloadCV": "Download CV",
     "viewProjects": "View Projects"
   },
   "about": {
     "title": "About Me",
-    "description": "Backend Developer with 3 years of enterprise-level experience, specializing in robust API development and microservices architecture using Laravel and NestJS ecosystems. Currently pursuing Computer Systems Engineering degree while demonstrating consistent growth in software development practices. Proven track record in production environment management, database optimization, and electronic billing system integration for the Colombian market. Actively seeking to leverage development expertise in DevOps and Data Engineering roles, with foundational knowledge in containerization, CI/CD pipelines, and infrastructure automation.",
-    "currentFocus": "Professional Development Interests",
+    "description": "Software engineer with 3 years of experience building complete systems for banking, insurance, and retail sectors. I've worked on applications that process large volumes of information, from interbank messaging systems to inventory management platforms handling thousands of products. My experience spans both backend development (REST API design, database optimization, batch processing) and frontend (responsive interfaces with React, Angular, and Vue). I've worked with sensitive data in regulated environments where availability and accuracy are critical.",
+    "currentFocus": "Professional Interests",
     "focusAreas": [
-      "DevOps Engineering: Container orchestration, CI/CD automation, and infrastructure scaling",
       "Data Engineering: Data pipeline development, ETL processes, and analytics infrastructure",
-      "Cloud Platforms: AWS, GCP, and Azure for scalable application deployment",
-      "Infrastructure as Code: Terraform, Ansible for automated infrastructure management",
-      "Monitoring & Observability: Prometheus, Grafana for system reliability",
-      "Site Reliability Engineering: Performance optimization and system monitoring"
+      "Backend Development: Scalable API design and microservices architecture",
+      "Database Optimization: Query performance and data modeling",
+      "Cloud Platforms: AWS and GCP for scalable application deployment",
+      "Data Processing: Large file processing and batch operations",
+      "Analytics & Reporting: Dashboard development and executive reporting"
     ]
   },
   "experience": {
@@ -106,9 +106,16 @@
     "education": "Education",
     "certifications": "Certifications",
     "work": "Work",
+    "totaldev": {
+      "title": "Software Engineer",
+      "period": "March 2025 - Present",
+      "area": "Full Stack Development",
+      "description": "Developing complete inventory management systems, interbank communication platforms, and QR authentication solutions for premium brands, implementing solutions in both backend and frontend.\n\nBackend Development:\n• Designed REST APIs managing 10,000+ SKUs with automated CSV file import/export capabilities\n• Developed interbank communication system processing SWIFT/ISO 20022 messages with LAU encryption using Java\n• Implemented document processing pipelines handling multiple formats and applying encryption protocols\n• Built QR code generation and validation system with pseudorandom processes for product authentication for brands like Chivas Regal\n\nFrontend Development:\n• Built React dashboards with real-time metrics, advanced filtering, and dynamic tables\n• Developed complete CMS using Filament for content administration, enabling flexible management of products, users, and configurations\n• Implemented user interfaces for mass data import/export and QR code scanning systems for product authenticity verification\n• Created responsive PWA applications for event staff with offline capabilities",
+      "technologies": ["Laravel", "React", "MySQL", "Docker", "TypeScript"]
+    },
     "parq": {
       "title": "Backend Developer",
-      "period": "November 2024 - Present",
+      "period": "December 2024 - July 2025",
       "area": "Fullstack Development",
       "description": "Freelance fullstack developer specializing in microservices architecture and electronic billing solutions for the Colombian market, working across backend, frontend, and infrastructure layers.\n\nMicroservices Architecture:\n• Maintain and evolve microlithic architecture composed of five independent NestJS microservices sharing a common PostgreSQL database\n• Conduct legacy code auditing and refactoring, identifying structural errors and implementing performance improvements\n• Develop new functionalities with endpoint adjustments and inter-microservice connectivity enhancements\n• Implement pagination systems, bulk loading queues, and precise cron job scheduling with timezone-specific configurations\n• Integrate comprehensive Swagger API documentation across all microservices\n\nElectronic Billing Integration:\n• Develop electronic billing middleware integrating Siigo, Alegra, and SATCOM platforms for Colombian market regulatory compliance\n• Build robust API endpoints with proper error handling and transaction logging systems\n• Ensure compliance with Colombian electronic billing regulations and performance optimization for high-volume transactions\n\nFrontend Development:\n• Maintain legacy Angular operations module focused on daily invoice processing workflows and ticket generation\n• Develop React administrative components with modular architecture, dynamic data presentation, and robust error handling\n• Migrate institutional landing pages from React to Next.js implementing Server-Side Rendering (SSR) for enhanced SEO performance\n• Apply advanced internationalization principles, code modularization, and security reinforcement\n\nInfrastructure & DevOps:\n• Deploy applications using Docker containers managed through Portainer with Bitbucket version control integration\n• Supervise container deployment ensuring system availability and operational efficiency",
       "technologies": [
@@ -181,13 +188,14 @@
     "inProgress": "In Progress",
     "categories": {
       "all": "All",
-      "featured": "🔥 Featured",
-      "frontend": "💻 Frontend",
-      "backend": "⚙️ Backend",
-      "database": "🗄️ Database",
-      "devops": "🚀 DevOps",
-      "vanilla": "🍦 Vanilla",
-      "proofOfConcept": "⚡ PoC"
+      "featured": "Featured",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "devops": "DevOps",
+      "vanilla": "Vanilla",
+      "proof-of-concept": "Proof of Concept",
+      "proofOfConcept": "Proof of Concept"
     },
     "technologyCategories": {
       "all": "All",
@@ -290,6 +298,30 @@
     "company": "Company",
     "period": "Period",
     "category": "Category",
+    "biosimtec": {
+      "title": "Biosimtec - Corporate Website with Custom CMS",
+      "description": "Developed Biosimtec website evolving from React implementation based on Figma designs into a dynamic, fully manageable platform.\n\n• Custom CMS using Filament for autonomous content management (images, texts, multimedia)\n• TanStack Query (React Query) for efficient server state management and client-side caching\n• React Router for smooth navigation between sections\n• Robust backend caching system to optimize response times and reduce server load\n• Comprehensive role and permission system controlling access to administrative functionalities\n• Frontend skeleton implementation for superior user experience during content loading\n• Contact form management and request handling modules"
+    },
+    "chivasHouse": {
+      "title": "Chivas House - Exclusive Event Management Platform",
+      "description": "Specialized web platform for comprehensive management of exclusive Chivas Regal event.\n\n• Age validation module ensuring compliance with legal restrictions\n• Sophisticated pseudo-random code generation system with variable lengths for unique guest identification\n• Complete QR code generation and reading functionalities for agile guest validation\n• Automated email layout and delivery system triggered upon QR code validation\n• React with React Router frontend implementing advanced Figma design\n• Laravel backend managing all business logic\n• Specialized QR code reading section for event staff optimized for operational use\n• PWA (Progressive Web App) for event staff enabling efficient work with limited connectivity"
+    },
+    "materialesSabana": {
+      "title": "Inventory System - Materiales de la Sabana",
+      "description": "Complete inventory system implementing hybrid architecture with React and Laravel including Filament administrative panel.\n\n• Interactive React panel for drivers and operators managing merchandise inflow/outflow and product generation\n• Filament interface for administrators to download detailed reports and approve information\n• Comprehensive role and permission module ensuring controlled access\n• Customized dashboards presenting relevant information tailored to each user type\n• QR code generation and reading system for quick vehicle identification\n• Optimized logistics processes reducing operation times and improving inventory traceability"
+    },
+    "invex": {
+      "title": "Invex - Electoral Inventory Management Platform",
+      "description": "Comprehensive inventory management platform for Thomas Greg & Sons subsidiary, designed for electoral process inventory in Colombia.\n\n• Advanced role and permission system segmented by municipalities and departments\n• Security and confidentiality of sensitive information ensuring jurisdiction-specific access\n• Robust reporting system with multiple detail levels and dynamic dashboards\n• Automatic updates according to user role with relevant visualizations and key metrics\n• Optimized SQL views for improved complex query performance\n• Traits for code reusability and design patterns for maintainability and scalability\n• Complete traceability from initial registration to final distribution"
+    },
+    "interventoria": {
+      "title": "Interventoría - Prison System Audit Management",
+      "description": "Specialized system for management and tracking of audit reports for Colombian prison system.\n\n• Platform for prison facility visits validating compliance with legal regulations\n• Figma design implementation in React ensuring visual and functional specifications\n• Complete database structure design with Laravel considering complex prison system business logic\n• Structures recording inspections, findings, regulatory compliance, and report tracking status\n• Documentation modules for each visit, compliance report generation, and audit lifecycle control\n• Traceability and compliance with established legal requirements"
+    },
+    "shopper": {
+      "title": "Shopper - Commercial Promoter Management Platform",
+      "description": "Comprehensive platform for commercial promoters to efficiently manage daily operations.\n\n• Shift definition, objective establishment, and work group organization\n• Complete modules with Laravel backend and React frontend\n• Robust systems for information registration and management\n• Complex navigation flows through React Router for smooth user experience\n• Interactive forms and control panels facilitating platform functionality administration\n• Complete backend-frontend integration ensuring efficient data communication\n• Client and server-side validations maintaining information integrity"
+    },
     "parqMicroservices": {
       "title": "PARQ Microservices Backend Architecture",
       "description": "Maintenance and evolution of microlithic architecture with five independent microservices sharing PostgreSQL database.\n\n• Legacy code auditing and refactoring with error identification\n• New feature development with endpoint adjustments and connectivity\n• Pagination systems and bulk loading queues implementation\n• Precise cron job scheduling with timezone adjustments\n• Comprehensive Swagger API documentation integration\n• Version control through Bitbucket and Docker deployments via Portainer"
@@ -354,7 +386,7 @@
     "description": "Core technologies and tools I work with professionally",
     "frontend": "Frontend",
     "backend": "Backend",
-    "devops": "DevOps",
+    "data": "Data Engineering",
     "database": "Database",
     "tools": "Tools",
     "cloud": "Cloud",
@@ -369,8 +401,8 @@
       "backendDevelopment": "Backend Development",
       "frontendDevelopment": "Frontend Development",
       "databaseManagement": "Database Management",
-      "devopsInfrastructure": "DevOps & Infrastructure",
-      "cloudTechnologies": "Cloud Technologies"
+      "dataEngineering": "Data Engineering",
+      "cloudTechnologies": "Cloud"
     }
   },
   "contact": {
@@ -394,42 +426,6 @@
     "credential": "Credential ID",
     "viewCertificate": "View Certificate",
     "skills": "Skills Validated"
-  },
-  "terminal": {
-    "welcome": "Welcome to Gabriel's Portfolio Terminal",
-    "typeHelp": "Type 'help' to see available commands",
-    "commandNotFound": "Command not found",
-    "availableCommands": "Available Commands",
-    "exploreHint": "Try exploring",
-    "gettingStarted": "Getting Started",
-    "helpText": {
-      "typeHelp": "• Type help to see all available commands",
-      "useWhoami": "• Use whoami to learn about me",
-      "exploreProjects": "• Explore my projects with ls projects",
-      "clearTerminal": "• Clear the terminal with clear"
-    },
-    "disclaimer": {
-      "title": "Interactive Portfolio Terminal",
-      "description": "This is a simulated terminal interface designed to showcase my technical background in a creative way. You can explore my experience, skills, and projects using familiar command-line tools. Type 'help' to see available commands.",
-      "interactive": "Interactive",
-      "simulation": "Simulation",
-      "portfolio": "Portfolio Tool"
-    },
-    "commands": {
-      "whoami": "Display current user info",
-      "pwd": "Print working directory",
-      "ls": "List directory contents",
-      "cat": "Display file contents",
-      "dockerPs": "List running containers",
-      "gitStatus": "Show git repository status",
-      "gitLog": "Show recent commits",
-      "psPhp": "Show PHP processes",
-      "composer": "Show PHP dependencies",
-      "npm": "Show Node.js dependencies",
-      "kubectlPods": "List Kubernetes pods",
-      "clear": "Clear terminal",
-      "help": "Show this help message"
-    }
   },
   "common": {
     "loading": "Loading...",

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { FiCode, FiFilter } from 'react-icons/fi';
 import { useLocale } from '../../contexts/LocaleContext';
@@ -5,7 +6,6 @@ import { professionalProjects, projects } from '../../data/portfolio';
 import { Badge } from '../ui/Badge';
 import { ProjectCard } from '../ui/ProjectCard';
 import { SectionCard } from '../ui/SectionCard';
-import { TabSwitch } from '../ui/TabSwitch';
 
 export const Projects: React.FC = () => {
   const { t } = useLocale();
@@ -13,7 +13,7 @@ export const Projects: React.FC = () => {
     'personal'
   );
   const [technologyFilter, setTechnologyFilter] = useState<
-    'all' | 'frontend' | 'backend' | 'devops' | 'database'
+    'all' | 'frontend' | 'backend' | 'database' | 'tools' | 'cloud' | 'data'
   >('all');
   const [categoryFilter, setCategoryFilter] = useState<
     | 'all'
@@ -26,7 +26,7 @@ export const Projects: React.FC = () => {
     | 'featured'
   >('all');
   const [professionalFilter, setProfessionalFilter] = useState<
-    'all' | 'PARQ' | 'Serempre'
+    'all' | 'TotalDev' | 'PARQ' | 'Serempre'
   >('all');
 
   // Function to render description with bullet points
@@ -107,7 +107,9 @@ export const Projects: React.FC = () => {
 
     // Technology type filter
     if (technologyFilter !== 'all') {
-      const projectTechTypes = project.technologies.map(tech => tech.category);
+      const projectTechTypes = project.technologies
+        .filter(tech => tech && tech.category)
+        .map(tech => tech.category);
       if (!projectTechTypes.includes(technologyFilter)) {
         return false;
       }
@@ -126,58 +128,69 @@ export const Projects: React.FC = () => {
   const techCategories = Array.from(
     new Set(
       projects.flatMap(project =>
-        project.technologies.map(tech => tech.category)
+        project.technologies
+          .filter(tech => tech && tech.category)
+          .map(tech => tech.category)
       )
     )
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto p-6 space-y-8">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Header */}
-        <div className="text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 flex items-center justify-center gap-3">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-3 mb-4">
             <FiCode className="w-10 h-10 text-blue-600 dark:text-blue-400" />
-            {t('projects.title')}
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+              {t('projects.title')}
+            </h1>
+          </div>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             {t('nav.projects')} & {t('experience.workExperience')}
           </p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex justify-center">
-          <TabSwitch
-            tabs={[
-              {
-                id: 'personal',
-                label: t('projects.title'),
-                count: projects.length,
-                icon: <FiCode className="w-4 h-4" />,
-              },
-              {
-                id: 'professional',
-                label: t('professionalProjects.title'),
-                count: professionalProjects.length,
-                subtitle: t('professionalProjects.subtitle'),
-              },
-            ]}
-            activeTab={activeTab}
-            onTabChange={tabId =>
-              setActiveTab(tabId as 'personal' | 'professional')
-            }
-          />
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex gap-2 p-1 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
+            <button
+              onClick={() => setActiveTab('personal')}
+              className={`px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
+                activeTab === 'personal'
+                  ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+              }`}
+            >
+              {t('projects.title')} ({projects.length})
+            </button>
+            <button
+              onClick={() => setActiveTab('professional')}
+              className={`px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
+                activeTab === 'professional'
+                  ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+              }`}
+            >
+              {t('professionalProjects.title')} ({professionalProjects.length})
+            </button>
+          </div>
         </div>
 
         {/* Personal Projects */}
         {activeTab === 'personal' && (
           <div className="space-y-8">
             {/* Filters */}
-            <SectionCard title={t('projects.filterByCategory')} padding="sm">
-              <div className="space-y-4">
+            <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+              <div className="space-y-6">
                 {/* Category Filter */}
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+                <div className="space-y-3">
+                  <label className="text-sm font-semibold text-gray-900 dark:text-white flex items-center gap-2">
                     <FiFilter className="w-4 h-4" />
                     {t('projects.filterByCategory')}
                   </label>
@@ -196,10 +209,10 @@ export const Projects: React.FC = () => {
                       <button
                         key={category}
                         onClick={() => setCategoryFilter(category)}
-                        className={`px-3 py-1 text-sm rounded-lg border transition-all duration-200 ${
+                        className={`px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
                           categoryFilter === category
-                            ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                            : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+                            ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-gray-900 dark:border-gray-100'
+                            : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                         }`}
                       >
                         {t(`projects.categories.${category}`)}
@@ -209,17 +222,17 @@ export const Projects: React.FC = () => {
                 </div>
 
                 {/* Technology Filter */}
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <div className="space-y-3">
+                  <label className="text-sm font-semibold text-gray-900 dark:text-white">
                     {t('projects.filterByTechnology')}
                   </label>
                   <div className="flex flex-wrap gap-2">
                     <button
                       onClick={() => setTechnologyFilter('all')}
-                      className={`px-3 py-1 text-sm rounded-lg border transition-all duration-200 ${
+                      className={`px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
                         technologyFilter === 'all'
-                          ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                          : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+                          ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-gray-900 dark:border-gray-100'
+                          : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                       }`}
                     >
                       {t('projects.technologyCategories.all')}
@@ -232,14 +245,16 @@ export const Projects: React.FC = () => {
                             category as
                               | 'frontend'
                               | 'backend'
-                              | 'devops'
                               | 'database'
+                              | 'tools'
+                              | 'cloud'
+                              | 'data'
                           )
                         }
-                        className={`px-3 py-1 text-sm rounded-lg border transition-all duration-200 ${
+                        className={`px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
                           technologyFilter === category
-                            ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                            : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+                            ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-gray-900 dark:border-gray-100'
+                            : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                         }`}
                       >
                         {t(`projects.technologyCategories.${category}`)}
@@ -248,7 +263,7 @@ export const Projects: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </SectionCard>
+            </div>
 
             {/* Projects Grid */}
             {filteredProjects.length > 0 ? (
@@ -258,15 +273,15 @@ export const Projects: React.FC = () => {
                 ))}
               </div>
             ) : (
-              <SectionCard className="text-center py-12">
-                <div className="text-gray-500 dark:text-gray-400">
-                  <FiCode className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                  <h3 className="text-lg font-medium mb-2">
-                    {t('projects.noProjectsFound')}
-                  </h3>
-                  <p className="text-sm">{t('projects.tryDifferentFilters')}</p>
-                </div>
-              </SectionCard>
+              <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-12 text-center">
+                <FiCode className="w-16 h-16 mx-auto mb-4 text-gray-400 dark:text-gray-600" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  {t('projects.noProjectsFound')}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {t('projects.tryDifferentFilters')}
+                </p>
+              </div>
             )}
           </div>
         )}
@@ -275,42 +290,121 @@ export const Projects: React.FC = () => {
         {activeTab === 'professional' && (
           <div className="space-y-8">
             {/* Note about confidentiality */}
-            <SectionCard variant="gradient" className="text-center">
-              <div className="flex items-center justify-center gap-3 text-blue-700 dark:text-blue-300">
+            <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/50 rounded-lg p-4 text-center">
+              <div className="flex items-center justify-center gap-3">
                 <Badge variant="info" size="sm">
                   {t('professionalProjects.confidential')}
                 </Badge>
-                <p className="text-sm">{t('professionalProjects.note')}</p>
+                <p className="text-sm text-blue-900 dark:text-blue-300">
+                  {t('professionalProjects.note')}
+                </p>
               </div>
-            </SectionCard>
+            </div>
 
             {/* Company Filter */}
             <div className="flex justify-center">
-              <div className="flex gap-2">
-                {(['all', 'PARQ', 'Serempre'] as const).map(company => (
-                  <button
-                    key={company}
-                    onClick={() => setProfessionalFilter(company)}
-                    className={`px-4 py-2 text-sm rounded-lg border transition-all duration-200 ${
-                      professionalFilter === company
-                        ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
-                    }`}
-                  >
-                    {company === 'all' ? 'All Companies' : company}
-                  </button>
-                ))}
+              <div className="inline-flex gap-2 p-1 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
+                {(['all', 'TotalDev', 'PARQ', 'Serempre'] as const).map(
+                  company => (
+                    <button
+                      key={company}
+                      onClick={() => setProfessionalFilter(company)}
+                      className={`px-6 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                        professionalFilter === company
+                          ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
+                          : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                      }`}
+                    >
+                      {company === 'all' ? 'All Companies' : company}
+                    </button>
+                  )
+                )}
               </div>
             </div>
 
             {/* Projects by Company */}
             <div className="space-y-12">
+              {/* TotalDev Projects */}
+              {(professionalFilter === 'all' ||
+                professionalFilter === 'TotalDev') && (
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                    TotalDev Projects
+                  </h3>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {filteredProfessionalProjects
+                      .filter(project => project.company === 'TotalDev')
+                      .map(project => (
+                        <SectionCard key={project.id} className="hover-lift">
+                          <div className="space-y-4">
+                            <div>
+                              <div className="flex items-center gap-2 mb-3">
+                                <Badge variant="warning" size="sm">
+                                  TotalDev
+                                </Badge>
+                                <Badge variant="error" size="sm">
+                                  {t('professionalProjects.confidential')}
+                                </Badge>
+                              </div>
+                              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                {t(project.title)}
+                              </h4>
+                              <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-3">
+                                <span>{project.period}</span>
+                                <span>●</span>
+                                <span>{project.category}</span>
+                              </div>
+                            </div>
+
+                            <div className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
+                              {renderDescription(t(project.description))}
+                            </div>
+
+                            <div className="flex flex-wrap gap-2">
+                              {project.technologies.map((tech, idx) => (
+                                <Badge key={idx} variant="default" size="sm">
+                                  {tech.name}
+                                </Badge>
+                              ))}
+                            </div>
+
+                            {project.liveUrl && (
+                              <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+                              >
+                                View Live
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                  />
+                                </svg>
+                              </a>
+                            )}
+                          </div>
+                        </SectionCard>
+                      ))}
+                  </div>
+                </div>
+              )}
+
               {/* PARQ Projects */}
               {(professionalFilter === 'all' ||
                 professionalFilter === 'PARQ') && (
                 <div>
-                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                     PARQ Projects
                   </h3>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -350,9 +444,38 @@ export const Projects: React.FC = () => {
                             ))}
                           </div>
 
-                          <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                            <span>{project.category}</span>
-                            <span>{t(project.period)}</span>
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-gray-500 dark:text-gray-400">
+                              {project.category}
+                            </span>
+                            <div className="flex items-center gap-4">
+                              <span className="text-gray-500 dark:text-gray-400">
+                                {t(project.period)}
+                              </span>
+                              {project.liveUrl && (
+                                <a
+                                  href={project.liveUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                                >
+                                  View Live
+                                  <svg
+                                    className="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                    />
+                                  </svg>
+                                </a>
+                              )}
+                            </div>
                           </div>
                         </SectionCard>
                       ))}
@@ -364,8 +487,8 @@ export const Projects: React.FC = () => {
               {(professionalFilter === 'all' ||
                 professionalFilter === 'Serempre') && (
                 <div>
-                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-                    <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                    <div className="w-2 h-2 bg-emerald-600 rounded-full"></div>
                     Serempre Projects
                   </h3>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -405,9 +528,38 @@ export const Projects: React.FC = () => {
                             ))}
                           </div>
 
-                          <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                            <span>{project.category}</span>
-                            <span>{t(project.period)}</span>
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-gray-500 dark:text-gray-400">
+                              {project.category}
+                            </span>
+                            <div className="flex items-center gap-4">
+                              <span className="text-gray-500 dark:text-gray-400">
+                                {t(project.period)}
+                              </span>
+                              {project.liveUrl && (
+                                <a
+                                  href={project.liveUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                                >
+                                  View Live
+                                  <svg
+                                    className="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                    />
+                                  </svg>
+                                </a>
+                              )}
+                            </div>
                           </div>
                         </SectionCard>
                       ))}
@@ -418,6 +570,6 @@ export const Projects: React.FC = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };

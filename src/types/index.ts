@@ -18,11 +18,12 @@ export interface ProfessionalProject {
   technologies: Technology[];
   period: string;
   category: string;
+  liveUrl?: string;
 }
 
 export interface Technology {
   name: string;
-  category: 'frontend' | 'backend' | 'devops' | 'database' | 'tools' | 'cloud';
+  category: 'frontend' | 'backend' | 'database' | 'tools' | 'cloud' | 'data';
   icon?: string;
   color?: string;
 }

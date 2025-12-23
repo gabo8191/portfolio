@@ -18,10 +18,10 @@ export const SectionCard: React.FC<SectionCardProps> = ({
 }) => {
   const variants = {
     default:
-      'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800',
+      'bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800',
     glass: 'glass',
     gradient:
-      'bg-gradient-to-br from-white via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-blue-950 dark:to-indigo-950 border border-blue-200/50 dark:border-blue-800/50',
+      'bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800',
   };
 
   const paddings = {
@@ -33,7 +33,7 @@ export const SectionCard: React.FC<SectionCardProps> = ({
   return (
     <div
       className={cn(
-        'rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 hover-lift',
+        'rounded-xl transition-all duration-200',
         variants[variant],
         paddings[padding],
         className
@@ -41,7 +41,7 @@ export const SectionCard: React.FC<SectionCardProps> = ({
     >
       {title && (
         <div className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
             {title}
           </h2>
         </div>

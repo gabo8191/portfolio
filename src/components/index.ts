@@ -1,6 +1,5 @@
 // UI Components
 export { ProjectCard } from './ui/ProjectCard';
-export { Terminal } from './ui/Terminal';
 export { ThemeToggle } from './ui/ThemeToggle';
 
 // Layout Components
@@ -11,4 +10,3 @@ export { Sidebar } from './layout/Sidebar';
 export { Certifications } from './pages/Certifications';
 export { Experience } from './pages/Experience';
 export { Projects } from './pages/Projects';
-export { TerminalPage } from './pages/TerminalPage';
