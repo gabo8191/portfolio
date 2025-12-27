@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import {
   FiBarChart2,
   FiCloud,
   FiCode,
+  FiCopy,
   FiDatabase,
   FiDownload,
   FiGithub,
   FiLayers,
   FiLinkedin,
-  FiMail,
   FiMapPin,
   FiMoon,
   FiSun,
@@ -68,6 +69,21 @@ export const Home: React.FC = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personalInfo.email);
+      toast.success(
+        locale === 'es'
+          ? 'Email copiado al portapapeles'
+          : 'Email copied to clipboard'
+      );
+    } catch {
+      toast.error(
+        locale === 'es' ? 'Error al copiar el email' : 'Failed to copy email'
+      );
+    }
   };
 
   const getCategoryLevel = (category: string) => {
@@ -294,13 +310,13 @@ export const Home: React.FC = () => {
               <FiDownload className="w-4 h-4" />
               {t('hero.downloadCV')} ({locale === 'es' ? 'ES' : 'EN'})
             </button>
-            <a
-              href={`mailto:${personalInfo.email}`}
+            <button
+              onClick={handleCopyEmail}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white rounded-lg transition-colors font-medium"
             >
-              <FiMail className="w-4 h-4" />
+              <FiCopy className="w-4 h-4" />
               {t('contact.emailMe')}
-            </a>
+            </button>
           </div>
         </motion.div>
 
@@ -538,7 +554,11 @@ export const Home: React.FC = () => {
                                 <span className="font-medium text-gray-900 dark:text-white text-xs sm:text-sm break-words flex-1">
                                   {tech.name}
                                 </span>
-                                <Badge variant="default" size="sm" className="flex-shrink-0">
+                                <Badge
+                                  variant="default"
+                                  size="sm"
+                                  className="flex-shrink-0"
+                                >
                                   {techLevel}
                                 </Badge>
                               </div>

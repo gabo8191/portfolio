@@ -13,6 +13,21 @@
   --primary-700: #1d4ed8;
   --primary-800: #1e40af;
   --primary-900: #1e3a8a;
+
+  /* Toast colors - Light mode */
+  --toast-bg: #ffffff;
+  --toast-color: #1f2937;
+  --toast-border: #e5e7eb;
+
+  /* Toast success - Light mode */
+  --toast-success-bg: #f0fdf4;
+  --toast-success-color: #166534;
+  --toast-success-border: #86efac;
+
+  /* Toast error - Light mode */
+  --toast-error-bg: #fef2f2;
+  --toast-error-color: #991b1b;
+  --toast-error-border: #fca5a5;
 }
 
 @tailwind base;
@@ -48,6 +63,21 @@
     --foreground: 0 0% 98%;
     --card: 0 0% 12%;
     --card-foreground: 0 0% 98%;
+
+    /* Toast colors - Dark mode */
+    --toast-bg: #1f2937;
+    --toast-color: #f9fafb;
+    --toast-border: #374151;
+
+    /* Toast success - Dark mode */
+    --toast-success-bg: #064e3b;
+    --toast-success-color: #d1fae5;
+    --toast-success-border: #10b981;
+
+    /* Toast error - Dark mode */
+    --toast-error-bg: #7f1d1d;
+    --toast-error-color: #fecaca;
+    --toast-error-border: #ef4444;
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 98%;
     --primary: 199 89% 48%;
