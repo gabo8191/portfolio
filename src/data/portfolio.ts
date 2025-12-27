@@ -38,6 +38,8 @@ export const technologies: Technology[] = [
   { name: 'Express.js', category: 'backend', color: '#000000' },
   { name: 'Flask', category: 'backend', color: '#000000' },
   { name: 'Python', category: 'backend', color: '#3776AB' },
+  { name: 'Java', category: 'backend', color: '#007396' },
+  { name: 'Spring Boot', category: 'backend', color: '#6DB33F' },
   { name: 'Docker', category: 'backend', color: '#2496ED' },
   { name: 'Git', category: 'backend', color: '#F05032' },
   { name: 'GitHub Actions', category: 'backend', color: '#2088FF' },
@@ -601,7 +603,7 @@ export const experiences: Experience[] = [
     type: 'education',
   },
   {
-    id: '5',
+    id: '6',
     title: 'experience.sena.title',
     company: 'experience.sena.company',
     period: 'experience.sena.period',

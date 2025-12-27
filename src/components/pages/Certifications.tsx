@@ -134,20 +134,20 @@ export const Certifications: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <FiAward className="w-10 h-10 text-blue-600 dark:text-blue-400" />
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4">
+            <FiAward className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 dark:text-blue-400" />
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
               {t('certifications.title')}
             </h1>
           </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-4">
             {t('certifications.description')}
           </p>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex flex-wrap gap-2 p-1 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
+        <div className="flex justify-center mb-8 overflow-x-auto">
+          <div className="inline-flex flex-wrap sm:flex-nowrap justify-center gap-2 p-1 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
             {(
               [
                 'all',
@@ -161,7 +161,7 @@ export const Certifications: React.FC = () => {
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
+                className={`px-4 sm:px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap ${
                   activeFilter === filter
                     ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
@@ -193,7 +193,7 @@ export const Certifications: React.FC = () => {
                     <div className="flex-1">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                          <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1 break-words">
                             {cert.title}
                           </h3>
                           <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">

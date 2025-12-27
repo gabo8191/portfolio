@@ -264,11 +264,11 @@ export const Home: React.FC = () => {
           </div>
 
           {/* Name and Title */}
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3">
             {personalInfo.name}
           </h1>
 
-          <p className="text-xl text-gray-600 dark:text-gray-400 font-medium mb-6">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 font-medium mb-6">
             {t(personalInfo.title)}
           </p>
 
@@ -286,17 +286,17 @@ export const Home: React.FC = () => {
           </div>
 
           {/* Action buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
             <button
               onClick={handleDownloadCV}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 dark:bg-gray-100 dark:hover:bg-gray-200 text-white dark:text-gray-900 rounded-lg transition-colors font-medium"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 dark:bg-gray-100 dark:hover:bg-gray-200 text-white dark:text-gray-900 rounded-lg transition-colors font-medium"
             >
               <FiDownload className="w-4 h-4" />
               {t('hero.downloadCV')} ({locale === 'es' ? 'ES' : 'EN'})
             </button>
             <a
               href={`mailto:${personalInfo.email}`}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white rounded-lg transition-colors font-medium"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white rounded-lg transition-colors font-medium"
             >
               <FiMail className="w-4 h-4" />
               {t('contact.emailMe')}
@@ -394,11 +394,11 @@ export const Home: React.FC = () => {
                 <button
                   key={category}
                   onClick={() => openCategoryModal(category)}
-                  className="group relative bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-850 border border-gray-200 dark:border-gray-800 rounded-lg p-5 transition-all duration-200 text-left"
+                  className="group relative bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-850 border border-gray-200 dark:border-gray-800 rounded-lg p-4 sm:p-5 transition-all duration-200 text-left"
                 >
-                  <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-start justify-between mb-2 sm:mb-3">
                     <IconComponent
-                      className={`w-6 h-6 ${categoryConfig.color}`}
+                      className={`w-5 h-5 sm:w-6 sm:h-6 ${categoryConfig.color}`}
                     />
                     <Badge variant="default" size="sm">
                       {level}
@@ -406,12 +406,12 @@ export const Home: React.FC = () => {
                   </div>
 
                   <h3
-                    className={`text-base font-semibold mb-1 ${categoryConfig.color}`}
+                    className={`text-sm sm:text-base font-semibold mb-1 break-words ${categoryConfig.color}`}
                   >
                     {categoryConfig.name}
                   </h3>
 
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                     {techs.length}{' '}
                     {techs.length === 1 ? 'technology' : 'technologies'}
                   </p>
@@ -469,7 +469,7 @@ export const Home: React.FC = () => {
         {/* Technology Category Modal */}
         {selectedCategory && (
           <div className="fixed inset-0 z-50 overflow-y-auto animate-fade-in">
-            <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div className="flex items-center justify-center min-h-screen px-4 py-4 text-center">
               {/* Background overlay */}
               <div
                 className="fixed inset-0 transition-opacity bg-gray-900/50 dark:bg-gray-950/80 backdrop-blur-sm"
@@ -477,7 +477,7 @@ export const Home: React.FC = () => {
               ></div>
 
               {/* Modal panel */}
-              <div className="inline-block w-full max-w-3xl p-8 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-gray-900 shadow-2xl rounded-xl border border-gray-200 dark:border-gray-800 animate-scale-in">
+              <div className="inline-block w-full max-w-3xl p-6 sm:p-8 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-gray-900 shadow-2xl rounded-xl border border-gray-200 dark:border-gray-800 animate-scale-in">
                 {(() => {
                   const categoryConfig = getCategoryConfig(selectedCategory!);
                   const techs = skillCategories[selectedCategory!] || [];
@@ -486,25 +486,25 @@ export const Home: React.FC = () => {
                   return (
                     <>
                       {/* Modal Header */}
-                      <div className="flex items-center justify-between mb-8">
-                        <div className="flex items-center gap-4">
+                      <div className="flex items-center justify-between mb-6 sm:mb-8">
+                        <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
                           {(() => {
                             const IconComponent = categoryConfig.icon;
                             return (
                               <IconComponent
-                                className={`w-8 h-8 ${categoryConfig.color}`}
+                                className={`w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 ${categoryConfig.color}`}
                               />
                             );
                           })()}
-                          <div>
+                          <div className="min-w-0 flex-1">
                             <h3
-                              className={`text-2xl font-bold ${categoryConfig.color}`}
+                              className={`text-xl sm:text-2xl font-bold break-words ${categoryConfig.color}`}
                             >
                               {categoryConfig.name}
                             </h3>
-                            <div className="flex items-center gap-3 mt-2">
+                            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2">
                               <Badge variant="default">{level}</Badge>
-                              <span className="text-sm text-gray-500 dark:text-gray-400">
+                              <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                                 {techs.length}{' '}
                                 {techs.length === 1
                                   ? 'technology'
@@ -515,14 +515,14 @@ export const Home: React.FC = () => {
                         </div>
                         <button
                           onClick={closeCategoryModal}
-                          className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                          className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 flex-shrink-0"
                         >
-                          <FiX className="w-6 h-6" />
+                          <FiX className="w-5 h-5 sm:w-6 sm:h-6" />
                         </button>
                       </div>
 
                       {/* Technologies Grid */}
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
                         {techs.map((tech: Technology, index: number) => {
                           const techLevel = getTechLevel(
                             tech,
@@ -532,13 +532,13 @@ export const Home: React.FC = () => {
                           return (
                             <div
                               key={index}
-                              className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200"
+                              className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 sm:p-4 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200"
                             >
-                              <div className="flex items-center justify-between mb-2">
-                                <span className="font-medium text-gray-900 dark:text-white text-sm">
+                              <div className="flex items-center justify-between mb-2 gap-2">
+                                <span className="font-medium text-gray-900 dark:text-white text-xs sm:text-sm break-words flex-1">
                                   {tech.name}
                                 </span>
-                                <Badge variant="default" size="sm">
+                                <Badge variant="default" size="sm" className="flex-shrink-0">
                                   {techLevel}
                                 </Badge>
                               </div>
@@ -548,10 +548,10 @@ export const Home: React.FC = () => {
                       </div>
 
                       {/* Modal Footer */}
-                      <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800 flex justify-end">
+                      <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200 dark:border-gray-800 flex justify-end">
                         <button
                           onClick={closeCategoryModal}
-                          className="px-6 py-2 bg-gray-900 hover:bg-gray-800 dark:bg-gray-100 dark:hover:bg-gray-200 text-white dark:text-gray-900 rounded-lg transition-colors font-medium"
+                          className="px-4 sm:px-6 py-2 bg-gray-900 hover:bg-gray-800 dark:bg-gray-100 dark:hover:bg-gray-200 text-white dark:text-gray-900 rounded-lg transition-colors font-medium text-sm sm:text-base"
                         >
                           Close
                         </button>

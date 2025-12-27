@@ -145,39 +145,40 @@ export const Projects: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <FiCode className="w-10 h-10 text-blue-600 dark:text-blue-400" />
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4">
+            <FiCode className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 dark:text-blue-400" />
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
               {t('projects.title')}
             </h1>
           </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-4">
             {t('nav.projects')} & {t('experience.workExperience')}
           </p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex gap-2 p-1 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
+        <div className="flex justify-center mb-8 overflow-x-auto">
+          <div className="inline-flex flex-nowrap gap-2 p-1 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 min-w-max">
             <button
               onClick={() => setActiveTab('personal')}
-              className={`px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
+              className={`px-4 sm:px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap ${
                 activeTab === 'personal'
                   ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
                   : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
               }`}
             >
-              {t('projects.title')} ({projects.length})
+              {t('projects.title')} ({filteredProjects.length})
             </button>
             <button
               onClick={() => setActiveTab('professional')}
-              className={`px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
+              className={`px-4 sm:px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap ${
                 activeTab === 'professional'
                   ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
                   : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
               }`}
             >
-              {t('professionalProjects.title')} ({professionalProjects.length})
+              {t('professionalProjects.title')} (
+              {filteredProfessionalProjects.length})
             </button>
           </div>
         </div>
@@ -302,14 +303,14 @@ export const Projects: React.FC = () => {
             </div>
 
             {/* Company Filter */}
-            <div className="flex justify-center">
-              <div className="inline-flex gap-2 p-1 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
+            <div className="flex justify-center overflow-x-auto pb-2">
+              <div className="inline-flex flex-nowrap gap-2 p-1 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 min-w-max">
                 {(['all', 'TotalDev', 'PARQ', 'Serempre'] as const).map(
                   company => (
                     <button
                       key={company}
                       onClick={() => setProfessionalFilter(company)}
-                      className={`px-6 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                      className={`px-4 sm:px-6 py-2 text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap ${
                         professionalFilter === company
                           ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
                           : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
@@ -347,12 +348,12 @@ export const Projects: React.FC = () => {
                                   {t('professionalProjects.confidential')}
                                 </Badge>
                               </div>
-                              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                              <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 break-words">
                                 {t(project.title)}
                               </h4>
-                              <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-3">
+                              <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3">
                                 <span>{project.period}</span>
-                                <span>●</span>
+                                <span className="hidden sm:inline">●</span>
                                 <span>{project.category}</span>
                               </div>
                             </div>
