@@ -1,18 +1,81 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/portfolio/orbit-favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Gabriel Castillo - Backend Developer & DevOps Enthusiast. 2.5 years experience in distributed systems, Laravel, NestJS, React. Computer Systems Engineer specializing in scalable architectures and multi-region applications." />
-    <meta name="keywords" content="Gabriel Castillo, Backend Developer, DevOps, NestJS, Laravel, React, Distributed Systems, Software Engineer, Colombia, Astrofísica, Matemáticas" />
-    <meta name="author" content="Gabriel Fernando Castillo Mendieta" />
-    <meta name="theme-color" content="#3b82f6" />
-    <title>Gabriel Castillo - Portfolio</title>
-    <script type="module" crossorigin src="/portfolio/assets/index-CUch7s6x.js"></script>
-    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-B7NbhrJQ.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
+<!DOCTYPE html><html lang="en" data-astro-cid-mdysn4oi> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg"><meta name="generator" content="Astro v5.17.1"><title>Gabriel Castillo | Backend Developer</title><meta name="description" content="Backend Developer with 3+ years of experience building scalable REST APIs, microservices architectures, and containerized applications. Proficient in Laravel, NestJS, and Python with hands-on experience in Docker, AWS, CI/CD pipelines, and Linux server administration."><meta property="og:url" content="https://gabo8191.github.io/portfolio/"><meta property="og:type" content="website"><meta property="og:title" content="Gabriel Castillo | Backend Developer"><meta property="og:description" content="Backend Developer with 3+ years of experience building scalable REST APIs, microservices architectures, and containerized applications. Proficient in Laravel, NestJS, and Python with hands-on experience in Docker, AWS, CI/CD pipelines, and Linux server administration."><meta property="og:image" content="/portfolio/social-image.jpg"><!-- Twitter Meta Tags --><meta name="twitter:card" content="summary_large_image"><meta property="twitter:domain" content="gabo8191.github.io"><meta property="twitter:url" content="https://gabo8191.github.io/portfolio/"><meta name="twitter:title" content="Gabriel Castillo | Backend Developer"><meta name="twitter:description" content="Backend Developer with 3+ years of experience building scalable REST APIs, microservices architectures, and containerized applications. Proficient in Laravel, NestJS, and Python with hands-on experience in Docker, AWS, CI/CD pipelines, and Linux server administration."><meta name="twitter:image" content="/portfolio/social-image.jpg"><style>@font-face{font-family:Geist-5985675a67df2d44;src:url("/portfolio/_astro/fonts/fe7c0e519c833863.woff2") format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-weight:400;font-style:normal;}@font-face{font-family:"Geist-5985675a67df2d44 fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:104.7553%;ascent-override:95.9379%;descent-override:28.1609%;line-gap-override:0%;}:root{--font-geist:Geist-5985675a67df2d44,"Geist-5985675a67df2d44 fallback: Arial",Inter,sans-serif;}</style><link rel="preload" href="/portfolio/_astro/fonts/fe7c0e519c833863.woff2" as="font" type="font/woff2" crossorigin><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/portfolio/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><style>.astro-loading-indicator {
+  pointer-events: none;
+  background-color: #f4f4f5;
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transition: transform 300ms ease-out, opacity 150ms 150ms ease-in;
+	transform: translate3d(0, 0, 0) scaleX(var(--progress, 0));
+  transform-origin: 0;
+}
+
+[dir="rtl"] .astro-loading-indicator {
+  transform-origin: 100% 0;
+}
+</style><script>(function(){const className = "astro-loading-indicator";
+const animationDuration = 300;
+const threshold = 200;
+
+(() => {
+  let progress = 0.25
+  let opacity = 0
+  /** @type {number | undefined} */
+  let trickleInterval = undefined
+  /** @type {number | undefined} */
+  let thresholdTimeout = undefined;
+
+  const element = document.createElement("div")
+  element.classList.add(className)
+  element.ariaHidden = "true"
+
+  /** @param {typeof progress} _progress */
+  const setProgress = (_progress) => {
+    progress = _progress
+    element.style.setProperty('--progress', String(progress))
+  }
+
+  /** @param {typeof opacity} _opacity */
+  const setOpacity = (_opacity) => {
+    opacity = _opacity
+    element.style.setProperty('opacity', String(opacity))
+  }
+
+  setOpacity(opacity)
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.prepend(element)
+  })
+
+  document.addEventListener("astro:before-preparation", () => {
+    thresholdTimeout = setTimeout(() => {
+      setOpacity(1)
+      trickleInterval = window.setInterval(() => {
+        setProgress(progress + Math.random() * 0.03)
+      }, animationDuration)
+    }, threshold)
+  })
+
+  document.addEventListener("astro:before-swap", (ev) => {
+    if (!thresholdTimeout) {
+      return
+    }
+    window.clearTimeout(thresholdTimeout)
+
+    ev.newDocument.body.prepend(element)
+    window.clearInterval(trickleInterval)
+    trickleInterval = undefined
+
+    setProgress(1)
+    window.setTimeout(() => {
+      setOpacity(0)
+    }, animationDuration / 2)
+
+    window.setTimeout(() => {
+      setProgress(0.25)
+    }, animationDuration * 2)
+  })
+})()
+})();</script><link rel="stylesheet" href="/portfolio/_astro/about.BJ5qxpM9.css"></head> <body class="font-sans min-h-screen bg-zinc-900" data-astro-cid-mdysn4oi>  <main> <div class="group relative w-full min-h-dvh flex items-center justify-center"> <div class="absolute w-full h-dvh -z-10"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="ZTgbny" prefix="r1" component-url="/portfolio/_astro/grain-gradient-background.DnWU1fvr.js" component-export="default" renderer-url="/portfolio/_astro/client.Dc9Vh3na.js" props="{&quot;colors&quot;:[1,[[0,&quot;#7c3aed&quot;],[0,&quot;#a855f7&quot;],[0,&quot;#c084fc&quot;],[0,&quot;#6366f1&quot;],[0,&quot;#818cf8&quot;]]],&quot;colorBack&quot;:[0,&quot;#0f0a1a&quot;],&quot;softness&quot;:[0,0.6],&quot;intensity&quot;:[0,0.4],&quot;noise&quot;:[0,0.2],&quot;shape&quot;:[0,&quot;corners&quot;],&quot;speed&quot;:[0,0.6]}" ssr client="load" opts="{&quot;name&quot;:&quot;GrainGradientBackground&quot;,&quot;value&quot;:true}" await-children><div style="width:100%;height:100%"></div><!--astro:end--></astro-island> </div> <div class="p-4 sm:p-8 absolute w-full h-dvh flex flex-col justify-between z-10"> <div> <h1 class="text-white font-bold text-balance text-8xl md:text-[120px] lg:text-[160px] tracking-tighter">  Gabriel <br> Castillo  </h1> </div> <div> <div class="flex items-center gap-2 py-4"> <span class="relative flex items-center justify-center size-3"> <span class="absolute inline-flex h-full w-full animate-ping duration-1000 rounded-full bg-zinc-100 opacity-75"></span> <span class="relative inline-flex size-2 rounded-full bg-zinc-100"></span> </span> <p class="text-zinc-300">Available For Work</p> </div> <div class="mb-2 sm:mb-4 flex flex-wrap items-center justify-between gap-4"> <div class="flex flex-wrap items-center gap-4"> <a href="/portfolio/cv-en.pdf" target="_blank" class="w-fit text-base sm:text-2xl px-5 py-2 rounded-full transition-all duration-300 ease-in-out whitespace-nowrap text-zinc-900 bg-zinc-100 hover:outline-2 outline-offset-2 outline-zinc-100">Download CV</a> <a href="/portfolio/projects" class="w-fit text-base sm:text-2xl px-5 py-2 rounded-full transition-all duration-300 ease-in-out whitespace-nowrap text-zinc-100 hover:text-white bg-transparent hover:bg-zinc-100/20 hover:outline-2 outline-offset-2 outline-zinc-100/20"> View Projects </a> </div> <astro-island uid="Z19qyY" prefix="r3" component-url="/portfolio/_astro/navigation.woXK6smx.js" component-export="default" renderer-url="/portfolio/_astro/client.Dc9Vh3na.js" props="{&quot;base&quot;:[0,&quot;/portfolio/&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;Navigation&quot;,&quot;value&quot;:true}" await-children><div class="flex items-center justify-center gap-12"><button type="button" class="w-6 sm:w-8 h-fit text-white cursor-pointer hover:outline-2 focus-visible:outline-2 outline-offset-1 outline-zinc-100/20 focus-visible:outline-white rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="transition-all duration-300 ease-in-out rotate-0"><title>Menu Icon</title><path fill="currentColor" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10" opacity=".5"></path><path fill="currentColor" d="M13.024 14.56c.493-.197.739-.296.932-.465c.05-.043.096-.09.139-.139c.17-.193.268-.44.465-.932c.924-2.31 1.386-3.465.938-4.124a1.5 1.5 0 0 0-.398-.398c-.66-.448-1.814.014-4.124.938c-.493.197-.74.295-.933.465c-.049.043-.095.09-.138.139c-.17.193-.268.44-.465.932c-.924 2.31-1.386 3.464-.938 4.124a1.5 1.5 0 0 0 .398.398c.66.448 1.814-.014 4.124-.938"></path></svg></button></div><template data-astro-template> <a href="/portfolio/about" class="w-fit text-base sm:text-2xl px-5 py-2 rounded-full transition-all duration-300 ease-in-out whitespace-nowrap text-zinc-100 hover:text-white bg-transparent hover:bg-zinc-100/20 hover:outline-2 outline-offset-2 outline-zinc-100/20"> About </a> <a href="/portfolio/contact" class="w-fit text-base sm:text-2xl px-5 py-2 rounded-full transition-all duration-300 ease-in-out whitespace-nowrap text-zinc-100 hover:text-white bg-transparent hover:bg-zinc-100/20 hover:outline-2 outline-offset-2 outline-zinc-100/20"> Contact </a> </template><!--astro:end--></astro-island> </div> </div> </div> </div> </main>  </body></html>
