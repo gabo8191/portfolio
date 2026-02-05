@@ -1,0 +1,233 @@
+---
+import H1 from '../components/h1.astro';
+import InfoLayout from '../layouts/InfoLayout.astro';
+
+const experience = [
+  {
+    title: 'Fullstack Developer',
+    company: 'TotalDev SAS',
+    period: 'Jul. 2025 – Present',
+    highlights: [
+      'Developed an interbank messaging system that receives and processes MT format files, validates encryption status, standardizes data formats, and routes messages according to SWIFT/ISO 20022 specifications',
+      'Built backend systems for inventory management handling product catalogs with REST APIs, automated CSV import/export, role-based access control by geographic regions, and reporting modules with SQL views for query optimization',
+      'Created QR code generation and validation systems for event management and product authentication, including pseudorandom code generation and real-time scanning interfaces',
+      'Implemented content management systems using Laravel and Filament, allowing non-technical users to manage site content, images, and configurations autonomously',
+    ],
+  },
+  {
+    title: 'Fullstack Developer',
+    company: 'PARQ',
+    period: 'Nov. 2024 – Jul. 2025',
+    highlights: [
+      'Maintained and evolved a microservice architecture with NestJS and TypeORM, performing code audits, refactoring legacy code, and resolving data inconsistencies in production databases',
+      'Developed electronic invoicing middleware integrating with Colombian providers (Siigo, Alegra, SATCOM), implementing transaction logging and error handling for regulatory compliance',
+      'Implemented pagination systems, queue-based bulk data loading, and scheduled jobs with timezone handling for automated report generation and notifications',
+      'Documented APIs using Swagger/OpenAPI and managed deployments through Docker and Portainer with version control in Bitbucket',
+    ],
+  },
+  {
+    title: 'Backend Developer',
+    company: 'SEREMPRE',
+    period: 'Jan. 2023 – Nov. 2024',
+    highlights: [
+      'Built backend systems for a corporate benefits platform serving multiple Latin American countries, developing REST APIs consumed by both mobile and web applications',
+      'Designed complex MySQL queries and stored procedures for reporting systems, and configured automated cron jobs for user administration and scheduled notifications',
+      'Migrated legacy systems to containerized environments using Docker (DDEV), applying database normalization and query optimization for batch processing workloads',
+      'Integrated external APIs (Cloudinary for media management, Moodle LTI for e-learning content) and developed custom plugins for content sharing between platforms',
+    ],
+  },
+];
+
+const skills = {
+  languages: ['Python', 'TypeScript', 'PHP', 'SQL', 'Bash'],
+  backend: [
+    'Laravel',
+    'NestJS',
+    'Node.js',
+    'REST API Design',
+    'Microservices Architecture',
+  ],
+  databases: [
+    'PostgreSQL',
+    'MySQL',
+    'Redis',
+    'TypeORM',
+    'Eloquent ORM',
+    'Query Optimization',
+  ],
+  devops: [
+    'Docker',
+    'Kubernetes',
+    'AWS (EC2, S3, RDS)',
+    'CI/CD',
+    'GitHub Actions',
+    'Nginx',
+    'Linux',
+  ],
+  tools: ['Git', 'Swagger/OpenAPI', 'SonarQube', 'Portainer', 'Bitbucket'],
+};
+---
+
+<InfoLayout>
+  <div class='p-4 sm:pt-8 sm:px-12 pb-20 min-h-dvh flex flex-col gap-16'>
+    <div class='space-y-4 sm:space-y-8'>
+      <H1> About Gabriel </H1>
+
+      <p class='text-xl xl:text-2xl text-zinc-500 text-balance'>
+        Backend Developer with <span class='text-zinc-300'
+          >3+ years of experience</span
+        > building scalable REST APIs, microservices architectures, and containerized
+        applications. Proficient in
+        <span class='text-zinc-300'>Laravel, NestJS, and Python</span> with hands-on
+        experience in Docker, AWS, CI/CD pipelines, and Linux server administration.
+      </p>
+
+      <p class='text-lg xl:text-xl text-zinc-500 text-balance'>
+        Focused on backend systems design, infrastructure automation, and cloud
+        deployments. I've worked on applications that process large volumes of
+        information, from interbank messaging systems to inventory management
+        platforms handling thousands of products.
+      </p>
+    </div>
+
+    <div class='space-y-4'>
+      <h2
+        class='text-xl text-zinc-300 underline underline-offset-4 decoration-zinc-500'
+      >
+        Experience
+      </h2>
+
+      <div class='space-y-6'>
+        {
+          experience.map((job) => (
+            <div class='p-5 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+              <div class='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1'>
+                <h3 class='text-lg text-zinc-200'>{job.title}</h3>
+                <span class='text-sm text-zinc-500'>{job.period}</span>
+              </div>
+              <p class='text-zinc-400 text-sm mb-3'>{job.company}</p>
+              <ul class='space-y-2'>
+                {job.highlights.map((highlight) => (
+                  <li class='text-zinc-500 text-sm pl-4 relative before:content-["•"] before:absolute before:left-0 before:text-zinc-600'>
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class='space-y-4'>
+      <h2
+        class='text-xl text-zinc-300 underline underline-offset-4 decoration-zinc-500'
+      >
+        Technical Skills
+      </h2>
+
+      <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+          <h3 class='text-sm text-zinc-400 mb-2'>Languages</h3>
+          <div class='flex flex-wrap gap-2'>
+            {
+              skills.languages.map((skill) => (
+                <span class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
+                  {skill}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+          <h3 class='text-sm text-zinc-400 mb-2'>Backend</h3>
+          <div class='flex flex-wrap gap-2'>
+            {
+              skills.backend.map((skill) => (
+                <span class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
+                  {skill}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+          <h3 class='text-sm text-zinc-400 mb-2'>Databases</h3>
+          <div class='flex flex-wrap gap-2'>
+            {
+              skills.databases.map((skill) => (
+                <span class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
+                  {skill}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+          <h3 class='text-sm text-zinc-400 mb-2'>DevOps & Cloud</h3>
+          <div class='flex flex-wrap gap-2'>
+            {
+              skills.devops.map((skill) => (
+                <span class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
+                  {skill}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+          <h3 class='text-sm text-zinc-400 mb-2'>Tools</h3>
+          <div class='flex flex-wrap gap-2'>
+            {
+              skills.tools.map((skill) => (
+                <span class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
+                  {skill}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='space-y-4'>
+      <h2
+        class='text-xl text-zinc-300 underline underline-offset-4 decoration-zinc-500'
+      >
+        Education
+      </h2>
+
+      <div class='space-y-4'>
+        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+          <div
+            class='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1'
+          >
+            <h3 class='text-lg text-zinc-200'>
+              Systems and Computer Engineering
+            </h3>
+            <span class='text-sm text-zinc-500'>Expected 2026</span>
+          </div>
+          <p class='text-zinc-400 text-sm'>
+            Pedagogical and Technological University of Colombia (UPTC)
+          </p>
+        </div>
+
+        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+          <div
+            class='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1'
+          >
+            <h3 class='text-lg text-zinc-200'>
+              Information Systems Analysis and Development
+            </h3>
+            <span class='text-sm text-zinc-500'>2022</span>
+          </div>
+          <p class='text-zinc-400 text-sm'>National Learning Service (SENA)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</InfoLayout>

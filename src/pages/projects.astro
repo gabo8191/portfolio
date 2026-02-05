@@ -1,0 +1,540 @@
+---
+import H1 from '../components/h1.astro';
+import InfoLayout from '../layouts/InfoLayout.astro';
+
+const featuredProjects = [
+  {
+    title: 'Almendros Store Backend API',
+    description:
+      'Production-ready backend API developed for real haberdashery supply business. Features comprehensive security with Helmet.js, rate limiting, Swagger documentation, input sanitization, robust validation, session auditing, and complete CI/CD pipeline. Implements modern backend architecture with TypeScript, Prisma ORM, and automated testing with SonarQube integration for code quality assurance.',
+    technologies: [
+      'NestJS',
+      'TypeScript',
+      'Prisma',
+      'GitHub Actions',
+      'SonarQube',
+    ],
+    githubUrl: 'https://github.com/gabo8191/backend-almendros',
+    category: 'Backend',
+  },
+  {
+    title: 'Fleet Management System',
+    description:
+      'Enterprise-grade application for transportation company role and operations management. Comprehensive system including modules for trip planning, vehicle maintenance scheduling, driver management, fleet tracking, and audit trails. Built with Spring Boot and Java 17, featuring PostgreSQL database, Docker containerization, automated CI/CD with GitHub Actions, and responsive Bootstrap interface.',
+    technologies: [
+      'Spring Boot',
+      'Java',
+      'PostgreSQL',
+      'Docker',
+      'GitHub Actions',
+      'Bootstrap',
+    ],
+    githubUrl: 'https://github.com/gabo8191/fleet-management-system',
+    category: 'Backend',
+  },
+  {
+    title: 'Microservices with Kafka and Redis',
+    description:
+      'Distributed streaming system simulation (Netflix-style) implementing three specialized consumers: analytics processing, notification delivery, and content recap generation. Utilizes Apache Kafka for message streaming, Redis for caching, Express.js as message producer, and Python for consumer services. Full Docker Compose orchestration demonstrating modern microservices architecture and event-driven design patterns.',
+    technologies: ['Redis', 'Docker', 'Express.js', 'Python', 'Kafka'],
+    githubUrl: 'https://github.com/gabo8191/lab5-kafka-redis',
+    category: 'DevOps',
+  },
+  {
+    title: 'Custom Block Cipher Algorithm',
+    description:
+      'Custom encryption algorithm implementing block cipher with substitution, transposition, and XOR operations using pseudorandom number generation. Features a clean web interface built with Tailwind CSS for encryption/decryption operations. Demonstrates cryptographic concepts and security implementation patterns for educational and research purposes.',
+    technologies: ['Express.js', 'JavaScript', 'TailwindCSS'],
+    githubUrl: 'https://github.com/gabo8191/cipher_algorithm',
+    category: 'Security',
+  },
+];
+
+const professionalProjects = [
+  {
+    title: 'Biosimtec - Corporate Website with Custom CMS',
+    company: 'TotalDev',
+    description:
+      'Developed Biosimtec website evolving from React implementation based on Figma designs into a dynamic, fully manageable platform. Custom CMS using Filament for autonomous content management, TanStack Query for efficient server state management and client-side caching, React Router for smooth navigation, robust backend caching system, comprehensive role and permission system, frontend skeleton implementation for superior user experience during content loading.',
+    technologies: ['React', 'Laravel', 'MySQL', 'Docker', 'Filament'],
+    liveUrl: 'https://www.biosimtec.com/',
+  },
+  {
+    title: 'Chivas House - Exclusive Event Management Platform',
+    company: 'TotalDev',
+    description:
+      'Specialized web platform for comprehensive management of exclusive Chivas Regal event. Age validation module, sophisticated pseudo-random code generation system with variable lengths for unique guest identification, complete QR code generation and reading functionalities, automated email layout and delivery system, React with React Router frontend implementing advanced Figma design, specialized QR reading section for event staff, PWA for event staff enabling efficient work with limited connectivity.',
+    technologies: ['React', 'Laravel', 'TypeScript', 'PWA'],
+    liveUrl: 'https://chivas-house.co/age-validation',
+  },
+  {
+    title: 'Materiales de la Sabana - Inventory System',
+    company: 'TotalDev',
+    description:
+      'Complete inventory system implementing hybrid architecture with React and Laravel including Filament administrative panel. Interactive React panel for drivers and operators managing merchandise inflow/outflow and product generation, Filament interface for administrators to download detailed reports and approve information, comprehensive role and permission module, customized dashboards, QR code generation and reading system for quick vehicle identification.',
+    technologies: ['React', 'Laravel', 'MySQL', 'Docker', 'Filament'],
+  },
+  {
+    title: 'Invex - Electoral Inventory Management Platform',
+    company: 'TotalDev',
+    description:
+      'Comprehensive inventory management platform for Thomas Greg & Sons subsidiary, designed for electoral process inventory in Colombia. Advanced role and permission system segmented by municipalities and departments, security and confidentiality of sensitive information, robust reporting system with multiple detail levels and dynamic dashboards, optimized SQL views for improved complex query performance, complete traceability from initial registration to final distribution.',
+    technologies: ['Laravel', 'React', 'MySQL', 'Docker'],
+    liveUrl: 'https://www.invex.com.co/login/',
+  },
+  {
+    title: 'Interventoría - Prison System Audit Management',
+    company: 'TotalDev',
+    description:
+      'Specialized system for management and tracking of audit reports for Colombian prison system. Platform for prison facility visits validating compliance with legal regulations, Figma design implementation in React, complete database structure design with Laravel considering complex business logic, documentation modules for each visit, compliance report generation, and audit lifecycle control.',
+    technologies: ['React', 'Laravel', 'MySQL'],
+  },
+  {
+    title: 'Shopper - Commercial Promoter Management Platform',
+    company: 'TotalDev',
+    description:
+      'Comprehensive platform for commercial promoters to efficiently manage daily operations. Shift definition, objective establishment, and work group organization, complete modules with Laravel backend and React frontend, complex navigation flows through React Router, interactive forms and control panels, complete backend-frontend integration with client and server-side validations.',
+    technologies: ['Laravel', 'React', 'TailwindCSS'],
+  },
+  {
+    title: 'PARQ Microservices Backend Architecture',
+    company: 'PARQ',
+    description:
+      'Maintenance and evolution of microlithic architecture with five independent NestJS microservices sharing PostgreSQL database. Legacy code auditing and refactoring with error identification, new feature development with endpoint adjustments and connectivity, pagination systems and bulk loading queues implementation, precise cron job scheduling with timezone adjustments, comprehensive Swagger API documentation integration.',
+    technologies: ['NestJS', 'PostgreSQL', 'Docker', 'TypeORM', 'Swagger'],
+    liveUrl: 'https://app.parqco.com/sign-in',
+  },
+  {
+    title: 'Electronic Billing Middleware Integration',
+    company: 'PARQ',
+    description:
+      'Development of electronic billing middleware for Colombian market integration with multiple providers. Integration with Siigo, Alegra, and SATCOM billing platforms, API development for invoice processing and validation, error handling and transaction logging systems, compliance with Colombian electronic billing regulations, performance optimization for high-volume transactions.',
+    technologies: ['Laravel', 'PHP', 'PostgreSQL', 'Postman'],
+  },
+  {
+    title: 'PARQ Angular Legacy Frontend Operations',
+    company: 'PARQ',
+    description:
+      'Maintenance and enhancement of legacy Angular frontend for daily operational workflows. Electronic billing systems integration with invoice processing, ticket generation and printing functionality development, layout and data presentation improvements for UX enhancement, internationalization logic strengthening for multi-language support.',
+    technologies: ['Angular', 'TypeScript'],
+    liveUrl: 'https://app.parqco.com/sign-in',
+  },
+  {
+    title: 'PARQ React Administrative Modules',
+    company: 'PARQ',
+    description:
+      'Development of React-based administrative modules for internal management systems. Component-based architecture for reusable UI elements, state management implementation for complex workflows, integration with backend APIs for data processing, responsive design for multi-device compatibility, performance optimization and code splitting.',
+    technologies: ['React', 'JavaScript'],
+    liveUrl: 'https://app.parqco.com/sign-in',
+  },
+  {
+    title: 'PARQ Landing Page Evolution',
+    company: 'PARQ',
+    description:
+      'Migration and enhancement of landing pages from React to Next.js with advanced features. Server-side rendering (SSR) implementation for SEO optimization, internationalization system for multi-language support, performance improvements and Core Web Vitals optimization, dynamic content management and API integration.',
+    technologies: ['Next.js', 'React', 'TypeScript'],
+  },
+  {
+    title: 'Membeers - AB InBev Regional Benefits Platform',
+    company: 'Serempre',
+    description:
+      'Development of corporate benefits platform serving employees across 5+ Latin American countries. Backend development with Laravel for scalable architecture, complex MySQL queries and PL/SQL for reporting systems, design patterns implementation (Singleton, Observer) for maintainability, automated cron jobs for user administration and notifications, RESTful API development for mobile and web applications.',
+    technologies: ['Laravel', 'PHP', 'MySQL'],
+  },
+  {
+    title: 'Decenal Insurance Module - Fasecolda Integration',
+    company: 'Serempre',
+    description:
+      'Fullstack development of residential insurance consultation module for Colombian insurance entity. Integration within existing legacy application architecture, backend adjustments with Laravel and inherited PHP code, interactive Vue.js and Bootstrap frontend development, data flow optimization and reporting system enhancements.',
+    technologies: ['Laravel', 'Vue.js', 'Bootstrap', 'Postman'],
+  },
+  {
+    title: 'Story Training - International Educational Platform',
+    company: 'Serempre',
+    description:
+      'Educational platform evolution with international clients in Spain. Laravel backend adjustments and Orchid Admin Panel integration, custom Moodle plugin development for content sharing, Cloudinary integration for multimedia file management, educational content management system optimization, cross-platform compatibility and API development.',
+    technologies: ['Laravel', 'Moodle', 'Cloudinary'],
+  },
+  {
+    title: 'Internal Bidirectional Evaluation System',
+    company: 'Serempre',
+    description:
+      'Performance evaluation platform facilitating mutual assessment between employees and leaders. Complete Laravel development with Bootstrap frontend, MySQL database design for evaluation workflows, user authentication and role-based access control, performance metrics and reporting dashboard.',
+    technologies: ['Laravel', 'Bootstrap', 'MySQL'],
+  },
+];
+
+const backendProjects = [
+  {
+    title: 'Redis Top 10 Management System',
+    description:
+      'High-performance topic ranking system using Redis as fast, efficient storage mechanism. Proof of concept for real-time leaderboard management with optimized query performance.',
+    technologies: ['Express.js', 'Redis'],
+    githubUrl: 'https://github.com/gabo8191/redis-task1',
+  },
+  {
+    title: 'Pseudorandom Number Generator',
+    description:
+      'Mathematical pseudorandom number generator implementing multiple generation techniques for simulation, cryptography, and algorithmic applications. Flask-based web interface enabling testing of different randomization methods.',
+    technologies: ['Flask', 'Python'],
+    githubUrl: 'https://github.com/gabo8191/pseudorandom-numbers-flask',
+  },
+  {
+    title: 'Linked List Product Management',
+    description:
+      'Educational data structure implementation using linked lists for product management across retail store chains. Pure Java implementation demonstrating fundamental computer science concepts.',
+    technologies: ['Java'],
+    githubUrl: 'https://github.com/gabo8191/linkedListLab',
+  },
+  {
+    title: 'Bracket Validation with Stacks',
+    description:
+      'Algorithm implementing stack data structure to validate proper closure of parentheses, braces, and brackets. Simulates syntactic analysis similar to compiler parsing mechanisms.',
+    technologies: ['Java'],
+    githubUrl: 'https://github.com/gabo8191/LabStacksBrackets',
+  },
+  {
+    title: 'Mixed Queues and Stacks Application',
+    description:
+      'Data structure application combining queues and stacks to solve organizational and cumulative calculation problems. Console-based input processing with complex data manipulation.',
+    technologies: ['Java'],
+    githubUrl: 'https://github.com/gabo8191/LabMixedQueuesAndStacks',
+  },
+  {
+    title: 'Priority Print Queue Management',
+    description:
+      'Print queue management system implementing priority queue data structure using Model-View-Presenter (MVP) architectural pattern. Handles job prioritization and queue management.',
+    technologies: ['Java'],
+    githubUrl: 'https://github.com/gabo8191/LabQueueOrderPriority',
+  },
+  {
+    title: 'Radix Sort Queue Implementation',
+    description:
+      'Number sorting algorithm using queues with radix sort methodology through multiple passes. MVP architecture implementation with linked lists and node-based data structures.',
+    technologies: ['Java'],
+    githubUrl: 'https://github.com/gabo8191/LabQueueRootOrder',
+  },
+  {
+    title: 'Binary Tree Dictionary Translator',
+    description:
+      'Educational binary tree implementation for multi-language word translation. Pure Java application with MVP architecture demonstrating tree traversal algorithms and search optimization.',
+    technologies: ['Java'],
+    githubUrl: 'https://github.com/gabo8191/LabBinaryTree',
+  },
+];
+
+const devopsProjects = [
+  {
+    title: 'Bully Election Algorithm Implementation',
+    description:
+      'Distributed systems implementation of the Bully algorithm for leader election and node coordination. Features Docker Compose deployment with inter-machine SSH connectivity for distributed node communication.',
+    technologies: ['Express.js', 'Docker'],
+    githubUrl: 'https://github.com/gabo8191/lab4-bully',
+  },
+  {
+    title: 'Berkeley Clock Synchronization Algorithm',
+    description:
+      'Distributed systems application implementing Berkeley algorithm for time synchronization across distributed nodes. Essential for maintaining consistent timestamps in distributed environments.',
+    technologies: ['Express.js'],
+    githubUrl: 'https://github.com/gabo8191/lab3-berkeley',
+  },
+  {
+    title: 'Server Autoscaling Simulation',
+    description:
+      'Advanced load balancing simulation with automatic scaling capabilities. Includes frontend monitoring interface, backend processing services, comprehensive monitoring dashboard, and automatic instance recovery for failed nodes.',
+    technologies: ['Express.js', 'Docker'],
+    githubUrl: 'https://github.com/gabo8191/Lab2-autoscalling',
+  },
+  {
+    title: 'Load Balancer Middleware System',
+    description:
+      'Production-grade load balancing system implementing Least Connected algorithm for optimal traffic distribution. Features dynamic instance registration, real-time health monitoring, and automatic load redistribution.',
+    technologies: ['Express.js', 'Docker'],
+    githubUrl: 'https://github.com/gabo8191/lab-load-balancer',
+  },
+  {
+    title: 'Oracle Database Docker Container',
+    description:
+      'Ready-to-deploy Docker containerization for Oracle Database eliminating local installation requirements. Optimized for development teams with limited resources, providing instant database provisioning.',
+    technologies: ['Docker'],
+    githubUrl: 'https://github.com/gabo8191/OracleDBDocker',
+  },
+];
+
+const otherProjects = [
+  {
+    title: 'Professional Portfolio Website',
+    description:
+      'Modern, responsive portfolio website built with React and TypeScript. Features dark/light mode, internationalization, interactive terminal simulation, and professional UI/UX design.',
+    technologies: ['React', 'TypeScript', 'TailwindCSS'],
+    githubUrl: 'https://github.com/gabo8191/portfolio',
+  },
+  {
+    title: 'Arduino - ESP32 - Flask Communication',
+    description:
+      'IoT communication system implementing basic serial communication between Arduino, ESP32, and Flask server. Signals transmitted via serial communication, then forwarded to ESP32 through WiFi connectivity.',
+    technologies: ['Python', 'Flask'],
+    githubUrl: 'https://github.com/gabo8191/esp32_arduino_middleware',
+  },
+  {
+    title: 'SQL Accident Analytics Project',
+    description:
+      'Comprehensive data analysis project using relational database modeling for hospitalization accident data. Includes complete dataset preprocessing, data cleaning procedures, and advanced analytical queries.',
+    technologies: ['MySQL'],
+    githubUrl: 'https://github.com/gabo8191/ProjectSQL',
+  },
+  {
+    title: 'Unity Simulation Game',
+    description:
+      'Educational simulation game with comedic narrative featuring student seeking revenge against challenging professor. Demonstrates game development concepts, Unity engine proficiency, and programming principles.',
+    technologies: ['Unity', 'C#'],
+    githubUrl: 'https://github.com/gabo8191/SimulationGame',
+  },
+];
+---
+
+<InfoLayout>
+  <div class='p-4 sm:pt-8 sm:px-12 pb-20 min-h-dvh'>
+    <H1> Projects </H1>
+
+    <!-- Featured Personal Projects -->
+    <section class='mt-8'>
+      <h2
+        class='text-xl text-zinc-300 mb-6 underline underline-offset-4 decoration-zinc-500'
+      >
+        Featured Projects
+      </h2>
+      <div class='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+        {
+          featuredProjects.map((project) => (
+            <a
+              href={project.githubUrl}
+              target='_blank'
+              class='group p-6 rounded-xl bg-zinc-800/40 border border-zinc-700/50 hover:border-zinc-600 hover:bg-zinc-800/60 transition-all duration-300'
+            >
+              <div class='flex items-start justify-between gap-4 mb-3'>
+                <h3 class='text-lg text-zinc-100 group-hover:text-white'>
+                  {project.title}
+                </h3>
+                <span class='shrink-0 px-2 py-1 text-xs text-zinc-400 bg-zinc-700/50 rounded'>
+                  {project.category}
+                </span>
+              </div>
+              <p class='text-sm text-zinc-400 mb-4'>{project.description}</p>
+              <div class='flex flex-wrap gap-2'>
+                {project.technologies.map((tech) => (
+                  <span class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/70 rounded'>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <div class='mt-4 flex items-center gap-1 text-sm text-zinc-500 group-hover:text-zinc-300 transition-colors'>
+                <span>View on GitHub</span>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  class='w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  stroke='currentColor'
+                  stroke-width='2'
+                >
+                  <path d='M5 12h14M12 5l7 7-7 7' />
+                </svg>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Professional Projects -->
+    <section class='mt-12'>
+      <h2
+        class='text-xl text-zinc-300 mb-2 underline underline-offset-4 decoration-zinc-500'
+      >
+        Professional Work
+      </h2>
+      <p class='text-sm text-zinc-500 mb-6'>
+        Enterprise projects developed during my professional experience. Source
+        code is confidential.
+      </p>
+
+      <div class='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+        {
+          professionalProjects.map((project) => (
+            <div class='group p-5 rounded-xl bg-zinc-800/30 border border-zinc-700/30 hover:border-zinc-700/50 transition-all'>
+              <div class='flex items-start justify-between gap-4 mb-2'>
+                <h3 class='text-base text-zinc-200'>{project.title}</h3>
+                <span class='shrink-0 px-2 py-1 text-xs text-zinc-500 bg-zinc-700/30 rounded'>
+                  {project.company}
+                </span>
+              </div>
+              <p class='text-sm text-zinc-500 mb-3 line-clamp-3'>
+                {project.description}
+              </p>
+              <div class='flex flex-wrap gap-1.5 mb-3'>
+                {project.technologies.map((tech) => (
+                  <span class='px-1.5 py-0.5 text-xs text-zinc-400 bg-zinc-700/50 rounded'>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target='_blank'
+                  class='inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-300 transition-colors'
+                >
+                  <span>View Live</span>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    class='w-4 h-4'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    stroke-width='2'
+                  >
+                    <path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6' />
+                    <polyline points='15 3 21 3 21 9' />
+                    <line x1='10' y1='14' x2='21' y2='3' />
+                  </svg>
+                </a>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Backend Projects -->
+    <section class='mt-12'>
+      <h2
+        class='text-xl text-zinc-300 mb-6 underline underline-offset-4 decoration-zinc-500'
+      >
+        Backend & Data Structures
+      </h2>
+
+      <div
+        class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'
+      >
+        {
+          backendProjects.map((project) => (
+            <a
+              href={project.githubUrl}
+              target='_blank'
+              class='group p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/30 hover:border-zinc-600/50 hover:bg-zinc-800/50 transition-all duration-300'
+            >
+              <h3 class='text-sm text-zinc-200 group-hover:text-white mb-2'>
+                {project.title}
+              </h3>
+              <p class='text-xs text-zinc-500 mb-3 line-clamp-2'>
+                {project.description}
+              </p>
+              <div class='flex flex-wrap gap-1'>
+                {project.technologies.map((tech) => (
+                  <span class='px-1.5 py-0.5 text-xs text-zinc-400 bg-zinc-700/40 rounded'>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- DevOps Projects -->
+    <section class='mt-12'>
+      <h2
+        class='text-xl text-zinc-300 mb-6 underline underline-offset-4 decoration-zinc-500'
+      >
+        DevOps & Distributed Systems
+      </h2>
+
+      <div
+        class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'
+      >
+        {
+          devopsProjects.map((project) => (
+            <a
+              href={project.githubUrl}
+              target='_blank'
+              class='group p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/30 hover:border-zinc-600/50 hover:bg-zinc-800/50 transition-all duration-300'
+            >
+              <h3 class='text-sm text-zinc-200 group-hover:text-white mb-2'>
+                {project.title}
+              </h3>
+              <p class='text-xs text-zinc-500 mb-3 line-clamp-2'>
+                {project.description}
+              </p>
+              <div class='flex flex-wrap gap-1'>
+                {project.technologies.map((tech) => (
+                  <span class='px-1.5 py-0.5 text-xs text-zinc-400 bg-zinc-700/40 rounded'>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Other Projects -->
+    <section class='mt-12'>
+      <h2
+        class='text-xl text-zinc-300 mb-6 underline underline-offset-4 decoration-zinc-500'
+      >
+        Other Projects
+      </h2>
+
+      <div
+        class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'
+      >
+        {
+          otherProjects.map((project) => (
+            <a
+              href={project.githubUrl}
+              target='_blank'
+              class='group p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/30 hover:border-zinc-600/50 hover:bg-zinc-800/50 transition-all duration-300'
+            >
+              <h3 class='text-sm text-zinc-200 group-hover:text-white mb-2'>
+                {project.title}
+              </h3>
+              <p class='text-xs text-zinc-500 mb-3 line-clamp-2'>
+                {project.description}
+              </p>
+              <div class='flex flex-wrap gap-1'>
+                {project.technologies.map((tech) => (
+                  <span class='px-1.5 py-0.5 text-xs text-zinc-400 bg-zinc-700/40 rounded'>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class='mt-8 text-center'>
+        <a
+          href='https://github.com/gabo8191'
+          target='_blank'
+          class='inline-flex items-center gap-2 px-5 py-2.5 text-sm text-zinc-400 hover:text-zinc-200 border border-zinc-700 hover:border-zinc-500 rounded-full transition-all'
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            class='w-5 h-5'
+            viewBox='0 0 24 24'
+            fill='currentColor'
+          >
+            <path
+              d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'
+            ></path>
+          </svg>
+          <span>View all projects on GitHub</span>
+        </a>
+      </div>
+    </section>
+  </div>
+</InfoLayout>

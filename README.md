@@ -1,233 +1,144 @@
-# Gabriel Castillo - Portfolio
+# Gabriel Castillo | Portfolio
 
-Modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features dark/light mode, internationalization (English/Spanish), and an interactive DevOps terminal simulation.
+Personal portfolio website showcasing my experience as a Backend Developer with 3+ years of experience building scalable REST APIs, microservices architectures, and containerized applications.
 
-## 🚀 Features
+Built with Astro 5, React 19, TailwindCSS 4, and Paper Shaders for animated backgrounds.
 
-- **Modern Stack**: React 19, TypeScript, Vite, Tailwind CSS
-- **Responsive Design**: Mobile-first approach with seamless adaptability
-- **Dark/Light Mode**: Theme toggle with system preference detection
-- **Internationalization**: Full English/Spanish support with i18next
-- **Interactive Terminal**: DevOps command simulation with real project data
-- **SEO Optimized**: Proper meta tags and semantic HTML
-- **Code Quality**: ESLint, Prettier, and strict TypeScript configuration
-- **Performance**: Optimized bundle size and fast loading times
+## Features
 
-## 🛠️ Technologies
+- Modern, responsive design with animated gradient backgrounds
+- Professional experience showcase with detailed project descriptions
+- Technical skills organized by category (Languages, Backend, Databases, DevOps)
+- Personal and professional projects gallery
+- Downloadable CV in English and Spanish
+- Contact information and social links
 
-### Frontend
-- React 19 with TypeScript
-- Tailwind CSS for styling
-- Framer Motion for animations
-- React Icons for iconography
-- Vite for build tooling
+## Tech Stack
 
-### Quality & Tools
-- ESLint with strict rules
-- Prettier for code formatting
-- TypeScript strict mode
-- Responsive design patterns
-- Semantic HTML5
+- **Framework**: Astro 5.7
+- **UI Components**: React 19
+- **Styling**: TailwindCSS 4
+- **Animations**: Paper Shaders (Grain Gradient)
+- **Deployment**: Vercel
 
-### DevOps Features
-- Terminal simulation
-- Command history
-- Realistic development environment showcase
-- Docker, Kubernetes, Git command examples
+## Getting Started
 
-## 📦 Installation
+Clone Repository
 
-```bash
-# Clone the repository
+```sh
 git clone https://github.com/gabo8191/portfolio.git
+```
 
-# Navigate to project directory
-cd portfolio
+Install Dependencies
 
-# Install dependencies
+```sh
 npm install
+```
 
-# Start development server
+Development
+
+```sh
 npm run dev
 ```
 
-## 🎯 Available Scripts
+Build
 
-```bash
-# Development
-npm run dev              # Start development server
-npm run build           # Build for production
-npm run preview         # Preview production build
-
-# Code Quality
-npm run lint            # Run ESLint
-npm run lint:fix        # Fix ESLint issues automatically
-npm run format          # Format code with Prettier
-npm run format:check    # Check code formatting
-npm run type-check      # TypeScript type checking
-
-# Utilities
-npm run clean           # Clean build directory
-npm run analyze         # Bundle size analysis
-npm run prepare         # Pre-commit checks
+```sh
+npm run build
 ```
 
-## 📁 Project Structure
+Preview
 
-```
-src/
-├── components/
-│   ├── layout/          # Layout components (Sidebar, MainContent)
-│   ├── pages/           # Page components (Projects, Experience, Terminal)
-│   └── ui/              # Reusable UI components
-├── contexts/            # React contexts (Theme, Locale)
-├── data/                # Portfolio data and content
-├── i18n/               # Internationalization configuration
-│   └── locales/        # Translation files (en.json, es.json)
-├── types/              # TypeScript type definitions
-└── utils/              # Utility functions
+```sh
+npm run preview
 ```
 
-## 🌐 Internationalization
+## Project Structure
 
-The portfolio supports English and Spanish languages:
+```text
+/
+├── public/
+│   ├── favicon.svg          # Custom G favicon
+│   ├── social-image.jpg     # OG image for social sharing
+│   ├── cv-en.pdf            # English CV
+│   └── cv-es.pdf            # Spanish CV
+├── src/
+│   ├── components/
+│   │   ├── grain-gradient-background.tsx  # Animated background
+│   │   ├── navigation.tsx                 # Mobile/desktop navigation
+│   │   ├── footer.astro                   # Site footer
+│   │   └── ...                            # Other UI components
+│   ├── layouts/
+│   │   ├── RootLayout.astro    # Base HTML layout
+│   │   └── InfoLayout.astro    # Layout for inner pages
+│   ├── pages/
+│   │   ├── index.astro         # Home page
+│   │   ├── about.astro         # Experience & skills
+│   │   ├── projects.astro      # Project showcase
+│   │   ├── contact.astro       # Contact information
+│   │   └── blog/               # Blog (coming soon)
+│   └── styles/
+│       └── global.css          # Global styles with Tailwind
+├── astro.config.mjs
+├── package.json
+└── tsconfig.json
+```
 
-- Language toggle button in sidebar
-- Complete translation of all content
-- Persistent language preference
-- Dynamic document title updates
+## Sections
 
-### Adding New Languages
+### Home
 
-1. Create new translation file in `src/i18n/locales/`
-2. Add language to `src/i18n/index.ts`
-3. Update `LocaleContext` to include new language option
+Landing page with animated Grain Gradient background, name, availability status, and quick navigation.
 
-## 🎨 Customization
+### About
+
+- Professional summary
+- Work experience (TotalDev, PARQ, Serempre)
+- Technical skills (Languages, Backend, Databases, DevOps, Tools)
+- Education (UPTC, SENA)
+
+### Projects
+
+- Featured personal projects (APIs, microservices, distributed systems)
+- Professional work (enterprise applications, CMS, billing systems)
+- Backend & data structure projects
+- DevOps & distributed systems projects
+
+### Contact
+
+- Email, phone, location
+- Social links (GitHub, LinkedIn, Twitter)
+- CV download buttons
+
+## Customization
+
+### Background Colors
+
+Edit the `colors` array in:
+
+- `src/pages/index.astro` - Main page background
+- `src/layouts/InfoLayout.astro` - Inner pages sidebar
 
 ### Personal Information
-Update your data in `src/data/portfolio.ts`:
-- Personal information and contact details
-- Work experience and education
-- Projects and technologies
-- Social media links
 
-### Styling
-- Modify Tailwind CSS configuration in `tailwind.config.js`
-- Update CSS variables in `src/index.css`
-- Customize component styles in individual files
+Update your details in:
 
-### Terminal Commands
-Add or modify terminal commands in `src/utils/terminal.ts`:
-- Custom command responses
-- Project-specific file structures
-- DevOps tool outputs
+- `src/pages/about.astro` - Experience and skills
+- `src/pages/projects.astro` - Project listings
+- `src/pages/contact.astro` - Contact info
+- `src/layouts/RootLayout.astro` - SEO metadata
 
-## 📄 CV Download
+## Deployment
 
-To enable CV download functionality:
+The site is configured for deployment on Vercel. Simply connect your repository and deploy.
 
-1. Place your CV file in `public/cv/`
-2. Name it exactly: `Gabriel_Castillo_CV.pdf`
-3. The download will work automatically from the sidebar button
+For other platforms, modify `astro.config.mjs` accordingly.
 
-Supported formats: PDF (recommended), DOCX
+## License
 
-## 🚀 Deployment
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-### Vercel (Recommended)
-```bash
-# Install Vercel CLI
-npm i -g vercel
+## Credits
 
-# Deploy
-vercel
-```
-
-### Netlify
-```bash
-# Build project
-npm run build
-
-# Deploy dist/ folder to Netlify
-```
-
-### GitHub Pages
-```bash
-# Install gh-pages
-npm install --save-dev gh-pages
-
-# Add to package.json scripts:
-"deploy": "gh-pages -d dist"
-
-# Deploy
-npm run build && npm run deploy
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-Create `.env` file for environment-specific settings:
-```env
-VITE_SITE_URL=https://your-domain.com
-VITE_GOOGLE_ANALYTICS_ID=your-ga-id
-```
-
-### ESLint Configuration
-Customize code quality rules in `.eslintrc.cjs`:
-- React best practices
-- TypeScript strict rules
-- Import organization
-- Code style enforcement
-
-### Prettier Configuration
-Format settings in `.prettierrc`:
-- Single quotes
-- Semicolons
-- 2-space indentation
-- Trailing commas
-
-## 🎯 Performance
-
-- **Bundle Size**: ~315KB (gzipped: ~98KB)
-- **CSS Size**: ~26KB (gzipped: ~5KB)
-- **Build Time**: ~2 seconds
-- **First Load**: Optimized with code splitting
-- **Images**: Lazy loading and optimization
-
-## 📱 Browser Support
-
-- Chrome (latest 2 versions)
-- Firefox (latest 2 versions)
-- Safari (latest 2 versions)
-- Edge (latest 2 versions)
-
-## 🤝 Contributing
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📧 Contact
-
-Gabriel Fernando Castillo Mendieta
-- Email: gabo8191@gmail.com
-- LinkedIn: [gabodev8191](https://linkedin.com/in/gabodev8191/)
-- GitHub: [gabo8191](https://github.com/gabo8191)
-
-## 🙏 Acknowledgments
-
-- React community for amazing ecosystem
-- Tailwind CSS for utility-first styling
-- Vite for lightning-fast development
-- Open source contributors
-
----
-
-Made with ❤️ by Gabriel Castillo
+- Template based on [Nikola Tesla Portfolio](https://github.com/iann-mathaiya/nikola-tesla) by Ian Mathaiya
+- Animated backgrounds powered by [Paper Shaders](https://github.com/paper-design/shaders)
