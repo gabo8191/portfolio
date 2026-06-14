@@ -1,8 +1,12 @@
 ---
-import clsx from 'clsx';
+import clsx from 'clsx/lite';
 import ExternalLink from './external-link.astro';
 
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL.slice(0, -1)
+  : import.meta.env.BASE_URL;
 const pathname = Astro.url.pathname;
+const isActive = (path: string) => pathname === `${base}${path}`;
 ---
 
 <footer
@@ -34,7 +38,7 @@ const pathname = Astro.url.pathname;
         aria-hidden='true'
         class={clsx(
           'w-6 h-6',
-          pathname === '/projects'
+          isActive('/projects')
             ? 'text-zinc-100'
             : 'text-zinc-500 group-hover:text-zinc-100',
         )}
