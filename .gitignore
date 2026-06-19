@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# cache local de fuentes del generador de OG image
+assets/og/.fonts/

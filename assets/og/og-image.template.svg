@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!--
+    PLANTILLA del OG-image (lo que se ve al compartir el sitio en redes).
+    NO edites el PNG en public/og-image.png a mano: es generado.
+
+    Los textos y el render viven en scripts/generate-og-image.sh.
+    Marcadores que el script reemplaza:
+      @@TECH@@       linea tecnica (mono)
+      @@SUBTITLE@@   subtitulo (Geist, fuente del sitio)
+
+    Fuentes (deben coincidir con el sitio):
+      Wordmark  -> Geist (font-sans)
+      Linea     -> JetBrains Mono (mono)
+      Subtitulo -> Geist
+    Paleta del portafolio: violeta sobre fondo oscuro (ver src/styles/global.css).
+  -->
+  <defs>
+    <linearGradient id="accent" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="0.5" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#c084fc"/>
+    </linearGradient>
+    <linearGradient id="bottomBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a855f7" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#a855f7" stop-opacity="1"/>
+      <stop offset="1" stop-color="#a855f7" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="gridMask" cx="0.42" cy="0.42" r="0.75">
+      <stop offset="0.3" stop-color="#fff"/>
+      <stop offset="0.9" stop-color="#000"/>
+    </radialGradient>
+    <mask id="grid">
+      <rect width="1200" height="630" fill="url(#gridMask)"/>
+    </mask>
+    <pattern id="gridLines" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M 56 0 L 0 0 0 56" fill="none" stroke="#a855f7" stroke-opacity="0.10" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Fondo oscuro -->
+  <rect width="1200" height="630" fill="#0f0a1a"/>
+  <!-- Rejilla tecnica con mascara radial -->
+  <rect width="1200" height="630" fill="url(#gridLines)" mask="url(#grid)"/>
+
+  <!-- Marca de codigo: </> en acento violeta -->
+  <path d="M 196 250 L 150 320 L 196 390" fill="none" stroke="url(#accent)"
+        stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 268 250 L 314 320 L 268 390" fill="none" stroke="url(#accent)"
+        stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Wordmark (Geist) -->
+  <text x="424" y="300" font-family="Geist" font-weight="700"
+        font-size="92" fill="#f4f4f5">Gabriel Castillo</text>
+
+  <!-- Linea tecnica (JetBrains Mono) -->
+  <text x="428" y="362" font-family="JetBrains Mono" font-weight="500"
+        font-size="23" letter-spacing="2" fill="#c084fc">@@TECH@@</text>
+
+  <!-- Subtitulo (Geist) -->
+  <text x="428" y="416" font-family="Geist" font-weight="400"
+        font-size="30" fill="#a1a1aa">@@SUBTITLE@@</text>
+
+  <!-- Barra inferior de acento -->
+  <rect x="0" y="626" width="1200" height="4" fill="url(#bottomBar)"/>
+</svg>
