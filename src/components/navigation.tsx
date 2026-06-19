@@ -1,6 +1,6 @@
 import clsx from 'clsx/lite';
 import { AnimatePresence, motion } from 'motion/react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Navigation({
   children,
@@ -10,11 +10,48 @@ export default function Navigation({
   base?: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const normalizedBase = base.endsWith('/') ? base.slice(0, -1) : base;
   const getHref = (path: string) => `${normalizedBase}${path}`;
 
+  // Accesibilidad del overlay móvil: enfoca al abrir, cierra con Escape y
+  // mantiene el foco dentro del diálogo (Tab/Shift+Tab).
+  // ponytail: trampa de foco básica; suficiente para un menú de overlay.
+  useEffect(() => {
+    if (!isOpen) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const focusables = Array.from(
+      dialog.querySelectorAll<HTMLElement>('a[href], button'),
+    );
+    focusables[0]?.focus();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+        return;
+      }
+      if (e.key !== 'Tab' || focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [isOpen]);
+
   return (
-    <div className='flex items-center justify-center gap-12'>
+    <nav
+      aria-label='Main navigation'
+      className='flex items-center justify-center gap-12'
+    >
       <AnimatePresence>
         {isOpen && (
           <>
@@ -29,7 +66,10 @@ export default function Navigation({
             </motion.div>
 
             <motion.dialog
+              ref={dialogRef}
               open={isOpen}
+              aria-modal='true'
+              aria-label='Navigation menu'
               initial={{ filter: 'blur(20px)', opacity: 0 }}
               transition={{ ease: 'easeInOut', duration: 0.25 }}
               animate={{ filter: 'blur(0px)', opacity: 1 }}
@@ -154,7 +194,7 @@ export default function Navigation({
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
-        className='w-6 sm:w-8 h-fit text-white cursor-pointer hover:outline-2 focus-visible:outline-2 outline-offset-1 outline-zinc-100/20 focus-visible:outline-white rounded-lg'
+        className='flex items-center justify-center min-w-11 min-h-11 text-white cursor-pointer hover:outline-2 focus-visible:outline-2 outline-offset-1 outline-zinc-100/20 focus-visible:outline-white rounded-lg'
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -162,7 +202,7 @@ export default function Navigation({
           height='32'
           viewBox='0 0 24 24'
           className={clsx(
-            'transition-all duration-300 ease-in-out',
+            'w-6 sm:w-8 transition-all duration-300 ease-in-out',
             isOpen ? 'rotate-90' : 'rotate-0',
           )}
         >
@@ -178,7 +218,7 @@ export default function Navigation({
           />
         </svg>
       </button>
-    </div>
+    </nav>
   );
 }
 

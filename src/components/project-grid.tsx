@@ -64,7 +64,9 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
           return (
             <button
               key={cat}
+              type="button"
               onClick={() => setActive(cat)}
+              aria-pressed={isActive}
               className={clsx(
                 'flex items-center gap-1.5 px-3.5 py-1.5 text-sm rounded-full border transition-all duration-300',
                 isActive

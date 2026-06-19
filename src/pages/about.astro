@@ -76,16 +76,16 @@ const skills = {
     <div class='space-y-4 sm:space-y-8'>
       <H1> About Gabriel </H1>
 
-      <p class='text-xl xl:text-2xl text-zinc-500 text-balance'>
-        Backend Developer with <span class='text-zinc-300'
+      <p class='text-xl xl:text-2xl text-zinc-400 text-balance'>
+        Backend Developer with <span class='text-zinc-100'
           >3+ years of experience</span
         > building scalable REST APIs, microservices architectures, and containerized
         applications. Proficient in
-        <span class='text-zinc-300'>Laravel, NestJS, and Python</span> with hands-on
+        <span class='text-zinc-100'>Laravel, NestJS, and Python</span> with hands-on
         experience in Docker, AWS, CI/CD pipelines, and Linux server administration.
       </p>
 
-      <p class='text-lg xl:text-xl text-zinc-500 text-balance'>
+      <p class='text-lg xl:text-xl text-zinc-400 text-balance'>
         Focused on backend systems design, infrastructure automation, and cloud
         deployments. I've worked on applications that process large volumes of
         information, from interbank messaging systems to inventory management
@@ -111,7 +111,7 @@ const skills = {
               <p class='text-zinc-400 text-sm mb-3'>{job.company}</p>
               <ul class='space-y-2'>
                 {job.highlights.map((highlight) => (
-                  <li class='text-zinc-500 text-sm pl-4 relative before:content-["•"] before:absolute before:left-0 before:text-zinc-600'>
+                  <li class='text-zinc-400 text-sm pl-4 relative before:content-["•"] before:absolute before:left-0 before:text-zinc-500'>
                     {highlight}
                   </li>
                 ))}
@@ -132,67 +132,67 @@ const skills = {
       <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
         <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
           <h3 class='text-sm text-zinc-400 mb-2'>Languages</h3>
-          <div class='flex flex-wrap gap-2'>
+          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
               skills.languages.map((skill) => (
-                <span class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
+                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
                   {skill}
-                </span>
+                </li>
               ))
             }
-          </div>
+          </ul>
         </div>
 
         <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
           <h3 class='text-sm text-zinc-400 mb-2'>Backend</h3>
-          <div class='flex flex-wrap gap-2'>
+          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
               skills.backend.map((skill) => (
-                <span class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
+                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
                   {skill}
-                </span>
+                </li>
               ))
             }
-          </div>
+          </ul>
         </div>
 
         <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
           <h3 class='text-sm text-zinc-400 mb-2'>Databases</h3>
-          <div class='flex flex-wrap gap-2'>
+          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
               skills.databases.map((skill) => (
-                <span class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
+                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
                   {skill}
-                </span>
+                </li>
               ))
             }
-          </div>
+          </ul>
         </div>
 
         <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
           <h3 class='text-sm text-zinc-400 mb-2'>DevOps & Cloud</h3>
-          <div class='flex flex-wrap gap-2'>
+          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
               skills.devops.map((skill) => (
-                <span class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
+                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
                   {skill}
-                </span>
+                </li>
               ))
             }
-          </div>
+          </ul>
         </div>
 
         <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
           <h3 class='text-sm text-zinc-400 mb-2'>Tools</h3>
-          <div class='flex flex-wrap gap-2'>
+          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
               skills.tools.map((skill) => (
-                <span class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
+                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
                   {skill}
-                </span>
+                </li>
               ))
             }
-          </div>
+          </ul>
         </div>
       </div>
     </div>

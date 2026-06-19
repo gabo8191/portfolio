@@ -64,6 +64,7 @@ const base = import.meta.env.BASE_URL.endsWith('/')
           <a
             href={`${base}cv-en.pdf`}
             target='_blank'
+            rel='noopener noreferrer'
             class='inline-flex items-center gap-2 px-4 py-2 text-sm text-zinc-900 bg-zinc-100 hover:bg-white rounded-full transition-all'
           >
             <svg
@@ -83,6 +84,7 @@ const base = import.meta.env.BASE_URL.endsWith('/')
           <a
             href={`${base}cv-es.pdf`}
             target='_blank'
+            rel='noopener noreferrer'
             class='inline-flex items-center gap-2 px-4 py-2 text-sm text-zinc-300 border border-zinc-600 hover:border-zinc-400 hover:text-white rounded-full transition-all'
           >
             <svg
@@ -104,9 +106,13 @@ const base = import.meta.env.BASE_URL.endsWith('/')
     </div>
 
     <div>
-      <p class='text-base text-zinc-500'>Tunja, Boyacá</p>
-      <p class='text-base text-zinc-500'>Colombia</p>
-      <p class='text-base text-zinc-500 mt-2'>+57 318 8708253</p>
+      <p class='text-base text-zinc-400'>Tunja, Boyacá</p>
+      <p class='text-base text-zinc-400'>Colombia</p>
+      <a
+        href='tel:+573188708253'
+        class='inline-block mt-2 text-base text-zinc-400 hover:text-zinc-100 transition-colors'
+        >+57 318 8708253</a
+      >
     </div>
   </div>
 </InfoLayout>
