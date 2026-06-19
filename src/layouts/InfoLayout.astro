@@ -8,7 +8,8 @@ const { title, description } = Astro.props;
 
 <RootLayout title={title} description={description}>
   <div class='flex relative gap-4 w-full max-w-screen-xl'>
-    <nav
+    <div
+      aria-hidden='true'
       class='relative w-4 md:min-w-2xs xl:min-w-sm sm:min-h-screen sm:ml-4 sm:pb-4'
     >
       <div
@@ -22,10 +23,10 @@ const { title, description } = Astro.props;
           noise={0.15}
           shape='wave'
           speed={0.25}
-          client:load
+          client:visible
         />
       </div>
-    </nav>
+    </div>
 
     <main class='relative'>
       <slot />

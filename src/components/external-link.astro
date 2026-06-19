@@ -20,12 +20,15 @@ const comparePath = isInternal ? fullHref : href;
 <a
   href={fullHref}
   target={openNewTab ? '_blank' : '_self'}
+  rel={openNewTab ? 'noopener noreferrer' : undefined}
+  aria-current={pathname === comparePath ? 'page' : undefined}
   class={clsx(
-    'w-fit group flex items-center gap-1 text-base hover:text-zinc-100 cursor-pointer',
-    pathname === comparePath ? 'text-zinc-100' : 'text-zinc-500',
+    'w-fit group flex items-center gap-1 text-base hover:text-zinc-100 focus-visible:text-zinc-100 cursor-pointer',
+    pathname === comparePath ? 'text-zinc-100' : 'text-zinc-400',
   )}
 >
   <slot />
+  {openNewTab && <span class='sr-only'> (opens in new tab)</span>}
   {
     openNewTab && (
       <svg

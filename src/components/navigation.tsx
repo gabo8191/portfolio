@@ -152,6 +152,8 @@ export default function Navigation({
       <button
         type='button'
         onClick={() => setIsOpen((prev) => !prev)}
+        aria-expanded={isOpen}
+        aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
         className='w-6 sm:w-8 h-fit text-white cursor-pointer hover:outline-2 focus-visible:outline-2 outline-offset-1 outline-zinc-100/20 focus-visible:outline-white rounded-lg'
       >
         <svg

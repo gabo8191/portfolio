@@ -11,7 +11,10 @@ const base = import.meta.env.BASE_URL.endsWith('/')
   : `${import.meta.env.BASE_URL}/`;
 ---
 
-<RootLayout>
+<RootLayout
+  title='Gabriel Castillo | Backend Developer'
+  description='Backend Developer building scalable REST APIs, microservices and containerized apps with Laravel, NestJS and Python. Experienced with Docker, AWS and CI/CD.'
+>
   <main>
     <div
       class='group relative w-full min-h-dvh flex items-center justify-center'
@@ -25,7 +28,7 @@ const base = import.meta.env.BASE_URL.endsWith('/')
           noise={0.2}
           shape='corners'
           speed={0.6}
-          client:load
+          client:idle
         />
       </div>
 
@@ -45,7 +48,8 @@ const base = import.meta.env.BASE_URL.endsWith('/')
               <a
                 href={`${base}cv-en.pdf`}
                 target='_blank'
-                class='w-fit text-base sm:text-2xl px-5 py-2 rounded-full transition-all duration-300 ease-in-out whitespace-nowrap text-zinc-900 bg-zinc-100 hover:outline-2 outline-offset-2 outline-zinc-100'
+                rel='noopener noreferrer'
+                class='w-fit text-base sm:text-2xl px-5 py-2 rounded-full transition-all duration-300 ease-in-out whitespace-nowrap text-zinc-900 bg-zinc-100 hover:outline-2 focus-visible:outline-2 outline-offset-2 outline-zinc-100'
                 >Download CV</a
               >
               <Link href='/projects' variant='secondary'>View Projects</Link>
