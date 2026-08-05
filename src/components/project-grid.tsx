@@ -131,7 +131,7 @@ export default function ProjectGrid({ projects }: { projects: Project[] }) {
                 ))}
               </div>
 
-              <div className="flex items-center gap-1 text-sm text-zinc-500 group-hover:text-zinc-300 transition-colors">
+              <div className="flex items-center gap-1 text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors">
                 <span>{project.githubUrl ? 'View on GitHub' : 'View Live'}</span>
                 <ArrowIcon />
               </div>
