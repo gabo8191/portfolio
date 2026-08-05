@@ -1,0 +1,83 @@
+# Gabriel Castillo — Backend Developer & Co-founder of Vulcano
+
+> Backend Developer based in Tunja, Boyacá, Colombia (UTC-5). 3+ years of experience
+> across multinational projects building REST APIs, microservices and containerized
+> applications with Laravel, NestJS and Python. Co-founder and Backend Engineering Lead
+> at Vulcano, a software, data and process-automation engineering studio.
+> Available for remote roles and freelance projects. Works in Spanish (native) and
+> English (B2).
+
+## Identity
+
+- Full name: Gabriel Castillo
+- Handle: gabo8191
+- Role: Backend Developer
+- Second role: Co-founder & Backend Engineering Lead at Vulcano (https://vulcanoservices.dev)
+- Location: Tunja, Boyacá, Colombia — remote-first, UTC-5
+- Portfolio: https://gabo8191.github.io/portfolio/
+- GitHub: https://github.com/gabo8191
+- LinkedIn: https://linkedin.com/in/gabodev8191
+- Email: gabo8191@gmail.com
+
+## What he does
+
+- Design and implementation of REST APIs and microservice architectures
+- Backend systems for regulated and high-volume domains: interbank messaging
+  (SWIFT / ISO 20022 MT files), electronic invoicing, inventory and benefits platforms
+- Database modelling and query optimization (PostgreSQL, MySQL, Redis)
+- Data engineering: ETL pipelines, batch processing, reporting and BI
+- Infrastructure and delivery: Docker, Kubernetes, AWS (EC2, S3, RDS), CI/CD,
+  GitHub Actions, Nginx, Linux server administration
+
+## Stack
+
+- Languages: Python, TypeScript, PHP, SQL, Bash
+- Backend: Laravel, NestJS, Node.js, Filament, TypeORM, Eloquent
+- Databases: PostgreSQL, MySQL, Redis
+- DevOps & Cloud: Docker, Kubernetes, AWS, GitHub Actions, Nginx, Linux
+- Tooling: Git, Swagger/OpenAPI, SonarQube, Portainer
+
+## Experience
+
+- Fullstack Developer — TotalDev SAS (Jul 2025 – Mar 2026): interbank messaging system
+  processing MT files with encryption validation and SWIFT/ISO 20022 routing; inventory
+  backends with region-based RBAC; QR generation and validation; Laravel + Filament CMS.
+- Fullstack Developer — PARQ (Nov 2024 – Jul 2025): NestJS + TypeORM microservices;
+  electronic invoicing middleware integrating Siigo, Alegra and SATCOM; queue-based bulk
+  loading and scheduled jobs; Swagger/OpenAPI documentation; Docker + Portainer deploys.
+- Backend Developer — SEREMPRE (Jan 2023 – Nov 2024): corporate benefits platform for
+  multiple Latin American countries; complex MySQL queries and stored procedures;
+  migration of legacy systems to Docker (DDEV); Cloudinary and Moodle LTI integrations.
+
+## Education
+
+- Systems and Computer Engineering — Universidad Pedagógica y Tecnológica de Colombia
+  (UPTC), expected 2026
+- Information Systems Analysis and Development — SENA, 2022
+
+## Vulcano (company he co-founded)
+
+- Name: Vulcano — software, data and automation engineering studio
+- Website: https://vulcanoservices.dev
+- LinkedIn: https://www.linkedin.com/company/vulcanoia
+- Co-founders: Gabriel Castillo (backend engineering) and Diana Pinzón
+  (automation and growth, https://portfoliodiana.netlify.app)
+- Services: custom software development, data engineering and business intelligence,
+  process automation (RPA), systems integration, technology consulting
+- Serves: Colombia, Mexico, Argentina, Chile, Spain, United States, United Kingdom
+- Languages: Spanish and English
+- Note: unrelated to the blockchain/tokenization company of a similar name
+
+## Open source
+
+- TomoReader — desktop comic and manga reader (CBR/CBZ) in Rust + Tauri 2 + React:
+  https://github.com/gabo8191/TomoReader
+- AutoTranslate-Anki — Anki add-on that auto-translates a whole deck, no API key:
+  https://github.com/gabo8191/AutoTranslate-Anki
+- CV-Maker — client-side résumé builder with live A4 preview and PDF export:
+  https://github.com/gabo8191/CV-Maker
+
+## Hiring
+
+Open to remote backend engineering roles and freelance projects. Contact by email
+(gabo8191@gmail.com), LinkedIn, or through Vulcano at https://vulcanoservices.dev.

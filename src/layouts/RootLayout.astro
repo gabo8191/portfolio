@@ -9,9 +9,10 @@ const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 
-const defaultTitle = 'Gabriel Castillo | Backend Developer';
+const defaultTitle =
+  'Gabriel Castillo | Backend Developer & Co-founder of Vulcano';
 const defaultDescription =
-  'Backend Developer with 3+ years of experience building scalable REST APIs, microservices architectures, and containerized applications. Proficient in Laravel, NestJS, and Python with hands-on experience in Docker, AWS, CI/CD pipelines, and Linux server administration.';
+  'Gabriel Castillo is a Backend Developer from Tunja, Colombia, and co-founder of Vulcano, a software, data and automation engineering studio. 3+ years building scalable REST APIs, microservices and containerized applications with Laravel, NestJS and Python, plus Docker, AWS, CI/CD pipelines and Linux server administration.';
 
 const pageTitle = title ?? defaultTitle;
 const pageDescription = description ?? defaultDescription;
@@ -25,28 +26,98 @@ const canonical = new URL(pathname, siteUrl).href;
 // Las redes exigen URL absoluta para la imagen OG (no sirve la ruta relativa).
 const ogImage = new URL(image ?? `${base}og-image.png`, siteUrl).href;
 
+// Mismo @id que publica vulcanoservices.dev en su Organization. Al coincidir el
+// identificador, buscadores y motores de respuesta con IA reconcilian ambas
+// entidades en una sola: "Gabriel Castillo, cofundador de Vulcano".
+const vulcanoId = 'https://vulcanoservices.dev/#organization';
+
+const vulcanoLd = {
+  '@type': 'Organization',
+  '@id': vulcanoId,
+  name: 'Vulcano',
+  url: 'https://vulcanoservices.dev',
+  logo: 'https://vulcanoservices.dev/brand/logo-192.png',
+  description:
+    'Software, data and process-automation engineering studio. Custom software, data engineering, BI, RPA and systems integration.',
+  sameAs: ['https://www.linkedin.com/company/vulcanoia'],
+};
+
 const personLd = {
-  '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${new URL(base, siteUrl).href}#gabriel-castillo`,
   name: 'Gabriel Castillo',
+  alternateName: 'gabo8191',
   url: new URL(base, siteUrl).href,
-  jobTitle: 'Backend Developer',
+  jobTitle: ['Backend Developer', 'Co-founder at Vulcano'],
   description: defaultDescription,
   image: ogImage,
+  email: 'mailto:gabo8191@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Tunja',
+    addressRegion: 'Boyacá',
+    addressCountry: 'Colombia',
+  },
+  nationality: { '@type': 'Country', name: 'Colombia' },
+  knowsLanguage: ['es', 'en'],
+  // Doble arista hacia Vulcano: fundador y responsable técnico
+  worksFor: { '@id': vulcanoId },
+  affiliation: { '@id': vulcanoId },
+  alumniOf: {
+    '@type': 'EducationalOrganization',
+    name: 'Universidad Pedagógica y Tecnológica de Colombia (UPTC)',
+  },
+  colleague: {
+    '@type': 'Person',
+    name: 'Diana Pinzón',
+    url: 'https://portfoliodiana.netlify.app',
+  },
   sameAs: [
     'https://github.com/gabo8191',
     'https://linkedin.com/in/gabodev8191',
     'https://twitter.com/gcastillo8191',
+    'https://vulcanoservices.dev',
   ],
   knowsAbout: [
+    'Backend development',
     'Laravel',
     'NestJS',
     'Python',
-    'REST APIs',
+    'REST API design',
     'Microservices',
     'Docker',
+    'Kubernetes',
     'AWS',
     'PostgreSQL',
+    'MySQL',
+    'Data engineering',
+    'ETL pipelines',
+    'CI/CD',
+    'Linux server administration',
+  ],
+  seeks: {
+    '@type': 'Demand',
+    name: 'Remote backend engineering roles and freelance projects',
+  },
+};
+
+// Grafo de entidades: Person ← ProfilePage, enlazado a la Organization.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    vulcanoLd,
+    personLd,
+    {
+      '@type': 'ProfilePage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: pageTitle,
+      description: pageDescription,
+      inLanguage: 'en-US',
+      mainEntity: { '@id': personLd['@id'] },
+      about: { '@id': personLd['@id'] },
+      primaryImageOfPage: ogImage,
+    },
   ],
 };
 ---
@@ -87,7 +158,7 @@ const personLd = {
 
     <script
       type='application/ld+json'
-      set:html={JSON.stringify(personLd)}
+      set:html={JSON.stringify(jsonLd)}
     />
 
     <Font cssVariable='--font-geist' preload />
