@@ -61,6 +61,18 @@ const base = import.meta.env.BASE_URL.endsWith('/')
             >
           </a>
 
+          <!-- Resumen legible: los datos del JSON-LD no los leen los modelos
+               que convierten la página a texto, así que el rol, la ubicación y
+               el stack tienen que estar también como contenido visible. -->
+          <p class='max-w-2xl text-base sm:text-xl text-zinc-300'>
+            Backend Developer from <span class='text-zinc-100'
+              >Tunja, Colombia</span
+            >, working remotely. 3+ years building REST APIs, microservices and
+            containerized applications with <span class='text-zinc-100'
+              >Laravel, NestJS and Python</span
+            >, on PostgreSQL, Docker, AWS and Linux. Co-founder of Vulcano.
+          </p>
+
           <AvailableForWork className='py-4' />
           <div
             class='mb-2 sm:mb-4 flex flex-wrap items-center justify-between gap-4'
