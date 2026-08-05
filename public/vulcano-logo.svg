@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Logo Vulcano">
+  <defs>
+    <!-- Ladera del volcán (la V invertida = A de Artificial) -->
+    <linearGradient id="lava" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#CC2900"/>
+      <stop offset="0.55" stop-color="#FF3B00"/>
+      <stop offset="1" stop-color="#FF8A3D"/>
+    </linearGradient>
+    <!-- Columna de erupción (la I de Intelligence) -->
+    <linearGradient id="core" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#FF3B00"/>
+      <stop offset="0.6" stop-color="#FF8A3D"/>
+      <stop offset="1" stop-color="#FFEA00"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#glow)" stroke-linecap="round">
+    <line x1="120" y1="26" x2="120" y2="152" stroke="url(#core)" stroke-width="18"/>
+    <path d="M 52 196 L 120 64 L 188 196" fill="none" stroke="url(#lava)" stroke-width="26" stroke-linejoin="round"/>
+  </g>
+
+  <circle cx="98" cy="34" r="4" fill="#FFEA00" filter="url(#glow)"/>
+  <circle cx="146" cy="22" r="3" fill="#FF8A3D" filter="url(#glow)"/>
+  <circle cx="134" cy="46" r="2.4" fill="#FF3B00" filter="url(#glow)"/>
+</svg>

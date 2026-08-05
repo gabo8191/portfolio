@@ -2,6 +2,10 @@
 import H1 from '../components/h1.astro';
 import InfoLayout from '../layouts/InfoLayout.astro';
 
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
 const experience = [
   {
     title: 'Fullstack Developer',
@@ -69,14 +73,14 @@ const skills = {
 ---
 
 <InfoLayout
-  title='About — Gabriel Castillo'
-  description='Gabriel Castillo, Backend Developer with 3+ years of experience across multinational projects building APIs, messaging systems and content platforms with Laravel, NestJS and Python.'
+  title='About — Gabriel Castillo, Backend Developer & Co-founder of Vulcano'
+  description='Gabriel Castillo, Backend Developer with 3+ years of experience across multinational projects and co-founder of Vulcano (software, data and automation studio). Builds APIs, messaging systems and content platforms with Laravel, NestJS and Python.'
 >
   <div class='p-4 sm:pt-8 sm:px-12 pb-20 min-h-dvh flex flex-col gap-16'>
     <div class='space-y-4 sm:space-y-8'>
       <H1> About Gabriel </H1>
 
-      <p class='text-xl xl:text-2xl text-zinc-400 text-balance'>
+      <p class='text-xl xl:text-2xl text-zinc-400 text-balance max-w-3xl'>
         Backend Developer with <span class='text-zinc-100'
           >3+ years of experience</span
         > building scalable REST APIs, microservices architectures, and containerized
@@ -85,12 +89,70 @@ const skills = {
         experience in Docker, AWS, CI/CD pipelines, and Linux server administration.
       </p>
 
-      <p class='text-lg xl:text-xl text-zinc-400 text-balance'>
+      <p class='text-lg xl:text-xl text-zinc-400 text-balance max-w-3xl'>
         Focused on backend systems design, infrastructure automation, and cloud
         deployments. I've worked on applications that process large volumes of
         information, from interbank messaging systems to inventory management
         platforms handling thousands of products.
       </p>
+    </div>
+
+    <div class='space-y-4'>
+      <h2
+        class='text-xl text-zinc-300 underline underline-offset-4 decoration-zinc-500'
+      >
+        Co-founder at Vulcano
+      </h2>
+
+      <div
+        class='p-5 rounded-lg bg-zinc-800/30 border border-zinc-700/50 flex flex-col sm:flex-row gap-5 sm:items-start'
+      >
+        <img
+          src={`${base}vulcano-logo.svg`}
+          alt='Vulcano — software, data and automation engineering studio'
+          width='72'
+          height='72'
+          loading='lazy'
+          class='w-16 h-16 sm:w-[72px] sm:h-[72px] shrink-0'
+        />
+
+        <div class='space-y-3 min-w-0'>
+          <div
+            class='flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1'
+          >
+            <h3 class='text-lg text-zinc-200'>
+              Co-founder &amp; Backend Engineering Lead —
+              <a
+                href='https://vulcanoservices.dev'
+                target='_blank'
+                rel='noopener me'
+                class='text-zinc-100 underline underline-offset-4 decoration-zinc-500 hover:decoration-zinc-100'
+                >Vulcano</a
+              >
+            </h3>
+            <span class='text-sm text-zinc-400'>2026 – Present</span>
+          </div>
+
+          <p class='text-zinc-400 text-sm'>
+            Software, data and process-automation engineering studio I
+            co-founded with <a
+              href='https://portfoliodiana.netlify.app'
+              target='_blank'
+              rel='noopener'
+              class='text-zinc-300 underline underline-offset-4 decoration-zinc-600 hover:decoration-zinc-300'
+              >Diana Pinzón</a
+            >. We deliver custom software, data engineering and BI, process
+            automation (RPA) and systems integration for companies across LATAM,
+            Spain, the US and the UK — remote-first and bilingual (Spanish /
+            English).
+          </p>
+
+          <p class='text-zinc-400 text-sm'>
+            I lead the technical side: architecture, REST API design, database
+            modelling, ETL pipelines, infrastructure and delivery.
+          </p>
+        </div>
+      </div>
     </div>
 
     <div class='space-y-4'>
@@ -106,7 +168,7 @@ const skills = {
             <div class='p-5 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
               <div class='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1'>
                 <h3 class='text-lg text-zinc-200'>{job.title}</h3>
-                <span class='text-sm text-zinc-500'>{job.period}</span>
+                <span class='text-sm text-zinc-400'>{job.period}</span>
               </div>
               <p class='text-zinc-400 text-sm mb-3'>{job.company}</p>
               <ul class='space-y-2'>
@@ -212,7 +274,7 @@ const skills = {
             <h3 class='text-lg text-zinc-200'>
               Systems and Computer Engineering
             </h3>
-            <span class='text-sm text-zinc-500'>Expected 2026</span>
+            <span class='text-sm text-zinc-400'>Expected 2026</span>
           </div>
           <p class='text-zinc-400 text-sm'>
             Pedagogical and Technological University of Colombia (UPTC)
@@ -226,7 +288,7 @@ const skills = {
             <h3 class='text-lg text-zinc-200'>
               Information Systems Analysis and Development
             </h3>
-            <span class='text-sm text-zinc-500'>2022</span>
+            <span class='text-sm text-zinc-400'>2022</span>
           </div>
           <p class='text-zinc-400 text-sm'>National Learning Service (SENA)</p>
         </div>
