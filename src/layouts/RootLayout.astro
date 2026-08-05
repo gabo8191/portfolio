@@ -99,6 +99,30 @@ const personLd = {
     '@type': 'Demand',
     name: 'Remote backend engineering roles and freelance projects',
   },
+  // Canal de contacto explícito: describir quién eres no basta para que te
+  // escriban, hay que declarar por dónde y en qué idiomas.
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'hiring',
+      email: 'gabo8191@gmail.com',
+      url: new URL(`${base}contact/`, siteUrl).href,
+      availableLanguage: ['Spanish', 'English'],
+      areaServed: 'Worldwide (remote)',
+    },
+  ],
+  potentialAction: {
+    '@type': 'CommunicateAction',
+    name: 'Contact Gabriel Castillo',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: new URL(`${base}contact/`, siteUrl).href,
+      actionPlatform: [
+        'http://schema.org/DesktopWebPlatform',
+        'http://schema.org/MobileWebPlatform',
+      ],
+    },
+  },
 };
 
 // Grafo de entidades: Person ← ProfilePage, enlazado a la Organization.

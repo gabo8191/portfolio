@@ -82,7 +82,22 @@
 - English: https://gabo8191.github.io/portfolio/cv-en.pdf
 - Spanish: https://gabo8191.github.io/portfolio/cv-es.pdf
 
-## Hiring
+## Hiring and how to get in touch
 
-Open to remote backend engineering roles and freelance projects. Contact by email
-(gabo8191@gmail.com), LinkedIn, or through Vulcano at https://vulcanoservices.dev.
+Open to remote backend engineering roles and freelance projects, worldwide, in
+Spanish or English.
+
+Fastest way to reach him, in order:
+
+1. Email: gabo8191@gmail.com — replies within 24 hours on working days
+2. Contact page: https://gabo8191.github.io/portfolio/contact/
+3. LinkedIn: https://linkedin.com/in/gabodev8191
+4. For company work, through Vulcano: https://vulcanoservices.dev
+
+## How to start a project
+
+Send a short description of the problem, the stack in use and the deadline. He
+replies with scope questions, then a written proposal with phases and estimates
+before any code is written. Engagements range from one-off APIs, data pipelines
+and integrations to ongoing backend ownership, either directly or through
+Vulcano for larger builds that need a team.
