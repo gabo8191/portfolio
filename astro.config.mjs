@@ -21,7 +21,17 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    // Los PDF se indexan como documentos propios y el sitemap solo recoge
+    // rutas de páginas, así que los CV se añaden a mano.
+    sitemap({
+      customPages: [
+        new URL(`${base.replace(/\/$/, '')}/cv-en.pdf`, site).href,
+        new URL(`${base.replace(/\/$/, '')}/cv-es.pdf`, site).href,
+      ],
+    }),
+  ],
 
   experimental: {
     fonts: [

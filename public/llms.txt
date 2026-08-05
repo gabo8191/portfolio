@@ -77,6 +77,11 @@
 - CV-Maker — client-side résumé builder with live A4 preview and PDF export:
   https://github.com/gabo8191/CV-Maker
 
+## CV
+
+- English: https://gabo8191.github.io/portfolio/cv-en.pdf
+- Spanish: https://gabo8191.github.io/portfolio/cv-es.pdf
+
 ## Hiring
 
 Open to remote backend engineering roles and freelance projects. Contact by email
