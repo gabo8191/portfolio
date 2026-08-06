@@ -8,6 +8,17 @@ const base = import.meta.env.BASE_URL.endsWith('/')
 
 const experience = [
   {
+    title: 'BI & Data Analytics Intern',
+    company: 'Keyrus Colombia S.A.S.',
+    period: 'Aug. 2026 – Present',
+    highlights: [
+      'Design and maintain interactive dashboards and reports in Tableau and Power BI within the Visualization team, applying visualization and data-storytelling principles for clients in retail, telecommunications, healthcare, energy and the public sector',
+      'Write SQL queries with joins, aggregations and subqueries to extract, transform and validate data from enterprise sources such as Snowflake, SAP HANA, BigQuery and relational databases',
+      'Prepare and clean datasets with Python (pandas, NumPy), Power Query and Tableau Prep, ensuring consistency before analysis',
+      'Document processes, KPI definitions and analytical methodologies to give traceability and standardization to the projects I take part in',
+    ],
+  },
+  {
     title: 'Fullstack Developer',
     company: 'TotalDev SAS',
     period: 'Jul. 2025 – March 2026',
@@ -44,6 +55,15 @@ const experience = [
 
 const skills = {
   languages: ['Python', 'TypeScript', 'PHP', 'SQL', 'Bash'],
+  data: [
+    'Tableau',
+    'Power BI',
+    'Analytical SQL',
+    'pandas',
+    'Power Query',
+    'Tableau Prep',
+    'Data Modelling',
+  ],
   backend: [
     'Laravel',
     'NestJS',
@@ -73,27 +93,40 @@ const skills = {
 ---
 
 <InfoLayout
-  title='About — Gabriel Castillo, Backend Developer & Co-founder of Vulcano'
-  description='Gabriel Castillo, Backend Developer with 3+ years of experience across multinational projects and co-founder of Vulcano (software, data and automation studio). Builds APIs, messaging systems and content platforms with Laravel, NestJS and Python.'
+  title='About — Gabriel Castillo, Backend Developer & BI / Data Analytics'
+  description='Gabriel Castillo, Backend Developer with 3+ years of experience across multinational projects, currently a BI & Data Analytics intern at Keyrus Colombia. Builds APIs, messaging systems and dashboards with Laravel, NestJS, Python, Tableau and Power BI.'
 >
   <div class='p-4 sm:pt-8 sm:px-12 pb-20 min-h-dvh flex flex-col gap-16'>
     <div class='space-y-4 sm:space-y-8'>
-      <H1> About Gabriel </H1>
+      <div class='flex flex-col sm:flex-row sm:items-center gap-5'>
+        <img
+          src={`${base}avatar.png`}
+          alt='Pixel-art portrait of Gabriel Castillo'
+          width='96'
+          height='96'
+          class='w-20 h-20 sm:w-24 sm:h-24 shrink-0 rounded-2xl border border-zinc-700/60'
+        />
+        <H1> About Gabriel </H1>
+      </div>
 
       <p class='text-xl xl:text-2xl text-zinc-400 text-balance max-w-3xl'>
         Backend Developer with <span class='text-zinc-100'
           >3+ years of experience</span
         > building scalable REST APIs, microservices architectures, and containerized
-        applications. Proficient in
-        <span class='text-zinc-100'>Laravel, NestJS, and Python</span> with hands-on
-        experience in Docker, AWS, CI/CD pipelines, and Linux server administration.
+        applications with
+        <span class='text-zinc-100'>Laravel, NestJS, and Python</span>, plus
+        hands-on experience in Docker, AWS, CI/CD pipelines, and Linux server
+        administration.
       </p>
 
       <p class='text-lg xl:text-xl text-zinc-400 text-balance max-w-3xl'>
-        Focused on backend systems design, infrastructure automation, and cloud
-        deployments. I've worked on applications that process large volumes of
-        information, from interbank messaging systems to inventory management
-        platforms handling thousands of products.
+        Currently working in business intelligence consulting at <span
+          class='text-zinc-100'>Keyrus</span
+        >, applying SQL and Python to data preparation and building dashboards in
+        <span class='text-zinc-100'>Tableau and Power BI</span>. The backend years
+        are what make the difference there: I've built the systems that produce
+        the data before having to explain it — from interbank messaging to
+        inventory platforms handling thousands of products.
       </p>
     </div>
 
@@ -197,6 +230,19 @@ const skills = {
           <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
               skills.languages.map((skill) => (
+                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
+                  {skill}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+          <h3 class='text-sm text-zinc-400 mb-2'>BI &amp; Data</h3>
+          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
+            {
+              skills.data.map((skill) => (
                 <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
                   {skill}
                 </li>

@@ -10,9 +10,9 @@ const base = import.meta.env.BASE_URL.endsWith('/')
   : `${import.meta.env.BASE_URL}/`;
 
 const defaultTitle =
-  'Gabriel Castillo | Backend Developer & Co-founder of Vulcano';
+  'Gabriel Castillo | Backend Developer & BI / Data Analytics';
 const defaultDescription =
-  'Gabriel Castillo is a Backend Developer from Tunja, Colombia, and co-founder of Vulcano, a software, data and automation engineering studio. 3+ years building scalable REST APIs, microservices and containerized applications with Laravel, NestJS and Python, plus Docker, AWS, CI/CD pipelines and Linux server administration.';
+  'Gabriel Castillo is a Backend Developer from Tunja, Colombia, currently a BI & Data Analytics intern at Keyrus Colombia and co-founder of Vulcano, a software, data and automation engineering studio. 3+ years building scalable REST APIs, microservices and containerized applications with Laravel, NestJS and Python, now building dashboards with Tableau and Power BI on top of SQL and pandas.';
 
 const pageTitle = title ?? defaultTitle;
 const pageDescription = description ?? defaultDescription;
@@ -42,15 +42,34 @@ const vulcanoLd = {
   sameAs: ['https://www.linkedin.com/company/vulcanoia'],
 };
 
+// Keyrus es una entidad ya conocida por los buscadores: declararla con su sitio
+// y su LinkedIn permite que la relación "trabaja en" se reconcilie con la
+// organización real y no con una cadena de texto suelta.
+const keyrusId = 'https://www.keyrus.com/#organization';
+
+const keyrusLd = {
+  '@type': 'Organization',
+  '@id': keyrusId,
+  name: 'Keyrus Colombia S.A.S.',
+  url: 'https://www.keyrus.com/co/es',
+  description:
+    'International data intelligence and digital transformation consultancy, operating in Data & Analytics, Cloud, Digital Transformation and Digital Commerce.',
+  sameAs: ['https://www.linkedin.com/company/keyrus'],
+};
+
 const personLd = {
   '@type': 'Person',
   '@id': `${new URL(base, siteUrl).href}#gabriel-castillo`,
   name: 'Gabriel Castillo',
   alternateName: 'gabo8191',
   url: new URL(base, siteUrl).href,
-  jobTitle: ['Backend Developer', 'Co-founder at Vulcano'],
+  jobTitle: [
+    'Backend Developer',
+    'BI & Data Analytics Intern at Keyrus',
+    'Co-founder at Vulcano',
+  ],
   description: defaultDescription,
-  image: ogImage,
+  image: new URL(`${base}avatar.png`, siteUrl).href,
   email: 'mailto:gabo8191@gmail.com',
   address: {
     '@type': 'PostalAddress',
@@ -60,9 +79,9 @@ const personLd = {
   },
   nationality: { '@type': 'Country', name: 'Colombia' },
   knowsLanguage: ['es', 'en'],
-  // Doble arista hacia Vulcano: fundador y responsable técnico
-  worksFor: { '@id': vulcanoId },
-  affiliation: { '@id': vulcanoId },
+  // Dos vínculos laborales vigentes: la práctica en Keyrus y el estudio propio
+  worksFor: [{ '@id': keyrusId }, { '@id': vulcanoId }],
+  affiliation: [{ '@id': keyrusId }, { '@id': vulcanoId }],
   alumniOf: {
     '@type': 'EducationalOrganization',
     name: 'Universidad Pedagógica y Tecnológica de Colombia (UPTC)',
@@ -80,6 +99,13 @@ const personLd = {
   ],
   knowsAbout: [
     'Backend development',
+    'Business intelligence',
+    'Data analytics',
+    'Data visualization',
+    'Tableau',
+    'Power BI',
+    'SQL',
+    'pandas',
     'Laravel',
     'NestJS',
     'Python',
@@ -97,7 +123,7 @@ const personLd = {
   ],
   seeks: {
     '@type': 'Demand',
-    name: 'Remote backend engineering roles and freelance projects',
+    name: 'Remote backend engineering and BI / data analytics roles, plus freelance projects',
   },
   // Canal de contacto explícito: describir quién eres no basta para que te
   // escriban, hay que declarar por dónde y en qué idiomas.
@@ -130,6 +156,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     vulcanoLd,
+    keyrusLd,
     personLd,
     {
       '@type': 'ProfilePage',
@@ -167,7 +194,7 @@ const jsonLd = {
     <meta property='og:image' content={ogImage} />
     <meta property='og:image:width' content='1200' />
     <meta property='og:image:height' content='630' />
-    <meta property='og:image:alt' content='Gabriel Castillo — Backend Developer' />
+    <meta property='og:image:alt' content='Gabriel Castillo — Backend Developer and BI & Data Analytics' />
 
     <!-- Twitter Meta Tags -->
     <meta name='twitter:card' content='summary_large_image' />
@@ -178,7 +205,7 @@ const jsonLd = {
     <meta name='twitter:title' content={pageTitle} />
     <meta name='twitter:description' content={pageDescription} />
     <meta name='twitter:image' content={ogImage} />
-    <meta name='twitter:image:alt' content='Gabriel Castillo — Backend Developer' />
+    <meta name='twitter:image:alt' content='Gabriel Castillo — Backend Developer and BI & Data Analytics' />
 
     <script
       type='application/ld+json'

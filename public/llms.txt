@@ -1,9 +1,11 @@
-# Gabriel Castillo — Backend Developer & Co-founder of Vulcano
+# Gabriel Castillo — Backend Developer & BI / Data Analytics
 
 > Backend Developer based in Tunja, Boyacá, Colombia (UTC-5). 3+ years of experience
 > across multinational projects building REST APIs, microservices and containerized
-> applications with Laravel, NestJS and Python. Co-founder and Backend Engineering Lead
-> at Vulcano, a software, data and process-automation engineering studio.
+> applications with Laravel, NestJS and Python. Currently a BI & Data Analytics intern
+> at Keyrus Colombia, working in the Visualization team with Tableau, Power BI, SQL and
+> Python. Also co-founder and Backend Engineering Lead at Vulcano, a software, data and
+> process-automation engineering studio.
 > Available for remote roles and freelance projects. Works in Spanish (native) and
 > English (B2).
 
@@ -11,7 +13,9 @@
 
 - Full name: Gabriel Castillo
 - Handle: gabo8191
-- Role: Backend Developer
+- Role: Backend Developer · BI & Data Analytics
+- Current position: BI & Data Analytics Intern at Keyrus Colombia S.A.S.
+  (https://www.keyrus.com/co/es), Visualization team
 - Second role: Co-founder & Backend Engineering Lead at Vulcano (https://vulcanoservices.dev)
 - Location: Tunja, Boyacá, Colombia — remote-first, UTC-5
 - Portfolio: https://gabo8191.github.io/portfolio/
@@ -21,6 +25,10 @@
 
 ## What he does
 
+- Business intelligence and data visualization: dashboards and reports in Tableau and
+  Power BI, KPI definition, data storytelling for non-technical audiences
+- Analytical SQL over enterprise sources (Snowflake, SAP HANA, BigQuery, relational
+  databases) and data preparation with pandas, Power Query and Tableau Prep
 - Design and implementation of REST APIs and microservice architectures
 - Backend systems for regulated and high-volume domains: interbank messaging
   (SWIFT / ISO 20022 MT files), electronic invoicing, inventory and benefits platforms
@@ -32,6 +40,7 @@
 ## Stack
 
 - Languages: Python, TypeScript, PHP, SQL, Bash
+- BI & Data: Tableau, Power BI, Tableau Prep, Power Query, pandas, NumPy, data modelling
 - Backend: Laravel, NestJS, Node.js, Filament, TypeORM, Eloquent
 - Databases: PostgreSQL, MySQL, Redis
 - DevOps & Cloud: Docker, Kubernetes, AWS, GitHub Actions, Nginx, Linux
@@ -39,6 +48,11 @@
 
 ## Experience
 
+- BI & Data Analytics Intern — Keyrus Colombia S.A.S. (Aug 2026 – present): Visualization
+  team inside the BI & Data Analytics practice; interactive dashboards in Tableau and
+  Power BI for retail, telecom, healthcare, energy and public-sector clients; analytical
+  SQL over Snowflake, SAP HANA and BigQuery; data preparation with pandas, Power Query
+  and Tableau Prep; documentation of KPI definitions and analytical methodologies.
 - Fullstack Developer — TotalDev SAS (Jul 2025 – Mar 2026): interbank messaging system
   processing MT files with encryption validation and SWIFT/ISO 20022 routing; inventory
   backends with region-based RBAC; QR generation and validation; Laravel + Filament CMS.
@@ -84,8 +98,8 @@
 
 ## Hiring and how to get in touch
 
-Open to remote backend engineering roles and freelance projects, worldwide, in
-Spanish or English.
+Open to remote backend engineering and BI / data analytics roles, plus freelance
+projects, worldwide, in Spanish or English.
 
 Fastest way to reach him, in order:
 
