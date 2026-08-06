@@ -1,336 +1,88 @@
 ---
 import H1 from '../components/h1.astro';
 import InfoLayout from '../layouts/InfoLayout.astro';
-import ProjectGrid from '../components/project-grid';
-import type { Project } from '../components/project-grid';
+import Link from '../components/link.astro';
+import ProjectsExplorer from '../components/projects-explorer';
+import { FEATURED, PROJECTS } from '../data/projects';
+import { PROFESSIONAL_PROJECTS } from '../data/professional';
 
-// ── Open Source: proyectos propios mantenidos en abierto ──────────────
-const openSource = [
-  {
-    emoji: '📚',
-    title: 'TomoReader',
-    tagline: 'Desktop comic & manga reader',
-    description:
-      'Eye-friendly desktop reader for CBR/CBZ comics and manga. Organize your library in pockets, resume where you left off, and read with comfort-focused themes (sepia, dark, OLED). Built with a Rust core for fast archive handling and a SQLite-backed library.',
-    technologies: ['Rust', 'Tauri 2', 'React', 'TypeScript', 'SQLite'],
-    githubUrl: 'https://github.com/gabo8191/TomoReader',
-  },
-  {
-    emoji: '🗣️',
-    title: 'AutoTranslate-Anki',
-    tagline: 'Anki add-on for vocabulary',
-    description:
-      'Anki add-on that auto-fills the translation of every note in a deck with one click, using a free translation endpoint (no API key). Configurable language pairs and field mapping — ideal for learners who capture vocabulary on the go.',
-    technologies: ['Python', 'Anki', 'Add-on'],
-    githubUrl: 'https://github.com/gabo8191/AutoTranslate-Anki',
-  },
-  {
-    emoji: '📄',
-    title: 'CV-Maker',
-    tagline: 'Elegant résumé builder',
-    description:
-      'Build an elegant résumé with dynamic inputs, a live A4 preview and one-click PDF export. Add and reorder sections on the fly; everything runs client-side with no sign-up. Born from turning my own LaTeX CV into a tool anyone can reuse.',
-    technologies: ['React', 'Vite', 'TypeScript', 'Tailwind'],
-    githubUrl: 'https://github.com/gabo8191/CV-Maker',
-    liveUrl: 'https://gabo8191.github.io/CV-Maker/',
-  },
-];
-
-// ── Proyectos personales y académicos (grilla filtrable) ──────────────
-const projects: Project[] = [
-  // Data & AI
-  {
-    title: 'ML-Algorithms',
-    description:
-      'End-to-end machine learning pipeline that predicts coffee-shop success from operational metrics, comparing six algorithms (logistic regression, decision trees, KNN and more) across the full model-development workflow.',
-    technologies: ['Python', 'scikit-learn', 'Pandas'],
-    category: 'Data & AI',
-    githubUrl: 'https://github.com/gabo8191/ML-Algorithms',
-  },
-  {
-    title: 'CatsDogs AI',
-    description:
-      'Binary image classifier (cats vs dogs) using Transfer Learning with EfficientNetB0 and PyTorch, served through a complete web interface for uploading and predicting images.',
-    technologies: ['Python', 'PyTorch', 'Deep Learning'],
-    category: 'Data & AI',
-    githubUrl: 'https://github.com/gabo8191/model-image-cat-dogs',
-  },
-  {
-    title: 'NLP — Student Regulations Classifier',
-    description:
-      'NLP system that ingests university regulation PDFs, extracts and preprocesses the text, and automatically classifies each section into predefined categories.',
-    technologies: ['Python', 'NLP', 'scikit-learn'],
-    category: 'Data & AI',
-    githubUrl: 'https://github.com/gabo8191/NLP-Reglamento',
-  },
-  {
-    title: 'KNN — Titanic',
-    description:
-      'K-Nearest Neighbors classifier applied to the Titanic dataset, covering data cleaning, feature preparation and model evaluation.',
-    technologies: ['Python', 'scikit-learn'],
-    category: 'Data & AI',
-    githubUrl: 'https://github.com/gabo8191/knn-clasification',
-  },
-  {
-    title: 'Synthetic Data Generation',
-    description:
-      'Pipeline for generating synthetic tabular data based on the Titanic dataset, with preprocessing and processed-dataset outputs for downstream experimentation.',
-    technologies: ['Python', 'Pandas'],
-    category: 'Data & AI',
-    githubUrl: 'https://github.com/gabo8191/synthetic_data',
-  },
-  {
-    title: 'Savings Plan Generator',
-    description:
-      'Web application that builds optimized daily savings plans and exports them to Excel for easy tracking.',
-    technologies: ['Python', 'Flask', 'OpenPyXL'],
-    category: 'Data & AI',
-    githubUrl: 'https://github.com/gabo8191/savings-plan-generator',
-  },
-
-  // Backend & Microservices
-  {
-    title: 'Kafka EDA Microservices',
-    description:
-      'Event-Driven Architecture with Apache Kafka and Spring Boot: three independent microservices coordinated behind a Spring Cloud Gateway, demonstrating asynchronous messaging patterns.',
-    technologies: ['Java', 'Spring Boot', 'Kafka', 'Spring Cloud'],
-    category: 'Backend',
-    githubUrl: 'https://github.com/gabo8191/KafkaEDA-',
-  },
-  {
-    title: 'Streaming Microservices (Kafka + Redis)',
-    description:
-      'Netflix-style streaming simulation with three specialized consumers — analytics, notifications and content recap — using Kafka for messaging, Redis for caching and full Docker Compose orchestration.',
-    technologies: ['Kafka', 'Redis', 'Express.js', 'Docker'],
-    category: 'Backend',
-    githubUrl: 'https://github.com/gabo8191/lab5-kafka-redis',
-  },
-  {
-    title: 'API Gateway + Load Balancer',
-    description:
-      'Spring-based API Gateway featuring load balancing and access-token authentication, routing traffic to backend services.',
-    technologies: ['Java', 'Spring Cloud', 'JWT'],
-    category: 'Backend',
-    githubUrl: 'https://github.com/gabo8191/LoadBalancer-APIGateway-AccessToken',
-  },
-  {
-    title: 'Eureka Service Discovery',
-    description:
-      'Service discovery setup with Netflix Eureka and Spring Cloud, registering and resolving microservices dynamically.',
-    technologies: ['Java', 'Spring Boot', 'Eureka'],
-    category: 'Backend',
-    githubUrl: 'https://github.com/gabo8191/eureka_spring_project',
-  },
-  {
-    title: 'Books & Publishers (JPA)',
-    description:
-      'Web application for managing books and publishers built with Spring Boot 3.2 and Java 17, focused on JPA entity relationships and persistence.',
-    technologies: ['Java', 'Spring Boot', 'JPA'],
-    category: 'Backend',
-    githubUrl: 'https://github.com/gabo8191/relation-JPA',
-  },
-  {
-    title: 'GraphQL API with Docker',
-    description:
-      'GraphQL API built with NestJS and containerized with Docker, exposing a typed schema and resolvers.',
-    technologies: ['NestJS', 'GraphQL', 'Docker'],
-    category: 'Backend',
-    githubUrl: 'https://github.com/gabo8191/docker-graphql',
-  },
-  {
-    title: 'Laravel Passport Secure API',
-    description:
-      'Secure and scalable REST API using Laravel Passport for OAuth2 authentication, with documented and tested endpoints accessible only to authorized users.',
-    technologies: ['Laravel', 'PHP', 'OAuth2'],
-    category: 'Backend',
-    githubUrl: 'https://github.com/gabo8191/API-LaravelPassport',
-  },
-
-  // DevOps & Infra
-  {
-    title: 'IaaS & Virtualization',
-    description:
-      'Academic IaaS project (UPTC) implementing a network of three virtual machines, covering hypervisor configuration, networking and provisioning across nodes.',
-    technologies: ['Linux', 'Virtualization', 'Networking'],
-    category: 'DevOps & Infra',
-    githubUrl: 'https://github.com/gabo8191/Proyecto-hipervisores',
-  },
-  {
-    title: 'Proxmox Documentation',
-    description:
-      'Hands-on documentation and notes for setting up and operating Proxmox VE, from installation to virtual machine and container management.',
-    technologies: ['Proxmox', 'Linux', 'Docs'],
-    category: 'DevOps & Infra',
-    githubUrl: 'https://github.com/gabo8191/proxmox-docs',
-  },
-  {
-    title: 'Oracle DB in Docker',
-    description:
-      'Ready-to-deploy Docker setup for Oracle Database, removing the need for local installation and giving teams instant database provisioning.',
-    technologies: ['Docker', 'Oracle', 'PL/SQL'],
-    category: 'DevOps & Infra',
-    githubUrl: 'https://github.com/gabo8191/OracleDBDocker',
-  },
-
-  // Security
-  {
-    title: 'Custom Block Cipher',
-    description:
-      'Custom block-cipher implementing substitution, transposition and XOR operations driven by pseudorandom number generation, with a clean web UI for encryption and decryption.',
-    technologies: ['Express.js', 'JavaScript', 'TailwindCSS'],
-    category: 'Security',
-    githubUrl: 'https://github.com/gabo8191/cipher_algorithm',
-  },
-  {
-    title: 'Phishing Explorer',
-    description:
-      'Java tool for exploring and analyzing phishing URLs, illustrating detection and inspection techniques.',
-    technologies: ['Java'],
-    category: 'Security',
-    githubUrl: 'https://github.com/gabo8191/phising-explorer',
-  },
-
-  // Web & PWA
-  {
-    title: 'Angular PWA',
-    description:
-      'Progressive Web App built with Angular, exploring installability, offline support and modern Angular CLI tooling.',
-    technologies: ['Angular', 'TypeScript', 'PWA'],
-    category: 'Web & PWA',
-    githubUrl: 'https://github.com/gabo8191/pwa-angular',
-  },
-  {
-    title: 'PWA Caching Strategies',
-    description:
-      'Demonstration of service-worker caching strategies (cache-first, network-first, stale-while-revalidate) and their trade-offs in a Progressive Web App.',
-    technologies: ['JavaScript', 'Service Workers', 'PWA'],
-    category: 'Web & PWA',
-    githubUrl: 'https://github.com/gabo8191/caching-strategy-project',
-  },
-  {
-    title: 'Habit Tracker PWA',
-    description:
-      'Installable habit-tracking Progressive Web App for building and maintaining daily routines.',
-    technologies: ['JavaScript', 'PWA'],
-    category: 'Web & PWA',
-    githubUrl: 'https://github.com/gabo8191/habit-tracker-pwa',
-  },
-  {
-    title: 'AI Calendar',
-    description:
-      'AI-assisted calendar application built with Next.js, exploring smart scheduling on a modern React stack.',
-    technologies: ['Next.js', 'TypeScript', 'React'],
-    category: 'Web & PWA',
-    githubUrl: 'https://github.com/gabo8191/calendar-ai',
-  },
-];
-
-// ── Trabajo profesional (código confidencial) ─────────────────────────
-const professionalProjects = [
-  {
-    title: 'Biosimtec — Corporate Site with Custom CMS',
-    company: 'TotalDev',
-    description:
-      'Evolved a React site (from Figma designs) into a fully manageable platform with a custom Filament CMS, TanStack Query caching, role & permission system and skeleton loading for a smoother UX.',
-    technologies: ['React', 'Laravel', 'MySQL', 'Docker', 'Filament'],
-    liveUrl: 'https://www.biosimtec.com/',
-  },
-  {
-    title: 'Chivas House — Event Management Platform',
-    company: 'TotalDev',
-    description:
-      'Platform for an exclusive Chivas Regal event: age validation, pseudo-random guest code generation, QR generation/reading, automated email delivery and a PWA for staff working with limited connectivity.',
-    technologies: ['React', 'Laravel', 'TypeScript', 'PWA'],
-    liveUrl: 'https://chivas-house.co/age-validation',
-  },
-  {
-    title: 'Invex — Electoral Inventory Platform',
-    company: 'TotalDev',
-    description:
-      'Inventory platform for Thomas Greg & Sons handling Colombian electoral processes: role/permission system segmented by municipality, optimized SQL views, dynamic dashboards and full traceability.',
-    technologies: ['Laravel', 'React', 'MySQL', 'Docker'],
-    liveUrl: 'https://www.invex.com.co/login/',
-  },
-  {
-    title: 'Materiales de la Sabana — Inventory System',
-    company: 'TotalDev',
-    description:
-      'Hybrid React + Laravel inventory system with a Filament admin panel: merchandise inflow/outflow management, reporting, role module and QR-based vehicle identification.',
-    technologies: ['React', 'Laravel', 'MySQL', 'Filament'],
-  },
-  {
-    title: 'PARQ — Microservices Backend',
-    company: 'PARQ',
-    description:
-      'Maintained and evolved five NestJS microservices over a shared PostgreSQL database: legacy refactoring, pagination, bulk-load queues, timezone-aware cron jobs and Swagger documentation.',
-    technologies: ['NestJS', 'PostgreSQL', 'Docker', 'TypeORM', 'Swagger'],
-    liveUrl: 'https://app.parqco.com/sign-in',
-  },
-  {
-    title: 'Electronic Billing Middleware',
-    company: 'PARQ',
-    description:
-      'Electronic invoicing middleware integrating with Colombian providers (Siigo, Alegra, SATCOM), with transaction logging, error handling and regulatory compliance for high-volume processing.',
-    technologies: ['Laravel', 'PHP', 'PostgreSQL'],
-  },
-  {
-    title: 'Membeers — AB InBev Benefits Platform',
-    company: 'Serempre',
-    description:
-      'Backend for a regional corporate benefits platform across 5+ Latin American countries: scalable Laravel architecture, complex MySQL/PL-SQL reporting, design patterns and automated cron jobs.',
-    technologies: ['Laravel', 'PHP', 'MySQL'],
-  },
-  {
-    title: 'Story Training — Educational Platform',
-    company: 'Serempre',
-    description:
-      'Evolved an educational platform with international clients in Spain: Laravel backend, Orchid admin panel, custom Moodle plugin and Cloudinary integration for multimedia content.',
-    technologies: ['Laravel', 'Moodle', 'Cloudinary'],
-  },
-];
+const firstYear = PROJECTS.map((p) => p.date).sort()[0].slice(0, 4);
+const lastYear = PROJECTS.map((p) => p.date)
+  .sort()
+  .at(-1)!
+  .slice(0, 4);
 ---
 
 <InfoLayout
   title='Projects — Gabriel Castillo'
-  description='Open source apps, data & AI experiments, backend microservices and professional work by Gabriel Castillo.'
+  description='Personal and open source projects by Gabriel Castillo, on a timeline from 2023 to 2026: desktop and web apps, data & AI pipelines, backend microservices, PWAs and infrastructure.'
 >
   <div class='p-4 sm:pt-8 sm:px-12 pb-20 min-h-dvh'>
     <H1>Projects</H1>
     <p class='mt-4 text-lg text-zinc-400 max-w-2xl text-balance'>
-      A selection of what I build — from open source apps and data/AI
-      experiments to backend microservices, infrastructure and professional
-      work.
+      {PROJECTS.length} personal and open source projects between {firstYear} and {
+        lastYear
+      }. The timeline below shows what I built and when — filter it by stack to
+      see where each technology shows up.
     </p>
 
-    <!-- ── Open Source ─────────────────────────────────────────── -->
-    <section class='mt-12'>
+    <!-- ── Explorador: lo primero de la página, sin nada que lo tape ── -->
+    <section class='mt-10' aria-labelledby='timeline'>
+      <h2 id='timeline' class='sr-only'>Project timeline</h2>
+      <ProjectsExplorer projects={PROJECTS} client:load />
+    </section>
+
+    <!-- ── Destacados: los que merecen contexto ────────────────────── -->
+    <section class='mt-16' aria-labelledby='selected-work'>
       <div class='flex items-baseline justify-between gap-4 mb-6'>
-        <h2 class='text-xl text-zinc-200'>Open Source</h2>
-        <span class='text-sm text-zinc-400'
-          >Apps I maintain in the open</span
-        >
+        <h2 id='selected-work' class='text-xl text-zinc-200'>Selected work</h2>
+        <span class='text-sm text-zinc-400'>The ones worth explaining</span>
       </div>
 
       <div class='grid grid-cols-1 lg:grid-cols-2 gap-5'>
         {
-          openSource.map((project) => (
-            <a
-              href={project.githubUrl}
-              target='_blank'
-              rel='noopener noreferrer'
-              aria-label={`${project.title} — view on GitHub`}
-              class='group relative overflow-hidden p-6 rounded-2xl bg-zinc-800/40 border border-zinc-700/50 hover:border-zinc-500 transition-all duration-300'
-            >
+          FEATURED.map((project) => (
+            <article class='group relative overflow-hidden p-6 rounded-2xl bg-zinc-800/40 border border-zinc-700/50 hover:border-zinc-500 transition-colors duration-300'>
               <div class='absolute -top-16 -right-16 w-40 h-40 rounded-full bg-gradient-to-br from-violet-500/20 to-indigo-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
+
               <div class='relative'>
                 <div class='flex items-center gap-3 mb-1'>
-                  <span class='text-2xl'>{project.emoji}</span>
-                  <h3 class='text-xl text-zinc-100 group-hover:text-white transition-colors'>
-                    {project.title}
-                  </h3>
+                  <span class='text-2xl' aria-hidden='true'>
+                    {project.featured!.emoji}
+                  </span>
+                  <h3 class='text-xl text-zinc-100'>{project.title}</h3>
                 </div>
-                <p class='text-sm text-violet-300/80 mb-3'>{project.tagline}</p>
-                <p class='text-sm text-zinc-400 mb-4'>{project.description}</p>
+                <p class='text-sm text-violet-300/80 mb-4'>
+                  {project.featured!.tagline}
+                </p>
+
+                <dl class='space-y-3 mb-4'>
+                  <div>
+                    <dt class='text-[11px] uppercase tracking-wider text-zinc-500 mb-0.5'>
+                      The problem
+                    </dt>
+                    <dd class='text-sm text-zinc-400 m-0'>
+                      {project.featured!.problem}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt class='text-[11px] uppercase tracking-wider text-zinc-500 mb-0.5'>
+                      What I built
+                    </dt>
+                    <dd class='text-sm text-zinc-400 m-0'>
+                      {project.featured!.approach}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt class='text-[11px] uppercase tracking-wider text-zinc-500 mb-0.5'>
+                      Where it landed
+                    </dt>
+                    <dd class='text-sm text-zinc-400 m-0'>
+                      {project.featured!.outcome}
+                    </dd>
+                  </div>
+                </dl>
+
                 <div class='flex flex-wrap gap-1.5 mb-4'>
                   {project.technologies.map((tech) => (
                     <span class='px-2 py-0.5 text-xs text-zinc-300 bg-zinc-700/60 rounded'>
@@ -338,115 +90,95 @@ const professionalProjects = [
                     </span>
                   ))}
                 </div>
-                <div class='flex items-center gap-1 text-sm text-zinc-400 group-hover:text-zinc-200 transition-colors'>
-                  <span>View on GitHub</span>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    class='w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    stroke-width='2'
-                  >
-                    <path d='M5 12h14M12 5l7 7-7 7' />
-                  </svg>
+
+                <div class='flex flex-wrap items-center gap-4'>
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      class='inline-flex items-center gap-1 text-sm text-zinc-400 hover:text-zinc-100 transition-colors'
+                    >
+                      <span>View on GitHub</span>
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        class='w-4 h-4'
+                        viewBox='0 0 24 24'
+                        fill='none'
+                        stroke='currentColor'
+                        stroke-width='2'
+                        aria-hidden='true'
+                      >
+                        <path d='M5 12h14M12 5l7 7-7 7' />
+                      </svg>
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      class='inline-flex items-center gap-1 text-sm text-violet-300 hover:text-violet-200 transition-colors'
+                    >
+                      <span>Try it live</span>
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        class='w-4 h-4'
+                        viewBox='0 0 24 24'
+                        fill='none'
+                        stroke='currentColor'
+                        stroke-width='2'
+                        aria-hidden='true'
+                      >
+                        <path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6' />
+                        <polyline points='15 3 21 3 21 9' />
+                        <line x1='10' y1='14' x2='21' y2='3' />
+                      </svg>
+                    </a>
+                  )}
                 </div>
               </div>
-            </a>
+            </article>
           ))
         }
       </div>
     </section>
 
-    <!-- ── Personal & academic (filtrable) ─────────────────────── -->
-    <section class='mt-16'>
-      <div class='flex items-baseline justify-between gap-4 mb-6'>
-        <h2 class='text-xl text-zinc-200'>Personal &amp; Academic</h2>
-        <span class='text-sm text-zinc-400'>Filter by area</span>
+    <!-- ── Puente al trabajo de cliente, que vive en su propia página ── -->
+    <section
+      class='mt-16 p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4'
+    >
+      <div>
+        <h2 class='text-lg text-zinc-200'>Client work</h2>
+        <p class='text-sm text-zinc-400 mt-1 max-w-lg'>
+          {PROFESSIONAL_PROJECTS.length} enterprise systems delivered at TotalDev,
+          PARQ and Serempre — interbank messaging, electronic invoicing, inventory
+          and benefits platforms. Confidential source, documented scope.
+        </p>
       </div>
-      <ProjectGrid projects={projects} client:load />
+      <Link href='/work' variant='secondary'>See client work</Link>
     </section>
 
-    <!-- ── Professional work ───────────────────────────────────── -->
-    <section class='mt-16'>
-      <div class='flex items-baseline justify-between gap-4 mb-2'>
-        <h2 class='text-xl text-zinc-200'>Professional Work</h2>
-        <span class='text-sm text-zinc-400'>Source code is confidential</span>
-      </div>
-      <p class='text-sm text-zinc-400 mb-6 max-w-2xl'>
-        Enterprise projects delivered at TotalDev, PARQ and Serempre.
-      </p>
-
-      <div class='grid grid-cols-1 lg:grid-cols-2 gap-4'>
-        {
-          professionalProjects.map((project) => (
-            <div class='group p-5 rounded-xl bg-zinc-800/30 border border-zinc-700/30 hover:border-zinc-700/60 transition-all'>
-              <div class='flex items-start justify-between gap-4 mb-2'>
-                <h3 class='text-base text-zinc-200'>{project.title}</h3>
-                <span class='shrink-0 px-2 py-0.5 text-[11px] text-zinc-400 bg-zinc-700/30 rounded-full'>
-                  {project.company}
-                </span>
-              </div>
-              <p class='text-sm text-zinc-400 mb-3'>{project.description}</p>
-              <div class='flex flex-wrap gap-1.5 mb-3'>
-                {project.technologies.map((tech) => (
-                  <span class='px-1.5 py-0.5 text-xs text-zinc-400 bg-zinc-700/50 rounded'>
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  class='inline-flex items-center gap-1 text-sm text-zinc-400 hover:text-zinc-100 transition-colors'
-                >
-                  <span>View Live</span>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    class='w-4 h-4'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    stroke-width='2'
-                  >
-                    <path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6' />
-                    <polyline points='15 3 21 3 21 9' />
-                    <line x1='10' y1='14' x2='21' y2='3' />
-                  </svg>
-                </a>
-              )}
-              {!project.liveUrl && (
-                <span class='inline-block text-xs text-zinc-600'>
-                  Confidential source
-                </span>
-              )}
-            </div>
-          ))
-        }
-      </div>
-
-      <div class='mt-10 text-center'>
-        <a
-          href='https://github.com/gabo8191'
-          target='_blank'
-          rel='noopener noreferrer'
-          class='inline-flex items-center gap-2 px-5 py-2.5 text-sm text-zinc-400 hover:text-zinc-100 border border-zinc-700 hover:border-zinc-500 rounded-full transition-all'
+    <div class='mt-10 text-center'>
+      <a
+        href='https://github.com/gabo8191'
+        target='_blank'
+        rel='noopener noreferrer'
+        class='inline-flex items-center gap-2 px-5 py-2.5 text-sm text-zinc-400 hover:text-zinc-100 border border-zinc-700 hover:border-zinc-500 rounded-full transition-all'
+      >
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          class='w-5 h-5'
+          viewBox='0 0 24 24'
+          fill='currentColor'
+          aria-hidden='true'
         >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            class='w-5 h-5'
-            viewBox='0 0 24 24'
-            fill='currentColor'
-          >
-            <path
-              d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'
-            ></path>
-          </svg>
-          <span>View all projects on GitHub</span>
-        </a>
-      </div>
-    </section>
+          <path
+            d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'
+          ></path>
+        </svg>
+        <span>View all repositories on GitHub</span>
+      </a>
+    </div>
   </div>
 </InfoLayout>
