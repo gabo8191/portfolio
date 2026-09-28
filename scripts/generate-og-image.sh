@@ -26,8 +26,8 @@ HEIGHT=630
 
 # --- Textos --------------------------------------------------------------------
 # El "&" debe ir como "&amp;" (es XML).
-TECH="// BACKEND DEVELOPER · APIs &amp; MICROSERVICES"
-SUBTITLE="Laravel · NestJS · Python · Docker · AWS"
+TECH="// BACKEND · INTEGRATIONS · SQL"
+SUBTITLE="Production support · Internal tools"
 
 # Fuentes requeridas: "archivo|URL".
 FONTS=(
@@ -86,11 +86,11 @@ fc-cache -f "$XDG_DATA_HOME/fonts" >/dev/null 2>&1 || true
 render() {
   local svg="$1" png="$2"
   case "$RENDERER" in
-    rsvg)     rsvg-convert -w "$WIDTH" -h "$HEIGHT" -o "$png" "$svg" ;;
+    rsvg) rsvg-convert -w "$WIDTH" -h "$HEIGHT" -o "$png" "$svg" ;;
     inkscape) inkscape "$svg" --export-type=png --export-filename="$png" \
-                --export-width="$WIDTH" --export-height="$HEIGHT" >/dev/null 2>&1 ;;
-    magick)   magick -background none -density 96 "$svg" -resize "${WIDTH}x${HEIGHT}" "$png" ;;
-    convert)  convert -background none -density 96 "$svg" -resize "${WIDTH}x${HEIGHT}" "$png" ;;
+      --export-width="$WIDTH" --export-height="$HEIGHT" >/dev/null 2>&1 ;;
+    magick) magick -background none -density 96 "$svg" -resize "${WIDTH}x${HEIGHT}" "$png" ;;
+    convert) convert -background none -density 96 "$svg" -resize "${WIDTH}x${HEIGHT}" "$png" ;;
   esac
 }
 
@@ -107,7 +107,7 @@ svg="${svg//@@TECH@@/$(esc "$TECH")}"
 svg="${svg//@@SUBTITLE@@/$(esc "$SUBTITLE")}"
 
 tmp_svg="$FC_HOME/og.svg"
-printf '%s' "$svg" > "$tmp_svg"
+printf '%s' "$svg" >"$tmp_svg"
 
 echo "Generando og-image.png con $RENDERER ..."
 render "$tmp_svg" "$OUT"

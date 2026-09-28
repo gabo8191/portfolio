@@ -1,19 +1,19 @@
 import { GrainGradient, type GrainGradientProps } from '@paper-design/shaders-react';
 import { useEffect, useRef, useState } from 'react';
 
-// Presupuesto de píxeles del shader. Por defecto la librería usa
-// minPixelRatio 2 y hasta 1920*1080*4 (8,3 Mpx), lo que para un fondo
-// decorativo dispara el coste del fragment shader en cada frame.
+// Keep the decorative shader's fragment workload within a small pixel budget.
 const MAX_PIXEL_COUNT = 640 * 360;
 const MIN_PIXEL_RATIO = 1;
 
-export default function GrainGradientBackground(props: GrainGradientProps) {
+type BackgroundProps = GrainGradientProps & { showControls?: boolean };
+
+export default function GrainGradientBackground({ showControls = false, ...props }: BackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(true);
+  const [paused, setPaused] = useState(false);
+  const [prefersReduced, setPrefersReduced] = useState(false);
 
-  // La librería ya pausa el rAF con la pestaña oculta y cuando speed es 0,
-  // pero no sabe si el fondo está fuera de pantalla: al hacer scroll seguía
-  // ocupando el hilo principal. Con IntersectionObserver lo detenemos.
+  // Stop rendering when the background leaves the viewport.
   useEffect(() => {
     const container = containerRef.current;
     if (!container || typeof IntersectionObserver === 'undefined') return;
@@ -27,21 +27,37 @@ export default function GrainGradientBackground(props: GrainGradientProps) {
     return () => observer.disconnect();
   }, []);
 
-  // Detiene la animación si el usuario pide menos movimiento (a11y + ahorro de CPU/GPU).
-  const prefersReduced =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const speed = prefersReduced || !inView ? 0 : (props.speed ?? 1);
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const syncPreference = () => setPrefersReduced(query.matches);
+    syncPreference();
+    query.addEventListener('change', syncPreference);
+    return () => query.removeEventListener('change', syncPreference);
+  }, []);
+
+  const speed = paused || prefersReduced || !inView ? 0 : (props.speed ?? 1);
 
   return (
-    <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
-      <GrainGradient
-        minPixelRatio={MIN_PIXEL_RATIO}
-        maxPixelCount={MAX_PIXEL_COUNT}
-        {...props}
-        speed={speed}
-        style={{ width: '100%', height: '100%', ...props.style }}
-      />
+    <div ref={containerRef} className="animated-art">
+      <div className="animated-art__canvas" aria-hidden="true">
+        <GrainGradient
+          minPixelRatio={MIN_PIXEL_RATIO}
+          maxPixelCount={MAX_PIXEL_COUNT}
+          {...props}
+          speed={speed}
+          style={{ width: '100%', height: '100%', ...props.style }}
+        />
+      </div>
+      {showControls && !prefersReduced && (
+        <button
+          className="motion-toggle"
+          type="button"
+          onClick={() => setPaused((value) => !value)}
+          aria-pressed={paused}
+        >
+          {paused ? 'Play motion' : 'Pause motion'}
+        </button>
+      )}
     </div>
   );
 }

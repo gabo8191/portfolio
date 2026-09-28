@@ -1,103 +1,133 @@
 ---
-import AvailableForWork from '../components/available.astro';
+import Footer from '../components/footer.astro';
 import GrainGradientBackground from '../components/grain-gradient-background';
-import H1 from '../components/h1.astro';
-import Link from '../components/link.astro';
-import Navigation from '../components/navigation';
+import SiteHeader from '../components/site-header.astro';
 import RootLayout from '../layouts/RootLayout.astro';
+import { PROFESSIONAL_PROJECTS } from '../data/professional';
+import { PROJECTS } from '../data/projects';
 
 const base = import.meta.env.BASE_URL.endsWith('/')
-  ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`;
+  ? import.meta.env.BASE_URL.slice(0, -1)
+  : import.meta.env.BASE_URL;
+const selectedTitles = [
+  'PBIX Migration Estimation Tool',
+  'Interbank Message Mapping',
+  'Electronic Billing Middleware',
+];
+const selectedWork = selectedTitles.map((title) => {
+  const project = PROFESSIONAL_PROJECTS.find((item) => item.title === title);
+  if (!project) throw new Error(`Missing selected professional project: ${title}`);
+  return project;
+});
+const publicProjects = ['polyglot-microservices', 'tomoreader'].map((slug) => {
+  const project = PROJECTS.find((item) => item.slug === slug);
+  if (!project) throw new Error(`Missing public project: ${slug}`);
+  return project;
+});
 ---
 
 <RootLayout
-  title='Gabriel Castillo | Backend Developer & BI / Data Analytics'
-  description='Gabriel Castillo — Backend Developer from Colombia, currently a BI & Data Analytics intern at Keyrus and co-founder of Vulcano. Builds scalable REST APIs, microservices and containerized apps with Laravel, NestJS and Python, and dashboards with Tableau and Power BI.'
+  title='Gabriel Castillo | Backend & Integration Engineer'
+  description='Backend developer in Colombia working on integrations, production support and internal tools with Python/Django, NestJS, Laravel and SQL.'
 >
-  <main id='main-content'>
-    <div
-      class='group relative w-full min-h-dvh flex items-center justify-center'
-    >
-      <div class='absolute inset-0 -z-10'>
-        <GrainGradientBackground
-          colors={['#7c3aed', '#a855f7', '#c084fc', '#6366f1', '#818cf8']}
-          colorBack='#0f0a1a'
-          softness={0.6}
-          intensity={0.4}
-          noise={0.2}
-          shape='corners'
-          speed={0.6}
-          client:idle
-        />
-      </div>
-
-      <!-- Relativo y con min-h-dvh (no absolute + h-dvh): en móvil horizontal el
-           contenido ya no queda recortado, el contenedor crece y la página hace
-           scroll con normalidad. -->
-      <div
-        class='p-4 sm:p-8 relative w-full min-h-dvh flex flex-col justify-between gap-8 z-10'
-      >
-        <div>
-          <H1 size='large'> Gabriel <br /> Castillo </H1>
-        </div>
-
-        <div>
-          <a
-            href='https://vulcanoservices.dev'
-            target='_blank'
-            rel='noopener me'
-            class='w-fit min-h-11 flex items-center gap-2 px-3 rounded-full bg-zinc-900/60 border border-zinc-700/60 backdrop-blur-sm transition-colors hover:border-zinc-500'
-          >
-            <img
-              src={`${base}vulcano-logo.svg`}
-              alt=''
-              width='20'
-              height='20'
-              class='w-5 h-5'
+  <div class='site-frame home-frame'>
+    <SiteHeader />
+    <main id='main-content' class='home-main'>
+      <!-- Hallmark · pre-emit critique: P4 H5 E4 S5 R4 V4 -->
+      <!-- Hallmark · genre: modern-minimal · macrostructure: typographic-portrait · design-system: design.md · designed-as-app -->
+      <section class='home-hero' aria-labelledby='home-title'>
+        <div class='home-hero__main'>
+          <div class='home-hero__art'>
+            <GrainGradientBackground
+              colors={['#a78bfa', '#7c3aed', '#c4b5fd', '#6366f1']}
+              colorBack='#15111f'
+              softness={0.7}
+              intensity={0.35}
+              noise={0.14}
+              shape='wave'
+              speed={0.35}
+              showControls={true}
+              client:idle
             />
-            <span class='text-sm sm:text-base text-zinc-300'
-              >Co-founder at <span class='text-zinc-100'>Vulcano</span></span
-            >
-          </a>
-
-          <!-- Resumen legible: los datos del JSON-LD no los leen los modelos
-               que convierten la página a texto, así que el rol, la ubicación y
-               el stack tienen que estar también como contenido visible. -->
-          <p class='max-w-2xl text-base sm:text-xl text-zinc-300'>
-            Backend Developer from <span class='text-zinc-100'
-              >Tunja, Colombia</span
-            >, working remotely. 3+ years building REST APIs, microservices and
-            containerized applications with <span class='text-zinc-100'
-              >Laravel, NestJS and Python</span
-            >, on PostgreSQL, Docker, AWS and Linux. Currently in <span
-              class='text-zinc-100'>BI &amp; Data Analytics at Keyrus</span
-            >, building dashboards with Tableau and Power BI. Co-founder of
-            Vulcano.
-          </p>
-
-          <AvailableForWork className='py-4' />
-          <div
-            class='mb-2 sm:mb-4 flex flex-wrap items-center justify-between gap-4'
-          >
-            <div class='flex flex-wrap items-center gap-4'>
-              <a
-                href={`${base}cv-en.pdf`}
-                target='_blank'
-                rel='noopener noreferrer'
-                class='w-fit text-base sm:text-2xl px-5 py-2 rounded-full transition-all duration-300 ease-in-out whitespace-nowrap text-zinc-900 bg-zinc-100 hover:outline-2 focus-visible:outline-2 outline-offset-2 outline-zinc-100'
-                >Download CV</a
-              >
-              <Link href='/projects' variant='secondary'>View Projects</Link>
+          </div>
+          <div class='home-hero__layout'>
+            <p class='home-hero__eyebrow'>Backend engineering <span aria-hidden='true'>/</span> Colombia</p>
+            <h1 id='home-title'>Gabriel<br /><span>Castillo<span class='home-hero__period'>.</span></span></h1>
+            <div class='home-hero__bottom'>
+              <p>I connect systems, build internal tools and trace production incidents through code and data.</p>
+              <div class='home-hero__actions'>
+                <a class='button button--primary' href={`${base}/work/`}>See my work <span aria-hidden='true'>↗</span></a>
+                <a class='home-hero__cv' href={`${base}/cv-en.pdf`} target='_blank' rel='noopener noreferrer'>Download CV <span aria-hidden='true'>↗</span><span class='sr-only'>(opens in new tab)</span></a>
+              </div>
             </div>
-
-            <Navigation base={base} client:load>
-              <Link href='/about' variant='secondary'>About</Link>
-              <Link href='/contact' variant='secondary'>Contact</Link>
-            </Navigation>
           </div>
         </div>
-      </div>
-    </div>
-  </main>
+        <aside class='site-shell home-hero__aside' aria-label='Areas of work'>
+          <p class='section-label'>What I work on</p>
+          <ul>
+            <li><span>01</span><strong>System integrations</strong><p>Financial messaging, invoicing and data workflows.</p></li>
+            <li><span>02</span><strong>Production support</strong><p>Incidents traced across application code and databases.</p></li>
+            <li><span>03</span><strong>Internal tools</strong><p>Practical software that helps teams make decisions.</p></li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class='site-shell home-work' aria-labelledby='selected-work-title'>
+        <div class='section-heading'>
+          <div>
+            <p class='section-label'>Experience in practice</p>
+            <h2 id='selected-work-title'>Selected professional work</h2>
+          </div>
+          <a class='inline-link' href={`${base}/work/`}>All work <span aria-hidden='true'>↗</span></a>
+        </div>
+        <div class='work-list'>
+          {selectedWork.map((project) => (
+            <article class='work-list__item'>
+              <p class='work-list__company'>{project.company}</p>
+              <div>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class='home-public' aria-labelledby='public-work-title'>
+        <div class='site-shell home-public__inner'>
+          <div class='home-public__intro'>
+            <p class='section-label'>Built in the open</p>
+            <h2 id='public-work-title'>A look inside the work.</h2>
+            <p>Most professional systems I work on are private. These personal projects show how I approach architecture and product decisions in public.</p>
+            <a class='inline-link' href={`${base}/projects/`}>Explore all projects <span aria-hidden='true'>↗</span></a>
+          </div>
+          <div class='home-public__list'>
+            {publicProjects.map((project) => (
+              <article>
+                <p class='home-public__type'>{project.area === 'backend' ? 'Backend & architecture' : 'Desktop application'}</p>
+                <h3>{project.title}</h3>
+                <p>{project.summary}</p>
+                <ul aria-label='Technologies'>
+                  {project.technologies.slice(0, 4).map((technology) => <li>{technology}</li>)}
+                </ul>
+                {project.githubUrl && <a href={project.githubUrl} target='_blank' rel='noopener noreferrer'>View repository <span aria-hidden='true'>↗</span><span class='sr-only'>(opens in new tab)</span></a>}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class='site-shell home-close' aria-labelledby='home-close-title'>
+        <div>
+          <p class='section-label'>Get in touch</p>
+          <h2 id='home-close-title'>Let's talk systems.</h2>
+        </div>
+        <div>
+          <p>For a conversation about backend work, integrations or a difficult production issue, you can reach me directly.</p>
+          <a class='inline-link' href={`${base}/contact/`}>Contact me <span aria-hidden='true'>↗</span></a>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
 </RootLayout>

@@ -1,0 +1,31 @@
+---
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL.slice(0, -1)
+  : import.meta.env.BASE_URL;
+const pathname = Astro.url.pathname.replace(/\/$/, '');
+const links = [
+  { href: '/work', label: 'Work' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class='site-header'>
+  <div class='site-shell site-header__inner'>
+    <a class='site-header__brand' href={`${base}/`} aria-label='Gabriel Castillo, home'>
+      <span class='site-header__monogram' aria-hidden='true'>GC<span class='site-header__dot'>.</span></span>
+      <span class='site-header__name'>Gabriel Castillo</span>
+    </a>
+    <nav class='site-header__nav' aria-label='Main navigation'>
+      {links.map((link) => (
+        <a
+          href={`${base}${link.href}/`}
+          aria-current={pathname === `${base}${link.href}` ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>

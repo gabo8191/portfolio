@@ -10,23 +10,22 @@ const experience = [
   {
     title: 'BI & Data Analytics Intern',
     company: 'Keyrus Colombia S.A.S.',
-    period: 'Aug. 2026 – Present',
+    period: 'Jul. 2026 – Present',
     highlights: [
-      'Design and maintain interactive dashboards and reports in Tableau and Power BI within the Visualization team, applying visualization and data-storytelling principles for clients in retail, telecommunications, healthcare, energy and the public sector',
-      'Write SQL queries with joins, aggregations and subqueries to extract, transform and validate data from enterprise sources such as Snowflake, SAP HANA, BigQuery and relational databases',
-      'Prepare and clean datasets with Python (pandas, NumPy), Power Query and Tableau Prep, ensuring consistency before analysis',
-      'Document processes, KPI definitions and analytical methodologies to give traceability and standardization to the projects I take part in',
+      'Designed and built an internal Django application that analyzes PBIX files and estimates Power BI to Tableau migration effort. The team uses its estimates; formal deployment is pending.',
+      'Built DRF APIs, Celery/Redis jobs, PostgreSQL persistence, Excel reporting and automated quality checks in GitHub Actions.',
+      'Prepare and validate analytics data with SQL and Python for dashboard and migration work.',
     ],
   },
   {
-    title: 'Fullstack Developer',
+    title: 'Freelance Fullstack Developer',
     company: 'TotalDev SAS',
-    period: 'Jul. 2025 – March 2026',
+    period: 'Feb. 2025 – Mar. 2026',
     highlights: [
-      'Developed an interbank messaging system that receives and processes MT format files, validates encryption status, standardizes data formats, and routes messages according to SWIFT/ISO 20022 specifications',
-      'Built backend systems for inventory management handling product catalogs with REST APIs, automated CSV import/export, role-based access control by geographic regions, and reporting modules with SQL views for query optimization',
-      'Created QR code generation and validation systems for event management and product authentication, including pseudorandom code generation and real-time scanning interfaces',
-      'Implemented content management systems using Laravel and Filament, allowing non-technical users to manage site content, images, and configurations autonomously',
+      'Worked on MT message reception and created JSON mapping files for MT to MX and MX to MT conversion in a Java/Apache Camel interbank gateway.',
+      'Built inventory APIs, CSV imports with row-level validation, regional reports and SQL views; worked on stock, production and monthly reporting workflows.',
+      'Built one-use QR guest validation and Laravel/Filament content panels; contributed to field operations and inspection systems.',
+      'This freelance engagement overlapped with PARQ from February to July 2025.',
     ],
   },
   {
@@ -34,10 +33,9 @@ const experience = [
     company: 'PARQ',
     period: 'Nov. 2024 – Jul. 2025',
     highlights: [
-      'Maintained and evolved a microservice architecture with NestJS and TypeORM, performing code audits, refactoring legacy code, and resolving data inconsistencies in production databases',
-      'Developed electronic invoicing middleware integrating with Colombian providers (Siigo, Alegra, SATCOM), implementing transaction logging and error handling for regulatory compliance',
-      'Implemented pagination systems, queue-based bulk data loading, and scheduled jobs with timezone handling for automated report generation and notifications',
-      'Documented APIs using Swagger/OpenAPI and managed deployments through Docker and Portainer with version control in Bitbucket',
+      'Maintained NestJS services sharing a PostgreSQL database; investigated production data inconsistencies through SQL and code review.',
+      'Implemented electronic invoicing connectors for SATCOM, Siigo and Alegra with transaction tracing and provider error handling.',
+      'Worked on queued bulk loads, timezone-aware scheduled jobs, OpenAPI documentation and Docker/Portainer deployments.',
     ],
   },
   {
@@ -45,10 +43,9 @@ const experience = [
     company: 'SEREMPRE',
     period: 'Jan. 2023 – Nov. 2024',
     highlights: [
-      'Built backend systems for a corporate benefits platform serving multiple Latin American countries, developing REST APIs consumed by both mobile and web applications',
-      'Designed complex MySQL queries and stored procedures for reporting systems, and configured automated cron jobs for user administration and scheduled notifications',
-      'Migrated legacy systems to containerized environments using Docker (DDEV), applying database normalization and query optimization for batch processing workloads',
-      'Integrated external APIs (Cloudinary for media management, Moodle LTI for e-learning content) and developed custom plugins for content sharing between platforms',
+      'Joined the Membeers backend team as a SENA intern, then continued as a Laravel developer for regional benefits and insurance systems.',
+      'Handled L2/L3 production incidents with SQL, code review and Sentry; joined incident war rooms and documented root causes.',
+      'Built APIs, SQL reports and procedures, queued jobs and scheduled processes; worked with Docker/DDEV, Cloudinary and Moodle LTI.',
     ],
   },
 ];
@@ -69,7 +66,7 @@ const skills = {
     'NestJS',
     'Node.js',
     'REST API Design',
-    'Microservices Architecture',
+    'System Integration',
   ],
   databases: [
     'PostgreSQL',
@@ -81,22 +78,22 @@ const skills = {
   ],
   devops: [
     'Docker',
-    'Kubernetes',
-    'AWS (EC2, S3, RDS)',
+    'Production Support',
+    'Linux',
     'CI/CD',
     'GitHub Actions',
     'Nginx',
-    'Linux',
   ],
   tools: ['Git', 'Swagger/OpenAPI', 'SonarQube', 'Portainer', 'Bitbucket'],
 };
 ---
 
 <InfoLayout
-  title='About — Gabriel Castillo, Backend Developer & BI / Data Analytics'
-  description='Gabriel Castillo, Backend Developer with 3+ years of experience across multinational projects, currently a BI & Data Analytics intern at Keyrus Colombia. Builds APIs, messaging systems and dashboards with Laravel, NestJS, Python, Tableau and Power BI.'
+  title='About — Gabriel Castillo, Backend & Integration Engineer'
+  description='Gabriel Castillo builds backend systems, integrations and internal tools, and investigates production incidents using SQL, code and application traces.'
 >
-  <div class='p-4 sm:pt-8 sm:px-12 pb-20 min-h-dvh flex flex-col gap-16'>
+  <!-- Hallmark · genre: modern-minimal · macrostructure: long-document · design-system: design.md · designed-as-app -->
+  <div class='about-page flex flex-col gap-16'>
     <div class='space-y-4 sm:space-y-8'>
       <div class='flex flex-col sm:flex-row sm:items-center gap-5'>
         <img
@@ -110,95 +107,32 @@ const skills = {
       </div>
 
       <p class='text-xl xl:text-2xl text-zinc-400 text-balance max-w-3xl'>
-        Backend Developer with <span class='text-zinc-100'
-          >3+ years of experience</span
-        > building scalable REST APIs, microservices architectures, and containerized
-        applications with
-        <span class='text-zinc-100'>Laravel, NestJS, and Python</span>, plus
-        hands-on experience in Docker, AWS, CI/CD pipelines, and Linux server
-        administration.
+        I build backend systems and integrations, especially when the difficult
+        part is tracing what happened to a record, message or transaction. I
+        follow it through SQL, logs and code, then turn the finding into a fix
+        the team can maintain.
       </p>
 
       <p class='text-lg xl:text-xl text-zinc-400 text-balance max-w-3xl'>
-        Currently working in business intelligence consulting at <span
-          class='text-zinc-100'>Keyrus</span
-        >, applying SQL and Python to data preparation and building dashboards in
-        <span class='text-zinc-100'>Tableau and Power BI</span>. The backend years
-        are what make the difference there: I've built the systems that produce
-        the data before having to explain it — from interbank messaging to
-        inventory platforms handling thousands of products.
+        Over 3 years, I have built APIs and background jobs, handled L2/L3
+        incidents, and connected financial messaging and electronic invoicing
+        systems. At <span class='text-zinc-100'>Keyrus</span>, I designed a
+        Django tool that analyzes PBIX files and produces migration estimates
+        already used by the team. Its formal deployment is pending.
       </p>
     </div>
 
     <div class='space-y-4'>
       <h2
-        class='text-xl text-zinc-300 underline underline-offset-4 decoration-zinc-500'
-      >
-        Co-founder at Vulcano
-      </h2>
-
-      <div
-        class='p-5 rounded-lg bg-zinc-800/30 border border-zinc-700/50 flex flex-col sm:flex-row gap-5 sm:items-start'
-      >
-        <img
-          src={`${base}vulcano-logo.svg`}
-          alt='Vulcano — software, data and automation engineering studio'
-          width='72'
-          height='72'
-          loading='lazy'
-          class='w-16 h-16 sm:w-[72px] sm:h-[72px] shrink-0'
-        />
-
-        <div class='space-y-3 min-w-0'>
-          <div
-            class='flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1'
-          >
-            <h3 class='text-lg text-zinc-200'>
-              Co-founder &amp; Backend Engineering Lead —
-              <a
-                href='https://vulcanoservices.dev'
-                target='_blank'
-                rel='noopener me'
-                class='text-zinc-100 underline underline-offset-4 decoration-zinc-500 hover:decoration-zinc-100'
-                >Vulcano</a
-              >
-            </h3>
-            <span class='text-sm text-zinc-400'>2026 – Present</span>
-          </div>
-
-          <p class='text-zinc-400 text-sm'>
-            Software, data and process-automation engineering studio I
-            co-founded with <a
-              href='https://portfoliodiana.netlify.app'
-              target='_blank'
-              rel='noopener'
-              class='text-zinc-300 underline underline-offset-4 decoration-zinc-600 hover:decoration-zinc-300'
-              >Diana Pinzón</a
-            >. We deliver custom software, data engineering and BI, process
-            automation (RPA) and systems integration for companies across LATAM,
-            Spain, the US and the UK — remote-first and bilingual (Spanish /
-            English).
-          </p>
-
-          <p class='text-zinc-400 text-sm'>
-            I lead the technical side: architecture, REST API design, database
-            modelling, ETL pipelines, infrastructure and delivery.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class='space-y-4'>
-      <h2
-        class='text-xl text-zinc-300 underline underline-offset-4 decoration-zinc-500'
+        class='text-2xl text-zinc-100'
       >
         Experience
       </h2>
 
-      <div class='space-y-6'>
+      <div class='space-y-0 border-t border-zinc-700'>
         {
           experience.map((job) => (
-            <div class='p-5 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+            <article class='py-6 border-b border-zinc-700'>
               <div class='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1'>
                 <h3 class='text-lg text-zinc-200'>{job.title}</h3>
                 <span class='text-sm text-zinc-400'>{job.period}</span>
@@ -211,7 +145,7 @@ const skills = {
                   </li>
                 ))}
               </ul>
-            </div>
+            </article>
           ))
         }
       </div>
@@ -219,13 +153,13 @@ const skills = {
 
     <div class='space-y-4'>
       <h2
-        class='text-xl text-zinc-300 underline underline-offset-4 decoration-zinc-500'
+        class='text-2xl text-zinc-100'
       >
         Technical Skills
       </h2>
 
-      <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+      <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-0 border-t border-zinc-700'>
+        <div class='py-4 border-b border-zinc-700/70'>
           <h3 class='text-sm text-zinc-400 mb-2'>Languages</h3>
           <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
@@ -238,7 +172,7 @@ const skills = {
           </ul>
         </div>
 
-        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+        <div class='py-4 border-b border-zinc-700/70'>
           <h3 class='text-sm text-zinc-400 mb-2'>BI &amp; Data</h3>
           <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
@@ -251,7 +185,7 @@ const skills = {
           </ul>
         </div>
 
-        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+        <div class='py-4 border-b border-zinc-700/70'>
           <h3 class='text-sm text-zinc-400 mb-2'>Backend</h3>
           <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
@@ -264,7 +198,7 @@ const skills = {
           </ul>
         </div>
 
-        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+        <div class='py-4 border-b border-zinc-700/70'>
           <h3 class='text-sm text-zinc-400 mb-2'>Databases</h3>
           <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
@@ -277,7 +211,7 @@ const skills = {
           </ul>
         </div>
 
-        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+        <div class='py-4 border-b border-zinc-700/70'>
           <h3 class='text-sm text-zinc-400 mb-2'>DevOps & Cloud</h3>
           <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
@@ -290,7 +224,7 @@ const skills = {
           </ul>
         </div>
 
-        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+        <div class='py-4 border-b border-zinc-700/70'>
           <h3 class='text-sm text-zinc-400 mb-2'>Tools</h3>
           <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
             {
@@ -307,13 +241,13 @@ const skills = {
 
     <div class='space-y-4'>
       <h2
-        class='text-xl text-zinc-300 underline underline-offset-4 decoration-zinc-500'
+        class='text-2xl text-zinc-100'
       >
         Education
       </h2>
 
       <div class='space-y-4'>
-        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+        <div class='py-4 border-b border-zinc-700/70'>
           <div
             class='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1'
           >
@@ -327,7 +261,7 @@ const skills = {
           </p>
         </div>
 
-        <div class='p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/50'>
+        <div class='py-4 border-b border-zinc-700/70'>
           <div
             class='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1'
           >

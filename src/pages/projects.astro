@@ -15,9 +15,10 @@ const lastYear = PROJECTS.map((p) => p.date)
 
 <InfoLayout
   title='Projects — Gabriel Castillo'
-  description='Personal and open source projects by Gabriel Castillo, on a timeline from 2023 to 2026: desktop and web apps, data & AI pipelines, backend microservices, PWAs and infrastructure.'
+  description='Personal and open source projects by Gabriel Castillo: desktop and web apps, data experiments, backend services and infrastructure practice.'
 >
-  <div class='p-4 sm:pt-8 sm:px-12 pb-20 min-h-dvh'>
+  <!-- Hallmark · genre: modern-minimal · macrostructure: long-document · design-system: design.md · designed-as-app -->
+  <div>
     <H1>Projects</H1>
     <p class='mt-4 text-lg text-zinc-400 max-w-2xl text-balance'>
       {PROJECTS.length} personal and open source projects between {firstYear} and {
@@ -26,13 +27,13 @@ const lastYear = PROJECTS.map((p) => p.date)
       see where each technology shows up.
     </p>
 
-    <!-- ── Explorador: lo primero de la página, sin nada que lo tape ── -->
+    <!-- The explorer leads the page. -->
     <section class='mt-10' aria-labelledby='timeline'>
       <h2 id='timeline' class='sr-only'>Project timeline</h2>
       <ProjectsExplorer projects={PROJECTS} client:load />
     </section>
 
-    <!-- ── Destacados: los que merecen contexto ────────────────────── -->
+    <!-- Featured projects provide more context. -->
     <section class='mt-16' aria-labelledby='selected-work'>
       <div class='flex items-baseline justify-between gap-4 mb-6'>
         <h2 id='selected-work' class='text-xl text-zinc-200'>Selected work</h2>
@@ -42,14 +43,10 @@ const lastYear = PROJECTS.map((p) => p.date)
       <div class='grid grid-cols-1 lg:grid-cols-2 gap-5'>
         {
           FEATURED.map((project) => (
-            <article class='group relative overflow-hidden p-6 rounded-2xl bg-zinc-800/40 border border-zinc-700/50 hover:border-zinc-500 transition-colors duration-300'>
-              <div class='absolute -top-16 -right-16 w-40 h-40 rounded-full bg-gradient-to-br from-violet-500/20 to-indigo-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
+            <article class='group relative overflow-hidden p-6 rounded-lg bg-zinc-800/20 border border-zinc-700/50 hover:border-violet-400/50 transition-colors duration-300'>
 
               <div class='relative'>
                 <div class='flex items-center gap-3 mb-1'>
-                  <span class='text-2xl' aria-hidden='true'>
-                    {project.featured!.emoji}
-                  </span>
                   <h3 class='text-xl text-zinc-100'>{project.title}</h3>
                 </div>
                 <p class='text-sm text-violet-300/80 mb-4'>
@@ -144,19 +141,19 @@ const lastYear = PROJECTS.map((p) => p.date)
       </div>
     </section>
 
-    <!-- ── Puente al trabajo de cliente, que vive en su propia página ── -->
+    <!-- Professional work has its own page. -->
     <section
       class='mt-16 p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4'
     >
       <div>
-        <h2 class='text-lg text-zinc-200'>Client work</h2>
+        <h2 class='text-lg text-zinc-200'>Professional work</h2>
         <p class='text-sm text-zinc-400 mt-1 max-w-lg'>
-          {PROFESSIONAL_PROJECTS.length} enterprise systems delivered at TotalDev,
-          PARQ and Serempre — interbank messaging, electronic invoicing, inventory
-          and benefits platforms. Confidential source, documented scope.
+          {PROFESSIONAL_PROJECTS.length} professional projects across Keyrus,
+          TotalDev, PARQ and SEREMPRE, including migration estimates, messaging,
+          invoicing and inventory. Scope is described without sharing client code.
         </p>
       </div>
-      <Link href='/work' variant='secondary'>See client work</Link>
+      <Link href='/work' variant='secondary'>See professional work</Link>
     </section>
 
     <div class='mt-10 text-center'>

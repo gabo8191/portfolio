@@ -10,41 +10,22 @@ const base = import.meta.env.BASE_URL.endsWith('/')
   : `${import.meta.env.BASE_URL}/`;
 
 const defaultTitle =
-  'Gabriel Castillo | Backend Developer & BI / Data Analytics';
+  'Gabriel Castillo | Backend & Integration Engineer';
 const defaultDescription =
-  'Gabriel Castillo is a Backend Developer from Tunja, Colombia, currently a BI & Data Analytics intern at Keyrus Colombia and co-founder of Vulcano, a software, data and automation engineering studio. 3+ years building scalable REST APIs, microservices and containerized applications with Laravel, NestJS and Python, now building dashboards with Tableau and Power BI on top of SQL and pandas.';
+  'Gabriel Castillo builds backend systems, integrations and internal tools and investigates production incidents. Experience with Python/Django, NestJS, Laravel, Java and SQL.';
 
 const pageTitle = title ?? defaultTitle;
 const pageDescription = description ?? defaultDescription;
 const siteUrl = Astro.site ?? Astro.url;
-// Normaliza con barra final para que canonical = og:url = sitemap (GitHub Pages
-// sirve las rutas con barra). Evita señales de canonicalización contradictorias.
+// Keep canonical, og:url, and sitemap paths consistent with GitHub Pages.
 const pathname = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname
   : `${Astro.url.pathname}/`;
 const canonical = new URL(pathname, siteUrl).href;
-// Las redes exigen URL absoluta para la imagen OG (no sirve la ruta relativa).
+// Social previews require an absolute Open Graph image URL.
 const ogImage = new URL(image ?? `${base}og-image.png`, siteUrl).href;
 
-// Mismo @id que publica vulcanoservices.dev en su Organization. Al coincidir el
-// identificador, buscadores y motores de respuesta con IA reconcilian ambas
-// entidades en una sola: "Gabriel Castillo, cofundador de Vulcano".
-const vulcanoId = 'https://vulcanoservices.dev/#organization';
-
-const vulcanoLd = {
-  '@type': 'Organization',
-  '@id': vulcanoId,
-  name: 'Vulcano',
-  url: 'https://vulcanoservices.dev',
-  logo: 'https://vulcanoservices.dev/brand/logo-192.png',
-  description:
-    'Software, data and process-automation engineering studio. Custom software, data engineering, BI, RPA and systems integration.',
-  sameAs: ['https://www.linkedin.com/company/vulcanoia'],
-};
-
-// Keyrus es una entidad ya conocida por los buscadores: declararla con su sitio
-// y su LinkedIn permite que la relación "trabaja en" se reconcilie con la
-// organización real y no con una cadena de texto suelta.
+// Use the employer's public organization identity in structured data.
 const keyrusId = 'https://www.keyrus.com/#organization';
 
 const keyrusLd = {
@@ -66,7 +47,6 @@ const personLd = {
   jobTitle: [
     'Backend Developer',
     'BI & Data Analytics Intern at Keyrus',
-    'Co-founder at Vulcano',
   ],
   description: defaultDescription,
   image: new URL(`${base}avatar.png`, siteUrl).href,
@@ -79,58 +59,38 @@ const personLd = {
   },
   nationality: { '@type': 'Country', name: 'Colombia' },
   knowsLanguage: ['es', 'en'],
-  // Dos vínculos laborales vigentes: la práctica en Keyrus y el estudio propio
-  worksFor: [{ '@id': keyrusId }, { '@id': vulcanoId }],
-  affiliation: [{ '@id': keyrusId }, { '@id': vulcanoId }],
+  worksFor: { '@id': keyrusId },
   alumniOf: {
     '@type': 'EducationalOrganization',
     name: 'Universidad Pedagógica y Tecnológica de Colombia (UPTC)',
-  },
-  colleague: {
-    '@type': 'Person',
-    name: 'Diana Pinzón',
-    url: 'https://portfoliodiana.netlify.app',
   },
   sameAs: [
     'https://github.com/gabo8191',
     'https://linkedin.com/in/gabodev8191',
     'https://twitter.com/gcastillo8191',
-    'https://vulcanoservices.dev',
   ],
   knowsAbout: [
     'Backend development',
+    'System integration',
+    'Production support',
+    'Internal tools',
     'Business intelligence',
-    'Data analytics',
-    'Data visualization',
-    'Tableau',
-    'Power BI',
     'SQL',
     'pandas',
     'Laravel',
     'NestJS',
     'Python',
     'REST API design',
-    'Microservices',
     'Docker',
-    'Kubernetes',
-    'AWS',
     'PostgreSQL',
     'MySQL',
-    'Data engineering',
-    'ETL pipelines',
     'CI/CD',
-    'Linux server administration',
   ],
-  seeks: {
-    '@type': 'Demand',
-    name: 'Remote backend engineering and BI / data analytics roles, plus freelance projects',
-  },
-  // Canal de contacto explícito: describir quién eres no basta para que te
-  // escriban, hay que declarar por dónde y en qué idiomas.
+  // Keep a public contact method without advertising a job search.
   contactPoint: [
     {
       '@type': 'ContactPoint',
-      contactType: 'hiring',
+      contactType: 'professional inquiries',
       email: 'gabo8191@gmail.com',
       url: new URL(`${base}contact/`, siteUrl).href,
       availableLanguage: ['Spanish', 'English'],
@@ -151,11 +111,10 @@ const personLd = {
   },
 };
 
-// Grafo de entidades: Person ← ProfilePage, enlazado a la Organization.
+// Person and ProfilePage linked to the current employer.
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    vulcanoLd,
     keyrusLd,
     personLd,
     {
@@ -178,7 +137,7 @@ const jsonLd = {
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <meta name='theme-color' content='#0f0a1a' />
+    <meta name='theme-color' content='#111216' />
     <link rel='icon' type='image/svg+xml' href={`${base}favicon.svg`} />
     <link rel='canonical' href={canonical} />
     <meta name='generator' content={Astro.generator} />
@@ -194,7 +153,7 @@ const jsonLd = {
     <meta property='og:image' content={ogImage} />
     <meta property='og:image:width' content='1200' />
     <meta property='og:image:height' content='630' />
-    <meta property='og:image:alt' content='Gabriel Castillo — Backend Developer and BI & Data Analytics' />
+    <meta property='og:image:alt' content='Gabriel Castillo, backend and integration developer' />
 
     <!-- Twitter Meta Tags -->
     <meta name='twitter:card' content='summary_large_image' />
@@ -205,7 +164,7 @@ const jsonLd = {
     <meta name='twitter:title' content={pageTitle} />
     <meta name='twitter:description' content={pageDescription} />
     <meta name='twitter:image' content={ogImage} />
-    <meta name='twitter:image:alt' content='Gabriel Castillo — Backend Developer and BI & Data Analytics' />
+    <meta name='twitter:image:alt' content='Gabriel Castillo, backend and integration developer' />
 
     <script
       type='application/ld+json'
@@ -216,7 +175,7 @@ const jsonLd = {
     <ClientRouter />
     <LoadingIndicator color='#f4f4f5' height='2px' />
   </head>
-  <body class='font-sans min-h-screen bg-zinc-900'>
+  <body class='font-sans min-h-screen'>
     <a
       href='#main-content'
       class='sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-zinc-100 focus:text-zinc-900'

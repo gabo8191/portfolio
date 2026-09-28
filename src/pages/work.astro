@@ -4,7 +4,7 @@ import InfoLayout from '../layouts/InfoLayout.astro';
 import Link from '../components/link.astro';
 import { EMPLOYERS, PROFESSIONAL_PROJECTS } from '../data/professional';
 
-// Agrupa por empresa respetando el orden cronológico de EMPLOYERS.
+// Group projects by employer in the established chronological order.
 const byEmployer = EMPLOYERS.map((employer) => ({
   employer,
   projects: PROFESSIONAL_PROJECTS.filter(
@@ -14,25 +14,25 @@ const byEmployer = EMPLOYERS.map((employer) => ({
 ---
 
 <InfoLayout
-  title='Client work — Gabriel Castillo'
-  description='Enterprise projects delivered by Gabriel Castillo at TotalDev, PARQ and Serempre: interbank messaging, electronic invoicing, inventory platforms, corporate benefits and event management systems.'
+  title='Professional work — Gabriel Castillo'
+  description='Professional work by Gabriel Castillo across Keyrus, TotalDev, PARQ and SEREMPRE: internal tools, interbank messaging, invoicing, inventory and production support.'
 >
-  <div class='p-4 sm:pt-8 sm:px-12 pb-20 min-h-dvh'>
-    <H1>Client work</H1>
+  <!-- Hallmark · genre: modern-minimal · macrostructure: long-document · design-system: design.md · designed-as-app -->
+  <div>
+    <H1>Professional work</H1>
     <p class='mt-4 text-lg text-zinc-400 max-w-2xl text-balance'>
-      {PROFESSIONAL_PROJECTS.length} systems delivered for companies across three
-      roles between 2023 and 2026. The source code belongs to the clients, so what
-      is documented here is the scope and the outcome.
+      {PROFESSIONAL_PROJECTS.length} projects across four employers since 2023.
+      These descriptions explain my work without sharing private source code.
     </p>
 
     <div class='mt-12 space-y-14'>
       {
         byEmployer.map(({ employer, projects }) => (
-          <section aria-labelledby={`employer-${employer.name}`}>
+          <section aria-labelledby={`employer-${employer.name.replaceAll(' ', '-')}`}>
             <div class='flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 pb-3 mb-6 border-b border-zinc-800'>
               <div>
                 <h2
-                  id={`employer-${employer.name}`}
+                  id={`employer-${employer.name.replaceAll(' ', '-')}`}
                   class='text-xl text-zinc-100'
                 >
                   {employer.name}
@@ -46,9 +46,9 @@ const byEmployer = EMPLOYERS.map((employer) => ({
 
             <p class='text-sm text-zinc-400 max-w-2xl mb-6'>{employer.focus}</p>
 
-            <div class='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+            <div class='grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-0'>
               {projects.map((project) => (
-                <article class='p-5 rounded-xl bg-zinc-800/30 border border-zinc-700/30 hover:border-zinc-700/60 transition-colors'>
+                <article class='py-5 border-t border-zinc-700/70'>
                   <h3 class='text-base text-zinc-200 mb-2'>{project.title}</h3>
                   <p class='text-sm text-zinc-400 mb-3'>
                     {project.description}
