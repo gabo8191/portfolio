@@ -49,7 +49,12 @@ const byEmployer = EMPLOYERS.map((employer) => ({
             <div class='grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-0'>
               {projects.map((project) => (
                 <article class='py-5 border-t border-zinc-700/70'>
-                  <h3 class='text-base text-zinc-200 mb-2'>{project.title}</h3>
+                  <h3 class='text-base text-zinc-200'>{project.title}</h3>
+                  {project.period && (
+                    <p class='text-xs text-zinc-500 tabular-nums mt-0.5 mb-2'>
+                      {project.period}
+                    </p>
+                  )}
                   <p class='text-sm text-zinc-400 mb-3'>
                     {project.description}
                   </p>
