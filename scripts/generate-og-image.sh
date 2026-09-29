@@ -26,12 +26,13 @@ HEIGHT=630
 
 # --- Textos --------------------------------------------------------------------
 # El "&" debe ir como "&amp;" (es XML).
-TECH="// BACKEND · INTEGRATIONS · SQL"
-SUBTITLE="Production support · Internal tools"
+TECH="BACKEND · INTEGRATIONS · SQL · PRODUCTION SUPPORT · INTERNAL TOOLS · REMOTE"
+SUBTITLE="Backend systems, integrations and production support"
 
 # Fuentes requeridas: "archivo|URL".
 FONTS=(
-  "Geist.ttf|https://github.com/google/fonts/raw/main/ofl/geist/Geist%5Bwght%5D.ttf"
+  "ArchivoBlack.ttf|https://github.com/google/fonts/raw/main/ofl/archivoblack/ArchivoBlack-Regular.ttf"
+  "SpaceGrotesk.ttf|https://github.com/google/fonts/raw/main/ofl/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf"
   "JetBrainsMono.ttf|https://github.com/google/fonts/raw/main/ofl/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf"
 )
 
