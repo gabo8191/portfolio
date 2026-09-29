@@ -25,7 +25,7 @@ export const EMPLOYERS: Employer[] = [
     role: 'BI & Data Analytics Intern',
     period: 'Jul 2026 – Present',
     focus:
-      'Analytics and an internal Django tool for Power BI to Tableau migration estimates. The team uses its estimates; formal application deployment is pending.',
+      'Data analytics and an internal Django application that analyzes files and estimates effort for the team.',
   },
   {
     name: 'TotalDev',
@@ -52,11 +52,11 @@ export const EMPLOYERS: Employer[] = [
 
 export const PROFESSIONAL_PROJECTS: ProfessionalProject[] = [
   {
-    title: 'PBIX Migration Estimation Tool',
+    title: 'Internal Effort Estimation Tool',
     company: 'Keyrus Colombia',
     period: 'Jul 2026 – Present',
     description:
-      'Designed and built an internal Django application that reads PBIX files, scores dashboard complexity with AHP and estimates Tableau migration hours with PERT. DRF APIs, Celery/Redis background analysis, PostgreSQL, a hexagonal architecture with boundary tests and an Excel workbook per dashboard. The team uses its estimates; formal deployment is pending.',
+      'Designed and built an internal Django application that analyzes files and estimates effort for the team. REST API with DRF, background processing with Celery and Redis, PostgreSQL persistence and automated tests in GitHub Actions.',
     technologies: ['Python', 'Django', 'DRF', 'Celery', 'PostgreSQL'],
   },
   {
