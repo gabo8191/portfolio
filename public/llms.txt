@@ -11,14 +11,14 @@
 - Email: gabo8191@gmail.com
 - Current role: BI & Data Analytics Intern at Keyrus Colombia, since July 2026
 
-Gabriel develops APIs and asynchronous workflows and diagnoses production failures by tracing data and messages through SQL, logs and code. His professional work includes financial messaging, electronic invoicing, regional benefits platforms and a Django tool for dashboard migration estimates.
+Gabriel develops APIs and asynchronous workflows and diagnoses production failures by tracing data and messages through SQL, logs and code. His professional work includes financial messaging, electronic invoicing, regional benefits platforms and internal tools.
 
 ## Professional experience
 
-- Keyrus Colombia, BI & Data Analytics Intern (July 2026 to present): designed and built an internal Django application that analyzes PBIX files and estimates Power BI to Tableau migration effort. The team uses its estimates for client work; formal application deployment is pending. Implemented DRF APIs, Celery/Redis jobs, PostgreSQL persistence, Excel reporting and CI checks. Also prepares and validates analytics data with SQL and Python. The LLM documentation port currently uses an offline adapter; no AI model is running in production.
-- TotalDev SAS, freelance Fullstack Developer (February 2025 to March 2026): added MT103 and MT202 support to a Java/Apache Camel SWIFT/ISO 20022 gateway, including parsers, validators, JSON mapping files and automated MT to pacs.008 and pacs.009 to MT202 flows. Was the main developer of an electoral inventory platform (bulk imports, regional permissions, queued PDF/ZIP generation) and built a plant inventory PWA, one-use QR guest validation and Laravel/Filament content panels. This freelance work overlapped with PARQ through July 2025.
+- Keyrus Colombia, BI & Data Analytics Intern (July 2026 to present): designed and built an internal Django application that analyzes files and estimates effort for the team, with a DRF API, Celery/Redis background processing, PostgreSQL and automated tests in GitHub Actions. Also prepares and validates data with SQL and Python.
+- TotalDev SAS, freelance Fullstack Developer (February 2025 to March 2026): added SWIFT MT support (MT103, MT202) and automated ISO 20022 conversion to a Java/Apache Camel interbank gateway. Developed the core modules of an electoral inventory platform (bulk imports, regional permissions, queued PDF generation) and built a plant inventory PWA, event guest registration with single-use QR codes and Laravel/Filament content panels.
 - PARQ, Fullstack Developer (November 2024 to July 2025): maintained NestJS services sharing a PostgreSQL database, diagnosed production data inconsistencies and extended the SATCOM, Siigo and Alegra electronic invoicing connectors with queued resend of failed invoices and per-request tracing. Built country-specific rates, queued bulk membership creation and the Next.js corporate site. Worked with queues, scheduled jobs, OpenAPI and Docker/Portainer.
-- SEREMPRE, SENA backend intern then Backend Developer (January 2023 to November 2024): joined the Membeers backend team during the internship. Built Laravel APIs for regional benefits and insurance platforms and handled L2/L3 production incidents with SQL, code review and Sentry. Worked on reporting, queued jobs and Docker/DDEV environments.
+- SEREMPRE, Backend Developer (January 2023 to November 2024): built Laravel APIs for regional benefits, training and insurance platforms and handled L2/L3 production incidents with SQL, code review and Sentry. Worked on reporting, queued jobs and Docker/DDEV environments.
 
 ## Skills and scope
 

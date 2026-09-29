@@ -32,7 +32,7 @@ export const EMPLOYERS: Employer[] = [
     role: 'Freelance Fullstack Developer',
     period: 'Feb 2025 – Mar 2026',
     focus:
-      'Interbank messaging, inventory systems, event operations and content management. Freelance work overlapped with PARQ through Jul 2025.',
+      'Interbank messaging, inventory systems, event operations and content management for clients in several industries.',
   },
   {
     name: 'PARQ',
@@ -64,58 +64,55 @@ export const PROFESSIONAL_PROJECTS: ProfessionalProject[] = [
     company: 'TotalDev',
     period: 'Aug – Sep 2025',
     description:
-      'Added MT message support to a Java/Apache Camel gateway between internal systems and SWIFT: MT103 and MT202 models, parsers and validators, JSON mapping configurations, and automated flows from MT to pacs.008 and from pacs.009 to MT202. Message batches run asynchronously with per-message failure logging.',
+      'Added SWIFT MT support to an interbank gateway in Java/Apache Camel: MT103 and MT202 validation and automated conversion to ISO 20022.',
     technologies: ['Java', 'Apache Camel', 'SWIFT', 'ISO 20022'],
   },
   {
-    title: 'Invex — Electoral Inventory Platform',
+    title: 'Electoral Inventory Platform',
     company: 'TotalDev',
     period: 'Jul – Oct 2025',
     description:
-      'Main developer of an inventory platform for electoral operations: bulk imports with duplicate and row-level validation, permissions by department and municipality, Excel reports and KPI dashboards, and record PDFs cached and bundled into ZIP files by a queued job with scheduled cleanup.',
+      'Developed the core modules of an inventory platform for electoral operations in Laravel and React: bulk imports with row-level validation, regional permissions, Excel reports and queued PDF generation.',
     technologies: ['Laravel', 'React', 'MySQL', 'Queues', 'Zod'],
-    liveUrl: 'https://www.invex.com.co/login/',
   },
   {
-    title: 'Materiales de la Sabana — Plant Inventory',
+    title: 'Industrial Plant Inventory PWA',
     company: 'TotalDev',
     period: 'Aug – Oct 2025',
     description:
-      'Built the PWA used by drivers, yard and machine operators, with QR scanning, photo capture and role dashboards, plus its Laravel/Filament backend for receipts, issues, production, administrator approvals and monthly inventory reports.',
+      'Built a QR-scanning PWA for plant operators and its Laravel/Filament backend for inventory control and reports.',
     technologies: ['React', 'PWA', 'Laravel', 'Filament', 'MySQL'],
   },
   {
-    title: 'Chivas House — Event Management Platform',
+    title: 'Event Guest Registration',
     company: 'TotalDev',
     period: 'Nov – Dec 2025',
     description:
-      'Built guest registration linked to invitation codes, one-use QR codes, event-driven welcome emails and a validation PWA for event staff.',
+      'Built guest registration with single-use QR codes and a validation app for event staff.',
     technologies: ['React', 'Laravel', 'TypeScript', 'PWA'],
-    liveUrl: 'https://chivas-house.co/age-validation',
   },
   {
-    title: 'Biosimtec — Corporate Site with Custom CMS',
+    title: 'Corporate Site with Custom CMS',
     company: 'TotalDev',
     period: 'Nov – Dec 2025',
     description:
-      'Built a Laravel/Filament CMS so nontechnical users manage every section of the site, with content caches invalidated when records change, and a React front end on TanStack Query.',
+      'Built a Laravel/Filament CMS so nontechnical users can update their site, with a React front end.',
     technologies: ['React', 'Laravel', 'Filament', 'TanStack Query'],
-    liveUrl: 'https://www.biosimtec.com/',
   },
   {
     title: 'Inspection Operations Platform',
     company: 'TotalDev',
     period: 'Apr 2025; Jul – Oct 2025',
     description:
-      'Modeled and built the discounts module (causes, claims and notifications) and microbiology visits with their samples; later built the visit report form with coordinator review, approval states and evidence uploads.',
+      'Built modules for claims, field visits and visit reports with review and approval workflows.',
     technologies: ['Laravel', 'React', 'MySQL'],
   },
   {
-    title: 'Insurance Registry Maintenance',
+    title: 'Insurance Data Reporting',
     company: 'TotalDev',
     period: 'Apr – Jul 2025',
     description:
-      'Maintained reports for an insurance industry registry: SQL validation of response history, pending-response tracking, a blocklist, and a data report for a merger between two insurers.',
+      'Validated data and maintained reports with SQL for an insurance industry client.',
     technologies: ['Laravel', 'SQL', 'Reporting'],
   },
   {
@@ -123,7 +120,7 @@ export const PROFESSIONAL_PROJECTS: ProfessionalProject[] = [
     company: 'TotalDev',
     period: 'Jun 2025',
     description:
-      'Built the campaign, activity and user editing views and the endpoints behind them for a merchandising team tool.',
+      'Built management views and their API endpoints for a field team tool.',
     technologies: ['Laravel', 'React'],
   },
   {
@@ -131,41 +128,41 @@ export const PROFESSIONAL_PROJECTS: ProfessionalProject[] = [
     company: 'PARQ',
     period: 'Jan – Jul 2025',
     description:
-      'Extended the SATCOM, Siigo and Alegra connectors of a Laravel invoicing middleware: queued resend of failed invoices, company registration with providers, document and ID types, and per-request logging with tax ID for tracing. Connected membership invoicing from the NestJS services.',
+      'Extended the SATCOM, Siigo and Alegra connectors of a Laravel invoicing middleware with queued resend of failed invoices and per-request tracing, and connected membership invoicing from the NestJS services.',
     technologies: ['Laravel', 'NestJS', 'Queues', 'PostgreSQL'],
   },
   {
-    title: 'PARQ — Parking Services Backend',
+    title: 'Parking Services Backend',
     company: 'PARQ',
     period: 'Dec 2024 – Jun 2025',
     description:
-      'Worked on NestJS services sharing PostgreSQL: country-specific rates for Colombia and Mexico, custom calendar days, queued bulk membership creation, sales reports with sub-tariffs and a platform-wide timezone standard. Traced production data inconsistencies from the database into the services.',
+      'Built country-specific rates, queued bulk membership creation, sales reports and consistent timezone handling in NestJS services on PostgreSQL, and traced production data issues from the database into the services.',
     technologies: ['NestJS', 'TypeORM', 'PostgreSQL', 'Angular', 'Swagger'],
     liveUrl: 'https://app.parqco.com/sign-in',
   },
   {
-    title: 'PARQ — Corporate Website',
+    title: 'Corporate Website',
     company: 'PARQ',
     period: 'May – Jun 2025',
     description:
-      'Rebuilt the corporate site in Next.js with server rendering, Colombia and UK locales, SEO metadata, Intercom and Tailwind.',
+      'Rebuilt the corporate site in Next.js with server rendering, i18n and SEO.',
     technologies: ['Next.js', 'TypeScript', 'Tailwind', 'i18n'],
     liveUrl: 'https://parqtech.com/',
   },
   {
-    title: 'Membeers — AB InBev Benefits Platform',
+    title: 'Regional Benefits Platform',
     company: 'SEREMPRE',
     period: 'Mar 2023 – Jun 2024',
     description:
-      'Built Laravel APIs and handled L2/L3 incidents through SQL, code and Sentry. Queued validated payment uploads and duplicate cleanup, Excel exports of members, missions and payments, per-country parameters and a faster waiting list. Joined the team as a SENA intern.',
+      'Built Laravel APIs for a benefits platform in more than five Latin American countries, with queued payment uploads and reports, and diagnosed L2/L3 incidents through SQL, code and Sentry.',
     technologies: ['Laravel', 'PHP', 'MySQL', 'Queues'],
   },
   {
-    title: 'Story Training — Educational Platform',
+    title: 'Educational Platform',
     company: 'SEREMPRE',
     period: 'Jun – Aug 2023',
     description:
-      'Evolved an educational platform with clients in Spain: Laravel backend, Orchid admin panel, custom Moodle plugin and Cloudinary integration for multimedia content.',
+      'Evolved an educational platform with a Laravel backend, a Moodle LTI integration and Cloudinary for multimedia content.',
     technologies: ['Laravel', 'Moodle', 'Cloudinary'],
   },
   {
@@ -173,7 +170,7 @@ export const PROFESSIONAL_PROJECTS: ProfessionalProject[] = [
     company: 'SEREMPRE',
     period: 'Aug – Nov 2023',
     description:
-      'Worked on a ten-year residential insurance lookup inside a legacy insurance registry, combining Laravel, existing PHP, Vue and Bootstrap, with cross-system testing in Postman.',
+      'Built an insurance policy lookup between systems with Laravel and Vue, tested end to end in Postman.',
     technologies: ['Laravel', 'PHP', 'Vue', 'SQL'],
   },
 ];
