@@ -14,7 +14,7 @@ The professional details are based on the career inventory in the local vault an
 
 ## Stack
 
-Astro, React, Tailwind CSS and Paper Shaders. Static pages are built for GitHub Pages under `/portfolio/`; the site URL and base path can be configured in `astro.config.mjs` as documented in `docs/DOMINIO-PROPIO.md`.
+Astro, React (projects explorer), Tailwind CSS, GSAP (scroll reveals) and anime.js (the draggable sticker desk). Both animation libraries load on demand. The visual system, "Hard Copy", is documented in `design.md`. Static pages are built for GitHub Pages under `/portfolio/`; the site URL and base path can be configured in `astro.config.mjs` as documented in `docs/DOMINIO-PROPIO.md`.
 
 ## Development
 
@@ -34,6 +34,9 @@ npm run preview
 | About and skills | `src/pages/about.astro` |
 | Home and contact copy | `src/pages/index.astro`, `src/pages/contact.astro` |
 | Metadata and structured data | `src/layouts/RootLayout.astro` |
+| Visual system (tokens, components) | `src/styles/global.css`, `design.md` |
+| Hero stickers | `src/components/sticker-desk.astro` |
+| Open Graph image | `assets/og/og-image.template.svg` → `npm run og:generate` |
 | Machine-readable profile | `public/llms.txt` |
 | Downloadable general CV | `public/cv-en.pdf`, `public/cv-es.pdf` |
 
@@ -41,4 +44,4 @@ Published downloads come from `public/`. The copies at the project root are kept
 
 ## License
 
-MIT. See [LICENSE](LICENSE). The site design began from the [Nikola Tesla Portfolio](https://github.com/iann-mathaiya/nikola-tesla) template and uses [Paper Shaders](https://github.com/paper-design/shaders) for the background.
+MIT. See [LICENSE](LICENSE). The project began from the [Nikola Tesla Portfolio](https://github.com/iann-mathaiya/nikola-tesla) template; the current neo-brutalist design is original (September 2026).
