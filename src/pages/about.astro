@@ -12,7 +12,7 @@ const experience = [
     title: 'BI and Data Analytics Intern',
     company: 'Keyrus Colombia',
     period: 'Jul. 2026 – Present',
-    context: 'Data consulting; Power BI to Tableau dashboard migration',
+    context: 'Data consulting · Power BI to Tableau dashboard migration',
     highlights: [
       'Designed and built an internal Django application that reads PBIX files, scores dashboard complexity with AHP and estimates Tableau migration hours with PERT. The team uses its estimates; formal deployment is pending.',
       'Built a DRF API, Celery and Redis background analysis, PostgreSQL persistence and an eleven-sheet Excel workbook per dashboard on a hexagonal architecture.',
@@ -23,7 +23,7 @@ const experience = [
     title: 'Freelance Full Stack Developer',
     company: 'TotalDev SAS',
     period: 'Feb. 2025 – Mar. 2026',
-    context: 'Custom software; overlapped with PARQ until Jul. 2025',
+    context: 'Banking (SWIFT), electoral, insurance and industrial clients · alongside PARQ',
     highlights: [
       'Added MT message support to a Java/Apache Camel gateway: MT103 and MT202 parsers and validators, JSON mapping files, and automated MT to pacs.008 and pacs.009 to MT202 flows.',
       'Built most of an electoral inventory platform in Laravel and React: bulk imports with row-level errors, department and municipality permissions, Excel reports, and queued, cached PDF and ZIP generation.',
@@ -45,7 +45,7 @@ const experience = [
     title: 'Backend Developer',
     company: 'SEREMPRE',
     period: 'Jan. 2023 – Nov. 2024',
-    context: 'Started as a SENA intern; permanent contract from Jul. 2023',
+    context: 'Membeers (AB InBev) benefits platform in 5+ countries · SENA intern first',
     highlights: [
       'Handled L2/L3 production incidents and joined war rooms; diagnosed failures through SQL, code review and Sentry, and documented root causes.',
       'Built Laravel APIs for a benefits platform in more than five Latin American countries, with queues for validated payment uploads, duplicate cleanup and notifications.',
@@ -72,13 +72,13 @@ const skills = [
 
 const education = [
   {
-    title: 'Systems and Computer Engineering',
-    school: 'UPTC, Tunja',
+    title: 'B.Eng. in Systems and Computer Engineering',
+    school: 'Universidad Pedagógica y Tecnológica de Colombia (UPTC), Tunja',
     when: 'Expected 2026',
   },
   {
-    title: 'Information Systems Analysis and Development (technologist)',
-    school: 'SENA',
+    title: 'Technologist in Information Systems Analysis and Development',
+    school: 'Servicio Nacional de Aprendizaje (SENA), Tunja',
     when: '2022',
   },
 ];
@@ -90,9 +90,9 @@ const education = [
 >
   <PageHead slot='head' index='About' title='About Gabriel' tone='pink'>
     <p>
-      I build backend systems and integrations and diagnose production incidents. Over three
-      years of remote experience with APIs, SQL, queues, financial messaging, electronic
-      invoicing and internal tools.
+      Backend engineer with 3+ years of remote experience building REST APIs, integrations and
+      internal tools with Python/Django, NestJS, Laravel and Java, now applying that background
+      to BI and data analytics.
     </p>
   </PageHead>
 
@@ -114,6 +114,11 @@ const education = [
         At Keyrus I designed a Django tool that analyzes PBIX files and produces migration
         estimates the team already uses; its formal deployment is pending. Before that I worked
         on SWIFT messaging, electronic invoicing and a regional benefits platform.
+      </p>
+      <p>
+        <a href={`${base}cv-en.pdf`} target='_blank' rel='noopener noreferrer'>Download the CV (EN)</a>
+        ·
+        <a href={`${base}cv-es.pdf`} target='_blank' rel='noopener noreferrer'>Descargar la hoja de vida (ES)</a>
       </p>
       <ul class='tags'>
         <li class='tag tag--yellow'>Spanish · native</li>
