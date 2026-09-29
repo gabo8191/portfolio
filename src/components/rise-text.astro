@@ -1,0 +1,33 @@
+---
+// Splits text into letters on the server so it can rise with CSS on first
+// paint. Words stay unbreakable; the caller's heading carries the accessible
+// name, and the letters are hidden from assistive technology.
+type Props = {
+  text: string;
+  /** Index offset so several lines can share one stagger sequence. */
+  start?: number;
+};
+
+const { text, start = 0 } = Astro.props;
+let index = start;
+const words = text.split(' ').map((word) =>
+  [...word].map((char) => ({ char, i: index++ })),
+);
+---
+
+<span aria-hidden='true'>
+  {
+    words.map((letters, wordIndex) => (
+      <>
+        <span class='rise-word'>
+          {letters.map(({ char, i }) => (
+            <span class='rise-char' style={`--i:${i}`}>
+              {char}
+            </span>
+          ))}
+        </span>
+        {wordIndex < words.length - 1 ? ' ' : null}
+      </>
+    ))
+  }
+</span>

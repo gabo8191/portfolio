@@ -1,7 +1,9 @@
 ---
 import Footer from '../components/footer.astro';
-import GrainGradientBackground from '../components/grain-gradient-background';
+import Marquee from '../components/marquee.astro';
+import RiseText from '../components/rise-text.astro';
 import SiteHeader from '../components/site-header.astro';
+import StickerDesk from '../components/sticker-desk.astro';
 import RootLayout from '../layouts/RootLayout.astro';
 import { PROFESSIONAL_PROJECTS } from '../data/professional';
 import { PROJECTS } from '../data/projects';
@@ -9,6 +11,7 @@ import { PROJECTS } from '../data/projects';
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL.slice(0, -1)
   : import.meta.env.BASE_URL;
+
 const selectedTitles = [
   'PBIX Migration Estimation Tool',
   'SWIFT MT Support for an Interbank Gateway',
@@ -24,107 +27,189 @@ const publicProjects = ['polyglot-microservices', 'tomoreader'].map((slug) => {
   if (!project) throw new Error(`Missing public project: ${slug}`);
   return project;
 });
+
+const focus = [
+  'Backend',
+  'Integrations',
+  'Production support',
+  'SQL',
+  'Internal tools',
+  'Python / Django',
+  'NestJS',
+  'Laravel',
+  'Java / Apache Camel',
+  'Remote from Tunja, CO',
+];
+const stack = [
+  'PostgreSQL',
+  'MySQL',
+  'Oracle PL/SQL',
+  'Redis',
+  'Celery',
+  'DRF',
+  'Filament',
+  'OpenAPI',
+  'Docker',
+  'Sentry',
+  'GitHub Actions',
+  'Power BI',
+  'Tableau',
+];
+const capabilities = [
+  {
+    title: 'System integrations',
+    body: 'Financial messaging (SWIFT MT and ISO 20022), electronic invoicing connectors and data workflows between systems that were never meant to talk.',
+  },
+  {
+    title: 'Production support',
+    body: 'L2/L3 incidents traced through SQL, logs and code until the failure is clear, then a fix the team can maintain and a written root cause.',
+  },
+  {
+    title: 'Internal tools',
+    body: 'Practical software teams use every day: estimation tools, inventory platforms, reports, queued exports and admin panels.',
+  },
+];
 ---
 
 <RootLayout
   title='Gabriel Castillo | Backend & Integration Engineer'
   description='Backend developer in Colombia working on integrations, production support and internal tools with Python/Django, NestJS, Laravel and SQL.'
 >
-  <div class='site-frame home-frame'>
+  <div class='frame'>
     <SiteHeader />
-    <main id='main-content' class='home-main'>
-      <!-- Hallmark · pre-emit critique: P4 H5 E4 S5 R4 V4 -->
-      <!-- Hallmark · genre: modern-minimal · macrostructure: typographic-portrait · design-system: design.md · designed-as-app -->
-      <section class='home-hero' aria-labelledby='home-title'>
-        <div class='home-hero__main'>
-          <div class='home-hero__art'>
-            <GrainGradientBackground
-              colors={['#a78bfa', '#7c3aed', '#c4b5fd', '#6366f1']}
-              colorBack='#15111f'
-              softness={0.7}
-              intensity={0.35}
-              noise={0.14}
-              shape='wave'
-              speed={0.35}
-              showControls={true}
-              client:idle
-            />
+    <main id='main-content'>
+      <Marquee items={focus} label='Areas of work' />
+
+      <section class='hero' aria-labelledby='home-title'>
+        <div class='shell hero__inner'>
+          <div class='hero__kicker'>
+            <span class='tag tag--ink'>Backend &amp; Integration Engineer</span>
+            <span class='tag'>Tunja, Colombia · Remote</span>
           </div>
-          <div class='home-hero__layout'>
-            <p class='home-hero__eyebrow'>Backend engineering <span aria-hidden='true'>/</span> Colombia</p>
-            <h1 id='home-title'>Gabriel<br /><span>Castillo<span class='home-hero__period'>.</span></span></h1>
-            <div class='home-hero__bottom'>
-              <p>I connect systems, build internal tools and trace production incidents through code and data.</p>
-              <div class='home-hero__actions'>
-                <a class='button button--primary' href={`${base}/work/`}>See my work <span aria-hidden='true'>↗</span></a>
-                <a class='home-hero__cv' href={`${base}/cv-en.pdf`} target='_blank' rel='noopener noreferrer'>Download CV <span aria-hidden='true'>↗</span><span class='sr-only'>(opens in new tab)</span></a>
+
+          <h1 id='home-title' class='hero__name' aria-label='Gabriel Castillo'>
+            <span class='hero__line'><RiseText text='Gabriel' /></span>
+            <span class='hero__line hero__line--offset'><RiseText text='Castillo.' start={7} /></span>
+          </h1>
+
+          <div class='hero__bottom'>
+            <div>
+              <p class='hero__pitch'>
+                I connect systems, build internal tools and trace production incidents
+                through code and data. Over three years with Python/Django, NestJS,
+                Laravel, Java and SQL.
+              </p>
+              <div class='hero__actions'>
+                <a class='btn btn--ink' href={`${base}/work/`}>See my work →</a>
+                <a class='btn' href={`${base}/cv-en.pdf`} target='_blank' rel='noopener noreferrer'>
+                  Download CV<span class='sr-only'> (opens in new tab)</span>
+                </a>
               </div>
             </div>
+            <StickerDesk />
           </div>
         </div>
-        <aside class='site-shell home-hero__aside' aria-label='Areas of work'>
-          <p class='section-label'>What I work on</p>
-          <ul>
-            <li><span>01</span><strong>System integrations</strong><p>Financial messaging, invoicing and data workflows.</p></li>
-            <li><span>02</span><strong>Production support</strong><p>Incidents traced across application code and databases.</p></li>
-            <li><span>03</span><strong>Internal tools</strong><p>Practical software that helps teams make decisions.</p></li>
+      </section>
+
+      <section class='section' aria-labelledby='caps-title'>
+        <div class='shell'>
+          <div class='section-bar'>
+            <div>
+              <p class='section-bar__index mono'>01 / What I do</p>
+              <h2 id='caps-title' data-split>Where I'm useful</h2>
+            </div>
+          </div>
+          <ul class='caps'>
+            {capabilities.map((capability, index) => (
+              <li class='cap block' data-stamp>
+                <span class='mono'>0{index + 1}</span>
+                <h3>{capability.title}</h3>
+                <p>{capability.body}</p>
+              </li>
+            ))}
           </ul>
-        </aside>
-      </section>
-
-      <section class='site-shell home-work' aria-labelledby='selected-work-title'>
-        <div class='section-heading'>
-          <div>
-            <p class='section-label'>Experience in practice</p>
-            <h2 id='selected-work-title'>Selected professional work</h2>
-          </div>
-          <a class='inline-link' href={`${base}/work/`}>All work <span aria-hidden='true'>↗</span></a>
-        </div>
-        <div class='work-list'>
-          {selectedWork.map((project) => (
-            <article class='work-list__item'>
-              <p class='work-list__company'>{project.company}</p>
-              <div>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-              </div>
-            </article>
-          ))}
         </div>
       </section>
 
-      <section class='home-public' aria-labelledby='public-work-title'>
-        <div class='site-shell home-public__inner'>
-          <div class='home-public__intro'>
-            <p class='section-label'>Built in the open</p>
-            <h2 id='public-work-title'>A look inside the work.</h2>
-            <p>Most professional systems I work on are private. These personal projects show how I approach architecture and product decisions in public.</p>
-            <a class='inline-link' href={`${base}/projects/`}>Explore all projects <span aria-hidden='true'>↗</span></a>
+      <section class='section section--ink' aria-labelledby='work-title'>
+        <div class='shell'>
+          <div class='section-bar'>
+            <div>
+              <p class='section-bar__index mono'>02 / Experience in practice</p>
+              <h2 id='work-title' data-split>Selected work</h2>
+            </div>
+            <a class='link' href={`${base}/work/`}>All professional work →</a>
           </div>
-          <div class='home-public__list'>
-            {publicProjects.map((project) => (
-              <article>
-                <p class='home-public__type'>{project.area === 'backend' ? 'Backend & architecture' : 'Desktop application'}</p>
-                <h3>{project.title}</h3>
-                <p>{project.summary}</p>
-                <ul aria-label='Technologies'>
-                  {project.technologies.slice(0, 4).map((technology) => <li>{technology}</li>)}
-                </ul>
-                {project.githubUrl && <a href={project.githubUrl} target='_blank' rel='noopener noreferrer'>View repository <span aria-hidden='true'>↗</span><span class='sr-only'>(opens in new tab)</span></a>}
+          <div class='rows'>
+            {selectedWork.map((project) => (
+              <article class='row block' data-stamp>
+                <div class='row__meta'>
+                  <span class='tag tag--yellow'>{project.company}</span>
+                  {project.period && <span class='tag'>{project.period}</span>}
+                </div>
+                <div>
+                  <h3>{project.title}</h3>
+                  <p class='measure'>{project.description}</p>
+                  <ul class='tags tags--spaced' aria-label='Technologies'>
+                    {project.technologies.map((technology) => <li class='tag tag--pink'>{technology}</li>)}
+                  </ul>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section class='site-shell home-close' aria-labelledby='home-close-title'>
-        <div>
-          <p class='section-label'>Get in touch</p>
-          <h2 id='home-close-title'>Let's talk systems.</h2>
+      <Marquee items={stack} reverse label='Tools I use' />
+
+      <section class='section' aria-labelledby='open-title'>
+        <div class='shell'>
+          <div class='section-bar'>
+            <div>
+              <p class='section-bar__index mono'>03 / Built in the open</p>
+              <h2 id='open-title' data-split>Public projects</h2>
+            </div>
+            <a class='link' href={`${base}/projects/`}>Explore all projects →</a>
+          </div>
+          <p class='measure lede'>
+            Most professional systems I work on are private. These personal projects show how
+            I approach architecture and product decisions in public.
+          </p>
+          <div class='oss'>
+            {publicProjects.map((project, index) => (
+              <article class:list={['block', index === 0 ? 'cap--yellow' : 'cap--pink']} data-stamp>
+                <span class='tag tag--ink'>
+                  {project.area === 'backend' ? 'Backend & architecture' : 'Desktop application'}
+                </span>
+                <h3>{project.title}</h3>
+                <p>{project.summary}</p>
+                <ul class='tags' aria-label='Technologies'>
+                  {project.technologies.slice(0, 4).map((technology) => <li class='tag'>{technology}</li>)}
+                </ul>
+                {project.githubUrl && (
+                  <a class='btn' href={project.githubUrl} target='_blank' rel='noopener noreferrer'>
+                    View repository<span class='sr-only'> (opens in new tab)</span>
+                  </a>
+                )}
+              </article>
+            ))}
+          </div>
         </div>
-        <div>
-          <p>For a conversation about backend work, integrations or a difficult production issue, you can reach me directly.</p>
-          <a class='inline-link' href={`${base}/contact/`}>Contact me <span aria-hidden='true'>↗</span></a>
+      </section>
+
+      <section class='section section--pink' aria-labelledby='close-title'>
+        <div class='shell closer'>
+          <h2 id='close-title'>Let's talk <span>systems.</span></h2>
+          <div>
+            <p>
+              For backend work, an integration that keeps failing or a difficult production
+              issue, write to me directly.
+            </p>
+            <div class='hero__actions'>
+              <a class='btn btn--ink' href='mailto:gabo8191@gmail.com'>gabo8191@gmail.com</a>
+              <a class='btn btn--yellow' href={`${base}/contact/`}>Contact page →</a>
+            </div>
+          </div>
         </div>
       </section>
     </main>

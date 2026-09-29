@@ -1,0 +1,22 @@
+---
+type Props = {
+  items: string[];
+  reverse?: boolean;
+  label?: string;
+};
+
+const { items, reverse = false, label } = Astro.props;
+---
+
+<!-- The group is rendered twice so the -50% loop is seamless; the copy is
+     hidden from assistive technology to avoid reading items twice. -->
+<div class:list={['marquee', reverse && 'marquee--reverse']} role='region' aria-label={label}>
+  <div class='marquee__track'>
+    <ul class='marquee__group'>
+      {items.map((item) => <li>{item}</li>)}
+    </ul>
+    <ul class='marquee__group' aria-hidden='true'>
+      {items.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+</div>

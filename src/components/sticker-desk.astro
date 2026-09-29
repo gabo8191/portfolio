@@ -1,0 +1,151 @@
+---
+// Hero hook: real work items as stickers that drop onto a desk and can be
+// dragged around (anime.js), or moved with the arrow keys when focused.
+type Sticker = {
+  label: string;
+  note?: string;
+  tone: 'yellow' | 'pink' | 'blue' | 'paper' | 'ink';
+  x: string;
+  y: string;
+  r: string;
+};
+
+const stickers: Sticker[] = [
+  { label: 'MT103 → pacs.008', note: 'SWIFT · ISO 20022', tone: 'ink', x: '4%', y: '6%', r: '-6deg' },
+  { label: 'Siigo · Alegra · SATCOM', note: 'e-invoicing connectors', tone: 'pink', x: '44%', y: '4%', r: '4deg' },
+  { label: 'L2/L3 incidents', note: 'SQL · Sentry · war rooms', tone: 'paper', x: '8%', y: '30%', r: '3deg' },
+  { label: 'Django + Celery', note: 'PBIX → Tableau estimates', tone: 'blue', x: '50%', y: '29%', r: '-4deg' },
+  { label: 'NestJS + PostgreSQL', tone: 'yellow', x: '2%', y: '55%', r: '-3deg' },
+  { label: 'Apache Camel', note: 'Java gateway', tone: 'pink', x: '46%', y: '53%', r: '6deg' },
+  { label: 'Laravel queues', note: 'payments · PDF/ZIP', tone: 'paper', x: '14%', y: '76%', r: '-2deg' },
+  { label: 'PL/SQL reports', tone: 'ink', x: '55%', y: '77%', r: '5deg' },
+];
+---
+
+<div class='desk-wrap'>
+  <div class='desk' data-desk>
+    <p id='desk-help' class='sr-only'>
+      Stickers of things I have worked on. Focus one and use the arrow keys to move it.
+    </p>
+    <ul class='contents' aria-label='Things I have worked on' aria-describedby='desk-help'>
+      {stickers.map((sticker) => (
+        <li
+          class={`sticker sticker--${sticker.tone}`}
+          style={`--x:${sticker.x};--y:${sticker.y};--r:${sticker.r}`}
+          tabindex='0'
+        >
+          {sticker.label}
+          {sticker.note && <small>{sticker.note}</small>}
+        </li>
+      ))}
+    </ul>
+  </div>
+  <p class='desk__hint mono' aria-hidden='true'>↑ drag the stickers</p>
+</div>
+
+<!-- Runs during parsing, before first paint, so stickers never flash in place
+     before dropping. Reduced motion keeps them visible where they are. -->
+<script is:inline data-astro-rerun>
+  (function () {
+    var wrap = document.currentScript && document.currentScript.previousElementSibling;
+    var desk = wrap && wrap.querySelector('.desk');
+    if (desk && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      desk.classList.add('desk--armed');
+    }
+  })();
+</script>
+
+<script>
+  const KEY_STEP = 12;
+  const ARROWS: Record<string, [number, number]> = {
+    ArrowLeft: [-KEY_STEP, 0],
+    ArrowRight: [KEY_STEP, 0],
+    ArrowUp: [0, -KEY_STEP],
+    ArrowDown: [0, KEY_STEP],
+  };
+
+  function whenIdle(callback: () => void) {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(callback, { timeout: 1200 });
+    } else {
+      setTimeout(callback, 200);
+    }
+  }
+
+  function setupDesk(desk: HTMLElement) {
+    if (desk.dataset.ready) return;
+    desk.dataset.ready = 'true';
+
+    const stickers = [...desk.querySelectorAll<HTMLElement>('.sticker')];
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let layer = stickers.length;
+
+    // Safety net: if anime.js never arrives, show the stickers where they are
+    const reveal = () => desk.classList.remove('desk--armed');
+    const fallback = window.setTimeout(reveal, 4000);
+
+    whenIdle(() => {
+      import('animejs')
+        .then(({ animate, createDraggable, spring }) => {
+          window.clearTimeout(fallback);
+
+          stickers.forEach((sticker, index) => {
+            const draggable = createDraggable(sticker, {
+              container: desk,
+              releaseStiffness: 140,
+              releaseDamping: 14,
+              onGrab: () => {
+                layer += 1;
+                sticker.style.zIndex = String(layer);
+              },
+            });
+
+            // The draggable owns the translation: moves (keys and the drop)
+            // animate the draggable itself, never the element, or the two
+            // would fight over translateX/translateY.
+            sticker.addEventListener('keydown', (event) => {
+              const step = ARROWS[event.key];
+              if (!step) return;
+              event.preventDefault();
+              animate(draggable, {
+                x: draggable.x + step[0],
+                y: draggable.y + step[1],
+                duration: 140,
+                ease: 'outQuad',
+              });
+            });
+
+            if (reducedMotion) return;
+            // Each sticker falls from above the desk and lands with a bounce
+            const delay = 250 + index * 110;
+            draggable.setY(-(desk.offsetHeight + 120), true);
+            animate(draggable, {
+              y: 0,
+              delay,
+              ease: spring({ stiffness: 180, damping: 13 }),
+              onBegin: () => {
+                sticker.style.visibility = 'visible';
+              },
+            });
+            animate(sticker, {
+              rotate: { from: (index % 2 ? 1 : -1) * 18, to: 0 },
+              delay,
+              ease: spring({ stiffness: 180, damping: 13 }),
+            });
+          });
+
+          // Stickers were hidden individually; drop the armed state after the
+          // first one starts so later layout changes cannot hide them again.
+          window.setTimeout(reveal, 250 + stickers.length * 110 + 100);
+        })
+        .catch((error: unknown) => {
+          console.error('Failed to load anime.js for the sticker desk', error);
+          reveal();
+        });
+    });
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll<HTMLElement>('[data-desk]').forEach(setupDesk);
+  });
+</script>
