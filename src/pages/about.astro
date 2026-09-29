@@ -12,7 +12,7 @@ const experience = [
     title: 'BI and Data Analytics Intern',
     company: 'Keyrus Colombia',
     period: 'Jul. 2026 – Present',
-    context: 'Data consulting · Power BI to Tableau dashboard migration',
+    context: 'Data and analytics consulting. Power BI to Tableau dashboard migration.',
     highlights: [
       'Designed and built an internal Django application that reads PBIX files, scores dashboard complexity with AHP and estimates Tableau migration hours with PERT. The team uses its estimates; formal deployment is pending.',
       'Built a DRF API, Celery and Redis background analysis, PostgreSQL persistence and an eleven-sheet Excel workbook per dashboard on a hexagonal architecture.',
@@ -23,7 +23,7 @@ const experience = [
     title: 'Freelance Full Stack Developer',
     company: 'TotalDev SAS',
     period: 'Feb. 2025 – Mar. 2026',
-    context: 'Banking (SWIFT), electoral, insurance and industrial clients · alongside PARQ',
+    context: 'Custom software for banking, electoral, insurance and industrial clients.',
     highlights: [
       'Added MT message support to a Java/Apache Camel gateway: MT103 and MT202 parsers and validators, JSON mapping files, and automated MT to pacs.008 and pacs.009 to MT202 flows.',
       'Built most of an electoral inventory platform in Laravel and React: bulk imports with row-level errors, department and municipality permissions, Excel reports, and queued, cached PDF and ZIP generation.',
@@ -34,7 +34,7 @@ const experience = [
     title: 'Full Stack Developer',
     company: 'PARQ',
     period: 'Nov. 2024 – Jul. 2025',
-    context: 'Parking platform for Colombia, Mexico and the UK',
+    context: 'Parking platform operating in Colombia, Mexico and the UK.',
     highlights: [
       'Extended the SATCOM, Siigo and Alegra electronic invoicing connectors in a Laravel middleware: queued resend of failed invoices, company registration with providers, and per-request tracing.',
       'Maintained NestJS services on TypeORM and shared PostgreSQL: country-specific rates, queued bulk membership creation and consistent timezones in reports; fixed production data inconsistencies.',
@@ -45,7 +45,7 @@ const experience = [
     title: 'Backend Developer',
     company: 'SEREMPRE',
     period: 'Jan. 2023 – Nov. 2024',
-    context: 'Membeers (AB InBev) benefits platform in 5+ countries · SENA intern first',
+    context: 'Membeers (AB InBev) benefits platform for Latin America. Joined as a SENA intern.',
     highlights: [
       'Handled L2/L3 production incidents and joined war rooms; diagnosed failures through SQL, code review and Sentry, and documented root causes.',
       'Built Laravel APIs for a benefits platform in more than five Latin American countries, with queues for validated payment uploads, duplicate cleanup and notifications.',
@@ -72,7 +72,7 @@ const skills = [
 
 const education = [
   {
-    title: 'B.Eng. in Systems and Computer Engineering',
+    title: 'Bachelor of Engineering in Systems and Computer Engineering',
     school: 'Universidad Pedagógica y Tecnológica de Colombia (UPTC), Tunja',
     when: 'Expected 2026',
   },
@@ -136,7 +136,8 @@ const education = [
           <div class='job-head'>
             <div>
               <h3>{job.title}</h3>
-              <p class='mono'>{job.company} · {job.context}</p>
+              <p class='mono'>{job.company}</p>
+              <p class='muted'>{job.context}</p>
             </div>
             <span class='tag tag--pink'>{job.period}</span>
           </div>
