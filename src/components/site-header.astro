@@ -9,23 +9,34 @@ const links = [
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
+const isCurrent = (href: string) => pathname === `${base}${href}`;
 ---
 
 <header class='site-header'>
-  <div class='site-shell site-header__inner'>
-    <a class='site-header__brand' href={`${base}/`} aria-label='Gabriel Castillo, home'>
-      <span class='site-header__monogram' aria-hidden='true'>GC<span class='site-header__dot'>.</span></span>
-      <span class='site-header__name'>Gabriel Castillo</span>
+  <div class='shell site-header__inner'>
+    <a class='brand' href={`${base}/`}>
+      <span class='brand__mark' aria-hidden='true'>GC</span>
+      <span class='brand__name'>Gabriel Castillo</span>
     </a>
-    <nav class='site-header__nav' aria-label='Main navigation'>
+
+    <nav class='nav' aria-label='Main navigation'>
       {links.map((link) => (
-        <a
-          href={`${base}${link.href}/`}
-          aria-current={pathname === `${base}${link.href}` ? 'page' : undefined}
-        >
+        <a href={`${base}${link.href}/`} aria-current={isCurrent(link.href) ? 'page' : undefined}>
           {link.label}
         </a>
       ))}
     </nav>
+
+    <details class='menu'>
+      <summary>Menu</summary>
+      <nav class='menu__panel' aria-label='Mobile navigation'>
+        <a href={`${base}/`} aria-current={pathname === base ? 'page' : undefined}>Home</a>
+        {links.map((link) => (
+          <a href={`${base}${link.href}/`} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </details>
   </div>
 </header>

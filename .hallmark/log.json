@@ -6,5 +6,13 @@
     "theme": "charcoal and violet",
     "enrichment": "single animated home shader",
     "brief": "Redesign portfolio around a full-screen animated introduction and clearer professional evidence"
+  },
+  {
+    "date": "2026-09-29",
+    "scope": "app",
+    "macrostructure": "typographic poster / long document",
+    "theme": "Hard Copy: paper, ink, yellow, pink, blue",
+    "enrichment": "draggable sticker desk (anime.js) and GSAP scroll stamps",
+    "brief": "Complete neo-brutalist rebrand; nothing reused from the charcoal-and-violet system"
   }
 ]

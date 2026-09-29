@@ -137,7 +137,7 @@ const jsonLd = {
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <meta name='theme-color' content='#111216' />
+    <meta name='theme-color' content='#ffd93d' />
     <link rel='icon' type='image/svg+xml' href={`${base}favicon.svg`} />
     <link rel='canonical' href={canonical} />
     <meta name='generator' content={Astro.generator} />
@@ -171,25 +171,15 @@ const jsonLd = {
       set:html={JSON.stringify(jsonLd)}
     />
 
-    <Font cssVariable='--font-geist' preload />
+    <Font cssVariable='--font-archivo-black' preload />
+    <Font cssVariable='--font-space-grotesk' preload />
+    <Font cssVariable='--font-jetbrains-mono' />
     <ClientRouter />
-    <LoadingIndicator color='#f4f4f5' height='2px' />
+    <LoadingIndicator color='#ff6fb5' height='4px' />
   </head>
-  <body class='font-sans min-h-screen'>
-    <a
-      href='#main-content'
-      class='sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-zinc-100 focus:text-zinc-900'
-      >Skip to main content</a
-    >
+  <body>
+    <a href='#main-content' class='skip-link'>Skip to main content</a>
     <slot />
+    <script src='../scripts/reveal.ts'></script>
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

@@ -34,12 +34,28 @@ export default defineConfig({
   ],
 
   experimental: {
+    // "Hard Copy" system (design.md): display, body and mono faces
     fonts: [
       {
         provider: fontProviders.google(),
-        name: 'Geist',
-        cssVariable: '--font-geist',
-        fallbacks: ['Inter', 'sans-serif'],
+        name: 'Archivo Black',
+        cssVariable: '--font-archivo-black',
+        weights: [400],
+        fallbacks: ['Impact', 'sans-serif'],
+      },
+      {
+        provider: fontProviders.google(),
+        name: 'Space Grotesk',
+        cssVariable: '--font-space-grotesk',
+        weights: [400, 500, 700],
+        fallbacks: ['system-ui', 'sans-serif'],
+      },
+      {
+        provider: fontProviders.google(),
+        name: 'JetBrains Mono',
+        cssVariable: '--font-jetbrains-mono',
+        weights: [500],
+        fallbacks: ['ui-monospace', 'monospace'],
       },
     ],
   },

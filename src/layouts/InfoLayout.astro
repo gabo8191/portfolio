@@ -6,11 +6,16 @@ import RootLayout from './RootLayout.astro';
 const { title, description } = Astro.props;
 ---
 
+<!-- Interior pages: each one renders its own PageHead in the "head" slot and
+     its content in the default slot, inside the shared page body. -->
 <RootLayout title={title} description={description}>
-  <div class='site-frame'>
+  <div class='frame'>
     <SiteHeader />
-    <main id='main-content' class='site-shell content-main'>
-      <slot />
+    <main id='main-content'>
+      <slot name='head' />
+      <div class='shell page-body'>
+        <slot />
+      </div>
     </main>
     <Footer />
   </div>
