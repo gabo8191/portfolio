@@ -36,7 +36,7 @@ export type Area = {
   label: string;
   /** Descripción corta que acompaña al clúster en el mapa. */
   blurb: string;
-  /** Tomado de la paleta del degradado del hero, para que el mapa no desentone. */
+  /** Flat "Hard Copy" fill; every dot also gets an ink stroke, so contrast holds. */
   color: string;
 };
 
@@ -45,37 +45,37 @@ export const AREAS: Area[] = [
     id: 'data',
     label: 'Data & AI',
     blurb: 'Pipelines, models and analysis',
-    color: '#a855f7',
+    color: '#ffd93d',
   },
   {
     id: 'backend',
     label: 'Backend & APIs',
     blurb: 'Microservices, messaging and APIs',
-    color: '#7c3aed',
+    color: '#2f5bff',
   },
   {
     id: 'apps',
     label: 'Apps & Open Source',
     blurb: 'Products I maintain in the open',
-    color: '#c084fc',
+    color: '#ff6fb5',
   },
   {
     id: 'web',
     label: 'Web & Mobile',
     blurb: 'PWAs, offline-first and mobile',
-    color: '#818cf8',
+    color: '#3ddc97',
   },
   {
     id: 'infra',
     label: 'DevOps & Infra',
     blurb: 'Containers, virtualization and servers',
-    color: '#6366f1',
+    color: '#ff8a3d',
   },
   {
     id: 'security',
     label: 'Security',
     blurb: 'Cryptography and threat analysis',
-    color: '#f472b6',
+    color: '#0d0d0d',
   },
 ];
 

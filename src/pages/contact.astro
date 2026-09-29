@@ -1,117 +1,58 @@
 ---
-import ExternalLink from '../components/external-link.astro';
-import H1 from '../components/h1.astro';
+import PageHead from '../components/page-head.astro';
 import InfoLayout from '../layouts/InfoLayout.astro';
 
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+
+const channels = [
+  { label: 'Email', value: 'gabo8191@gmail.com', href: 'mailto:gabo8191@gmail.com', tone: 'cap--yellow', external: false },
+  { label: 'LinkedIn', value: 'in/gabodev8191', href: 'https://linkedin.com/in/gabodev8191/', tone: 'cap--pink', external: true },
+  { label: 'GitHub', value: 'gabo8191', href: 'https://github.com/gabo8191', tone: '', external: true },
+  { label: 'X / Twitter', value: '@gcastillo8191', href: 'https://twitter.com/gcastillo8191', tone: '', external: true },
+  { label: 'Phone', value: '+57 318 870 8253', href: 'tel:+573188708253', tone: '', external: false },
+];
 ---
 
 <InfoLayout
   title='Contact — Gabriel Castillo'
   description='Contact Gabriel Castillo about backend systems, integrations, internal tools and production support.'
 >
-  <!-- Hallmark · genre: modern-minimal · macrostructure: long-document · design-system: design.md · designed-as-app -->
-  <div class='flex flex-col gap-12'>
-    <div>
-      <H1>Let's Connect</H1>
-      <p
-        class='mt-4 md:mt-8 lg:mt-12 text-xl xl:text-2xl text-zinc-400 text-balance'
-      >
-        Interested in backend systems, integrations or tools for complex data
-        workflows? Get in touch.
-      </p>
+  <PageHead slot='head' index='Contact' title="Let's connect" tone='blue'>
+    <p>
+      Backend systems, integrations or tools for complex data workflows? Write to me; I reply
+      in Spanish or English.
+    </p>
+  </PageHead>
 
-      <div class='mt-6 sm:mt-12 flex flex-col gap-1'>
+  <section aria-label='Contact channels'>
+    <div class='contact-grid'>
+      {channels.map((channel) => (
         <a
-          href='mailto:gabo8191@gmail.com'
-          class='mb-8 w-fit group flex items-center gap-1 text-base lg:text-xl text-zinc-400 hover:text-zinc-50'
+          class:list={['contact-card block', channel.tone]}
+          href={channel.href}
+          target={channel.external ? '_blank' : undefined}
+          rel={channel.external ? 'noopener noreferrer' : undefined}
         >
-          gabo8191@gmail.com
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            class='-rotate-45 group-hover:rotate-0 transition-all duration-300 ease-in-out'
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-          >
-            <title>Arrow Icon</title>
-            <path
-              fill='currentColor'
-              d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10'
-              opacity='.5'></path>
-            <path
-              fill='currentColor'
-              d='M13.53 8.47a.75.75 0 1 0-1.06 1.06l1.72 1.72H8a.75.75 0 0 0 0 1.5h6.19l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06z'
-            ></path>
-          </svg>
+          <span class='mono'>{channel.label}</span>
+          <strong>{channel.value}</strong>
+          {channel.external && <span class='sr-only'> (opens in new tab)</span>}
         </a>
-
-        <ExternalLink href='https://github.com/gabo8191'>GitHub</ExternalLink>
-        <ExternalLink href='https://linkedin.com/in/gabodev8191/'
-          >LinkedIn</ExternalLink
-        >
-        <ExternalLink href='https://twitter.com/gcastillo8191'
-          >Twitter</ExternalLink
-        >
-      </div>
-
-      <div class='mt-8 sm:mt-12'>
-        <h2 class='text-lg text-zinc-300 mb-4'>Download my CV</h2>
-        <div class='flex flex-wrap gap-4'>
-          <a
-            href={`${base}cv-en.pdf`}
-            target='_blank'
-            rel='noopener noreferrer'
-            class='button button--primary'
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              class='w-4 h-4'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              stroke-width='2'
-            >
-              <path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'></path>
-              <polyline points='7 10 12 15 17 10'></polyline>
-              <line x1='12' y1='15' x2='12' y2='3'></line>
-            </svg>
-            <span>English CV</span>
-          </a>
-          <a
-            href={`${base}cv-es.pdf`}
-            target='_blank'
-            rel='noopener noreferrer'
-            class='button button--text'
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              class='w-4 h-4'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              stroke-width='2'
-            >
-              <path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'></path>
-              <polyline points='7 10 12 15 17 10'></polyline>
-              <line x1='12' y1='15' x2='12' y2='3'></line>
-            </svg>
-            <span>Spanish CV</span>
-          </a>
-        </div>
-      </div>
+      ))}
     </div>
+  </section>
 
-    <div>
-      <p class='text-base text-zinc-400'>Tunja, Boyacá</p>
-      <p class='text-base text-zinc-400'>Colombia</p>
-      <a
-        href='tel:+573188708253'
-        class='inline-block mt-2 text-base text-zinc-400 hover:text-zinc-100 transition-colors'
-        >+57 318 8708253</a
-      >
+  <section class='about-section' aria-labelledby='cv-title'>
+    <h2 id='cv-title' class='h2'>Download my CV</h2>
+    <div class='hero__actions'>
+      <a class='btn btn--ink' href={`${base}cv-en.pdf`} target='_blank' rel='noopener noreferrer'>
+        English CV (PDF)<span class='sr-only'> (opens in new tab)</span>
+      </a>
+      <a class='btn btn--yellow' href={`${base}cv-es.pdf`} target='_blank' rel='noopener noreferrer'>
+        CV en español (PDF)<span class='sr-only'> (opens in new tab)</span>
+      </a>
     </div>
-  </div>
+    <p class='mono muted about-note'>Tunja, Boyacá · Colombia · Remote</p>
+  </section>
 </InfoLayout>

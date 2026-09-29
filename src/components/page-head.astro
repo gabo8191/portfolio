@@ -1,0 +1,19 @@
+---
+import RiseText from './rise-text.astro';
+
+type Props = {
+  index: string;
+  title: string;
+  tone?: 'yellow' | 'pink' | 'blue';
+};
+
+const { index, title, tone = 'yellow' } = Astro.props;
+---
+
+<header class:list={['page-head', tone !== 'yellow' && `page-head--${tone}`]}>
+  <div class='shell'>
+    <span class='tag tag--ink'>{index}</span>
+    <h1 aria-label={title}><RiseText text={title} /></h1>
+    <slot />
+  </div>
+</header>

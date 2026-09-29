@@ -1,15 +1,17 @@
 ---
-import H1 from '../components/h1.astro';
+import PageHead from '../components/page-head.astro';
 import InfoLayout from '../layouts/InfoLayout.astro';
-import Link from '../components/link.astro';
 import { EMPLOYERS, PROFESSIONAL_PROJECTS } from '../data/professional';
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL.slice(0, -1)
+  : import.meta.env.BASE_URL;
 
 // Group projects by employer in the established chronological order.
 const byEmployer = EMPLOYERS.map((employer) => ({
   employer,
-  projects: PROFESSIONAL_PROJECTS.filter(
-    (project) => project.company === employer.name,
-  ),
+  id: `employer-${employer.name.toLowerCase().replaceAll(' ', '-')}`,
+  projects: PROFESSIONAL_PROJECTS.filter((project) => project.company === employer.name),
 }));
 ---
 
@@ -17,100 +19,55 @@ const byEmployer = EMPLOYERS.map((employer) => ({
   title='Professional work — Gabriel Castillo'
   description='Professional work by Gabriel Castillo across Keyrus, TotalDev, PARQ and SEREMPRE: internal tools, interbank messaging, invoicing, inventory and production support.'
 >
-  <!-- Hallmark · genre: modern-minimal · macrostructure: long-document · design-system: design.md · designed-as-app -->
-  <div>
-    <H1>Professional work</H1>
-    <p class='mt-4 text-lg text-zinc-400 max-w-2xl text-balance'>
-      {PROFESSIONAL_PROJECTS.length} projects across four employers since 2023.
-      These descriptions explain my work without sharing private source code.
+  <PageHead slot='head' index='Work' title='Professional work'>
+    <p>
+      {PROFESSIONAL_PROJECTS.length} projects across four employers since 2023. The
+      descriptions explain my work without sharing private source code.
     </p>
+  </PageHead>
 
-    <div class='mt-12 space-y-14'>
-      {
-        byEmployer.map(({ employer, projects }) => (
-          <section aria-labelledby={`employer-${employer.name.replaceAll(' ', '-')}`}>
-            <div class='flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 pb-3 mb-6 border-b border-zinc-800'>
-              <div>
-                <h2
-                  id={`employer-${employer.name.replaceAll(' ', '-')}`}
-                  class='text-xl text-zinc-100'
-                >
-                  {employer.name}
-                </h2>
-                <p class='text-sm text-zinc-500 mt-0.5'>{employer.role}</p>
-              </div>
-              <span class='text-sm text-zinc-400 tabular-nums'>
-                {employer.period}
-              </span>
-            </div>
+  {
+    byEmployer.map(({ employer, id, projects }) => (
+      <section class='employer' aria-labelledby={id}>
+        <div class='employer__head'>
+          <div>
+            <h2 id={id}>{employer.name}</h2>
+            <p>{employer.role}</p>
+          </div>
+          <span class='tag tag--yellow'>{employer.period}</span>
+        </div>
+        <p class='measure'>{employer.focus}</p>
+        <div class='grid-2'>
+          {projects.map((project) => (
+            <article class='card block' data-stamp>
+              <h3>{project.title}</h3>
+              {project.period && <span class='tag'>{project.period}</span>}
+              <p class='muted'>{project.description}</p>
+              <ul class='tags' aria-label='Technologies'>
+                {project.technologies.map((tech) => <li class='tag tag--pink'>{tech}</li>)}
+              </ul>
+              {project.liveUrl ? (
+                <a class='link' href={project.liveUrl} target='_blank' rel='noopener noreferrer'>
+                  View live →<span class='sr-only'> (opens in new tab)</span>
+                </a>
+              ) : (
+                <span class='mono muted'>Confidential source</span>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+    ))
+  }
 
-            <p class='text-sm text-zinc-400 max-w-2xl mb-6'>{employer.focus}</p>
-
-            <div class='grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-0'>
-              {projects.map((project) => (
-                <article class='py-5 border-t border-zinc-700/70'>
-                  <h3 class='text-base text-zinc-200'>{project.title}</h3>
-                  {project.period && (
-                    <p class='text-xs text-zinc-500 tabular-nums mt-0.5 mb-2'>
-                      {project.period}
-                    </p>
-                  )}
-                  <p class='text-sm text-zinc-400 mb-3'>
-                    {project.description}
-                  </p>
-                  <div class='flex flex-wrap gap-1.5 mb-3'>
-                    {project.technologies.map((tech) => (
-                      <span class='px-1.5 py-0.5 text-xs text-zinc-400 bg-zinc-700/50 rounded'>
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  {project.liveUrl ? (
-                    <a
-                      href={project.liveUrl}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      class='inline-flex items-center gap-1 text-sm text-zinc-400 hover:text-zinc-100 transition-colors'
-                    >
-                      <span>View live</span>
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        class='w-4 h-4'
-                        viewBox='0 0 24 24'
-                        fill='none'
-                        stroke='currentColor'
-                        stroke-width='2'
-                        aria-hidden='true'
-                      >
-                        <path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6' />
-                        <polyline points='15 3 21 3 21 9' />
-                        <line x1='10' y1='14' x2='21' y2='3' />
-                      </svg>
-                    </a>
-                  ) : (
-                    <span class='inline-block text-xs text-zinc-600'>
-                      Confidential source
-                    </span>
-                  )}
-                </article>
-              ))}
-            </div>
-          </section>
-        ))
-      }
+  <aside class='block closer-block' data-stamp>
+    <div>
+      <h2 class='h2'>Looking for the code?</h2>
+      <p class='measure'>
+        Personal and open source projects are on their own page, with a timeline of what I
+        built and when.
+      </p>
     </div>
-
-    <div
-      class='mt-16 p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4'
-    >
-      <div>
-        <h2 class='text-lg text-zinc-200'>Looking for the code?</h2>
-        <p class='text-sm text-zinc-400 mt-1 max-w-lg'>
-          Personal and open source projects are on the other page, with a
-          timeline of what I built and when.
-        </p>
-      </div>
-      <Link href='/projects' variant='secondary'>See personal projects</Link>
-    </div>
-  </div>
+    <a class='btn btn--ink' href={`${base}/projects/`}>See personal projects →</a>
+  </aside>
 </InfoLayout>

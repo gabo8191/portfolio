@@ -1,181 +1,91 @@
 ---
-import H1 from '../components/h1.astro';
-import InfoLayout from '../layouts/InfoLayout.astro';
-import Link from '../components/link.astro';
+import PageHead from '../components/page-head.astro';
 import ProjectsExplorer from '../components/projects-explorer';
+import InfoLayout from '../layouts/InfoLayout.astro';
 import { FEATURED, PROJECTS } from '../data/projects';
 import { PROFESSIONAL_PROJECTS } from '../data/professional';
 
-const firstYear = PROJECTS.map((p) => p.date).sort()[0].slice(0, 4);
-const lastYear = PROJECTS.map((p) => p.date)
-  .sort()
-  .at(-1)!
-  .slice(0, 4);
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL.slice(0, -1)
+  : import.meta.env.BASE_URL;
+
+const years = PROJECTS.map((project) => project.date).sort();
+const firstYear = years[0].slice(0, 4);
+const lastYear = years[years.length - 1].slice(0, 4);
+const tones = ['cap--yellow', 'cap--pink', '', 'cap--yellow'];
 ---
 
 <InfoLayout
   title='Projects — Gabriel Castillo'
   description='Personal and open source projects by Gabriel Castillo: desktop and web apps, data experiments, backend services and infrastructure practice.'
 >
-  <!-- Hallmark · genre: modern-minimal · macrostructure: long-document · design-system: design.md · designed-as-app -->
-  <div>
-    <H1>Projects</H1>
-    <p class='mt-4 text-lg text-zinc-400 max-w-2xl text-balance'>
-      {PROJECTS.length} personal and open source projects between {firstYear} and {
-        lastYear
-      }. The timeline below shows what I built and when — filter it by stack to
-      see where each technology shows up.
+  <PageHead slot='head' index='Projects' title='Projects'>
+    <p>
+      {PROJECTS.length} personal and open source projects between {firstYear} and {lastYear}.
+      The timeline shows what I built and when; filter it by stack to see where each technology
+      shows up.
     </p>
+  </PageHead>
 
-    <!-- The explorer leads the page. -->
-    <section class='mt-10' aria-labelledby='timeline'>
-      <h2 id='timeline' class='sr-only'>Project timeline</h2>
-      <ProjectsExplorer projects={PROJECTS} client:load />
-    </section>
+  <section aria-labelledby='timeline'>
+    <h2 id='timeline' class='sr-only'>Project timeline</h2>
+    <ProjectsExplorer projects={PROJECTS} client:load />
+  </section>
 
-    <!-- Featured projects provide more context. -->
-    <section class='mt-16' aria-labelledby='selected-work'>
-      <div class='flex items-baseline justify-between gap-4 mb-6'>
-        <h2 id='selected-work' class='text-xl text-zinc-200'>Selected work</h2>
-        <span class='text-sm text-zinc-400'>The ones worth explaining</span>
-      </div>
+  <section class='about-section' aria-labelledby='selected-work'>
+    <h2 id='selected-work' class='h2' data-split>Worth explaining</h2>
+    <div class='grid-2'>
+      {FEATURED.map((project, index) => (
+        <article class:list={['card block', tones[index % tones.length]]} data-stamp>
+          <h3 class='card__title'>{project.title}</h3>
+          <p class='mono'>{project.featured!.tagline}</p>
+          <dl>
+            <div>
+              <dt class='mono'>The problem</dt>
+              <dd>{project.featured!.problem}</dd>
+            </div>
+            <div>
+              <dt class='mono'>What I built</dt>
+              <dd>{project.featured!.approach}</dd>
+            </div>
+            <div>
+              <dt class='mono'>Where it landed</dt>
+              <dd>{project.featured!.outcome}</dd>
+            </div>
+          </dl>
+          <ul class='tags' aria-label='Technologies'>
+            {project.technologies.map((tech) => <li class='tag'>{tech}</li>)}
+          </ul>
+          <div class='hero__actions'>
+            {project.githubUrl && (
+              <a class='btn' href={project.githubUrl} target='_blank' rel='noopener noreferrer'>
+                GitHub<span class='sr-only'> (opens in new tab)</span>
+              </a>
+            )}
+            {project.liveUrl && (
+              <a class='btn btn--ink' href={project.liveUrl} target='_blank' rel='noopener noreferrer'>
+                Try it live<span class='sr-only'> (opens in new tab)</span>
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
 
-      <div class='grid grid-cols-1 lg:grid-cols-2 gap-5'>
-        {
-          FEATURED.map((project) => (
-            <article class='group relative overflow-hidden p-6 rounded-lg bg-zinc-800/20 border border-zinc-700/50 hover:border-violet-400/50 transition-colors duration-300'>
-
-              <div class='relative'>
-                <div class='flex items-center gap-3 mb-1'>
-                  <h3 class='text-xl text-zinc-100'>{project.title}</h3>
-                </div>
-                <p class='text-sm text-violet-300/80 mb-4'>
-                  {project.featured!.tagline}
-                </p>
-
-                <dl class='space-y-3 mb-4'>
-                  <div>
-                    <dt class='text-[11px] uppercase tracking-wider text-zinc-500 mb-0.5'>
-                      The problem
-                    </dt>
-                    <dd class='text-sm text-zinc-400 m-0'>
-                      {project.featured!.problem}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt class='text-[11px] uppercase tracking-wider text-zinc-500 mb-0.5'>
-                      What I built
-                    </dt>
-                    <dd class='text-sm text-zinc-400 m-0'>
-                      {project.featured!.approach}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt class='text-[11px] uppercase tracking-wider text-zinc-500 mb-0.5'>
-                      Where it landed
-                    </dt>
-                    <dd class='text-sm text-zinc-400 m-0'>
-                      {project.featured!.outcome}
-                    </dd>
-                  </div>
-                </dl>
-
-                <div class='flex flex-wrap gap-1.5 mb-4'>
-                  {project.technologies.map((tech) => (
-                    <span class='px-2 py-0.5 text-xs text-zinc-300 bg-zinc-700/60 rounded'>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div class='flex flex-wrap items-center gap-4'>
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      class='inline-flex items-center gap-1 text-sm text-zinc-400 hover:text-zinc-100 transition-colors'
-                    >
-                      <span>View on GitHub</span>
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        class='w-4 h-4'
-                        viewBox='0 0 24 24'
-                        fill='none'
-                        stroke='currentColor'
-                        stroke-width='2'
-                        aria-hidden='true'
-                      >
-                        <path d='M5 12h14M12 5l7 7-7 7' />
-                      </svg>
-                    </a>
-                  )}
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      class='inline-flex items-center gap-1 text-sm text-violet-300 hover:text-violet-200 transition-colors'
-                    >
-                      <span>Try it live</span>
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        class='w-4 h-4'
-                        viewBox='0 0 24 24'
-                        fill='none'
-                        stroke='currentColor'
-                        stroke-width='2'
-                        aria-hidden='true'
-                      >
-                        <path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6' />
-                        <polyline points='15 3 21 3 21 9' />
-                        <line x1='10' y1='14' x2='21' y2='3' />
-                      </svg>
-                    </a>
-                  )}
-                </div>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </section>
-
-    <!-- Professional work has its own page. -->
-    <section
-      class='mt-16 p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4'
-    >
-      <div>
-        <h2 class='text-lg text-zinc-200'>Professional work</h2>
-        <p class='text-sm text-zinc-400 mt-1 max-w-lg'>
-          {PROFESSIONAL_PROJECTS.length} professional projects across Keyrus,
-          TotalDev, PARQ and SEREMPRE, including migration estimates, messaging,
-          invoicing and inventory. Scope is described without sharing client code.
-        </p>
-      </div>
-      <Link href='/work' variant='secondary'>See professional work</Link>
-    </section>
-
-    <div class='mt-10 text-center'>
-      <a
-        href='https://github.com/gabo8191'
-        target='_blank'
-        rel='noopener noreferrer'
-        class='inline-flex items-center gap-2 px-5 py-2.5 text-sm text-zinc-400 hover:text-zinc-100 border border-zinc-700 hover:border-zinc-500 rounded-full transition-all'
-      >
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          class='w-5 h-5'
-          viewBox='0 0 24 24'
-          fill='currentColor'
-          aria-hidden='true'
-        >
-          <path
-            d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'
-          ></path>
-        </svg>
-        <span>View all repositories on GitHub</span>
+  <aside class='block closer-block' data-stamp>
+    <div>
+      <h2 class='h2'>Professional work</h2>
+      <p class='measure'>
+        {PROFESSIONAL_PROJECTS.length} professional projects across Keyrus, TotalDev, PARQ and
+        SEREMPRE, described without sharing client code.
+      </p>
+    </div>
+    <div class='hero__actions'>
+      <a class='btn btn--ink' href={`${base}/work/`}>See professional work →</a>
+      <a class='btn' href='https://github.com/gabo8191' target='_blank' rel='noopener noreferrer'>
+        All repositories<span class='sr-only'> (opens in new tab)</span>
       </a>
     </div>
-  </div>
+  </aside>
 </InfoLayout>

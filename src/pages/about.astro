@@ -1,278 +1,172 @@
 ---
-import H1 from '../components/h1.astro';
+import PageHead from '../components/page-head.astro';
 import InfoLayout from '../layouts/InfoLayout.astro';
 
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 
+// Source: general CV (cv-latex/general/GABRIEL-CASTILLO-GENERAL-EN.tex).
 const experience = [
   {
-    title: 'BI & Data Analytics Intern',
-    company: 'Keyrus Colombia S.A.S.',
+    title: 'BI and Data Analytics Intern',
+    company: 'Keyrus Colombia',
     period: 'Jul. 2026 – Present',
+    context: 'Data consulting; Power BI to Tableau dashboard migration',
     highlights: [
-      'Designed and built an internal Django application that analyzes PBIX files and estimates Power BI to Tableau migration effort. The team uses its estimates; formal deployment is pending.',
-      'Built DRF APIs, Celery/Redis jobs, PostgreSQL persistence, Excel reporting and automated quality checks in GitHub Actions.',
-      'Prepare and validate analytics data with SQL and Python for dashboard and migration work.',
+      'Designed and built an internal Django application that reads PBIX files, scores dashboard complexity with AHP and estimates Tableau migration hours with PERT. The team uses its estimates; formal deployment is pending.',
+      'Built a DRF API, Celery and Redis background analysis, PostgreSQL persistence and an eleven-sheet Excel workbook per dashboard on a hexagonal architecture.',
+      'Prepared and validated data with SQL and Python for dashboard analysis and migration.',
     ],
   },
   {
-    title: 'Freelance Fullstack Developer',
+    title: 'Freelance Full Stack Developer',
     company: 'TotalDev SAS',
     period: 'Feb. 2025 – Mar. 2026',
+    context: 'Custom software; overlapped with PARQ until Jul. 2025',
     highlights: [
-      'Added MT103 and MT202 support to a Java/Apache Camel interbank gateway: parsers, validators, JSON mappings and automated MT to pacs.008 and pacs.009 to MT202 flows.',
-      'Main developer of an electoral inventory platform: bulk imports with row-level validation, regional permissions, Excel reports and queued, cached PDF and ZIP generation.',
-      'Built a QR-scanning PWA for plant operators, one-use QR guest validation and cached Laravel/Filament content panels; maintained reports for an insurance industry registry.',
-      'This freelance engagement overlapped with PARQ from February to July 2025.',
+      'Added MT message support to a Java/Apache Camel gateway: MT103 and MT202 parsers and validators, JSON mapping files, and automated MT to pacs.008 and pacs.009 to MT202 flows.',
+      'Built most of an electoral inventory platform in Laravel and React: bulk imports with row-level errors, department and municipality permissions, Excel reports, and queued, cached PDF and ZIP generation.',
+      'Built a QR-scanning PWA for plant operators with its Filament backend, and guest registration with one-use QR codes and event-driven email.',
     ],
   },
   {
-    title: 'Fullstack Developer',
+    title: 'Full Stack Developer',
     company: 'PARQ',
     period: 'Nov. 2024 – Jul. 2025',
+    context: 'Parking platform for Colombia, Mexico and the UK',
     highlights: [
-      'Maintained NestJS services sharing a PostgreSQL database; investigated production data inconsistencies through SQL and code review.',
-      'Extended the SATCOM, Siigo and Alegra electronic invoicing connectors with queued resend of failed invoices, provider company registration and per-request tracing.',
-      'Built country-specific rates, queued bulk membership creation and a platform-wide timezone standard; rebuilt the corporate site in Next.js.',
+      'Extended the SATCOM, Siigo and Alegra electronic invoicing connectors in a Laravel middleware: queued resend of failed invoices, company registration with providers, and per-request tracing.',
+      'Maintained NestJS services on TypeORM and shared PostgreSQL: country-specific rates, queued bulk membership creation and consistent timezones in reports; fixed production data inconsistencies.',
+      'Built the corporate Next.js site with SSR, i18n and SEO; documented APIs with OpenAPI and took part in Docker and Portainer deployments.',
     ],
   },
   {
     title: 'Backend Developer',
     company: 'SEREMPRE',
     period: 'Jan. 2023 – Nov. 2024',
+    context: 'Started as a SENA intern; permanent contract from Jul. 2023',
     highlights: [
-      'Joined the Membeers backend team as a SENA intern, then continued as a Laravel developer for regional benefits and insurance systems.',
-      'Handled L2/L3 production incidents with SQL, code review and Sentry; joined incident war rooms and documented root causes.',
-      'Built APIs, SQL reports and procedures, queued jobs and scheduled processes; worked with Docker/DDEV, Cloudinary and Moodle LTI.',
+      'Handled L2/L3 production incidents and joined war rooms; diagnosed failures through SQL, code review and Sentry, and documented root causes.',
+      'Built Laravel APIs for a benefits platform in more than five Latin American countries, with queues for validated payment uploads, duplicate cleanup and notifications.',
+      'Built queries, PL/SQL procedures and Excel exports for other teams; optimized large listings and used Docker/DDEV for legacy systems.',
     ],
   },
 ];
 
-const skills = {
-  languages: ['Python', 'TypeScript', 'PHP', 'SQL', 'Bash'],
-  data: [
-    'Tableau',
-    'Power BI',
-    'Analytical SQL',
-    'pandas',
-    'Power Query',
-    'Tableau Prep',
-    'Data Modelling',
-  ],
-  backend: [
-    'Laravel',
-    'NestJS',
-    'Node.js',
-    'REST API Design',
-    'System Integration',
-  ],
-  databases: [
-    'PostgreSQL',
-    'MySQL',
-    'Redis',
-    'TypeORM',
-    'Eloquent ORM',
-    'Query Optimization',
-  ],
-  devops: [
-    'Docker',
-    'Production Support',
-    'Linux',
-    'CI/CD',
-    'GitHub Actions',
-    'Nginx',
-  ],
-  tools: ['Git', 'Swagger/OpenAPI', 'SonarQube', 'Portainer', 'Bitbucket'],
-};
+const skills = [
+  { title: 'Languages', items: ['Python', 'TypeScript', 'PHP', 'Java', 'SQL'] },
+  {
+    title: 'Backend',
+    items: ['Django', 'DRF', 'Celery', 'NestJS', 'Laravel', 'Filament', 'Apache Camel', 'REST', 'OpenAPI'],
+  },
+  {
+    title: 'Data',
+    items: ['PostgreSQL', 'MySQL', 'Oracle PL/SQL', 'Redis', 'pandas', 'Excel', 'Power BI', 'Tableau'],
+  },
+  {
+    title: 'Operations',
+    items: ['L2/L3 diagnosis', 'Sentry', 'Docker', 'Portainer', 'GitHub Actions', 'Linux'],
+  },
+];
+
+const education = [
+  {
+    title: 'Systems and Computer Engineering',
+    school: 'UPTC, Tunja',
+    when: 'Expected 2026',
+  },
+  {
+    title: 'Information Systems Analysis and Development (technologist)',
+    school: 'SENA',
+    when: '2022',
+  },
+];
 ---
 
 <InfoLayout
   title='About — Gabriel Castillo, Backend & Integration Engineer'
   description='Gabriel Castillo builds backend systems, integrations and internal tools, and investigates production incidents using SQL, code and application traces.'
 >
-  <!-- Hallmark · genre: modern-minimal · macrostructure: long-document · design-system: design.md · designed-as-app -->
-  <div class='about-page flex flex-col gap-16'>
-    <div class='space-y-4 sm:space-y-8'>
-      <div class='flex flex-col sm:flex-row sm:items-center gap-5'>
-        <img
-          src={`${base}avatar.png`}
-          alt='Pixel-art portrait of Gabriel Castillo'
-          width='96'
-          height='96'
-          class='w-20 h-20 sm:w-24 sm:h-24 shrink-0 rounded-2xl border border-zinc-700/60'
-        />
-        <H1> About Gabriel </H1>
-      </div>
+  <PageHead slot='head' index='About' title='About Gabriel' tone='pink'>
+    <p>
+      I build backend systems and integrations and diagnose production incidents. Over three
+      years of remote experience with APIs, SQL, queues, financial messaging, electronic
+      invoicing and internal tools.
+    </p>
+  </PageHead>
 
-      <p class='text-xl xl:text-2xl text-zinc-400 text-balance max-w-3xl'>
-        I build backend systems and integrations, especially when the difficult
-        part is tracing what happened to a record, message or transaction. I
-        follow it through SQL, logs and code, then turn the finding into a fix
-        the team can maintain.
+  <section class='about-intro' aria-label='Introduction'>
+    <img
+      class='about-avatar'
+      src={`${base}avatar.png`}
+      alt='Pixel-art portrait of Gabriel Castillo'
+      width='160'
+      height='160'
+    />
+    <div class='measure'>
+      <p>
+        I like the difficult part of a system: following a record, message or transaction
+        through SQL, logs and code until the failure is clear, then turning the finding into a
+        fix the team can maintain.
       </p>
-
-      <p class='text-lg xl:text-xl text-zinc-400 text-balance max-w-3xl'>
-        Over 3 years, I have built APIs and background jobs, handled L2/L3
-        incidents, and connected financial messaging and electronic invoicing
-        systems. At <span class='text-zinc-100'>Keyrus</span>, I designed a
-        Django tool that analyzes PBIX files and produces migration estimates
-        already used by the team. Its formal deployment is pending.
+      <p>
+        At Keyrus I designed a Django tool that analyzes PBIX files and produces migration
+        estimates the team already uses; its formal deployment is pending. Before that I worked
+        on SWIFT messaging, electronic invoicing and a regional benefits platform.
       </p>
+      <ul class='tags'>
+        <li class='tag tag--yellow'>Spanish · native</li>
+        <li class='tag tag--yellow'>English · B2</li>
+        <li class='tag'>Tunja, Colombia · Remote</li>
+      </ul>
     </div>
+  </section>
 
-    <div class='space-y-4'>
-      <h2
-        class='text-2xl text-zinc-100'
-      >
-        Experience
-      </h2>
-
-      <div class='space-y-0 border-t border-zinc-700'>
-        {
-          experience.map((job) => (
-            <article class='py-6 border-b border-zinc-700'>
-              <div class='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1'>
-                <h3 class='text-lg text-zinc-200'>{job.title}</h3>
-                <span class='text-sm text-zinc-400'>{job.period}</span>
-              </div>
-              <p class='text-zinc-400 text-sm mb-3'>{job.company}</p>
-              <ul class='space-y-2'>
-                {job.highlights.map((highlight) => (
-                  <li class='text-zinc-400 text-sm pl-4 relative before:content-["•"] before:absolute before:left-0 before:text-zinc-500'>
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-
-    <div class='space-y-4'>
-      <h2
-        class='text-2xl text-zinc-100'
-      >
-        Technical Skills
-      </h2>
-
-      <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-0 border-t border-zinc-700'>
-        <div class='py-4 border-b border-zinc-700/70'>
-          <h3 class='text-sm text-zinc-400 mb-2'>Languages</h3>
-          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
-            {
-              skills.languages.map((skill) => (
-                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
-                  {skill}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <div class='py-4 border-b border-zinc-700/70'>
-          <h3 class='text-sm text-zinc-400 mb-2'>BI &amp; Data</h3>
-          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
-            {
-              skills.data.map((skill) => (
-                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
-                  {skill}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <div class='py-4 border-b border-zinc-700/70'>
-          <h3 class='text-sm text-zinc-400 mb-2'>Backend</h3>
-          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
-            {
-              skills.backend.map((skill) => (
-                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
-                  {skill}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <div class='py-4 border-b border-zinc-700/70'>
-          <h3 class='text-sm text-zinc-400 mb-2'>Databases</h3>
-          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
-            {
-              skills.databases.map((skill) => (
-                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
-                  {skill}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <div class='py-4 border-b border-zinc-700/70'>
-          <h3 class='text-sm text-zinc-400 mb-2'>DevOps & Cloud</h3>
-          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
-            {
-              skills.devops.map((skill) => (
-                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
-                  {skill}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <div class='py-4 border-b border-zinc-700/70'>
-          <h3 class='text-sm text-zinc-400 mb-2'>Tools</h3>
-          <ul class='flex flex-wrap gap-2 list-none p-0 m-0'>
-            {
-              skills.tools.map((skill) => (
-                <li class='px-2 py-1 text-xs text-zinc-300 bg-zinc-700/50 rounded'>
-                  {skill}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class='space-y-4'>
-      <h2
-        class='text-2xl text-zinc-100'
-      >
-        Education
-      </h2>
-
-      <div class='space-y-4'>
-        <div class='py-4 border-b border-zinc-700/70'>
-          <div
-            class='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1'
-          >
-            <h3 class='text-lg text-zinc-200'>
-              Systems and Computer Engineering
-            </h3>
-            <span class='text-sm text-zinc-400'>Expected 2026</span>
+  <section class='about-section' aria-labelledby='experience-title'>
+    <h2 id='experience-title' class='h2' data-split>Experience</h2>
+    <ol class='stack-list'>
+      {experience.map((job) => (
+        <li class='block' data-stamp>
+          <div class='job-head'>
+            <div>
+              <h3>{job.title}</h3>
+              <p class='mono'>{job.company} · {job.context}</p>
+            </div>
+            <span class='tag tag--pink'>{job.period}</span>
           </div>
-          <p class='text-zinc-400 text-sm'>
-            Pedagogical and Technological University of Colombia (UPTC)
-          </p>
-        </div>
+          <ul>
+            {job.highlights.map((highlight) => <li>{highlight}</li>)}
+          </ul>
+        </li>
+      ))}
+    </ol>
+  </section>
 
-        <div class='py-4 border-b border-zinc-700/70'>
-          <div
-            class='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1'
-          >
-            <h3 class='text-lg text-zinc-200'>
-              Information Systems Analysis and Development
-            </h3>
-            <span class='text-sm text-zinc-400'>2022</span>
-          </div>
-          <p class='text-zinc-400 text-sm'>National Learning Service (SENA)</p>
+  <section class='about-section' aria-labelledby='skills-title'>
+    <h2 id='skills-title' class='h2' data-split>Skills</h2>
+    <div class='skills'>
+      {skills.map((group, index) => (
+        <div class:list={['block', index === 0 && 'cap--yellow']} data-stamp>
+          <h3>{group.title}</h3>
+          <ul class='tags'>
+            {group.items.map((item) => <li class='tag'>{item}</li>)}
+          </ul>
         </div>
-      </div>
+      ))}
     </div>
-  </div>
+  </section>
+
+  <section class='about-section' aria-labelledby='education-title'>
+    <h2 id='education-title' class='h2' data-split>Education</h2>
+    <div class='grid-2'>
+      {education.map((item) => (
+        <article class='card block' data-stamp>
+          <span class='tag tag--ink'>{item.when}</span>
+          <h3>{item.title}</h3>
+          <p class='muted'>{item.school}</p>
+        </article>
+      ))}
+    </div>
+  </section>
 </InfoLayout>
