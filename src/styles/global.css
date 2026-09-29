@@ -593,6 +593,19 @@ img {
   font-size: 0.72em;
 }
 
+/* Narrow screens: two columns of stickers that wrap instead of overflowing */
+@media (max-width: 40rem) {
+  .desk {
+    height: 21rem;
+  }
+
+  .sticker {
+    max-width: 46%;
+    white-space: normal;
+    font-size: 0.72rem;
+  }
+}
+
 /* The drop script adds .desk--armed and reveals each sticker as it falls.
    Without JavaScript or with reduced motion they simply stay in place. */
 .desk--armed .sticker {

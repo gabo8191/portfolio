@@ -1,5 +1,5 @@
 ---
-// Hero hook: real work items as stickers that drop onto a desk and can be
+// Hero hook: outcomes from real work as stickers that drop onto a desk and can be
 // dragged around (anime.js), or moved with the arrow keys when focused.
 type Sticker = {
   label: string;
@@ -11,14 +11,14 @@ type Sticker = {
 };
 
 const stickers: Sticker[] = [
-  { label: 'MT103 → pacs.008', note: 'SWIFT · ISO 20022', tone: 'ink', x: '4%', y: '6%', r: '-6deg' },
-  { label: 'Siigo · Alegra · SATCOM', note: 'e-invoicing connectors', tone: 'pink', x: '44%', y: '4%', r: '4deg' },
-  { label: 'L2/L3 incidents', note: 'SQL · Sentry · war rooms', tone: 'paper', x: '8%', y: '30%', r: '3deg' },
-  { label: 'Django + Celery', note: 'PBIX → Tableau estimates', tone: 'blue', x: '50%', y: '29%', r: '-4deg' },
-  { label: 'NestJS + PostgreSQL', tone: 'yellow', x: '2%', y: '55%', r: '-3deg' },
-  { label: 'Apache Camel', note: 'Java gateway', tone: 'pink', x: '46%', y: '53%', r: '6deg' },
-  { label: 'Laravel queues', note: 'payments · PDF/ZIP', tone: 'paper', x: '14%', y: '76%', r: '-2deg' },
-  { label: 'PL/SQL reports', tone: 'ink', x: '55%', y: '77%', r: '5deg' },
+  { label: 'Systems that talk', note: 'banks, invoicing, CRMs', tone: 'ink', x: '4%', y: '6%', r: '-6deg' },
+  { label: 'Bugs traced to the root', note: 'SQL → logs → code', tone: 'pink', x: '44%', y: '4%', r: '4deg' },
+  { label: 'Busywork → internal tool', note: 'Django, Laravel, React', tone: 'paper', x: '8%', y: '30%', r: '3deg' },
+  { label: 'Bank messages, translated', note: 'SWIFT to ISO 20022', tone: 'blue', x: '50%', y: '29%', r: '-4deg' },
+  { label: 'Invoices that retry', note: 'e-invoicing in Colombia', tone: 'yellow', x: '2%', y: '55%', r: '-3deg' },
+  { label: 'Live in 5+ countries', note: 'benefits platform', tone: 'pink', x: '46%', y: '53%', r: '6deg' },
+  { label: 'Dashboards, migrated', note: 'Power BI to Tableau', tone: 'paper', x: '14%', y: '76%', r: '-2deg' },
+  { label: 'Reports on autopilot', note: 'SQL, PL/SQL, Excel', tone: 'ink', x: '55%', y: '77%', r: '5deg' },
 ];
 ---
 
