@@ -2,7 +2,8 @@
   <!--
     Open Graph template, "Hard Copy" system (design.md): yellow block, ink
     stroke, zero-blur offset shadows and the name set in Archivo Black.
-    scripts/generate-og-image.sh replaces @@TECH@@ and @@SUBTITLE@@.
+    scripts/generate-og-image.sh replaces @@TECH@@, @@ROLE@@, @@SUBTITLE@@ and @@TAG@@
+    once per locale (en → og-image.png, es → og-image-es.png).
   -->
   <rect width="1200" height="630" fill="#ffd93d"/>
 
@@ -15,7 +16,7 @@
   <rect x="66" y="104" width="470" height="44" fill="#0d0d0d"/>
   <rect x="60" y="98" width="470" height="44" fill="#0d0d0d"/>
   <text x="80" y="128" font-family="JetBrains Mono" font-weight="500" font-size="19"
-        fill="#fffdf5">Backend &amp; Integration Engineer</text>
+        fill="#fffdf5">@@ROLE@@</text>
 
   <!-- Name -->
   <text x="54" y="290" font-family="Archivo Black" font-size="136" fill="#0d0d0d">GABRIEL</text>
@@ -38,7 +39,7 @@
     <rect x="866" y="282" width="300" height="56" fill="#0d0d0d" transform="translate(7 7)"/>
     <rect x="866" y="282" width="300" height="56" fill="#2f5bff" stroke="#0d0d0d" stroke-width="4"/>
     <text x="884" y="318" font-family="JetBrains Mono" font-weight="500" font-size="20"
-          fill="#fffdf5">L2/L3 incidents · SQL</text>
+          fill="#fffdf5">@@TAG@@</text>
   </g>
 
   <!-- Frame -->

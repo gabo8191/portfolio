@@ -34,7 +34,7 @@ const pathname = Astro.url.pathname.endsWith('/')
   : `${Astro.url.pathname}/`;
 const canonical = new URL(pathname, siteUrl).href;
 // Social previews require an absolute Open Graph image URL.
-const ogImage = new URL(image ?? `${base}og-image.png`, siteUrl).href;
+const ogImage = new URL(image ?? `${base}${lang === 'es' ? 'og-image-es.png' : 'og-image.png'}`, siteUrl).href;
 
 // Every page exists in each locale: declare the alternates so search engines serve
 // the right language, plus x-default pointing at the English original.

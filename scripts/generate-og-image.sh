@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 #
-# Regenera public/og-image.png a partir de assets/og/og-image.template.svg.
+# Regenera public/og-image.png (en) y public/og-image-es.png (es) a partir de assets/og/og-image.template.svg.
 #
 # Uso:
 #   npm run og:generate
 #   ./scripts/generate-og-image.sh
 #
 # Para cambiar el diseno, edita assets/og/og-image.template.svg.
-# Para cambiar los textos, edita TECH / SUBTITLE abajo.
+# Para cambiar los textos, edita los bloques TECH / ROLE / SUBTITLE / TAG de cada idioma.
 #
 # Las fuentes de marca se descargan una sola vez a una cache local aislada
 # (assets/og/.fonts, ignorada por git) para que el render sea identico en
@@ -18,7 +18,6 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 TEMPLATE="$ROOT_DIR/assets/og/og-image.template.svg"
-OUT="$ROOT_DIR/public/og-image.png"
 FONT_DIR="$ROOT_DIR/assets/og/.fonts"
 
 WIDTH=1200
@@ -26,8 +25,27 @@ HEIGHT=630
 
 # --- Textos --------------------------------------------------------------------
 # El "&" debe ir como "&amp;" (es XML).
-TECH="BACKEND · INTEGRATIONS · SQL · PRODUCTION SUPPORT · INTERNAL TOOLS · REMOTE"
-SUBTITLE="Backend systems, integrations and production support"
+# Un bloque por idioma; el nombre del archivo de salida va en OUT_<lang>.
+declare -A TECH=(
+  [en]="BACKEND · INTEGRATIONS · SQL · PRODUCTION SUPPORT · INTERNAL TOOLS · REMOTE"
+  [es]="BACKEND · INTEGRACIONES · SQL · SOPORTE DE PRODUCCIÓN · HERRAMIENTAS INTERNAS"
+)
+declare -A ROLE=(
+  [en]="Backend &amp; Integration Engineer"
+  [es]="Ingeniero Backend y de Integraciones"
+)
+declare -A SUBTITLE=(
+  [en]="Backend systems, integrations and production support"
+  [es]="Sistemas backend, integraciones y soporte de producción"
+)
+declare -A TAG=(
+  [en]="L2/L3 incidents · SQL"
+  [es]="Incidentes N2/N3 · SQL"
+)
+declare -A OUT=(
+  [en]="$ROOT_DIR/public/og-image.png"
+  [es]="$ROOT_DIR/public/og-image-es.png"
+)
 
 # Fuentes requeridas: "archivo|URL".
 FONTS=(
@@ -103,14 +121,17 @@ esc() {
   printf '%s' "$s"
 }
 
-svg="$(cat "$TEMPLATE")"
-svg="${svg//@@TECH@@/$(esc "$TECH")}"
-svg="${svg//@@SUBTITLE@@/$(esc "$SUBTITLE")}"
+for lang in en es; do
+  svg="$(cat "$TEMPLATE")"
+  svg="${svg//@@TECH@@/$(esc "${TECH[$lang]}")}"
+  svg="${svg//@@ROLE@@/$(esc "${ROLE[$lang]}")}"
+  svg="${svg//@@SUBTITLE@@/$(esc "${SUBTITLE[$lang]}")}"
+  svg="${svg//@@TAG@@/$(esc "${TAG[$lang]}")}"
 
-tmp_svg="$FC_HOME/og.svg"
-printf '%s' "$svg" >"$tmp_svg"
+  tmp_svg="$FC_HOME/og-$lang.svg"
+  printf '%s' "$svg" >"$tmp_svg"
 
-echo "Generando og-image.png con $RENDERER ..."
-render "$tmp_svg" "$OUT"
-
-echo "OK -> public/og-image.png ${WIDTH}x${HEIGHT}"
+  echo "Generando ${OUT[$lang]##*/} con $RENDERER ..."
+  render "$tmp_svg" "${OUT[$lang]}"
+  echo "OK -> public/${OUT[$lang]##*/} ${WIDTH}x${HEIGHT}"
+done
