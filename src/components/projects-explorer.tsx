@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
 import clsx from 'clsx/lite';
-import { AREAS, type AreaId, type Project } from '../data/projects';
+import type { Area, AreaId, Project } from '../data/projects';
+import { getUi, type Lang } from '../i18n';
 
-type Props = { projects: Project[] };
+type Props = { projects: Project[]; areas: Area[]; lang: Lang };
 
 // The X axis is real time: each dot sits on the month the project was worked
 // on, so the chart answers "when did he build what?", which a list cannot.
@@ -31,7 +32,8 @@ const SPAN_START = monthIndex(FIRST_MONTH);
 const SPAN_END = monthIndex(LAST_MONTH);
 
 const plotWidth = CHART.width - CHART.gutter - CHART.paddingRight;
-const chartHeight = CHART.paddingTop + AREAS.length * CHART.laneHeight + CHART.axisHeight;
+const chartHeightFor = (laneCount: number) =>
+  CHART.paddingTop + laneCount * CHART.laneHeight + CHART.axisHeight;
 
 /** Horizontal position of a `YYYY-MM` month inside the plot area. */
 function xFor(date: string): number {
@@ -60,9 +62,10 @@ function withOffsets(items: Project[]) {
   return offsets;
 }
 
-const areaOf = (id: AreaId) => AREAS.find((area) => area.id === id);
-
-export default function ProjectsExplorer({ projects }: Props) {
+export default function ProjectsExplorer({ projects, areas, lang }: Props) {
+  const { explorer: ui, common } = getUi(lang);
+  const areaOf = (id: AreaId) => areas.find((area) => area.id === id);
+  const chartHeight = chartHeightFor(areas.length);
   const [selected, setSelected] = useState<string | null>(null);
   const [areaFilter, setAreaFilter] = useState<AreaId | null>(null);
   const [techFilter, setTechFilter] = useState<string | null>(null);
@@ -115,7 +118,7 @@ export default function ProjectsExplorer({ projects }: Props) {
     <div className="explorer">
       {/* Stack filter: over a time axis it shows when each tool was used */}
       <div className="explorer__filters">
-        <span className="mono">Filter by stack</span>
+        <span className="mono">{ui.filterByStack}</span>
         {topTechnologies.map(([tech, count]) => {
           const isActive = techFilter === tech;
           return (
@@ -133,7 +136,7 @@ export default function ProjectsExplorer({ projects }: Props) {
         })}
         {(areaFilter || techFilter) && (
           <button type="button" onClick={clearFilters} className="chip chip--clear">
-            Clear {activeFilterLabel} ✕
+            {ui.clear} {activeFilterLabel} ✕
           </button>
         )}
       </div>
@@ -143,9 +146,9 @@ export default function ProjectsExplorer({ projects }: Props) {
         <svg
           viewBox={`0 0 ${CHART.width} ${chartHeight}`}
           role="group"
-          aria-label="Timeline of projects by area. Select a project to see its details."
+          aria-label={ui.chartLabel}
         >
-          {AREAS.map((area, laneIndex) => {
+          {areas.map((area, laneIndex) => {
             const laneY = CHART.paddingTop + laneIndex * CHART.laneHeight + CHART.laneHeight / 2;
             const items = projects.filter((project) => project.area === area.id);
             const offsets = withOffsets(items);
@@ -169,7 +172,7 @@ export default function ProjectsExplorer({ projects }: Props) {
                   role="button"
                   tabIndex={0}
                   aria-pressed={laneActive}
-                  aria-label={`Filter by ${area.label}, ${items.length} projects`}
+                  aria-label={ui.filterByArea(area.label, items.length)}
                   className="explorer__lane"
                   onClick={() => setAreaFilter(laneActive ? null : area.id)}
                   onKeyDown={(event) => {
@@ -185,7 +188,7 @@ export default function ProjectsExplorer({ projects }: Props) {
                     {area.label}
                   </text>
                   <text x="22" y={laneY + 15} className="explorer__lane-count">
-                    {items.length} projects
+                    {ui.projectsCount(items.length)}
                   </text>
                 </g>
 
@@ -275,7 +278,7 @@ export default function ProjectsExplorer({ projects }: Props) {
                     type="button"
                     onClick={() => setTechFilter(tech)}
                     className="chip"
-                    title={`Filter by ${tech}`}
+                    title={ui.filterByTech(tech)}
                   >
                     {tech}
                   </button>
@@ -285,12 +288,12 @@ export default function ProjectsExplorer({ projects }: Props) {
             <div className="explorer__detail-links">
               {selectedProject.githubUrl && (
                 <a className="link" href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer">
-                  View on GitHub →
+                  {ui.viewGithub}
                 </a>
               )}
               {selectedProject.liveUrl && (
                 <a className="link" href={selectedProject.liveUrl} target="_blank" rel="noopener noreferrer">
-                  Try it live →
+                  {ui.tryLive}
                 </a>
               )}
             </div>
@@ -300,12 +303,9 @@ export default function ProjectsExplorer({ projects }: Props) {
             <p className="explorer__count">{matching.length}</p>
             <p>
               {areaFilter || techFilter
-                ? `projects match ${activeFilterLabel}.`
-                : 'projects between 2023 and 2026.'}{' '}
-              <span className="muted">
-                Hover a square to preview it here, click an area to filter the lane, or pick a
-                stack above to see when that technology shows up.
-              </span>
+                ? `${ui.matchPrefix} ${activeFilterLabel}.`
+                : ui.betweenYears}{' '}
+              <span className="muted">{ui.helpText}</span>
             </p>
           </div>
         )}
@@ -315,9 +315,9 @@ export default function ProjectsExplorer({ projects }: Props) {
       <div className="explorer__index">
         {byYear.length === 0 && (
           <p>
-            No projects match that combination.{' '}
+            {ui.noMatch}{' '}
             <button type="button" onClick={clearFilters} className="chip chip--clear">
-              Clear filters
+              {ui.clearFilters}
             </button>
           </p>
         )}
@@ -326,7 +326,7 @@ export default function ProjectsExplorer({ projects }: Props) {
           <section key={year} className="explorer__year-group">
             <h3 className="explorer__year-title">
               <span>{year}</span>
-              <span className="mono">{items.length} projects</span>
+              <span className="mono">{ui.projectsCount(items.length)}</span>
             </h3>
 
             <ul className="explorer__list">
@@ -357,7 +357,7 @@ export default function ProjectsExplorer({ projects }: Props) {
                           </span>
                         ))}
                       </span>
-                      <span className="sr-only"> (opens in new tab)</span>
+                      <span className="sr-only">{common.opensInNewTab}</span>
                     </a>
                   </li>
                 );

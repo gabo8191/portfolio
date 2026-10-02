@@ -1,41 +1,52 @@
 ---
-const base = import.meta.env.BASE_URL.endsWith('/')
-  ? import.meta.env.BASE_URL.slice(0, -1)
-  : import.meta.env.BASE_URL;
-const pathname = Astro.url.pathname.replace(/\/$/, '');
+import { DEFAULT_LANG, LOCALES, isLang, localePath, stripLocale, getUi, type Lang } from '../i18n';
+
+const lang: Lang = isLang(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LANG;
+const ui = getUi(lang);
+const pagePath = stripLocale(Astro.url.pathname);
 const links = [
-  { href: '/work', label: 'Work' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/work', label: ui.nav.work },
+  { href: '/projects', label: ui.nav.projects },
+  { href: '/about', label: ui.nav.about },
+  { href: '/contact', label: ui.nav.contact },
 ];
-const isCurrent = (href: string) => pathname === `${base}${href}`;
+const isCurrent = (href: string) => pagePath === href;
+
+// The same page in the other locale, so switching language never loses your place.
+const other = LOCALES.find((code) => code !== lang)!;
+const switchHref = localePath(other, pagePath);
 ---
 
 <header class='site-header'>
   <div class='shell site-header__inner'>
-    <a class='brand' href={`${base}/`}>
+    <a class='brand' href={localePath(lang)}>
       <span class='brand__mark' aria-hidden='true'>GC</span>
       <span class='brand__name'>Gabriel Castillo</span>
     </a>
 
-    <nav class='nav' aria-label='Main navigation'>
+    <nav class='nav' aria-label={ui.nav.main}>
       {links.map((link) => (
-        <a href={`${base}${link.href}/`} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+        <a href={localePath(lang, link.href)} aria-current={isCurrent(link.href) ? 'page' : undefined}>
           {link.label}
         </a>
       ))}
+      <a class='lang-switch' href={switchHref} lang={other} hreflang={other} aria-label={ui.nav.switchLabel}>
+        {ui.nav.switchShort}
+      </a>
     </nav>
 
     <details class='menu'>
-      <summary>Menu</summary>
-      <nav class='menu__panel' aria-label='Mobile navigation'>
-        <a href={`${base}/`} aria-current={pathname === base ? 'page' : undefined}>Home</a>
+      <summary>{ui.nav.menu}</summary>
+      <nav class='menu__panel' aria-label={ui.nav.mobile}>
+        <a href={localePath(lang)} aria-current={pagePath === '' ? 'page' : undefined}>{ui.nav.home}</a>
         {links.map((link) => (
-          <a href={`${base}${link.href}/`} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+          <a href={localePath(lang, link.href)} aria-current={isCurrent(link.href) ? 'page' : undefined}>
             {link.label}
           </a>
         ))}
+        <a class='lang-switch' href={switchHref} lang={other} hreflang={other}>
+          {ui.nav.switchLabel}
+        </a>
       </nav>
     </details>
   </div>

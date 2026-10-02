@@ -41,4 +41,14 @@ Gabriel develops APIs and asynchronous workflows and diagnoses production failur
 - General Spanish CV: https://gabo8191.github.io/portfolio/cv-es.pdf
 - Contact: https://gabo8191.github.io/portfolio/contact/
 
+## Versión en español
+
+El sitio está disponible completo en español bajo /es/ (misma información, mismas fechas):
+
+- Inicio: https://gabo8191.github.io/portfolio/es/
+- Trabajo profesional: https://gabo8191.github.io/portfolio/es/work/
+- Proyectos personales y de código abierto: https://gabo8191.github.io/portfolio/es/projects/
+- Sobre mí: https://gabo8191.github.io/portfolio/es/about/
+- Contacto: https://gabo8191.github.io/portfolio/es/contact/
+
 Professional project descriptions explain scope without sharing private source code. A repository's contents do not by themselves establish authorship of every module.

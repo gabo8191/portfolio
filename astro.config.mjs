@@ -17,6 +17,12 @@ export default defineConfig({
   site,
   base,
   output: 'static',
+  // English lives at the root, Spanish under /es/. Keep in sync with src/i18n/index.ts.
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es'],
+    routing: { prefixDefaultLocale: false },
+  },
   vite: {
     plugins: [tailwindcss()],
   },
@@ -26,6 +32,11 @@ export default defineConfig({
     // Los PDF se indexan como documentos propios y el sitemap solo recoge
     // rutas de páginas, así que los CV se añaden a mano.
     sitemap({
+      // Emits xhtml:link hreflang alternates between each English page and its /es/ twin.
+      i18n: {
+        defaultLocale: 'en',
+        locales: { en: 'en-US', es: 'es-CO' },
+      },
       customPages: [
         new URL(`${base.replace(/\/$/, '')}/cv-en.pdf`, site).href,
         new URL(`${base.replace(/\/$/, '')}/cv-es.pdf`, site).href,

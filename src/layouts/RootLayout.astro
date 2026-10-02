@@ -3,16 +3,27 @@ import LoadingIndicator from 'astro-loading-indicator/component';
 import { Font } from 'astro:assets';
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
+import {
+  DEFAULT_LANG,
+  HTML_LANG,
+  LOCALES,
+  OG_LOCALE,
+  isLang,
+  localePath,
+  stripLocale,
+  getUi,
+  type Lang,
+} from '../i18n';
 
 const { title, description, image } = Astro.props;
+const lang: Lang = isLang(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LANG;
+const ui = getUi(lang);
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 
-const defaultTitle =
-  'Gabriel Castillo | Backend & Integration Engineer';
-const defaultDescription =
-  'Gabriel Castillo builds backend systems, integrations and internal tools and investigates production incidents. Experience with Python/Django, NestJS, Laravel, Java and SQL.';
+const defaultTitle = ui.meta.defaultTitle;
+const defaultDescription = ui.meta.defaultDescription;
 
 const pageTitle = title ?? defaultTitle;
 const pageDescription = description ?? defaultDescription;
@@ -25,6 +36,31 @@ const canonical = new URL(pathname, siteUrl).href;
 // Social previews require an absolute Open Graph image URL.
 const ogImage = new URL(image ?? `${base}og-image.png`, siteUrl).href;
 
+// Every page exists in each locale: declare the alternates so search engines serve
+// the right language, plus x-default pointing at the English original.
+const pagePath = stripLocale(pathname);
+const alternates = LOCALES.map((code) => ({
+  code,
+  hreflang: HTML_LANG[code],
+  href: new URL(localePath(code, pagePath), siteUrl).href,
+}));
+const xDefault = alternates.find((alternate) => alternate.code === DEFAULT_LANG)!.href;
+const homeUrl = new URL(localePath(lang), siteUrl).href;
+const inLanguage = HTML_LANG[lang];
+
+// Breadcrumbs for interior pages (the home page has none).
+const breadcrumbLd =
+  pagePath === ''
+    ? null
+    : {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: ui.meta.breadcrumbHome, item: homeUrl },
+          { '@type': 'ListItem', position: 2, name: pageTitle, item: canonical },
+        ],
+      };
+
 // Use the employer's public organization identity in structured data.
 const keyrusId = 'https://www.keyrus.com/#organization';
 
@@ -33,8 +69,7 @@ const keyrusLd = {
   '@id': keyrusId,
   name: 'Keyrus Colombia S.A.S.',
   url: 'https://www.keyrus.com/co/es',
-  description:
-    'International data intelligence and digital transformation consultancy, operating in Data & Analytics, Cloud, Digital Transformation and Digital Commerce.',
+  description: ui.meta.keyrusDescription,
   sameAs: ['https://www.linkedin.com/company/keyrus'],
 };
 
@@ -43,11 +78,8 @@ const personLd = {
   '@id': `${new URL(base, siteUrl).href}#gabriel-castillo`,
   name: 'Gabriel Castillo',
   alternateName: 'gabo8191',
-  url: new URL(base, siteUrl).href,
-  jobTitle: [
-    'Backend Developer',
-    'BI & Data Analytics Intern at Keyrus',
-  ],
+  url: homeUrl,
+  jobTitle: ui.meta.jobTitles,
   description: defaultDescription,
   image: new URL(`${base}avatar.png`, siteUrl).href,
   email: 'mailto:gabo8191@gmail.com',
@@ -90,19 +122,19 @@ const personLd = {
   contactPoint: [
     {
       '@type': 'ContactPoint',
-      contactType: 'professional inquiries',
+      contactType: ui.meta.contactType,
       email: 'gabo8191@gmail.com',
-      url: new URL(`${base}contact/`, siteUrl).href,
+      url: new URL(localePath(lang, '/contact'), siteUrl).href,
       availableLanguage: ['Spanish', 'English'],
-      areaServed: 'Worldwide (remote)',
+      areaServed: ui.meta.areaServed,
     },
   ],
   potentialAction: {
     '@type': 'CommunicateAction',
-    name: 'Contact Gabriel Castillo',
+    name: ui.meta.contactAction,
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: new URL(`${base}contact/`, siteUrl).href,
+      urlTemplate: new URL(localePath(lang, '/contact'), siteUrl).href,
       actionPlatform: [
         'http://schema.org/DesktopWebPlatform',
         'http://schema.org/MobileWebPlatform',
@@ -117,13 +149,14 @@ const jsonLd = {
   '@graph': [
     keyrusLd,
     personLd,
+    ...(breadcrumbLd ? [breadcrumbLd] : []),
     {
       '@type': 'ProfilePage',
       '@id': `${canonical}#webpage`,
       url: canonical,
       name: pageTitle,
       description: pageDescription,
-      inLanguage: 'en-US',
+      inLanguage,
       mainEntity: { '@id': personLd['@id'] },
       about: { '@id': personLd['@id'] },
       primaryImageOfPage: ogImage,
@@ -133,38 +166,50 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang={inLanguage}>
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <meta name='theme-color' content='#ffd93d' />
     <link rel='icon' type='image/svg+xml' href={`${base}favicon.svg`} />
     <link rel='canonical' href={canonical} />
+    {alternates.map((alternate) => (
+      <link rel='alternate' hreflang={alternate.hreflang} href={alternate.href} />
+    ))}
+    <link rel='alternate' hreflang='x-default' href={xDefault} />
     <meta name='generator' content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name='description' content={pageDescription} />
+    <meta name='author' content='Gabriel Castillo' />
+    <meta
+      name='robots'
+      content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+    />
 
     <meta property='og:url' content={canonical} />
     <meta property='og:type' content='website' />
-    <meta property='og:site_name' content='Gabriel Castillo' />
-    <meta property='og:locale' content='en_US' />
+    <meta property='og:site_name' content={ui.meta.siteName} />
+    <meta property='og:locale' content={OG_LOCALE[lang]} />
+    {LOCALES.filter((code) => code !== lang).map((code) => (
+      <meta property='og:locale:alternate' content={OG_LOCALE[code]} />
+    ))}
     <meta property='og:title' content={pageTitle} />
     <meta property='og:description' content={pageDescription} />
     <meta property='og:image' content={ogImage} />
     <meta property='og:image:width' content='1200' />
     <meta property='og:image:height' content='630' />
-    <meta property='og:image:alt' content='Gabriel Castillo, backend and integration developer' />
+    <meta property='og:image:alt' content={ui.meta.ogImageAlt} />
 
     <!-- Twitter Meta Tags -->
     <meta name='twitter:card' content='summary_large_image' />
     <meta name='twitter:site' content='@gcastillo8191' />
     <meta name='twitter:creator' content='@gcastillo8191' />
-    <meta property='twitter:domain' content='gabo8191.github.io' />
+    <meta property='twitter:domain' content={new URL(siteUrl).hostname} />
     <meta property='twitter:url' content={canonical} />
     <meta name='twitter:title' content={pageTitle} />
     <meta name='twitter:description' content={pageDescription} />
     <meta name='twitter:image' content={ogImage} />
-    <meta name='twitter:image:alt' content='Gabriel Castillo, backend and integration developer' />
+    <meta name='twitter:image:alt' content={ui.meta.ogImageAlt} />
 
     <script
       type='application/ld+json'
@@ -178,7 +223,7 @@ const jsonLd = {
     <LoadingIndicator color='#ff6fb5' height='4px' />
   </head>
   <body>
-    <a href='#main-content' class='skip-link'>Skip to main content</a>
+    <a href='#main-content' class='skip-link'>{ui.common.skipLink}</a>
     <slot />
     <script src='../scripts/reveal.ts'></script>
   </body>

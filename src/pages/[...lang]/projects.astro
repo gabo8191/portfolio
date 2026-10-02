@@ -1,0 +1,86 @@
+---
+import PageHead from '../../components/page-head.astro';
+import ProjectsExplorer from '../../components/projects-explorer';
+import InfoLayout from '../../layouts/InfoLayout.astro';
+import { PROFESSIONAL_PROJECTS } from '../../data/professional';
+import { getAreas, getProjects } from '../../i18n/data';
+import { DEFAULT_LANG, getUi, isLang, localePath, localeStaticPaths, type Lang } from '../../i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const lang: Lang = isLang(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LANG;
+const ui = getUi(lang);
+const PROJECTS = getProjects(lang);
+const AREAS = getAreas(lang);
+const FEATURED = PROJECTS.filter((project) => project.featured);
+
+const years = PROJECTS.map((project) => project.date).sort();
+const firstYear = years[0].slice(0, 4);
+const lastYear = years[years.length - 1].slice(0, 4);
+const tones = ['cap--yellow', 'cap--pink', '', 'cap--yellow'];
+---
+
+<InfoLayout title={ui.projects.title} description={ui.projects.description}>
+  <PageHead slot='head' index={ui.projects.index} title={ui.projects.heading}>
+    <p>{ui.projects.intro(PROJECTS.length, firstYear, lastYear)}</p>
+  </PageHead>
+
+  <section aria-labelledby='timeline'>
+    <h2 id='timeline' class='sr-only'>{ui.projects.timelineHeading}</h2>
+    <ProjectsExplorer projects={PROJECTS} areas={AREAS} lang={lang} client:load />
+  </section>
+
+  <section class='about-section' aria-labelledby='selected-work'>
+    <h2 id='selected-work' class='h2' data-split>{ui.projects.worthTitle}</h2>
+    <div class='grid-2'>
+      {FEATURED.map((project, index) => (
+        <article class:list={['card block', tones[index % tones.length]]} data-stamp>
+          <h3 class='card__title'>{project.title}</h3>
+          <p class='mono'>{project.featured!.tagline}</p>
+          <dl>
+            <div>
+              <dt class='mono'>{ui.projects.problem}</dt>
+              <dd>{project.featured!.problem}</dd>
+            </div>
+            <div>
+              <dt class='mono'>{ui.projects.built}</dt>
+              <dd>{project.featured!.approach}</dd>
+            </div>
+            <div>
+              <dt class='mono'>{ui.projects.landed}</dt>
+              <dd>{project.featured!.outcome}</dd>
+            </div>
+          </dl>
+          <ul class='tags' aria-label={ui.home.technologies}>
+            {project.technologies.map((tech) => <li class='tag'>{tech}</li>)}
+          </ul>
+          <div class='hero__actions'>
+            {project.githubUrl && (
+              <a class='btn' href={project.githubUrl} target='_blank' rel='noopener noreferrer'>
+                {ui.projects.github}<span class='sr-only'>{ui.common.opensInNewTab}</span>
+              </a>
+            )}
+            {project.liveUrl && (
+              <a class='btn btn--ink' href={project.liveUrl} target='_blank' rel='noopener noreferrer'>
+                {ui.projects.tryLive}<span class='sr-only'>{ui.common.opensInNewTab}</span>
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <aside class='block closer-block' data-stamp>
+    <div>
+      <h2 class='h2'>{ui.projects.professionalTitle}</h2>
+      <p class='measure'>{ui.projects.professionalBody(PROFESSIONAL_PROJECTS.length)}</p>
+    </div>
+    <div class='hero__actions'>
+      <a class='btn btn--ink' href={localePath(lang, '/work')}>{ui.projects.seeProfessional}</a>
+      <a class='btn' href='https://github.com/gabo8191' target='_blank' rel='noopener noreferrer'>
+        {ui.projects.allRepos}<span class='sr-only'>{ui.common.opensInNewTab}</span>
+      </a>
+    </div>
+  </aside>
+</InfoLayout>

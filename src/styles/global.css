@@ -294,6 +294,13 @@ img {
   background: var(--yellow);
 }
 
+.nav a.lang-switch {
+  border-color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
 .nav a[aria-current='page'] {
   border-color: var(--ink);
   background: var(--pink);

@@ -1,11 +1,15 @@
 ---
-import PageHead from '../components/page-head.astro';
-import InfoLayout from '../layouts/InfoLayout.astro';
-import { EMPLOYERS, PROFESSIONAL_PROJECTS } from '../data/professional';
+import PageHead from '../../components/page-head.astro';
+import InfoLayout from '../../layouts/InfoLayout.astro';
+import { getEmployers, getProfessionalProjects } from '../../i18n/data';
+import { DEFAULT_LANG, getUi, isLang, localePath, localeStaticPaths, type Lang } from '../../i18n';
 
-const base = import.meta.env.BASE_URL.endsWith('/')
-  ? import.meta.env.BASE_URL.slice(0, -1)
-  : import.meta.env.BASE_URL;
+export const getStaticPaths = localeStaticPaths;
+
+const lang: Lang = isLang(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LANG;
+const ui = getUi(lang);
+const EMPLOYERS = getEmployers(lang);
+const PROFESSIONAL_PROJECTS = getProfessionalProjects(lang);
 
 // Group projects by employer in the established chronological order.
 const byEmployer = EMPLOYERS.map((employer) => ({
@@ -15,15 +19,9 @@ const byEmployer = EMPLOYERS.map((employer) => ({
 }));
 ---
 
-<InfoLayout
-  title='Professional work — Gabriel Castillo'
-  description='Professional work by Gabriel Castillo across Keyrus, TotalDev, PARQ and SEREMPRE: internal tools, interbank messaging, invoicing, inventory and production support.'
->
-  <PageHead slot='head' index='Work' title='Professional work'>
-    <p>
-      {PROFESSIONAL_PROJECTS.length} projects across four employers since 2023. The
-      descriptions explain my work without sharing private source code.
-    </p>
+<InfoLayout title={ui.work.title} description={ui.work.description}>
+  <PageHead slot='head' index={ui.work.index} title={ui.work.heading}>
+    <p>{ui.work.intro(PROFESSIONAL_PROJECTS.length)}</p>
   </PageHead>
 
   {
@@ -43,15 +41,15 @@ const byEmployer = EMPLOYERS.map((employer) => ({
               <h3>{project.title}</h3>
               {project.period && <span class='tag'>{project.period}</span>}
               <p class='muted'>{project.description}</p>
-              <ul class='tags' aria-label='Technologies'>
+              <ul class='tags' aria-label={ui.home.technologies}>
                 {project.technologies.map((tech) => <li class='tag tag--pink'>{tech}</li>)}
               </ul>
               {project.liveUrl ? (
                 <a class='link' href={project.liveUrl} target='_blank' rel='noopener noreferrer'>
-                  View live →<span class='sr-only'> (opens in new tab)</span>
+                  {ui.work.viewLive}<span class='sr-only'>{ui.common.opensInNewTab}</span>
                 </a>
               ) : (
-                <span class='mono muted'>Confidential source</span>
+                <span class='mono muted'>{ui.work.confidential}</span>
               )}
             </article>
           ))}
@@ -62,12 +60,9 @@ const byEmployer = EMPLOYERS.map((employer) => ({
 
   <aside class='block closer-block' data-stamp>
     <div>
-      <h2 class='h2'>Looking for the code?</h2>
-      <p class='measure'>
-        Personal and open source projects are on their own page, with a timeline of what I
-        built and when.
-      </p>
+      <h2 class='h2'>{ui.work.lookingTitle}</h2>
+      <p class='measure'>{ui.work.lookingBody}</p>
     </div>
-    <a class='btn btn--ink' href={`${base}/projects/`}>See personal projects →</a>
+    <a class='btn btn--ink' href={localePath(lang, '/projects')}>{ui.work.seePersonal}</a>
   </aside>
 </InfoLayout>

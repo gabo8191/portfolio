@@ -1,22 +1,23 @@
 ---
-const base = import.meta.env.BASE_URL.endsWith('/')
-  ? import.meta.env.BASE_URL.slice(0, -1)
-  : import.meta.env.BASE_URL;
+import { DEFAULT_LANG, isLang, localePath, getUi, type Lang } from '../i18n';
+
+const lang: Lang = isLang(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LANG;
+const ui = getUi(lang);
 ---
 
 <footer class='site-footer'>
   <div class='shell site-footer__inner'>
-    <p class='mono'>Gabriel Castillo · Backend &amp; integrations · Tunja, CO</p>
-    <nav aria-label='Footer navigation'>
-      <a href={`${base}/work/`}>Work</a>
-      <a href={`${base}/projects/`}>Projects</a>
+    <p class='mono'>{ui.footer.tagline}</p>
+    <nav aria-label={ui.footer.nav}>
+      <a href={localePath(lang, '/work')}>{ui.nav.work}</a>
+      <a href={localePath(lang, '/projects')}>{ui.nav.projects}</a>
       <a href='https://github.com/gabo8191' target='_blank' rel='noopener noreferrer'>
-        GitHub<span class='sr-only'> (opens in new tab)</span>
+        {ui.common.github}<span class='sr-only'>{ui.common.opensInNewTab}</span>
       </a>
       <a href='https://linkedin.com/in/gabodev8191' target='_blank' rel='noopener noreferrer'>
-        LinkedIn<span class='sr-only'> (opens in new tab)</span>
+        {ui.common.linkedin}<span class='sr-only'>{ui.common.opensInNewTab}</span>
       </a>
-      <a href='mailto:gabo8191@gmail.com'>Email</a>
+      <a href='mailto:gabo8191@gmail.com'>{ui.common.email}</a>
     </nav>
   </div>
 </footer>

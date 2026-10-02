@@ -1,25 +1,33 @@
 ---
-import Footer from '../components/footer.astro';
-import Marquee from '../components/marquee.astro';
-import RiseText from '../components/rise-text.astro';
-import SiteHeader from '../components/site-header.astro';
-import StickerDesk from '../components/sticker-desk.astro';
-import RootLayout from '../layouts/RootLayout.astro';
-import { PROFESSIONAL_PROJECTS } from '../data/professional';
-import { PROJECTS } from '../data/projects';
+import Footer from '../../components/footer.astro';
+import Marquee from '../../components/marquee.astro';
+import RiseText from '../../components/rise-text.astro';
+import SiteHeader from '../../components/site-header.astro';
+import StickerDesk from '../../components/sticker-desk.astro';
+import RootLayout from '../../layouts/RootLayout.astro';
+import { getProfessionalProjects, getProjects } from '../../i18n/data';
+import { DEFAULT_LANG, getUi, isLang, localePath, localeStaticPaths, type Lang } from '../../i18n';
 
+export const getStaticPaths = localeStaticPaths;
+
+const lang: Lang = isLang(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LANG;
+const ui = getUi(lang);
+const { home } = ui;
+const PROFESSIONAL_PROJECTS = getProfessionalProjects(lang);
+const PROJECTS = getProjects(lang);
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL.slice(0, -1)
   : import.meta.env.BASE_URL;
 
+// Lookups use the English keys; the displayed text comes back localized.
 const selectedTitles = [
   'Internal Effort Estimation Tool',
   'SWIFT MT Support for an Interbank Gateway',
   'Electronic Billing Middleware',
 ];
-const selectedWork = selectedTitles.map((title) => {
-  const project = PROFESSIONAL_PROJECTS.find((item) => item.title === title);
-  if (!project) throw new Error(`Missing selected professional project: ${title}`);
+const selectedWork = selectedTitles.map((key) => {
+  const project = PROFESSIONAL_PROJECTS.find((item) => item.key === key);
+  if (!project) throw new Error(`Missing selected professional project: ${key}`);
   return project;
 });
 const publicProjects = ['polyglot-microservices', 'tomoreader'].map((slug) => {
@@ -28,18 +36,6 @@ const publicProjects = ['polyglot-microservices', 'tomoreader'].map((slug) => {
   return project;
 });
 
-const focus = [
-  'Backend',
-  'Integrations',
-  'Production support',
-  'SQL',
-  'Internal tools',
-  'Python / Django',
-  'NestJS',
-  'Laravel',
-  'Java / Apache Camel',
-  'Remote from Tunja, CO',
-];
 const stack = [
   'PostgreSQL',
   'MySQL',
@@ -55,36 +51,19 @@ const stack = [
   'Power BI',
   'Tableau',
 ];
-const capabilities = [
-  {
-    title: 'System integrations',
-    body: 'Financial messaging (SWIFT MT and ISO 20022), electronic invoicing connectors and data workflows between systems that were never meant to talk.',
-  },
-  {
-    title: 'Production support',
-    body: 'L2/L3 incidents traced through SQL, logs and code until the failure is clear, then a fix the team can maintain and a written root cause.',
-  },
-  {
-    title: 'Internal tools',
-    body: 'Practical software teams use every day: estimation tools, inventory platforms, reports, queued exports and admin panels.',
-  },
-];
 ---
 
-<RootLayout
-  title='Gabriel Castillo | Backend & Integration Engineer'
-  description='Backend developer in Colombia working on integrations, production support and internal tools with Python/Django, NestJS, Laravel and SQL.'
->
+<RootLayout title={home.title} description={home.description}>
   <div class='frame'>
     <SiteHeader />
     <main id='main-content'>
-      <Marquee items={focus} label='Areas of work' />
+      <Marquee items={home.focus} label={home.focusLabel} />
 
       <section class='hero' aria-labelledby='home-title'>
         <div class='shell hero__inner'>
           <div class='hero__kicker'>
-            <span class='tag tag--ink'>Backend &amp; Integration Engineer</span>
-            <span class='tag'>Tunja, Colombia · Remote</span>
+            <span class='tag tag--ink'>{home.roleTag}</span>
+            <span class='tag'>{home.locationTag}</span>
           </div>
 
           <h1 id='home-title' class='hero__name' aria-label='Gabriel Castillo'>
@@ -95,14 +74,12 @@ const capabilities = [
           <div class='hero__bottom'>
             <div>
               <p class='hero__pitch'>
-                I connect systems, build internal tools and trace production incidents
-                through code and data. Over three years with Python/Django, NestJS,
-                Laravel, Java and SQL.
+                {home.pitch}
               </p>
               <div class='hero__actions'>
-                <a class='btn btn--ink' href={`${base}/work/`}>See my work →</a>
-                <a class='btn' href={`${base}/cv-en.pdf`} target='_blank' rel='noopener noreferrer'>
-                  Download CV<span class='sr-only'> (opens in new tab)</span>
+                <a class='btn btn--ink' href={localePath(lang, '/work')}>{home.seeWork}</a>
+                <a class='btn' href={`${base}/${home.cvFile}`} target='_blank' rel='noopener noreferrer'>
+                  {home.downloadCv}<span class='sr-only'>{ui.common.opensInNewTab}</span>
                 </a>
               </div>
             </div>
@@ -115,12 +92,12 @@ const capabilities = [
         <div class='shell'>
           <div class='section-bar'>
             <div>
-              <p class='section-bar__index mono'>01 / What I do</p>
-              <h2 id='caps-title' data-split>Where I'm useful</h2>
+              <p class='section-bar__index mono'>{home.capsIndex}</p>
+              <h2 id='caps-title' data-split>{home.capsTitle}</h2>
             </div>
           </div>
           <ul class='caps'>
-            {capabilities.map((capability, index) => (
+            {home.capabilities.map((capability, index) => (
               <li class='cap block' data-stamp>
                 <span class='mono'>0{index + 1}</span>
                 <h3>{capability.title}</h3>
@@ -135,10 +112,10 @@ const capabilities = [
         <div class='shell'>
           <div class='section-bar'>
             <div>
-              <p class='section-bar__index mono'>02 / Experience in practice</p>
-              <h2 id='work-title' data-split>Selected work</h2>
+              <p class='section-bar__index mono'>{home.workIndex}</p>
+              <h2 id='work-title' data-split>{home.workTitle}</h2>
             </div>
-            <a class='link' href={`${base}/work/`}>All professional work →</a>
+            <a class='link' href={localePath(lang, '/work')}>{home.allWork}</a>
           </div>
           <div class='rows'>
             {selectedWork.map((project) => (
@@ -150,7 +127,7 @@ const capabilities = [
                 <div>
                   <h3>{project.title}</h3>
                   <p class='measure'>{project.description}</p>
-                  <ul class='tags tags--spaced' aria-label='Technologies'>
+                  <ul class='tags tags--spaced' aria-label={home.technologies}>
                     {project.technologies.map((technology) => <li class='tag tag--pink'>{technology}</li>)}
                   </ul>
                 </div>
@@ -160,35 +137,34 @@ const capabilities = [
         </div>
       </section>
 
-      <Marquee items={stack} reverse label='Tools I use' />
+      <Marquee items={stack} reverse label={home.stackLabel} />
 
       <section class='section' aria-labelledby='open-title'>
         <div class='shell'>
           <div class='section-bar'>
             <div>
-              <p class='section-bar__index mono'>03 / Built in the open</p>
-              <h2 id='open-title' data-split>Public projects</h2>
+              <p class='section-bar__index mono'>{home.openIndex}</p>
+              <h2 id='open-title' data-split>{home.openTitle}</h2>
             </div>
-            <a class='link' href={`${base}/projects/`}>Explore all projects →</a>
+            <a class='link' href={localePath(lang, '/projects')}>{home.exploreProjects}</a>
           </div>
           <p class='measure lede'>
-            Most professional systems I work on are private. These personal projects show how
-            I approach architecture and product decisions in public.
+            {home.openLede}
           </p>
           <div class='oss'>
             {publicProjects.map((project, index) => (
               <article class:list={['block', index === 0 ? 'cap--yellow' : 'cap--pink']} data-stamp>
                 <span class='tag tag--ink'>
-                  {project.area === 'backend' ? 'Backend & architecture' : 'Desktop application'}
+                  {project.area === 'backend' ? home.areaBackend : home.areaDesktop}
                 </span>
                 <h3>{project.title}</h3>
                 <p>{project.summary}</p>
-                <ul class='tags' aria-label='Technologies'>
+                <ul class='tags' aria-label={home.technologies}>
                   {project.technologies.slice(0, 4).map((technology) => <li class='tag'>{technology}</li>)}
                 </ul>
                 {project.githubUrl && (
                   <a class='btn' href={project.githubUrl} target='_blank' rel='noopener noreferrer'>
-                    View repository<span class='sr-only'> (opens in new tab)</span>
+                    {home.viewRepo}<span class='sr-only'>{ui.common.opensInNewTab}</span>
                   </a>
                 )}
               </article>
@@ -199,15 +175,14 @@ const capabilities = [
 
       <section class='section section--pink' aria-labelledby='close-title'>
         <div class='shell closer'>
-          <h2 id='close-title'>Let's talk <span>systems.</span></h2>
+          <h2 id='close-title'>{home.closeTitleA}<span>{home.closeTitleB}</span></h2>
           <div>
             <p>
-              For backend work, an integration that keeps failing or a difficult production
-              issue, write to me directly.
+              {home.closeBody}
             </p>
             <div class='hero__actions'>
               <a class='btn btn--ink' href='mailto:gabo8191@gmail.com'>gabo8191@gmail.com</a>
-              <a class='btn btn--yellow' href={`${base}/contact/`}>Contact page →</a>
+              <a class='btn btn--yellow' href={localePath(lang, '/contact')}>{home.contactPage}</a>
             </div>
           </div>
         </div>

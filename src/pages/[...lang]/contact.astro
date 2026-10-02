@@ -1,0 +1,57 @@
+---
+import PageHead from '../../components/page-head.astro';
+import InfoLayout from '../../layouts/InfoLayout.astro';
+import { DEFAULT_LANG, isLang, getUi, localeStaticPaths, type Lang } from '../../i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const lang: Lang = isLang(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LANG;
+const ui = getUi(lang);
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const channels = [
+  { label: ui.common.email, value: 'gabo8191@gmail.com', href: 'mailto:gabo8191@gmail.com', tone: 'cap--yellow', external: false },
+  { label: 'LinkedIn', value: 'in/gabodev8191', href: 'https://linkedin.com/in/gabodev8191/', tone: 'cap--pink', external: true },
+  { label: 'GitHub', value: 'gabo8191', href: 'https://github.com/gabo8191', tone: '', external: true },
+  { label: 'X / Twitter', value: '@gcastillo8191', href: 'https://twitter.com/gcastillo8191', tone: '', external: true },
+];
+---
+
+<InfoLayout title={ui.contact.title} description={ui.contact.description}>
+  <PageHead slot='head' index={ui.contact.index} title={ui.contact.heading} tone='blue'>
+    <p>{ui.contact.intro}</p>
+  </PageHead>
+
+  <section aria-label={ui.contact.channelsLabel}>
+    <div class='contact-grid'>
+      {channels.map((channel) => (
+        <a
+          class:list={['contact-card block', channel.tone]}
+          href={channel.href}
+          target={channel.external ? '_blank' : undefined}
+          rel={channel.external ? 'noopener noreferrer' : undefined}
+        >
+          <span class='mono'>{channel.label}</span>
+          <strong>{channel.value}</strong>
+          {channel.external && <span class='sr-only'>{ui.common.opensInNewTab}</span>}
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class='about-section' aria-labelledby='cv-title'>
+    <h2 id='cv-title' class='h2'>{ui.contact.cvTitle}</h2>
+    <div class='hero__actions'>
+      <a class='btn btn--ink' href={`${base}cv-en.pdf`} target='_blank' rel='noopener noreferrer' hreflang='en' lang='en'>
+        {ui.contact.cvEn}<span class='sr-only'>{ui.common.opensInNewTab}</span>
+      </a>
+      <a class='btn btn--yellow' href={`${base}cv-es.pdf`} target='_blank' rel='noopener noreferrer' hreflang='es' lang='es'>
+        {ui.contact.cvEs}<span class='sr-only'>{ui.common.opensInNewTab}</span>
+      </a>
+    </div>
+    <p class='mono muted about-note'>{ui.contact.note}</p>
+  </section>
+</InfoLayout>

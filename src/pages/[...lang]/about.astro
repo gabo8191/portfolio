@@ -1,0 +1,94 @@
+---
+import PageHead from '../../components/page-head.astro';
+import InfoLayout from '../../layouts/InfoLayout.astro';
+import { DEFAULT_LANG, getUi, isLang, localeStaticPaths, type Lang } from '../../i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+// Source of the copy: the general CV (cv-latex/general), mirrored in src/i18n/ui.ts.
+const lang: Lang = isLang(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LANG;
+const ui = getUi(lang);
+
+const { about } = ui;
+---
+
+<InfoLayout title={about.title} description={about.description}>
+  <PageHead slot='head' index={about.index} title={about.heading} tone='pink'>
+    <p>{about.intro}</p>
+  </PageHead>
+
+  <section class='about-intro' aria-label={about.introLabel}>
+    <img
+      class='about-avatar'
+      src={`${base}avatar.png`}
+      alt={ui.meta.avatarAlt}
+      width='160'
+      height='160'
+    />
+    <div class='measure'>
+      <p>{about.p1}</p>
+      <p>{about.p2}</p>
+      <p>
+        <a href={`${base}cv-en.pdf`} target='_blank' rel='noopener noreferrer' hreflang='en' lang='en'>{about.cvEn}</a>
+        ·
+        <a href={`${base}cv-es.pdf`} target='_blank' rel='noopener noreferrer' hreflang='es' lang='es'>{about.cvEs}</a>
+      </p>
+      <ul class='tags'>
+        <li class='tag tag--yellow'>{about.langSpanish}</li>
+        <li class='tag tag--yellow'>{about.langEnglish}</li>
+        <li class='tag'>{about.location}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class='about-section' aria-labelledby='experience-title'>
+    <h2 id='experience-title' class='h2' data-split>{about.experience}</h2>
+    <ol class='stack-list'>
+      {about.jobs.map((job) => (
+        <li class='block' data-stamp>
+          <div class='job-head'>
+            <div>
+              <h3>{job.title}</h3>
+              <p class='mono'>{job.company}</p>
+            </div>
+            <span class='tag tag--pink'>{job.period}</span>
+          </div>
+          <ul>
+            {job.highlights.map((highlight) => <li>{highlight}</li>)}
+          </ul>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class='about-section' aria-labelledby='skills-title'>
+    <h2 id='skills-title' class='h2' data-split>{about.skills}</h2>
+    <div class='skills'>
+      {about.skillGroups.map((group, index) => (
+        <div class:list={['block', index === 0 && 'cap--yellow']} data-stamp>
+          <h3>{group.title}</h3>
+          <ul class='tags'>
+            {group.items.map((item) => <li class='tag'>{item}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class='about-section' aria-labelledby='education-title'>
+    <h2 id='education-title' class='h2' data-split>{about.education}</h2>
+    <div class='grid-2'>
+      {about.degrees.map((item) => (
+        <article class='card block' data-stamp>
+          <span class='tag tag--ink'>{item.when}</span>
+          <h3>{item.title}</h3>
+          <p class='muted'>{item.school}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</InfoLayout>

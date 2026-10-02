@@ -1,4 +1,6 @@
 ---
+import { DEFAULT_LANG, isLang, getUi, type Lang } from '../i18n';
+
 // Hero hook: outcomes from real work as stickers that drop onto a desk and can be
 // dragged around (anime.js), or moved with the arrow keys when focused.
 type Sticker = {
@@ -10,24 +12,29 @@ type Sticker = {
   r: string;
 };
 
-const stickers: Sticker[] = [
-  { label: 'Systems that talk', note: 'banks, invoicing, CRMs', tone: 'ink', x: '4%', y: '6%', r: '-6deg' },
-  { label: 'Bugs traced to the root', note: 'SQL → logs → code', tone: 'pink', x: '44%', y: '4%', r: '4deg' },
-  { label: 'Busywork → internal tool', note: 'Django, Laravel, React', tone: 'paper', x: '8%', y: '30%', r: '3deg' },
-  { label: 'Bank messages, translated', note: 'SWIFT to ISO 20022', tone: 'blue', x: '50%', y: '29%', r: '-4deg' },
-  { label: 'Invoices that retry', note: 'e-invoicing in Colombia', tone: 'yellow', x: '2%', y: '55%', r: '-3deg' },
-  { label: 'Live in 5+ countries', note: 'benefits platform', tone: 'pink', x: '46%', y: '53%', r: '6deg' },
-  { label: 'Data you can trust', note: 'SQL and Python checks', tone: 'paper', x: '14%', y: '76%', r: '-2deg' },
-  { label: 'Reports on autopilot', note: 'SQL, PL/SQL, Excel', tone: 'ink', x: '55%', y: '77%', r: '5deg' },
+const lang: Lang = isLang(Astro.currentLocale) ? Astro.currentLocale : DEFAULT_LANG;
+const ui = getUi(lang).stickers;
+
+// Layout and tone are language-neutral; only the text comes from the dictionary.
+const layout: Omit<Sticker, 'label' | 'note'>[] = [
+  { tone: 'ink', x: '4%', y: '6%', r: '-6deg' },
+  { tone: 'pink', x: '44%', y: '4%', r: '4deg' },
+  { tone: 'paper', x: '8%', y: '30%', r: '3deg' },
+  { tone: 'blue', x: '50%', y: '29%', r: '-4deg' },
+  { tone: 'yellow', x: '2%', y: '55%', r: '-3deg' },
+  { tone: 'pink', x: '46%', y: '53%', r: '6deg' },
+  { tone: 'paper', x: '14%', y: '76%', r: '-2deg' },
+  { tone: 'ink', x: '55%', y: '77%', r: '5deg' },
 ];
+const stickers: Sticker[] = layout.map((position, index) => ({ ...position, ...ui.items[index] }));
 ---
 
 <div class='desk-wrap'>
   <div class='desk' data-desk>
     <p id='desk-help' class='sr-only'>
-      Stickers of things I have worked on. Focus one and use the arrow keys to move it.
+      {ui.help}
     </p>
-    <ul class='contents' aria-label='Things I have worked on' aria-describedby='desk-help'>
+    <ul class='contents' aria-label={ui.listLabel} aria-describedby='desk-help'>
       {stickers.map((sticker) => (
         <li
           class={`sticker sticker--${sticker.tone}`}
@@ -40,7 +47,7 @@ const stickers: Sticker[] = [
       ))}
     </ul>
   </div>
-  <p class='desk__hint mono' aria-hidden='true'>↑ drag the stickers</p>
+  <p class='desk__hint mono' aria-hidden='true'>{ui.hint}</p>
 </div>
 
 <!-- Runs during parsing, before first paint, so stickers never flash in place
