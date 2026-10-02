@@ -33,9 +33,7 @@ const { about } = ui;
       <p>{about.p1}</p>
       <p>{about.p2}</p>
       <p>
-        <a href={`${base}cv-en.pdf`} target='_blank' rel='noopener noreferrer' hreflang='en' lang='en'>{about.cvEn}</a>
-        ·
-        <a href={`${base}cv-es.pdf`} target='_blank' rel='noopener noreferrer' hreflang='es' lang='es'>{about.cvEs}</a>
+        <a href={`${base}${about.cvFile}`} target='_blank' rel='noopener noreferrer'>{about.cvLink}</a>
       </p>
       <ul class='tags'>
         <li class='tag tag--yellow'>{about.langSpanish}</li>

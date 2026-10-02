@@ -518,9 +518,42 @@ img {
   gap: 0.9rem;
 }
 
+/* Desktop: name, pitch and actions share the left column and the sticker desk
+   fills the right one, so the pitch sits next to the name instead of below it.
+   .hero__bottom dissolves (display: contents) so its children join the hero grid. */
 @media (min-width: 960px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    column-gap: 3rem;
+    align-items: start;
+  }
+
+  .hero__kicker,
+  .hero__name,
+  .hero__bottom > div:first-child {
+    grid-column: 1;
+  }
+
+  .hero__name {
+    font-size: clamp(3.3rem, 7vw, 6rem);
+  }
+
+  .hero__line--offset {
+    padding-left: clamp(1rem, 3vw, 2.5rem);
+  }
+
   .hero__bottom {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    display: contents;
+  }
+
+  .hero__bottom > .desk-wrap {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+  }
+
+  .hero__bottom .desk {
+    height: clamp(19rem, 29vw, 24rem);
   }
 }
 
@@ -561,7 +594,9 @@ img {
   font-weight: 500;
   font-size: clamp(0.72rem, 1.05vw, 0.88rem);
   line-height: 1.25;
-  white-space: nowrap;
+  /* Longer labels (Spanish) wrap inside their half of the desk instead of spilling out */
+  max-width: 46%;
+  white-space: normal;
   rotate: var(--r);
   cursor: grab;
   user-select: none;

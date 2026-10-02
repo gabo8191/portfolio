@@ -45,11 +45,8 @@ const channels = [
   <section class='about-section' aria-labelledby='cv-title'>
     <h2 id='cv-title' class='h2'>{ui.contact.cvTitle}</h2>
     <div class='hero__actions'>
-      <a class='btn btn--ink' href={`${base}cv-en.pdf`} target='_blank' rel='noopener noreferrer' hreflang='en' lang='en'>
-        {ui.contact.cvEn}<span class='sr-only'>{ui.common.opensInNewTab}</span>
-      </a>
-      <a class='btn btn--yellow' href={`${base}cv-es.pdf`} target='_blank' rel='noopener noreferrer' hreflang='es' lang='es'>
-        {ui.contact.cvEs}<span class='sr-only'>{ui.common.opensInNewTab}</span>
+      <a class='btn btn--ink' href={`${base}${ui.contact.cvFile}`} target='_blank' rel='noopener noreferrer'>
+        {ui.contact.cvButton}<span class='sr-only'>{ui.common.opensInNewTab}</span>
       </a>
     </div>
     <p class='mono muted about-note'>{ui.contact.note}</p>
