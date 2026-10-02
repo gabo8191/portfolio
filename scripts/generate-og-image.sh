@@ -7,7 +7,7 @@
 #   ./scripts/generate-og-image.sh
 #
 # Para cambiar el diseno, edita assets/og/og-image.template.svg.
-# Para cambiar los textos, edita los bloques TECH / ROLE / SUBTITLE / TAG de cada idioma.
+# Para cambiar los textos, edita los bloques TECH / ROLE / LOCATION / SUBTITLE / STICKER de cada idioma.
 #
 # Las fuentes de marca se descargan una sola vez a una cache local aislada
 # (assets/og/.fonts, ignorada por git) para que el render sea identico en
@@ -38,9 +38,18 @@ declare -A SUBTITLE=(
   [en]="Backend systems, integrations and production support"
   [es]="Sistemas backend, integraciones y soporte de producción"
 )
-declare -A TAG=(
-  [en]="L2/L3 incidents · SQL"
-  [es]="Incidentes N2/N3 · SQL"
+declare -A LOCATION=(
+  [en]="Tunja, Colombia · Remote"
+  [es]="Tunja, Colombia · Remoto"
+)
+# Same outcome stickers as the hero (src/i18n/ui.ts → stickers.items).
+declare -A STICKER1=(
+  [en]="Systems that talk"
+  [es]="Sistemas que se hablan"
+)
+declare -A STICKER2=(
+  [en]="Bugs traced to the root"
+  [es]="Errores hasta la raíz"
 )
 declare -A OUT=(
   [en]="$ROOT_DIR/public/og-image.png"
@@ -126,7 +135,9 @@ for lang in en es; do
   svg="${svg//@@TECH@@/$(esc "${TECH[$lang]}")}"
   svg="${svg//@@ROLE@@/$(esc "${ROLE[$lang]}")}"
   svg="${svg//@@SUBTITLE@@/$(esc "${SUBTITLE[$lang]}")}"
-  svg="${svg//@@TAG@@/$(esc "${TAG[$lang]}")}"
+  svg="${svg//@@LOCATION@@/$(esc "${LOCATION[$lang]}")}"
+  svg="${svg//@@STICKER1@@/$(esc "${STICKER1[$lang]}")}"
+  svg="${svg//@@STICKER2@@/$(esc "${STICKER2[$lang]}")}"
 
   tmp_svg="$FC_HOME/og-$lang.svg"
   printf '%s' "$svg" >"$tmp_svg"

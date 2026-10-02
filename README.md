@@ -25,18 +25,23 @@ npm run build
 npm run preview
 ```
 
+## Languages
+
+English is the default and lives at the site root; Spanish lives under `/es/`. Every page declares its twin with `hreflang`, the sitemap lists both, and `/es/` uses its own Open Graph image. A missing Spanish translation fails the build.
+
 ## Where to edit
 
 | Content | File |
 |---|---|
 | Employment and professional projects | `src/data/professional.ts` |
 | Personal projects | `src/data/projects.ts` |
-| About and skills | `src/pages/about.astro` |
-| Home and contact copy | `src/pages/index.astro`, `src/pages/contact.astro` |
+| UI copy in English and Spanish (all pages) | `src/i18n/ui.ts` |
+| Spanish text of projects, employers and areas | `src/i18n/content-es.ts` (keyed by the English title or slug) |
+| Page layouts (served at `/` in English and `/es/` in Spanish) | `src/pages/[...lang]/*.astro` |
 | Metadata and structured data | `src/layouts/RootLayout.astro` |
 | Visual system (tokens, components) | `src/styles/global.css`, `design.md` |
 | Hero stickers | `src/components/sticker-desk.astro` |
-| Open Graph image | `assets/og/og-image.template.svg` → `npm run og:generate` |
+| Open Graph images (English and Spanish) | `assets/og/og-image.template.svg` → `npm run og:generate` |
 | Machine-readable profile | `public/llms.txt` |
 | Downloadable general CV | `public/cv-en.pdf`, `public/cv-es.pdf` |
 

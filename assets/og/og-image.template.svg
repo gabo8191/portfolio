@@ -2,7 +2,7 @@
   <!--
     Open Graph template, "Hard Copy" system (design.md): yellow block, ink
     stroke, zero-blur offset shadows and the name set in Archivo Black.
-    scripts/generate-og-image.sh replaces @@TECH@@, @@ROLE@@, @@SUBTITLE@@ and @@TAG@@
+    scripts/generate-og-image.sh replaces @@TECH@@, @@ROLE@@, @@LOCATION@@, @@SUBTITLE@@, @@STICKER1@@ and @@STICKER2@@
     once per locale (en → og-image.png, es → og-image-es.png).
   -->
   <rect width="1200" height="630" fill="#ffd93d"/>
@@ -18,6 +18,11 @@
   <text x="80" y="128" font-family="JetBrains Mono" font-weight="500" font-size="19"
         fill="#fffdf5">@@ROLE@@</text>
 
+  <!-- Location tag (same pair of tags as the hero) -->
+  <rect x="556" y="98" width="330" height="44" fill="#fffdf5" stroke="#0d0d0d" stroke-width="4"/>
+  <text x="576" y="126" font-family="JetBrains Mono" font-weight="500" font-size="19"
+        fill="#0d0d0d">@@LOCATION@@</text>
+
   <!-- Name -->
   <text x="54" y="290" font-family="Archivo Black" font-size="136" fill="#0d0d0d">GABRIEL</text>
   <text x="54" y="420" font-family="Archivo Black" font-size="136" fill="#0d0d0d">CASTILLO.</text>
@@ -32,14 +37,14 @@
   <g transform="rotate(-6 1010 215)">
     <rect x="866" y="188" width="300" height="62" fill="#0d0d0d" transform="translate(7 7)"/>
     <rect x="866" y="188" width="300" height="62" fill="#ff6fb5" stroke="#0d0d0d" stroke-width="4"/>
-    <text x="886" y="228" font-family="JetBrains Mono" font-weight="500" font-size="22"
-          fill="#0d0d0d">MT103 → pacs.008</text>
+    <text x="886" y="228" font-family="JetBrains Mono" font-weight="500" font-size="20"
+          fill="#0d0d0d">@@STICKER1@@</text>
   </g>
   <g transform="rotate(5 1010 305)">
     <rect x="866" y="282" width="300" height="56" fill="#0d0d0d" transform="translate(7 7)"/>
     <rect x="866" y="282" width="300" height="56" fill="#2f5bff" stroke="#0d0d0d" stroke-width="4"/>
-    <text x="884" y="318" font-family="JetBrains Mono" font-weight="500" font-size="20"
-          fill="#fffdf5">@@TAG@@</text>
+    <text x="884" y="318" font-family="JetBrains Mono" font-weight="500" font-size="18"
+          fill="#fffdf5">@@STICKER2@@</text>
   </g>
 
   <!-- Frame -->
