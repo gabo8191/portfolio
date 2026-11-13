@@ -246,7 +246,7 @@ const en = {
       {
         title: 'Bachelor of Engineering in Systems and Computer Engineering',
         school: 'Universidad Pedagógica y Tecnológica de Colombia (UPTC), Tunja',
-        when: 'Expected 2026',
+        when: 'Expected April 2027',
       },
       {
         title: 'Technologist in Information Systems Analysis and Development',
@@ -518,7 +518,7 @@ const es: Ui = {
       {
         title: 'Ingeniería de Sistemas y Computación',
         school: 'Universidad Pedagógica y Tecnológica de Colombia (UPTC), Tunja',
-        when: 'Grado previsto en 2026',
+        when: 'Grado previsto en abril de 2027',
       },
       {
         title: 'Tecnólogo en Análisis y Desarrollo de Sistemas de Información',
